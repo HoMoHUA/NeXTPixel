@@ -1020,15 +1020,33 @@ if (isset($_POST['logout'])) {
             const header = document.querySelector('.ios-glass-header');
             if (header) {
                 let lastScroll = 0;
-                window.addEventListener('scroll', () => {
-                    const currentScroll = window.pageYOffset;
+                const updateHeaderState = () => {
+                    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
                     if (currentScroll > 50) {
-                        header.classList.add('scrolled');
+                        if (!header.classList.contains('scrolled')) {
+                            header.classList.add('scrolled');
+                            const h = header.getBoundingClientRect().height;
+                            document.body.style.paddingTop = `${h}px`;
+                        }
                     } else {
-                        header.classList.remove('scrolled');
+                        if (header.classList.contains('scrolled')) {
+                            header.classList.remove('scrolled');
+                            document.body.style.paddingTop = '0px';
+                        }
                     }
                     lastScroll = currentScroll;
+                };
+
+                window.addEventListener('scroll', updateHeaderState, { passive: true });
+                window.addEventListener('resize', () => {
+                    if (header.classList.contains('scrolled')) {
+                        const h = header.getBoundingClientRect().height;
+                        document.body.style.paddingTop = `${h}px`;
+                    }
                 });
+
+                // initialize in case page loaded already scrolled
+                updateHeaderState();
             }
 
             // === 3D Hero Parallax Effect ===
