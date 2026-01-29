@@ -202,28 +202,45 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         .icon-glow {
             animation: glow-pulse 2s ease-in-out infinite;
         }
-        /* iOS-Style Liquid Glass Header */
         nav.ios-glass-header {
             position: sticky;
             top: 16px;
             z-index: 1000;
             background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: saturate(620%) blur(28px);
-            -webkit-backdrop-filter: saturate(620%) blur(28px);
-            border: 0.5px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
-                        0 -1px 0 0 rgba(0, 0, 0, 0.1) inset,
-                        0 8px 32px rgba(0, 0, 0, 0.12),
-                        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: visible;
+            backdrop-filter: blur(35px) saturate(280%); 
+            -webkit-backdrop-filter: blur(35px) saturate(280%);
+            border: 2px solid rgba(55, 55, 55, 0.4);
+            box-shadow: 
+                0 10px 40px -10px rgba(0,0,0,0.5),
+                inset 0 1px 0 0 rgba(255,255,255,0.2),
+                inset 0 -1px 0 0 rgba(255,255,255,0.2),
+                inset 0 0 20px rgba(255,255,255,0.05),
+                0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+
+            transition: top 0.28s cubic-bezier(0.4, 0, 0.2, 1), background 0.28s ease, box-shadow 0.28s ease, border-radius 0.28s ease, margin 0.28s ease, transform 0.28s ease;
         }
-        /* Shiny outer border only */
- 
-        nav.ios-glass-header > * {
-            position: relative;
-            z-index: 2;
+
+        /* When scrolled we switch to fixed positioning to ensure the header stays pinned
+           and reserve space for it via JS to avoid layout jumps */
+        nav.ios-glass-header.scrolled {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 100%;
+            border-radius: 0;
+            background: rgba(15, 23, 42, 0.85);
+            box-shadow: 
+                0 10px 40px -10px rgba(0,0,0,0.55),
+                inset 0 1px 0 0 rgba(255,255,255,0.12),
+                inset 0 -1px 0 0 rgba(255,255,255,0.08),
+                inset 0 0 18px rgba(255,255,255,0.03);
+            z-index: 2000;
         }
+
+        nav.ios-glass-header > * { position: relative; z-index: 2; }
         /* Hero Section Styles - Matching Image Design */
         .hero-gradient {
             background: linear-gradient(180deg, 
