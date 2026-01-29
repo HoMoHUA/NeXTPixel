@@ -1,0 +1,5 @@
+[07-Dec-2025 15:33:16 UTC] Status column might not exist: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status' in 'WHERE'
+[07-Dec-2025 15:33:16 UTC] Status column might not exist: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status' in 'WHERE'
+[07-Dec-2025 15:33:47 UTC] Status column might not exist: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status' in 'INSERT INTO'
+[07-Dec-2025 15:34:18 UTC] Status column might not exist: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status' in 'WHERE'
+[07-Dec-2025 15:34:18 UTC] Status column might not exist: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status' in 'WHERE'
