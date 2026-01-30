@@ -29,7 +29,10 @@ require_once 'config/n8n-config.php';
     <script src="/assets/js/vendor/feather.min.js" defer></script>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     

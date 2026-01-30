@@ -24,7 +24,10 @@ $isN8NAdmin = $isLoggedIn;
     <script src="/assets/js/vendor/vanta.waves.min.js" defer></script>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     <style>

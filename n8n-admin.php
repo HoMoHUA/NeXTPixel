@@ -24,7 +24,10 @@ require_once 'config/n8n-config.php';
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -36,7 +39,10 @@ require_once 'config/n8n-config.php';
     <script src="/assets/js/vendor/feather.min.js" defer></script>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     

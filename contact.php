@@ -17,7 +17,10 @@ $isN8NAdmin = $isLoggedIn;
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -33,7 +36,10 @@ $isN8NAdmin = $isLoggedIn;
     <script src="/assets/js/vendor/vanta.waves.min.js" defer></script>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     

@@ -1,5 +1,6 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /**
  * NextPixel Global Stylesheet
  * ============================================
@@ -76,6 +77,8 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 /* NextPixel Global Styles */
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
@@ -87,6 +90,9 @@
     --np-border-light: rgba(255, 255, 255, 0.1);
     --np-glass-blur: 35px;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -98,6 +104,7 @@
     box-sizing: border-box;
 }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 body {
@@ -804,6 +811,8 @@ nav.np-glass-effect {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -939,6 +948,9 @@ a:hover {
     transition: all 0.3s ease;
     display: inline-block;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -946,6 +958,7 @@ a:hover {
 
 .cta-button:hover {
     transform: translateY(-2px);
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
@@ -1046,6 +1059,8 @@ a:hover {
     .container {
         max-width: 1536px;
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
@@ -1357,6 +1372,9 @@ input:focus, select:focus, textarea:focus {
     nav, footer {
         display: none;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
