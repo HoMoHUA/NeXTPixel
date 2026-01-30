@@ -15,7 +15,10 @@ $isN8NAdmin = $isLoggedIn;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نمونه کارها | NextPixel</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     <link rel="stylesheet" href="/assets/css/nextpixel-global.css">
     <link rel="stylesheet" href="/assets/css/vendor/aos.min.css">
     <script src="/assets/js/vendor/tailwind.min.js" defer></script>
@@ -23,6 +26,99 @@ $isN8NAdmin = $isLoggedIn;
     <script src="/assets/js/vendor/feather.min.js" defer></script>
     <script src="/assets/js/vendor/scrollreveal.min.js" defer></script>
     <script src="/assets/js/vendor/anime.min.js" defer></script>
+<<<<<<< Updated upstream
+=======
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        .glass-effect {
+            background: rgba(15, 23, 42, 0.85);
+            -webkit-backdrop-filter: url(#liquid-glass-filter);
+            backdrop-filter: url(#liquid-glass-filter);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            will-change: transform, backdrop-filter;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .portfolio-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.3);
+        }
+        .portfolio-card img {
+            transition: transform 0.5s ease;
+        }
+        .portfolio-card:hover img {
+            transform: scale(1.1);
+        }
+        .filter-btn.active {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            color: white;
+        }
+        .dynamic-bg {
+            background: linear-gradient(45deg, #0f172a, #1e293b, #334155);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .filter-btn:hover {
+            transform: translateY(-2px);
+        }
+        .cta-button {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+        /* iOS-Style Liquid Glass Header */
+        nav.ios-glass-header {
+            position: sticky;
+            top: 16px;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: saturate(180%) blur(30px);
+            -webkit-backdrop-filter: saturate(180%) blur(30px);
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
+                        0 -1px 0 0 rgba(0, 0, 0, 0.1) inset,
+                        0 8px 32px rgba(0, 0, 0, 0.12),
+                        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        nav.ios-glass-header.scrolled {
+            top: 0;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: saturate(200%) blur(40px);
+            -webkit-backdrop-filter: saturate(200%) blur(40px);
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.08) inset,
+                        0 -1px 0 0 rgba(0, 0, 0, 0.2) inset,
+                        0 12px 48px rgba(0, 0, 0, 0.25),
+                        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        }
+    </style>
+>>>>>>> Stashed changes
 </head>
 <body class="overflow-x-hidden">
     

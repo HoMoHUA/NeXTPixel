@@ -22,12 +22,166 @@ require_once 'config/n8n-config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>پنل مدیریت n8n | NextPixel</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     <link rel="stylesheet" href="/assets/css/nextpixel-global.css">
     <link rel="stylesheet" href="/assets/css/vendor/aos.min.css">
     <script src="/assets/js/vendor/tailwind.min.js" defer></script>
     <script src="/assets/js/vendor/aos.min.js" defer></script>
     <script src="/assets/js/vendor/feather.min.js" defer></script>
+<<<<<<< Updated upstream
+=======
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: #f8fafc;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        
+        .glass-effect {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #60a5fa, #818cf8, #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+        }
+        
+        nav.ios-glass-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: saturate(180%) blur(30px);
+            -webkit-backdrop-filter: saturate(180%) blur(30px);
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
+                        0 -1px 0 0 rgba(0, 0, 0, 0.1) inset,
+                        0 8px 32px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        nav.ios-glass-header.scrolled {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: saturate(200%) blur(40px);
+            -webkit-backdrop-filter: saturate(200%) blur(40px);
+        }
+        
+        .workflow-card {
+            transition: all 0.3s ease;
+        }
+        
+        .workflow-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        .status-active {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+        }
+        
+        .status-inactive {
+            background: linear-gradient(45deg, #6b7280, #4b5563);
+            color: white;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
+        }
+        
+        .loading {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-content {
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #4b5563;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background: linear-gradient(45deg, #10b981, #059669);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+>>>>>>> Stashed changes
 </head>
 <body>
     

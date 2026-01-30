@@ -15,6 +15,17 @@ $isN8NAdmin = $isLoggedIn;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>خدمات | NextPixel</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+<<<<<<< Updated upstream
+=======
+    <link rel="stylesheet" href="/assets/css/nextpixel-global.css">
+    <link rel="stylesheet" href="/assets/css/vendor/aos.min.css">
+    <script src="/assets/js/vendor/tailwind.min.js" defer></script>
+    <script src="/assets/js/vendor/aos.min.js" defer></script>
+    <script src="/assets/js/vendor/feather.min.js" defer></script>
+    <script src="/assets/js/vendor/anime.min.js" defer></script>
+    <script src="/assets/js/vendor/three.min.js" defer></script>
+    <script src="/assets/js/vendor/scrollreveal.min.js" defer></script>
+>>>>>>> Stashed changes
 
     <link rel="stylesheet" href="/assets/css/nextpixel-global.css">
     <link rel="stylesheet" href="/assets/css/vendor/aos.min.css">

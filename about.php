@@ -22,6 +22,400 @@ $isN8NAdmin = $isLoggedIn;
     <script src="/assets/js/vendor/scrollreveal.min.js" defer></script>
     <script src="/assets/js/vendor/three.min.js" defer></script>
     <script src="/assets/js/vendor/vanta.waves.min.js" defer></script>
+<<<<<<< Updated upstream
+=======
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        .glass-effect {
+            background: rgba(15, 23, 42, 0.85);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            will-change: transform, backdrop-filter;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .liquid-glass {
+            background: rgba(15, 23, 42, 0.7);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        @keyframes morph {
+            0% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40%/50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
+        }
+        .liquid-morph {
+            animation: morph 8s ease-in-out infinite;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .team-glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border-radius: 16px;
+            transition: transform 0.2s ease-out;
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 420px;
+        }
+        
+        .team-glass-card.leader {
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 10px 40px 0 rgba(59, 130, 246, 0.15);
+        }
+
+        .team-glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: 0.5s;
+            pointer-events: none;
+        }
+        
+        .team-glass-card:hover::before {
+            left: 100%;
+        }
+
+        .member-img-box {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
+            transform: translateZ(20px);
+        }
+        
+        @media (min-width: 768px) {
+            .member-img-box {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 16px;
+            }
+            .leader .member-img-box {
+                width: 130px;
+                height: 130px;
+            }
+        }
+
+        .leader .member-img-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(139, 92, 246, 0.2));
+        }
+
+        .member-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .member-name {
+            font-size: 0.95rem; 
+            font-weight: 700;
+            color: white;
+            margin-bottom: 2px;
+            white-space: nowrap;
+        }
+        @media (min-width: 768px) {
+            .member-name { font-size: 1.1rem; }
+            .leader .member-name { font-size: 1.5rem; }
+        }
+
+        .member-role {
+            color: #3b82f6;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            line-height: 1.4;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+        @media (min-width: 768px) {
+            .member-role { font-size: 0.85rem; }
+            .leader .member-role { font-size: 1rem; }
+        }
+
+        .social-links a {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            width: 30px; height: 30px;
+        }
+        @media (min-width: 768px) {
+            .social-links a { width: 40px; height: 40px; }
+        }
+        .social-links a:hover {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+            transform: translateY(-3px);
+        }
+
+        .desktop-connector-h {
+            display: none;
+        }
+        @media (min-width: 1024px) {
+            .desktop-connector-h {
+                display: block;
+                position: relative;
+                width: 100%;
+                height: 40px; 
+            }
+            .desktop-line-vertical {
+                position: absolute;
+                top: 0; left: 50%;
+                width: 2px; height: 100%;
+                background: linear-gradient(to bottom, rgba(59,130,246,0) 0%, rgba(59,130,246,0.5) 100%);
+                transform: translateX(-50%);
+            }
+            .desktop-line-horizontal {
+                position: absolute;
+                bottom: 0;
+                left: 12%; right: 12%; 
+                height: 2px;
+                background: rgba(59,130,246,0.5);
+            }
+            .sub-connector-up {
+                position: absolute;
+                top: -20px; left: 50%;
+                width: 2px; height: 20px;
+                background: linear-gradient(to top, rgba(59,130,246,0.5), transparent);
+                transform: translateX(-50%);
+            }
+        }
+
+        .mobile-branch-wrapper {
+            position: relative;
+            padding-right: 24px;
+            border-right: 2px solid rgba(59, 130, 246, 0.3);
+            margin-right: 20px;
+            margin-top: -10px;
+            padding-top: 20px;
+            padding-bottom: 10px;
+        }
+        @media (min-width: 1024px) {
+            .mobile-branch-wrapper {
+                padding-right: 0;
+                border-right: none;
+                margin-right: 0;
+                margin-top: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+        }
+
+        .mobile-connector {
+            position: absolute;
+            right: -26px;
+            top: 50%;
+            width: 24px;
+            height: 2px;
+            background: rgba(59, 130, 246, 0.3);
+            transform: translateY(-50%);
+        }
+        @media (min-width: 1024px) {
+            .mobile-connector { display: none; }
+        }
+
+        .team-grid-responsive {
+            display: grid;
+            gap: 1rem;
+            justify-items: center;
+        }
+        @media (min-width: 640px) {
+            .team-grid-responsive { gap: 1.25rem; }
+        }
+        @media (min-width: 1024px) {
+            .team-grid-responsive {
+                justify-items: stretch;
+                align-items: stretch;
+            }
+        }
+
+        .stats-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .stats-card:hover {
+            transform: scale(1.05);
+        }
+        .cta-button {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* =========================================================
+           HoMox MODIFIED Header: "Double Reverse" Liquid Effect
+           ========================================================= */
+        nav.ios-glass-header {
+            position: sticky;
+            top: 26px;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(35px) saturate(280%); 
+            -webkit-backdrop-filter: blur(35px) saturate(280%);
+            border: 2px solid rgba(155, 155, 155, 0.4);
+            
+            /* HoMox Modification: 
+               Added specific 'inset 0 -1px 0 0 rgba(255,255,255,0.2)' 
+               to create the highlight at the BOTTOM edge.
+            */
+            box-shadow: 
+                /* Outer soft shadow */
+                0 10px 40px -10px rgba(0,0,0,0.5),
+                /* Top Highlight Inner (Reverse Top) */
+                inset 0 1px 0 0 rgba(155,155,155,0.3),
+                /* Bottom Highlight Inner (Reverse Bottom - NEW) */
+                inset 0 -1px 0 0 rgba(155,155,155,0.3),
+                /* Deep Glass Glow */
+                inset 0 0 20px rgba(255,255,255,0.25),
+                /* Subtle Rim */
+                0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+
+            transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        nav.ios-glass-header.scrolled {
+            top: 20px;
+            background: rgba(15, 23, 42, 0.75);
+            /* HoMox Modification for Scrolled State: 
+               Maintained the double reverse highlight.
+            */
+            box-shadow: 
+                /* Outer soft shadow */
+                0 10px 40px -10px rgba(0,0,0,0.5),
+                /* Top Highlight Inner */
+                inset 0 1px 0 0 rgba(255,255,255,0.2),
+                /* Bottom Highlight Inner (NEW) */
+                inset 0 -1px 0 0 rgba(255,255,255,0.2),
+                /* Deep Glass Glow */
+                inset 0 0 20px rgba(255,255,255,0.05),
+                /* Subtle Rim */
+                0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+        }
+        
+        .about-hero-3d {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        .about-hero-3d-bg {
+            background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 20% 80%, rgba(245, 158, 11, 0.15) 0%, transparent 50%);
+            animation: about-bg-rotate 20s ease-in-out infinite;
+        }
+        @keyframes about-bg-rotate {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(-5deg) scale(1.1); }
+        }
+        .about-3d-element {
+            animation: about-3d-float 8s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+        @keyframes about-3d-float {
+            0%, 100% {
+                transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translate3d(-20px, -30px, 50px) rotateX(-10deg) rotateY(5deg);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate3d(10px, -50px, 100px) rotateX(10deg) rotateY(-5deg);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translate3d(-30px, -20px, 50px) rotateX(-5deg) rotateY(-10deg);
+                opacity: 0.5;
+            }
+        }
+        .about-3d-content {
+            transform-style: preserve-3d;
+            animation: about-content-enter 1.5s ease-out;
+        }
+        @keyframes about-content-enter {
+            from {
+                opacity: 0;
+                transform: translateZ(-200px) rotateX(20deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateZ(0) rotateX(0deg);
+            }
+        }
+        .about-3d-title {
+            transform-style: preserve-3d;
+            display: inline-block;
+            animation: about-title-3d 1s ease-out 0.5s both;
+        }
+        @keyframes about-title-3d {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 50px, -100px) rotateX(90deg);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0) rotateX(0deg);
+            }
+        }
+        .about-3d-text {
+            transform-style: preserve-3d;
+            display: inline-block;
+            animation: about-text-3d 1s ease-out 1.5s both;
+        }
+        @keyframes about-text-3d {
+            from {
+                opacity: 0;
+                transform: translateZ(-150px) rotateY(-10deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateZ(0) rotateY(0deg);
+            }
+        }
+    </style>
+>>>>>>> Stashed changes
 </head>
 <body class="overflow-x-hidden">
 
