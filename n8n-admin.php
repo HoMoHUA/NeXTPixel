@@ -1,21 +1,18 @@
 <?php
-// بررسی session و احراز هویت
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// بررسی لاگین بودن کاربر
 $isLoggedIn = isset($_SESSION['user_id']);
 $username = $_SESSION['username'] ?? '';
 $displayName = $_SESSION['display_name'] ?? '';
 
-// اگر لاگین نیست، به صفحه لاگین هدایت شود
 if (!$isLoggedIn) {
     header('Location: login.php');
     exit;
 }
 
-// بارگذاری تنظیمات n8n
 require_once 'config/n8n-config.php';
 ?>
 <!DOCTYPE html>
@@ -25,161 +22,15 @@ require_once 'config/n8n-config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>پنل مدیریت n8n | NextPixel</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
-        
-        * {
-            font-family: 'Vazirmatn', sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-            color: #f8fafc;
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        
-        .glass-effect {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(12px) saturate(180%);
-            -webkit-backdrop-filter: blur(12px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.125);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(90deg, #60a5fa, #818cf8, #a78bfa);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            background-size: 200% auto;
-        }
-        
-        nav.ios-glass-header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: saturate(180%) blur(30px);
-            -webkit-backdrop-filter: saturate(180%) blur(30px);
-            border: 0.5px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
-                        0 -1px 0 0 rgba(0, 0, 0, 0.1) inset,
-                        0 8px 32px rgba(0, 0, 0, 0.12);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        nav.ios-glass-header.scrolled {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: saturate(200%) blur(40px);
-            -webkit-backdrop-filter: saturate(200%) blur(40px);
-        }
-        
-        .workflow-card {
-            transition: all 0.3s ease;
-        }
-        
-        .workflow-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
-        }
-        
-        .status-active {
-            background: linear-gradient(45deg, #10b981, #059669);
-            color: white;
-        }
-        
-        .status-inactive {
-            background: linear-gradient(45deg, #6b7280, #4b5563);
-            color: white;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-        }
-        
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
-            50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
-        }
-        
-        .loading {
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
-        
-        .modal-overlay {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .modal-content {
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #4b5563;
-            transition: .4s;
-            border-radius: 34px;
-        }
-        
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        
-        input:checked + .slider {
-            background: linear-gradient(45deg, #10b981, #059669);
-        }
-        
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-    </style>
+
+    <link rel="stylesheet" href="/assets/css/nextpixel-global.css">
+    <link rel="stylesheet" href="/assets/css/vendor/aos.min.css">
+    <script src="/assets/js/vendor/tailwind.min.js" defer></script>
+    <script src="/assets/js/vendor/aos.min.js" defer></script>
+    <script src="/assets/js/vendor/feather.min.js" defer></script>
 </head>
 <body>
-    <!-- Navigation -->
+    
     <nav class="ios-glass-header flex justify-between items-center py-4 px-4 md:px-8 mx-auto max-w-full md:max-w-6xl rounded-2xl md:rounded-full my-4">
         <a href="index.php" class="text-2xl font-bold gradient-text">NextPixel</a>
         <div class="hidden md:flex items-center space-x-6 space-x-reverse">
@@ -191,18 +42,16 @@ require_once 'config/n8n-config.php';
             <span class="text-green-400 font-medium"><?php echo htmlspecialchars($displayName); ?></span>
         </div>
     </nav>
-    
-    <!-- Main Content -->
+
     <main class="container mx-auto px-4 py-8 max-w-7xl">
-        <!-- Header Section -->
+        
         <div class="text-center mb-12" data-aos="fade-up">
             <h1 class="text-4xl md:text-5xl font-bold mb-4">
                 <span class="gradient-text">پنل مدیریت n8n</span>
             </h1>
             <p class="text-gray-300 text-lg">مدیریت و کنترل کامل سرویس‌های اتوماسیون n8n</p>
         </div>
-        
-        <!-- Connection Status -->
+
         <div class="glass-effect rounded-2xl p-6 mb-8" data-aos="fade-up" data-aos-delay="100">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4 space-x-reverse">
@@ -218,8 +67,7 @@ require_once 'config/n8n-config.php';
                 </button>
             </div>
         </div>
-        
-        <!-- Actions Bar -->
+
         <div class="glass-effect rounded-2xl p-6 mb-8 flex flex-col md:flex-row justify-between items-center gap-4" data-aos="fade-up" data-aos-delay="200">
             <div class="flex items-center space-x-4 space-x-reverse">
                 <button id="refresh-workflows" class="btn-primary px-6 py-2 rounded-full text-white font-medium">
@@ -236,18 +84,16 @@ require_once 'config/n8n-config.php';
                        class="bg-slate-800/50 border border-slate-700 rounded-full px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500">
             </div>
         </div>
-        
-        <!-- Workflows List -->
+
         <div id="workflows-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Workflows will be loaded here -->
+            
             <div class="col-span-full text-center py-12">
                 <div class="loading inline-block w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full"></div>
                 <p class="text-gray-400 mt-4">در حال بارگذاری workflows...</p>
             </div>
         </div>
     </main>
-    
-    <!-- Create/Edit Workflow Modal -->
+
     <div id="workflow-modal" class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4">
         <div class="modal-content glass-effect rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
@@ -297,16 +143,14 @@ require_once 'config/n8n-config.php';
             </form>
         </div>
     </div>
-    
-    <!-- Scripts -->
+
     <script>
-        // Initialize Feather Icons
+        
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof feather !== 'undefined') {
                 feather.replace();
             }
-            
-            // Initialize AOS
+
             if (typeof AOS !== 'undefined') {
                 AOS.init({
                     duration: 800,
@@ -314,12 +158,10 @@ require_once 'config/n8n-config.php';
                     once: true
                 });
             }
-            
-            // Load workflows on page load
+
             checkConnection();
             loadWorkflows();
-            
-            // Event listeners
+
             document.getElementById('refresh-connection').addEventListener('click', checkConnection);
             document.getElementById('refresh-workflows').addEventListener('click', loadWorkflows);
             document.getElementById('create-workflow').addEventListener('click', () => openWorkflowModal());
@@ -328,8 +170,7 @@ require_once 'config/n8n-config.php';
             document.getElementById('workflow-form').addEventListener('submit', saveWorkflow);
             document.getElementById('search-workflows').addEventListener('input', filterWorkflows);
         });
-        
-        // Check n8n connection
+
         async function checkConnection() {
             const statusEl = document.getElementById('connection-status');
             const textEl = document.getElementById('connection-text');
@@ -350,8 +191,7 @@ require_once 'config/n8n-config.php';
                 textEl.textContent = 'خطا در اتصال';
             }
         }
-        
-        // Load workflows from n8n
+
         async function loadWorkflows() {
             const container = document.getElementById('workflows-container');
             container.innerHTML = '<div class="col-span-full text-center py-12"><div class="loading inline-block w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full"></div><p class="text-gray-400 mt-4">در حال بارگذاری workflows...</p></div>';
@@ -369,8 +209,7 @@ require_once 'config/n8n-config.php';
                 container.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-red-400">خطا در ارتباط با سرور</p></div>';
             }
         }
-        
-        // Display workflows
+
         function displayWorkflows(workflows) {
             const container = document.getElementById('workflows-container');
             
@@ -412,14 +251,12 @@ require_once 'config/n8n-config.php';
                     </div>
                 </div>
             `).join('');
-            
-            // Re-initialize Feather Icons
+
             if (typeof feather !== 'undefined') {
                 feather.replace();
             }
         }
-        
-        // Toggle workflow active status
+
         async function toggleWorkflow(workflowId, isActive) {
             try {
                 const response = await fetch('api/n8n-workflows.php', {
@@ -436,15 +273,14 @@ require_once 'config/n8n-config.php';
                 const data = await response.json();
                 if (!data.success) {
                     alert('خطا در تغییر وضعیت workflow');
-                    loadWorkflows(); // Reload to revert
+                    loadWorkflows(); 
                 }
             } catch (error) {
                 alert('خطا در ارتباط با سرور');
-                loadWorkflows(); // Reload to revert
+                loadWorkflows(); 
             }
         }
-        
-        // Open workflow modal for editing
+
         async function editWorkflow(workflowId) {
             try {
                 const response = await fetch(`api/n8n-workflows.php?action=get&id=${workflowId}`);
@@ -466,21 +302,18 @@ require_once 'config/n8n-config.php';
                 alert('خطا در ارتباط با سرور');
             }
         }
-        
-        // Open workflow modal for creating
+
         function openWorkflowModal() {
             document.getElementById('workflow-form').reset();
             document.getElementById('workflow-id').value = '';
             document.getElementById('modal-title').textContent = 'ساخت Workflow جدید';
             document.getElementById('workflow-modal').classList.remove('hidden');
         }
-        
-        // Close workflow modal
+
         function closeWorkflowModal() {
             document.getElementById('workflow-modal').classList.add('hidden');
         }
-        
-        // Save workflow (create or update)
+
         async function saveWorkflow(e) {
             e.preventDefault();
             
@@ -513,8 +346,7 @@ require_once 'config/n8n-config.php';
                 alert('خطا در ارتباط با سرور');
             }
         }
-        
-        // Delete workflow
+
         async function deleteWorkflow(workflowId) {
             if (!confirm('آیا مطمئن هستید که می‌خواهید این workflow را حذف کنید؟')) {
                 return;
@@ -542,8 +374,7 @@ require_once 'config/n8n-config.php';
                 alert('خطا در ارتباط با سرور');
             }
         }
-        
-        // Filter workflows
+
         function filterWorkflows(e) {
             const searchTerm = e.target.value.toLowerCase();
             const cards = document.querySelectorAll('.workflow-card');
@@ -556,5 +387,4 @@ require_once 'config/n8n-config.php';
     </script>
 </body>
 </html>
-
 

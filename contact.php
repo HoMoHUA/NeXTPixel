@@ -1,12 +1,12 @@
 <?php
-// شروع سشن در ابتدای فایل
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 $isLoggedIn = isset($_SESSION['user_id']);
 $username = $_SESSION['username'] ?? '';
 $displayName = $_SESSION['display_name'] ?? '';
-$isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگین شده
+$isN8NAdmin = $isLoggedIn; 
 ?>
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
@@ -15,93 +15,19 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تماس با ما | NextPixel</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
-    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" defer></script>
-    <!-- Add Three.js dependency for Vanta.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js" defer></script>
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-        .glass-effect {
-            background: rgba(15, 23, 42, 0.85);
-            -webkit-backdrop-filter: url(#liquid-glass-filter);
-            backdrop-filter: url(#liquid-glass-filter);
-            border: 1px solid rgba(255, 255, 255, 0.125);
-            will-change: transform, backdrop-filter;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #f59e0b, #ef4444);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.2);
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-        .input-focus:focus {
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
-        }
-        .cta-button {
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-        }
-        /* iOS-Style Liquid Glass Header */
-        nav.ios-glass-header {
-            position: sticky;
-            top: 16px;
-            z-index: 1000;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: saturate(180%) blur(30px);
-            -webkit-backdrop-filter: saturate(180%) blur(30px);
-            border: 0.5px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
-                        0 -1px 0 0 rgba(0, 0, 0, 0.1) inset,
-                        0 8px 32px rgba(0, 0, 0, 0.12),
-                        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        nav.ios-glass-header.scrolled {
-            top: 0;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: saturate(200%) blur(40px);
-            -webkit-backdrop-filter: saturate(200%) blur(40px);
-            border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.08) inset,
-                        0 -1px 0 0 rgba(0, 0, 0, 0.2) inset,
-                        0 12px 48px rgba(0, 0, 0, 0.25),
-                        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-        }
-    </style>
+
+    <link rel="stylesheet" href="/assets/css/nextpixel-global.css">
+    <link rel="stylesheet" href="/assets/css/vendor/aos.min.css">
+    <script src="/assets/js/vendor/tailwind.min.js" defer></script>
+    <script src="/assets/js/vendor/aos.min.js" defer></script>
+    <script src="/assets/js/vendor/feather.min.js" defer></script>
+    <script src="/assets/js/vendor/scrollreveal.min.js" defer></script>
+    <script src="/assets/js/vendor/anime.min.js" defer></script>
+    <script src="/assets/js/vendor/three.min.js" defer></script>
+    <script src="/assets/js/vendor/vanta.waves.min.js" defer></script>
 </head>
 <body class="overflow-x-hidden">
-    <!-- SVG Filter for Liquid Glass Effect -->
+    
     <svg style="position: absolute; width: 0; height: 0;">
       <defs>
         <filter id="liquid-glass-filter" color-interpolation-filters="sRGB">
@@ -112,8 +38,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
       </defs>
     </svg>
 
-    <!-- Navigation -->
-    <nav class="ios-glass-header flex justify-between items-center py-4 px-4 md:px-8 mx-auto max-w-full md:max-w-6xl rounded-2xl md:rounded-full my-4">
+    <nav class="ios-glass-header sticky top-0 z-50 flex justify-between items-center py-4 px-4 md:px-8 mx-auto max-w-full md:max-w-6xl rounded-2xl md:rounded-full my-4">
         <div class="text-2xl font-bold text-white flex items-center">
             <a href="index.php" class="gradient-text" style="background: linear-gradient(90deg, #f59e0b, #ef4444); -webkit-background-clip: text; background-clip: text; color: transparent;">NextPixel</a>
         </div>
@@ -144,8 +69,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             <i data-feather="menu" class="text-white w-7 h-7"></i>
         </button>
     </nav>
-    
-    <!-- Mobile Menu -->
+
     <div id="mobile-menu" class="fixed inset-0 bg-slate-900/90 glass-effect z-40 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
         <div class="flex flex-col items-center justify-center h-full space-y-8 text-2xl font-medium">
             <a href="index.php" class="hover:text-amber-400 transition text-white">صفحه اصلی</a>
@@ -171,7 +95,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </div>
     </div>
 
-    <!-- Contact Hero -->
     <section class="min-h-[60vh] flex items-center relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-b from-amber-900/20 to-transparent z-10"></div>
         <div class="container mx-auto px-4 z-20 relative py-20">
@@ -182,11 +105,10 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </div>
     </section>
 
-    <!-- Contact Content -->
     <section class="py-20">
         <div class="container mx-auto px-4">
             <div class="flex flex-col lg:flex-row gap-12">
-                <!-- Contact Info -->
+                
                 <div class="lg:w-2/5 space-y-8" data-aos="fade-right">
                     <div class="glass-effect p-8 rounded-2xl contact-card transition-all duration-300">
                         <h2 class="text-2xl font-bold mb-6 gradient-text">اطلاعات تماس</h2>
@@ -243,7 +165,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                     </div>
                 </div>
 
-                <!-- Contact Form -->
                 <div class="lg:w-3/5" data-aos="fade-left">
                     <div class="glass-effect p-8 md:p-12 rounded-2xl">
                         <h2 class="text-2xl font-bold mb-8 gradient-text">فرم تماس</h2>
@@ -287,7 +208,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </div>
     </section>
 
-    <!-- Floating Contact Icons -->
     <div class="fixed bottom-8 left-8 z-50 hidden md:block">
         <div class="space-y-4">
             <a href="#" class="bg-amber-600 hover:bg-amber-700 text-white p-4 rounded-full flex items-center justify-center shadow-lg floating" style="animation-delay: 0.2s;">
@@ -302,7 +222,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="py-12 bg-slate-900/80">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
@@ -336,7 +255,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Mobile Menu Toggle ---
+            
             const menuBtn = document.getElementById('menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuIcon = menuBtn.querySelector('i');
@@ -359,7 +278,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                 link.addEventListener('click', toggleMenu);
             });
 
-            // Initialize AOS
             AOS.init({
                 duration: 800,
                 easing: 'ease-out-quart',
@@ -367,10 +285,8 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                 mirror: false
             });
 
-            // Initialize Feather Icons
             feather.replace();
 
-            // === iOS Glass Header Scroll Effect ===
             const header = document.querySelector('.ios-glass-header');
             if (header) {
                 let lastScroll = 0;

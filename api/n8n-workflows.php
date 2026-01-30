@@ -1,16 +1,11 @@
 <?php
-/**
- * API Endpoint برای مدیریت workflows در n8n
- */
 
 header('Content-Type: application/json');
 
-// بررسی session
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// بررسی دسترسی - فقط باید لاگین باشد
 $isLoggedIn = isset($_SESSION['user_id']);
 
 if (!$isLoggedIn) {
@@ -19,13 +14,11 @@ if (!$isLoggedIn) {
     exit;
 }
 
-// بارگذاری تنظیمات
 require_once __DIR__ . '/../config/n8n-config.php';
 
 $baseUrl = rtrim(N8N_BASE_URL, '/');
 $apiKey = N8N_API_KEY;
 
-// تابع برای ارسال درخواست به n8n
 function sendN8NRequest($url, $method = 'GET', $data = null) {
     global $apiKey;
     
@@ -38,22 +31,18 @@ function sendN8NRequest($url, $method = 'GET', $data = null) {
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
     
     $headers = ['Content-Type: application/json'];
-    
-    // اگر API Key وجود دارد، اضافه کن
+
     if (!empty($apiKey)) {
         $headers[] = 'X-N8N-API-KEY: ' . $apiKey;
     }
-    
-    // اگر username و password وجود دارد، از Basic Auth استفاده کن
+
     if (!empty(N8N_USERNAME) && !empty(N8N_PASSWORD)) {
         curl_setopt($ch, CURLOPT_USERPWD, N8N_USERNAME . ':' . N8N_PASSWORD);
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
     }
-    
-    // اضافه کردن headers
+
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    
-    // اگر Cookie وجود دارد (از session)، استفاده کن
+
     if (isset($_COOKIE) && !empty($_COOKIE)) {
         $cookieString = '';
         foreach ($_COOKIE as $key => $value) {
@@ -84,10 +73,8 @@ function sendN8NRequest($url, $method = 'GET', $data = null) {
     ];
 }
 
-// دریافت action از query string یا POST
 $action = $_GET['action'] ?? ($_POST['action'] ?? null);
 
-// اگر action مشخص نشده، از JSON body بخوان
 if (!$action && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = json_decode(file_get_contents('php://input'), true);
     $action = $input['action'] ?? null;
@@ -96,7 +83,7 @@ if (!$action && $_SERVER['REQUEST_METHOD'] === 'POST') {
 try {
     switch ($action) {
         case 'list':
-            // دریافت لیست workflows
+            
             $result = sendN8NRequest($baseUrl . '/api/v1/workflows');
             
             if (isset($result['error'])) {
@@ -108,8 +95,7 @@ try {
             }
             
             $workflows = $result['data'] ?? [];
-            
-            // فرمت کردن workflows برای نمایش
+
             $formattedWorkflows = [];
             if (is_array($workflows)) {
                 foreach ($workflows as $workflow) {
@@ -132,7 +118,7 @@ try {
             break;
             
         case 'get':
-            // دریافت یک workflow خاص
+            
             $workflowId = $_GET['id'] ?? null;
             
             if (!$workflowId) {
@@ -172,7 +158,7 @@ try {
             break;
             
         case 'create':
-            // ساخت workflow جدید
+            
             $input = json_decode(file_get_contents('php://input'), true);
             
             $workflowData = [
@@ -205,7 +191,7 @@ try {
             break;
             
         case 'update':
-            // به‌روزرسانی workflow
+            
             $input = json_decode(file_get_contents('php://input'), true);
             $workflowId = $input['workflow_id'] ?? null;
             
@@ -213,8 +199,7 @@ try {
                 echo json_encode(['success' => false, 'message' => 'ID workflow مشخص نشده است']);
                 exit;
             }
-            
-            // ابتدا workflow فعلی را دریافت کن
+
             $getResult = sendN8NRequest($baseUrl . '/api/v1/workflows/' . $workflowId);
             
             if (isset($getResult['error'])) {
@@ -226,8 +211,7 @@ try {
             }
             
             $workflow = $getResult['data'] ?? [];
-            
-            // به‌روزرسانی فیلدها
+
             if (isset($input['name'])) {
                 $workflow['name'] = $input['name'];
             }
@@ -256,7 +240,7 @@ try {
             break;
             
         case 'activate':
-            // فعال کردن workflow
+            
             $input = json_decode(file_get_contents('php://input'), true);
             $workflowId = $input['workflow_id'] ?? null;
             
@@ -282,7 +266,7 @@ try {
             break;
             
         case 'deactivate':
-            // غیرفعال کردن workflow
+            
             $input = json_decode(file_get_contents('php://input'), true);
             $workflowId = $input['workflow_id'] ?? null;
             
@@ -308,7 +292,7 @@ try {
             break;
             
         case 'delete':
-            // حذف workflow
+            
             $input = json_decode(file_get_contents('php://input'), true);
             $workflowId = $input['workflow_id'] ?? null;
             
@@ -344,5 +328,4 @@ try {
     ]);
 }
 ?>
-
 

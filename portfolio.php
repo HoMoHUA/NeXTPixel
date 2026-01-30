@@ -1,12 +1,12 @@
 <?php
-// شروع سشن در ابتدای فایل
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 $isLoggedIn = isset($_SESSION['user_id']);
 $username = $_SESSION['username'] ?? '';
 $displayName = $_SESSION['display_name'] ?? '';
-$isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگین شده
+$isN8NAdmin = $isLoggedIn; 
 ?>
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
@@ -15,106 +15,17 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نمونه کارها | NextPixel</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
-    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" defer></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-        .glass-effect {
-            background: rgba(15, 23, 42, 0.85);
-            -webkit-backdrop-filter: url(#liquid-glass-filter);
-            backdrop-filter: url(#liquid-glass-filter);
-            border: 1px solid rgba(255, 255, 255, 0.125);
-            will-change: transform, backdrop-filter;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .portfolio-card {
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            overflow: hidden;
-        }
-        .portfolio-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.3);
-        }
-        .portfolio-card img {
-            transition: transform 0.5s ease;
-        }
-        .portfolio-card:hover img {
-            transform: scale(1.1);
-        }
-        .filter-btn.active {
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            color: white;
-        }
-        .dynamic-bg {
-            background: linear-gradient(45deg, #0f172a, #1e293b, #334155);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .filter-btn:hover {
-            transform: translateY(-2px);
-        }
-        .cta-button {
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-        }
-        /* iOS-Style Liquid Glass Header */
-        nav.ios-glass-header {
-            position: sticky;
-            top: 16px;
-            z-index: 1000;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: saturate(180%) blur(30px);
-            -webkit-backdrop-filter: saturate(180%) blur(30px);
-            border: 0.5px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
-                        0 -1px 0 0 rgba(0, 0, 0, 0.1) inset,
-                        0 8px 32px rgba(0, 0, 0, 0.12),
-                        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        nav.ios-glass-header.scrolled {
-            top: 0;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: saturate(200%) blur(40px);
-            -webkit-backdrop-filter: saturate(200%) blur(40px);
-            border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.08) inset,
-                        0 -1px 0 0 rgba(0, 0, 0, 0.2) inset,
-                        0 12px 48px rgba(0, 0, 0, 0.25),
-                        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-        }
-    </style>
+
+    <link rel="stylesheet" href="/assets/css/nextpixel-global.css">
+    <link rel="stylesheet" href="/assets/css/vendor/aos.min.css">
+    <script src="/assets/js/vendor/tailwind.min.js" defer></script>
+    <script src="/assets/js/vendor/aos.min.js" defer></script>
+    <script src="/assets/js/vendor/feather.min.js" defer></script>
+    <script src="/assets/js/vendor/scrollreveal.min.js" defer></script>
+    <script src="/assets/js/vendor/anime.min.js" defer></script>
 </head>
 <body class="overflow-x-hidden">
-    <!-- SVG Filter for Liquid Glass Effect -->
+    
     <svg style="position: absolute; width: 0; height: 0;">
       <defs>
         <filter id="liquid-glass-filter" color-interpolation-filters="sRGB">
@@ -125,8 +36,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
       </defs>
     </svg>
 
-    <!-- Navigation -->
-    <nav class="ios-glass-header flex justify-between items-center py-4 px-4 md:px-8 mx-auto max-w-full md:max-w-6xl rounded-2xl md:rounded-full my-4">
+    <nav class="ios-glass-header sticky top-0 z-50 flex justify-between items-center py-4 px-4 md:px-8 mx-auto max-w-full md:max-w-6xl rounded-2xl md:rounded-full my-4">
         <div class="text-2xl font-bold text-white flex items-center">
             <a href="index.php" class="gradient-text font-bold">NextPixel</a>
         </div>
@@ -158,7 +68,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </button>
     </nav>
 
-    <!-- Mobile Menu -->
     <div id="mobile-menu" class="fixed inset-0 bg-slate-900/90 glass-effect z-40 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
         <div class="flex flex-col items-center justify-center h-full space-y-8 text-2xl font-medium">
             <a href="index.php" class="hover:text-blue-400 transition text-white">صفحه اصلی</a>
@@ -184,7 +93,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </div>
     </div>
 
-    <!-- Hero Section -->
     <section class="min-h-[60vh] flex items-center relative overflow-hidden dynamic-bg">
         <div class="absolute inset-0 bg-black/50 z-10"></div>
         <div class="container mx-auto px-4 z-20 relative py-20">
@@ -195,133 +103,170 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </div>
     </section>
 
-    <!-- Portfolio Content -->
     <section class="py-20">
         <div class="container mx-auto px-4">
-            <!-- Filter Buttons -->
+            
             <div id="filter-buttons" class="flex flex-wrap justify-center gap-4 mb-16" data-aos="fade-up">
                 <button data-filter="all" class="filter-btn glass-effect px-6 py-3 rounded-full font-medium transition-all active">همه</button>
-                <button data-filter="store" class="filter-btn glass-effect px-6 py-3 rounded-full font-medium transition-all">وبسایت فروشگاهی</button>
-                <button data-filter="service" class="filter-btn glass-effect px-6 py-3 rounded-full font-medium transition-all">وبسایت خدماتی</button>
-                <button data-filter="landing" class="filter-btn glass-effect px-6 py-3 rounded-full font-medium transition-all">لندینگ پیج</button>
             </div>
 
-            <!-- Portfolio Grid -->
             <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Portfolio Item 1: HCH Perfume -->
-                <div class="portfolio-card glass-effect rounded-2xl" data-category="store" data-aos="fade-up">
-                    <a href="https://hchperfume.ir" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
-                        <img src="/src/hchperfume.png" alt="سایت عطر هات چاکلت" class="w-full h-56 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold">عطر هات چاکلت</h3>
-                            <span class="text-xs bg-blue-900/30 text-blue-400 px-3 py-1 rounded-full whitespace-nowrap">فروشگاهی</span>
-                        </div>
-                        <p class="text-gray-400 mb-4">عرضه انواع عطر های وارداتی بدون واسطه و اولین تست هوشمند شخصیت شناسی عطر</p>
-                        <a href="https://hchperfume.ir" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 flex items-center">
-                            مشاهده وبسایت
-                            <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
-                        </a>
-                    </div>
-                </div>
+                <div class="col-span-full text-center text-gray-400 py-8">درحال بارگیری پروژه‌ها...</div>
+            </div>
 
-                <!-- Portfolio Item 2: Radepa Shoes -->
-                <div class="portfolio-card glass-effect rounded-2xl" data-category="store" data-aos="fade-up">
-                    <a href="https://radepamashhad.ir/" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
-                        <img src="/src/radepamashhad.png" alt="سایت کفش ردپا مشهد" class="w-full h-56 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold">کفش ردپا مشهد</h3>
-                            <span class="text-xs bg-blue-900/30 text-blue-400 px-3 py-1 rounded-full whitespace-nowrap">فروشگاهی</span>
-                        </div>
-                        <p class="text-gray-400 mb-4">نمایندگی رسمی کفش ردپا در مشهد و ارائه بهترین و با کیفیت ترین ها </p>
-                        <a href="https://radepamashhad.ir" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 flex items-center">
-                            مشاهده وبسایت
-                            <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
-                        </a>
-                    </div>
+            <div id="demo-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center">
+                <div class="bg-slate-900 border border-blue-500/20 rounded-2xl p-8 max-w-md w-full mx-4">
+                    <h3 class="text-2xl font-bold text-white mb-4">نوع دمو را انتخاب کنید</h3>
+                    <div id="demo-options" class="space-y-3"></div>
+                    <button onclick="closeDemoModal()" class="w-full mt-6 bg-slate-700 hover:bg-slate-600 text-white py-2 rounded-lg transition">بستن</button>
                 </div>
-
-                <!-- Portfolio Item 3: Aasbad Bicycles -->
-                <div class="portfolio-card glass-effect rounded-2xl" data-category="store" data-aos="fade-up">
-                    <a href="https://aasbad.ir" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
-                        <img src="/src/aasbad.png" alt="فروشگاه دوچرخه آس باد" class="w-full h-56 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold">دوچرخه آس باد</h3>
-                            <span class="text-xs bg-blue-900/30 text-blue-400 px-3 py-1 rounded-full whitespace-nowrap">فروشگاهی</span>
-                        </div>
-                        <p class="text-gray-400 mb-4">مرکز فروش و تعمیرات تخصصی دوچرخه</p>
-                         <a href="https://aasbad.ir" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 flex items-center">
-                            مشاهده وبسایت
-                            <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 4: Mahnaz Helmi Beauty -->
-                <div class="portfolio-card glass-effect rounded-2xl" data-category="service" data-aos="fade-up">
-                    <a href="https://mahnazhelmi.ir" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
-                        <img src="/src/mahnazbeauty.png" alt="مجموعه زیبایی مهناز حلمی" class="w-full h-56 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold">زیبایی مهناز حلمی</h3>
-                            <span class="text-xs bg-purple-900/30 text-purple-400 px-3 py-1 rounded-full whitespace-nowrap">خدماتی</span>
-                        </div>
-                        <p class="text-gray-400 mb-4">ارائه دهنده خدمات تخصصی زیبایی و آرایشی در فریمان</p>
-                        <a href="https://mahnazhelmi.ir" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 flex items-center">
-                            مشاهده وبسایت
-                            <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Portfolio Item 5: jahanphone -->
-                <div class="portfolio-card glass-effect rounded-2xl" data-category="service" data-aos="fade-up">
-                    <a href="https://JahanPhone.ir" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
-                       <img src="/src/jahanphone.png" alt="جهان فون" class="w-full h-56 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold">عرضه انواع گجت</h3>
-                            <span class="text-xs bg-purple-900/30 text-purple-400 px-3 py-1 rounded-full whitespace-nowrap">خدماتی</span>
-                        </div>
-                        <p class="text-gray-400 mb-4">ارائه بروز ترین گجت ها و چت بات تعمیر آنلاین گوشی با هوش مصنوعی</p>
-                        <a href="https://wpun.ir" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 flex items-center">
-                            مشاهده وبسایت
-                            <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 6: NextPixel Landing -->
-                <div class="portfolio-card glass-effect rounded-2xl" data-category="landing" data-aos="fade-up">
-                     <a href="https://hojat.sbs/" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
-                       <img src="/src/npixel.png" alt="لندینگ پیج نکست پیکسل" class="w-full h-56 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold">لندینگ نکست پیکسل</h3>
-                            <span class="text-xs bg-amber-900/30 text-amber-400 px-3 py-1 rounded-full whitespace-nowrap">لندینگ</span>
-                        </div>
-                        <p class="text-gray-400 mb-4">صفحه فرود و معرفی خدمات مجموعه نکست پیکسل</p>
-                        <a href="https://hojat.sbs" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 flex items-center">
-                            مشاهده وبسایت
-                            <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
-                        </a>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <script>
+        let allPortfolios = [];
+        let currentFilter = 'all';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPortfolios();
+            setupFilterButtons();
+        });
+
+        function loadPortfolios() {
+            fetch('/api/get-portfolios.php?action=list')
+                .then(r => r.json())
+                .then(portfolios => {
+                    allPortfolios = portfolios;
+                    
+                    // Load categories dynamically
+                    const categories = [...new Set(portfolios.map(p => p.category))];
+                    updateFilterButtons(categories);
+                    
+                    renderPortfolios(portfolios);
+                })
+                .catch(e => {
+                    console.log('Error loading portfolios:', e);
+                    document.getElementById('portfolio-grid').innerHTML = '<div class="col-span-full text-center text-gray-400 py-8">خطا در بارگیری پروژه‌ها</div>';
+                });
+        }
+
+        function updateFilterButtons(categories) {
+            const container = document.getElementById('filter-buttons');
+            const buttons = Array.from(container.querySelectorAll('button'));
+            
+            const categoryMap = {
+                'store': 'وبسایت فروشگاهی',
+                'service': 'وبسایت خدماتی',
+                'landing': 'لندینگ پیج',
+                'other': 'سایر'
+            };
+
+            categories.forEach(cat => {
+                if (!buttons.find(b => b.dataset.filter === cat)) {
+                    const btn = document.createElement('button');
+                    btn.className = 'filter-btn glass-effect px-6 py-3 rounded-full font-medium transition-all';
+                    btn.textContent = categoryMap[cat] || cat;
+                    btn.dataset.filter = cat;
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        currentFilter = cat;
+                        renderPortfolios(allPortfolios);
+                    });
+                    container.appendChild(btn);
+                }
+            });
+        }
+
+        function setupFilterButtons() {
+            document.getElementById('filter-buttons').addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-btn')) {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentFilter = e.target.dataset.filter;
+                    renderPortfolios(allPortfolios);
+                }
+            });
+        }
+
+        function renderPortfolios(portfolios) {
+            let filtered = portfolios;
+            if (currentFilter !== 'all') {
+                filtered = portfolios.filter(p => p.category === currentFilter);
+            }
+
+            if (filtered.length === 0) {
+                document.getElementById('portfolio-grid').innerHTML = '<div class="col-span-full text-center text-gray-400 py-8">هیچ پروژه‌ای پیدا نشد</div>';
+                return;
+            }
+
+            document.getElementById('portfolio-grid').innerHTML = filtered.map(p => {
+                const categoryColors = {
+                    'store': { bg: 'bg-blue-900/30', text: 'text-blue-400', label: 'فروشگاهی' },
+                    'service': { bg: 'bg-purple-900/30', text: 'text-purple-400', label: 'خدماتی' },
+                    'landing': { bg: 'bg-amber-900/30', text: 'text-amber-400', label: 'لندینگ' },
+                    'other': { bg: 'bg-gray-900/30', text: 'text-gray-400', label: 'سایر' }
+                };
+                const colors = categoryColors[p.category] || categoryColors['other'];
+                
+                return `
+                    <div class="portfolio-card glass-effect rounded-2xl overflow-hidden" data-category="${p.category}">
+                        <img src="${p.thumbnail}" alt="${p.image_alt_text || p.title}" class="w-full h-56 object-cover" onerror="this.src='/assets/img/placeholder.png'">
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-xl font-bold">${p.title}</h3>
+                                <span class="text-xs ${colors.bg} ${colors.text} px-3 py-1 rounded-full whitespace-nowrap">${colors.label}</span>
+                            </div>
+                            <p class="text-gray-400 mb-4 text-sm">${p.description || ''}</p>
+                            <div class="flex gap-2">
+                                ${p.project_url ? `<a href="${p.project_url}" target="_blank" rel="noopener noreferrer" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg text-center text-sm transition">وبسایت</a>` : ''}
+                                ${(p.demo_type === 'internal' || p.demo_type === 'both') && p.internal_demo_url ? `<button onclick="openDemoModal('${p.id}', '${p.internal_demo_url}')" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg text-center text-sm transition">دمو محلی</button>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function openDemoModal(id, demoUrl) {
+            const modal = document.getElementById('demo-modal');
+            const options = document.getElementById('demo-options');
+            
+            options.innerHTML = `
+                <div class="space-y-3">
+                    <p class="text-gray-300 text-sm mb-4">برای مشاهده دمو، آدرس‌های موجود را انتخاب کنید:</p>
+                    <button onclick="openDemo('${demoUrl}')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition">
+                        دمو محلی
+                    </button>
+                    <p class="text-gray-400 text-xs text-center">نیاز به IP سرور دارد</p>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+        }
+
+        function closeDemoModal() {
+            document.getElementById('demo-modal').classList.add('hidden');
+        }
+
+        function openDemo(url) {
+            if (url.startsWith('/')) {
+                // Local demo - use current host
+                window.open(window.location.protocol + '//' + window.location.host + url, '_blank');
+            } else {
+                window.open(url, '_blank');
+            }
+            closeDemoModal();
+        }
+
+        document.getElementById('demo-modal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('demo-modal')) {
+                closeDemoModal();
+            }
+        });
+    </script>
+
     <section class="py-20">
         <div class="container mx-auto px-4">
             <div class="glass-effect p-8 md:p-12 rounded-2xl text-center" data-aos="fade-up">
@@ -335,7 +280,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-12 bg-slate-900/80">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
@@ -369,7 +313,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Mobile Menu Toggle ---
+            
             const menuBtn = document.getElementById('menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuIcon = menuBtn.querySelector('i');
@@ -392,7 +336,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                 link.addEventListener('click', toggleMenu);
             });
 
-            // Initialize AOS
             AOS.init({
                 duration: 800,
                 easing: 'ease-out-quart',
@@ -400,10 +343,8 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                 mirror: false
             });
 
-            // Initialize Feather Icons
             feather.replace();
 
-            // === iOS Glass Header Scroll Effect ===
             const header = document.querySelector('.ios-glass-header');
             if (header) {
                 let lastScroll = 0;
@@ -418,7 +359,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                 });
             }
 
-            // --- Portfolio Filter Logic ---
             const filterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
             const portfolioItems = document.querySelectorAll('#portfolio-grid .portfolio-card');
 

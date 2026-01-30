@@ -1,7 +1,4 @@
 <?php
-/**
- * نمودارها - پنل مدیریت NextPixel
- */
 
 $pageTitle = 'نمودارها - NextPixel';
 $currentPage = 'charts';
@@ -74,7 +71,7 @@ $currentUser = getCurrentUser();
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof ApexCharts !== 'undefined') {
-        // Line Chart
+        
         if (document.getElementById('line-chart')) {
             var lineOptions = {
                 series: [{
@@ -94,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
             new ApexCharts(document.querySelector("#line-chart"), lineOptions).render();
         }
 
-        // Stack Chart
         if (document.getElementById('stack-chart')) {
             var stackOptions = {
                 series: [{
@@ -115,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
             new ApexCharts(document.querySelector("#stack-chart"), stackOptions).render();
         }
 
-        // Visitor Chart
         if (document.getElementById('visitor-chart')) {
             var visitorOptions = {
                 series: [75],

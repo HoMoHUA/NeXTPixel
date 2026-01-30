@@ -1,22 +1,16 @@
 <?php
-/**
- * API Endpoint: Update Task Status
- * به‌روزرسانی وضعیت تسک
- */
 
 header('Content-Type: application/json; charset=utf-8');
 
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../config/db.php';
 
-// بررسی لاگین بودن
 if (!isLoggedIn()) {
     http_response_code(401);
     echo json_encode(['success' => false, 'message' => 'لطفا ابتدا وارد شوید']);
     exit;
 }
 
-// فقط طراحان می‌توانند استفاده کنند
 if (!hasRole('designer')) {
     http_response_code(403);
     echo json_encode(['success' => false, 'message' => 'دسترسی غیرمجاز']);
@@ -47,8 +41,7 @@ if (!in_array($newStatus, $allowedStatuses)) {
 try {
     $db = getPanelDB();
     $userId = getCurrentUserId();
-    
-    // بررسی اینکه تسک متعلق به این طراح است
+
     $stmt = $db->prepare("SELECT id FROM tasks WHERE id = ? AND designer_id = ?");
     $stmt->execute([$taskId, $userId]);
     $task = $stmt->fetch();
@@ -57,8 +50,7 @@ try {
         echo json_encode(['success' => false, 'message' => 'تسک یافت نشد یا دسترسی ندارید']);
         exit;
     }
-    
-    // به‌روزرسانی وضعیت
+
     $stmt = $db->prepare("UPDATE tasks SET status = ?, updated_at = NOW() WHERE id = ?");
     $stmt->execute([$newStatus, $taskId]);
     

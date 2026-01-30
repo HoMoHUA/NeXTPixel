@@ -1,8 +1,5 @@
 <?php
-/**
- * Sidebar Include File
- * فایل شامل سایدبار مشترک
- */
+
 $currentUser = getCurrentUser();
 $userRole = $currentUser ? $currentUser['role'] : null;
 ?>
@@ -86,23 +83,21 @@ $userRole = $currentUser ? $currentUser['role'] : null;
                 <?php endif; ?>
 
                 <?php if ($userRole === 'admin'): ?>
-                <!-- مدیریت n8n -->
+                
                 <li class="geex-sidebar__menu__item">
                     <a href="/panel/admin/n8n.php" class="geex-sidebar__menu__link <?php echo (isset($currentPage) && $currentPage == 'n8n') ? 'active' : ''; ?>">
                         <i class="uil uil-zap"></i>
                         <span>مدیریت n8n</span>
                     </a>
                 </li>
-                
-                <!-- داشبورد مالی -->
+
                 <li class="geex-sidebar__menu__item">
                     <a href="/panel/admin/financial.php" class="geex-sidebar__menu__link <?php echo (isset($currentPage) && $currentPage == 'financial') ? 'active' : ''; ?>">
                         <i class="uil uil-wallet"></i>
                         <span>داشبورد مالی</span>
                     </a>
                 </li>
-                
-                <!-- مدیریت کاربران -->
+
                 <li class="geex-sidebar__menu__item has-children <?php echo (isset($currentPage) && ($currentPage == 'users' || $currentPage == 'add-user')) ? 'active' : ''; ?>">
                     <a href="#" class="geex-sidebar__menu__link">
                         <i class="uil uil-users-alt"></i>
@@ -124,56 +119,49 @@ $userRole = $currentUser ? $currentUser['role'] : null;
                         </li>
                     </ul>
                 </li>
-                
-                <!-- تایید فروش‌ها -->
+
                 <li class="geex-sidebar__menu__item">
                     <a href="/panel/admin/approve-sales.php" class="geex-sidebar__menu__link <?php echo (isset($currentPage) && $currentPage == 'approve-sales') ? 'active' : ''; ?>">
                         <i class="uil uil-check-circle"></i>
                         <span>تایید فروش‌ها</span>
                     </a>
                 </li>
-                
-                <!-- گزارش‌ها و آمار -->
+
                 <li class="geex-sidebar__menu__item">
                     <a href="/panel/admin/reports.php" class="geex-sidebar__menu__link <?php echo (isset($currentPage) && $currentPage == 'reports') ? 'active' : ''; ?>">
                         <i class="uil uil-chart-bar"></i>
                         <span>گزارش‌ها و آمار</span>
                     </a>
                 </li>
-                
-                <!-- نمودارها -->
+
                 <li class="geex-sidebar__menu__item">
                     <a href="/panel/admin/charts.php" class="geex-sidebar__menu__link <?php echo (isset($currentPage) && $currentPage == 'charts') ? 'active' : ''; ?>">
                         <i class="uil uil-chart-pie"></i>
                         <span>نمودارها</span>
                     </a>
                 </li>
-                
-                <!-- جدول‌ها -->
+
                 <li class="geex-sidebar__menu__item">
                     <a href="/panel/admin/tables.php" class="geex-sidebar__menu__link <?php echo (isset($currentPage) && $currentPage == 'tables') ? 'active' : ''; ?>">
                         <i class="uil uil-table"></i>
                         <span>جداول</span>
                     </a>
                 </li>
-                
-                <!-- تقویم -->
+
                 <li class="geex-sidebar__menu__item">
                     <a href="/panel/admin/calendar.php" class="geex-sidebar__menu__link <?php echo (isset($currentPage) && $currentPage == 'calendar') ? 'active' : ''; ?>">
                         <i class="uil uil-calendar-alt"></i>
                         <span>تقویم</span>
                     </a>
                 </li>
-                
-                <!-- مدیریت فایل -->
+
                 <li class="geex-sidebar__menu__item">
                     <a href="/panel/admin/files.php" class="geex-sidebar__menu__link <?php echo (isset($currentPage) && $currentPage == 'files') ? 'active' : ''; ?>">
                         <i class="uil uil-folder"></i>
                         <span>مدیریت فایل</span>
                     </a>
                 </li>
-                
-                <!-- تنظیمات -->
+
                 <li class="geex-sidebar__menu__item">
                     <a href="/panel/admin/settings.php" class="geex-sidebar__menu__link <?php echo (isset($currentPage) && $currentPage == 'settings') ? 'active' : ''; ?>">
                         <i class="uil uil-cog"></i>
