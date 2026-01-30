@@ -18,7 +18,10 @@ $isN8NAdmin = $isLoggedIn;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -33,6 +36,9 @@ $isN8NAdmin = $isLoggedIn;
     <script src="/assets/js/vendor/scrollreveal.min.js" defer></script>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
