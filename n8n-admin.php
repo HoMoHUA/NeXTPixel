@@ -37,7 +37,7 @@ require_once 'config/n8n-config.php';
 >>>>>>> Stashed changes
     <link rel="stylesheet" href="/assets/css/nextpixel-global.css">
     <link rel="stylesheet" href="/assets/css/vendor/aos.min.css">
-    <script src="/assets/js/vendor/tailwind.min.js" defer></script>
+    <script src="/assets/js/vendor/tailwindcss.js" defer></script>
     <script src="/assets/js/vendor/aos.min.js" defer></script>
     <script src="/assets/js/vendor/feather.min.js" defer></script>
 <<<<<<< Updated upstream
