@@ -27,17 +27,10 @@ require_once 'config/n8n-config.php';
     <script src="/assets/js/vendor/tailwindcss.js" defer></script>
     <script src="/assets/js/vendor/aos.min.js" defer></script>
     <script src="/assets/js/vendor/feather.min.js" defer></script>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+    <script src="/assets/js/vendor/anime.min.js" defer></script>
+    <script src="/assets/js/vendor/three.min.js" defer></script>
+    <script src="/assets/js/vendor/scrollreveal.min.js" defer></script>
+    <script src="/assets/js/vendor/lottie-player.min.js" defer></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
@@ -191,7 +184,10 @@ require_once 'config/n8n-config.php';
 <body>
     
     <nav class="ios-glass-header flex justify-between items-center py-4 px-4 md:px-8 mx-auto max-w-full md:max-w-6xl rounded-2xl md:rounded-full my-4">
-        <a href="index.php" class="text-2xl font-bold gradient-text">NextPixel</a>
+        <a href="index.php" class="text-2xl font-bold gradient-text flex items-center space-x-reverse space-x-2">
+            <img src="/assets/img/NeXTPixel.png" alt="NeXTPixel" class="h-8 w-8 md:h-10 md:w-10 object-contain">
+            NextPixel
+        </a>
         <div class="hidden md:flex items-center space-x-6 space-x-reverse">
             <a href="index.php" class="hover:text-blue-400 transition">صفحه اصلی</a>
             <a href="services.php" class="hover:text-blue-400 transition">خدمات</a>

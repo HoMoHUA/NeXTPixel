@@ -23,11 +23,9 @@ $isN8NAdmin = $isLoggedIn;
     <script src="/assets/js/vendor/anime.min.js" defer></script>
     <script src="/assets/js/vendor/three.min.js" defer></script>
     <script src="/assets/js/vendor/scrollreveal.min.js" defer></script>
-    <script src="/assets/js/vendor/aos.min.js" defer></script>
-    <script src="/assets/js/vendor/feather.min.js" defer></script>
-    <script src="/assets/js/vendor/anime.min.js" defer></script>
-    <script src="/assets/js/vendor/three.min.js" defer></script>
-    <script src="/assets/js/vendor/scrollreveal.min.js" defer></script>
+    <script src="/assets/js/vendor/vanta.globe.min.js" defer></script>
+    <script src="/assets/js/vendor/vanta.waves.min.js" defer></script>
+    <script src="/assets/js/vendor/lottie-player.min.js" defer></script>
 </head>
 <body class="overflow-x-hidden">
     
@@ -42,7 +40,8 @@ $isN8NAdmin = $isLoggedIn;
     </svg>
 
     <nav class="ios-glass-header sticky top-0 z-50 flex justify-between items-center py-4 px-4 md:px-8 mx-auto max-w-full md:max-w-6xl rounded-2xl md:rounded-full my-4">
-        <div class="text-2xl font-bold text-white flex items-center">
+        <div class="text-2xl font-bold text-white flex items-center space-x-reverse space-x-2">
+             <img src="/assets/img/NeXTPixel.png" alt="NeXTPixel" class="h-8 w-8 md:h-10 md:w-10 object-contain">
              <a href="index.php" class="gradient-text font-bold">NextPixel</a>
         </div>
         <div class="hidden md:flex items-center space-x-6 space-x-reverse">
@@ -360,7 +359,7 @@ $isN8NAdmin = $isLoggedIn;
                         راهکارهای قدرتمند و مقیاس‌پذیر با کدنویسی سفارشی برای نیازهای منحصر به فرد شما
                     </p>
                     <div class="inline-flex items-center gap-2 px-6 py-3 bg-purple-500/20 rounded-full border border-purple-500/30">
-                        <i data-feather="sparkles" class="w-5 h-5 text-purple-400"></i>
+                        <i data-feather="star" class="w-5 h-5 text-purple-400"></i>
                         <span class="text-purple-300 font-medium">از API تا اپلیکیشن‌های کامل</span>
                     </div>
                 </div>
@@ -953,7 +952,7 @@ $isN8NAdmin = $isLoggedIn;
                         با هوش مصنوعی پیشرفته، به مشتریان خود ۲۴/۷ خدمات ارائه دهید
                     </p>
                     <div class="inline-flex items-center gap-3 px-6 py-3 bg-indigo-500/20 rounded-full border border-indigo-500/30">
-                        <i data-feather="sparkles" class="w-5 h-5 text-indigo-400"></i>
+                        <i data-feather="star" class="w-5 h-5 text-indigo-400"></i>
                         <span class="text-indigo-300 font-medium">هر تعاملی را به فرصت فروش تبدیل کنید</span>
                     </div>
                 </div>
@@ -966,7 +965,7 @@ $isN8NAdmin = $isLoggedIn;
                                 </div>
                             </div>
                             <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/40">
-                                <i data-feather="brain" class="w-12 h-12 text-white"></i>
+                                <i data-feather="zap" class="w-12 h-12 text-white"></i>
                             </div>
                             <h3 class="text-2xl font-bold mb-4">هوش مصنوعی GPT</h3>
                             <p class="text-gray-400 mb-6 leading-relaxed">پاسخ‌های طبیعی و هوشمند با استفاده از آخرین تکنولوژی AI</p>
@@ -1438,10 +1437,11 @@ $isN8NAdmin = $isLoggedIn;
             const loader = document.getElementById('loader');
             const resultContainer = document.getElementById('proposal-result');
 
-            const openModal = () => modal.classList.remove('hidden');
-            const closeModal = () => modal.classList.add('hidden');
-            closeModalBtn.addEventListener('click', closeModal);
-            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+            const openModal = () => { if (modal) modal.classList.remove('hidden'); };
+            const closeModal = () => { if (modal) modal.classList.add('hidden'); };
+            
+            if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+            if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
             async function generateProposal(buttonId, getChoices, systemPrompt) {
                  const generateBtn = document.getElementById(buttonId);

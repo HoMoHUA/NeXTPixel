@@ -22,17 +22,9 @@ $isN8NAdmin = $isLoggedIn;
     <script src="/assets/js/vendor/scrollreveal.min.js" defer></script>
     <script src="/assets/js/vendor/three.min.js" defer></script>
     <script src="/assets/js/vendor/vanta.waves.min.js" defer></script>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+    <script src="/assets/js/vendor/anime.min.js" defer></script>
+    <script src="/assets/js/vendor/lottie-player.min.js" defer></script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
         body {
@@ -429,7 +421,8 @@ $isN8NAdmin = $isLoggedIn;
 <body class="overflow-x-hidden">
 
     <nav class="ios-glass-header sticky top-0 z-50 flex justify-between items-center py-4 px-4 md:px-8 mx-auto max-w-full md:max-w-6xl rounded-2xl md:rounded-full my-4">
-        <div class="text-2xl font-bold text-white flex items-center">
+        <div class="text-2xl font-bold text-white flex items-center space-x-reverse space-x-2">
+            <img src="/assets/img/NeXTPixel.png" alt="NeXTPixel" class="h-8 w-8 md:h-10 md:w-10 object-contain">
             <a href="index.php" class="gradient-text font-bold">NextPixel</a>
         </div>
         <div class="hidden md:flex items-center space-x-6 space-x-reverse">

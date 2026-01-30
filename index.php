@@ -37,6 +37,7 @@ if (isset($_POST['logout'])) {
     <meta property="twitter:description" content="طراحی تخصصی سایت فروشگاهی و شرکتی. با بهینه‌سازی سئو، فروش خود را چند برابر کنید.">
     <meta property="twitter:image" content="https://nextpixel.ir/static/social-preview.jpg">
 
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <link rel="stylesheet" href="/assets/css/nextpixel-global.css">
     <link rel="stylesheet" href="/assets/css/vendor/aos.min.css">
     <script src="/assets/js/vendor/tailwindcss.js" defer></script>
@@ -78,6 +79,7 @@ if (isset($_POST['logout'])) {
     <header>
         <nav class="ios-glass-header sticky top-0 z-50 flex justify-between items-center py-3 md:py-4 px-4 md:px-8 mx-auto max-w-full md:max-w-6xl rounded-2xl md:rounded-full my-4">
             <a href="/" class="text-2xl font-bold text-white flex items-center space-x-reverse space-x-2">
+                <img src="/assets/img/NeXTPixel.png" alt="NeXTPixel" class="h-8 w-8 md:h-10 md:w-10 object-contain">
                 <span class="text-white font-bold" style="font-weight: 900;">NextPixel</span>
             </a>
             <div class="hidden md:flex items-center space-x-6 space-x-reverse">
