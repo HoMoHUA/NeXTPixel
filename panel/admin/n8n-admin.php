@@ -28,7 +28,10 @@ require_once 'config/n8n-config.php';
     <script src="/assets/js/vendor/aos.min.js" defer></script>
     <script src="/assets/js/vendor/feather.min.js" defer></script>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
