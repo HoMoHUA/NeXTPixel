@@ -24,6 +24,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
     <!-- Added Three.js for Vanta dependency -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
     <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
+    <script src="/assets/js/site-header.js" defer></script>
     <!-- Vanta.js (globe) is not used on this page, so I removed it to speed up loading -->
 
     <style>

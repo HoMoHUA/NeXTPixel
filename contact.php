@@ -25,6 +25,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
     <!-- Add Three.js dependency for Vanta.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js" defer></script>
+    <script src="/assets/js/site-header.js" defer></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');

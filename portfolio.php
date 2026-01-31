@@ -9,6 +9,20 @@ $isN8NAdmin = $isLoggedIn;
 
 // --- لیست پروژه ها و تنظیمات ---
 $portfolioItems = [
+    // --- پروژه‌های هوشمند و جدید (ابتدا قرار می‌گیرند) ---
+    [
+        'id' => 'batis_modern',
+        'title' => 'باتیس مدرن',
+        'category' => 'landing',
+        'category_fa' => 'شرکتی',
+        'badge_bg' => 'bg-emerald-900/30',
+        'badge_text' => 'text-emerald-400',
+        'img' => '/src/batis.png', 
+        'url' => 'https://batis-modern.vercel.app', 
+        'desc' => 'طراحی مدرن و مینیمال با استفاده از تکنولوژی‌های روز دنیا',
+        'ajax' => true // لود از طریق سرور (هوشمند)
+    ],
+    // --- سایر پروژه‌های قبلی ---
     [
         'id' => 'hchperfume',
         'title' => 'عطر هات چاکلت',
@@ -19,7 +33,7 @@ $portfolioItems = [
         'img' => '/src/hchperfume.png',
         'url' => 'https://hchperfume.ir',
         'desc' => 'عرضه انواع عطر های وارداتی بدون واسطه و اولین تست هوشمند شخصیت شناسی عطر',
-        'ajax' => false // لود معمولی
+        'ajax' => false
     ],
     [
         'id' => 'radepa',
@@ -80,19 +94,6 @@ $portfolioItems = [
         'url' => 'https://hojat.sbs/',
         'desc' => 'صفحه فرود و معرفی خدمات مجموعه نکست پیکسل',
         'ajax' => false
-    ],
-    // --- پروژه جدید باتیس مدرن (تنظیم شده روی AJAX) ---
-    [
-        'id' => 'batis_modern',
-        'title' => 'باتیس مدرن',
-        'category' => 'landing',
-        'category_fa' => 'شرکتی',
-        'badge_bg' => 'bg-emerald-900/30',
-        'badge_text' => 'text-emerald-400',
-        'img' => '/src/batis.png', // تصویر پیش‌فرض یا مسیر واقعی را قرار دهید
-        'url' => 'https://batis-modern.vercel.app', // لینک پروژه
-        'desc' => 'طراحی مدرن و مینیمال با استفاده از تکنولوژی‌های روز دنیا',
-        'ajax' => true // لود از طریق سرور
     ]
 ];
 ?>
@@ -110,6 +111,7 @@ $portfolioItems = [
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
     <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" defer></script>
+    <script src="/assets/js/site-header.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
         body {

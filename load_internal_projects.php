@@ -37,8 +37,11 @@ $html = '';
 // کلاس‌ها دقیقاً مشابه فایل اصلی برای هماهنگی ظاهری
 $html .= '<div class="portfolio-card glass-effect rounded-2xl" data-category="' . $project_category . '" data-aos="fade-up">';
 
-// بخش تصویر
-$html .= '<a href="' . $project_url . '" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">';
+// بخش تصویر (لینک تصویر هم به صفحه پیش‌نمایش می‌رود)
+// لینک پیش‌نمایش را می‌سازیم
+$previewLink = 'preview.php?url=' . urlencode($project_url) . '&title=' . urlencode($project_title);
+
+$html .= '<a href="' . $previewLink . '" class="block overflow-hidden">';
 // اگر تصویر وجود نداشت، یک باکس خالی نمایش می‌دهد (اختیاری)
 if (file_exists($_SERVER['DOCUMENT_ROOT'] . $project_img)) {
     $html .= '<img src="' . $project_img . '" alt="' . $project_title . '" class="w-full h-56 object-cover">';
@@ -72,9 +75,10 @@ if ($is_online) {
 }
 
 // دکمه مشاهده
-$html .= '<a href="' . $project_url . '" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 flex items-center mt-auto">';
-$html .= 'مشاهده وبسایت';
-$html .= '<i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>';
+// نکته: تارگت _blank را برداشتیم تا در همان صفحه وارد پیش‌نمایش شود (مشابه ThemeForest)
+$html .= '<a href="' . $previewLink . '" class="text-blue-400 hover:text-blue-300 flex items-center mt-auto">';
+$html .= 'مشاهده پیش‌نمایش آنلاین';
+$html .= '<i data-feather="eye" class="w-4 h-4 mr-2"></i>'; // آیکون چشم برای پیش‌نمایش مناسب‌تر است
 $html .= '</a>';
 
 $html .= '</div>'; // پایان div.p-6

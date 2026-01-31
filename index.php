@@ -603,10 +603,10 @@ if (isset($_POST['logout'])) {
     header.scrolled {
         top: 16px;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-2%);
         width: 95%;
         max-width: 1280px;
-        border-radius: 12px;
+        border-radius: 55px;
         background: rgba(15, 23, 42, 0.5);
         border-bottom-color: rgba(255, 255, 255, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.1);
