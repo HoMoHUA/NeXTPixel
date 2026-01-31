@@ -814,9 +814,13 @@ if (isset($_POST['logout'])) {
             z-index: 990;
             overflow-y: auto;
             overflow-x: hidden;
+    }
+
+    /* Open state controlled via JS by adding .open */
+    .mobile-menu.open {
         display: flex;
         flex-direction: column;
-        animation: slideInFromTop 0.3s ease-out forwards;
+        animation: slideInFromTop 0.28s ease-out forwards;
     }
 
     @keyframes slideInFromTop {
@@ -1271,7 +1275,42 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             feather.replace();
 
             // Mobile Menu Toggle
-            // ...existing code...
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuToggle && mobileMenu) {
+                const setBodyScroll = (enabled) => {
+                    document.body.style.overflow = enabled ? '' : 'hidden';
+                };
+
+                const toggleMobileMenu = (forceOpen) => {
+                    if (typeof forceOpen === 'boolean') {
+                        mobileMenu.classList.toggle('open', forceOpen);
+                    } else {
+                        mobileMenu.classList.toggle('open');
+                    }
+                    setBodyScroll(!mobileMenu.classList.contains('open'));
+                };
+
+                menuToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    toggleMobileMenu();
+                });
+
+                // Close when clicking a link inside mobile menu
+                mobileMenu.querySelectorAll('a').forEach(a => {
+                    a.addEventListener('click', () => toggleMobileMenu(false));
+                });
+
+                // Close with Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') toggleMobileMenu(false);
+                });
+
+                // Close when clicking backdrop (outside content)
+                mobileMenu.addEventListener('click', (e) => {
+                    if (e.target === mobileMenu) toggleMobileMenu(false);
+                });
+            }
 
             // Header Scroll Detection
             const header = document.getElementById('main-header');

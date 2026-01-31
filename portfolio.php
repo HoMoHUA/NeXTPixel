@@ -1,12 +1,100 @@
 <?php
-// شروع سشن در ابتدای فایل
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 $isLoggedIn = isset($_SESSION['user_id']);
 $username = $_SESSION['username'] ?? '';
 $displayName = $_SESSION['display_name'] ?? '';
-$isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگین شده
+$isN8NAdmin = $isLoggedIn;
+
+// --- لیست پروژه ها و تنظیمات ---
+$portfolioItems = [
+    [
+        'id' => 'hchperfume',
+        'title' => 'عطر هات چاکلت',
+        'category' => 'store',
+        'category_fa' => 'فروشگاهی',
+        'badge_bg' => 'bg-blue-900/30',
+        'badge_text' => 'text-blue-400',
+        'img' => '/src/hchperfume.png',
+        'url' => 'https://hchperfume.ir',
+        'desc' => 'عرضه انواع عطر های وارداتی بدون واسطه و اولین تست هوشمند شخصیت شناسی عطر',
+        'ajax' => false // لود معمولی
+    ],
+    [
+        'id' => 'radepa',
+        'title' => 'کفش ردپا مشهد',
+        'category' => 'store',
+        'category_fa' => 'فروشگاهی',
+        'badge_bg' => 'bg-blue-900/30',
+        'badge_text' => 'text-blue-400',
+        'img' => '/src/radepamashhad.png',
+        'url' => 'https://radepamashhad.ir/',
+        'desc' => 'نمایندگی رسمی کفش ردپا در مشهد و ارائه بهترین و با کیفیت ترین ها',
+        'ajax' => false
+    ],
+    [
+        'id' => 'aasbad',
+        'title' => 'دوچرخه آس باد',
+        'category' => 'store',
+        'category_fa' => 'فروشگاهی',
+        'badge_bg' => 'bg-blue-900/30',
+        'badge_text' => 'text-blue-400',
+        'img' => '/src/aasbad.png',
+        'url' => 'https://aasbad.ir',
+        'desc' => 'مرکز فروش و تعمیرات تخصصی دوچرخه',
+        'ajax' => false
+    ],
+    [
+        'id' => 'mahnazhelmi',
+        'title' => 'زیبایی مهناز حلمی',
+        'category' => 'service',
+        'category_fa' => 'خدماتی',
+        'badge_bg' => 'bg-purple-900/30',
+        'badge_text' => 'text-purple-400',
+        'img' => '/src/mahnazbeauty.png',
+        'url' => 'https://mahnazhelmi.ir',
+        'desc' => 'ارائه دهنده خدمات تخصصی زیبایی و آرایشی در فریمان',
+        'ajax' => false
+    ],
+    [
+        'id' => 'jahanphone',
+        'title' => 'عرضه انواع گجت',
+        'category' => 'service',
+        'category_fa' => 'خدماتی',
+        'badge_bg' => 'bg-purple-900/30',
+        'badge_text' => 'text-purple-400',
+        'img' => '/src/jahanphone.png',
+        'url' => 'https://JahanPhone.ir',
+        'desc' => 'ارائه بروز ترین گجت ها و چت بات تعمیر آنلاین گوشی با هوش مصنوعی',
+        'ajax' => false
+    ],
+    [
+        'id' => 'nextpixel_landing',
+        'title' => 'لندینگ نکست پیکسل',
+        'category' => 'landing',
+        'category_fa' => 'لندینگ',
+        'badge_bg' => 'bg-amber-900/30',
+        'badge_text' => 'text-amber-400',
+        'img' => '/src/npixel.png',
+        'url' => 'https://hojat.sbs/',
+        'desc' => 'صفحه فرود و معرفی خدمات مجموعه نکست پیکسل',
+        'ajax' => false
+    ],
+    // --- پروژه جدید باتیس مدرن (تنظیم شده روی AJAX) ---
+    [
+        'id' => 'batis_modern',
+        'title' => 'باتیس مدرن',
+        'category' => 'landing',
+        'category_fa' => 'شرکتی',
+        'badge_bg' => 'bg-emerald-900/30',
+        'badge_text' => 'text-emerald-400',
+        'img' => '/src/batis.png', // تصویر پیش‌فرض یا مسیر واقعی را قرار دهید
+        'url' => 'https://batis-modern.vercel.app', // لینک پروژه
+        'desc' => 'طراحی مدرن و مینیمال با استفاده از تکنولوژی‌های روز دنیا',
+        'ajax' => true // لود از طریق سرور
+    ]
+];
 ?>
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
@@ -48,6 +136,8 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         .portfolio-card {
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         .portfolio-card:hover {
             transform: translateY(-8px) scale(1.02);
@@ -85,7 +175,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
-        /* iOS-Style Liquid Glass Header */
         nav.ios-glass-header {
             position: sticky;
             top: 16px;
@@ -111,10 +200,32 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         0 12px 48px rgba(0, 0, 0, 0.25),
                         0 0 0 1px rgba(255, 255, 255, 0.05) inset;
         }
+        
+        .loading-pulse {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3b82f6;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        /* Placeholder styles for AJAX content */
+        .ajax-placeholder {
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
-    <!-- SVG Filter for Liquid Glass Effect -->
     <svg style="position: absolute; width: 0; height: 0;">
       <defs>
         <filter id="liquid-glass-filter" color-interpolation-filters="sRGB">
@@ -130,7 +241,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
     ?>
 
     <style>
-        /* Header Styles */
         header {
             position: fixed;
             top: 0;
@@ -437,7 +547,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         }
     </style>
 
-    <!-- Header -->
     <header class="header-main" id="main-header">
         <div class="header-container">
             <a href="/" class="header-logo">
@@ -480,7 +589,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </div>
     </header>
 
-    <!-- Mobile Menu -->
     <nav class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-content">
             <div class="mobile-menu-section">
@@ -507,7 +615,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
     </nav>
 
     <main style="padding-top: 70px;">
-    <!-- Hero Section -->
     <section class="min-h-[60vh] flex items-center relative overflow-hidden dynamic-bg">
         <div class="absolute inset-0 bg-black/50 z-10"></div>
         <div class="container mx-auto px-4 z-20 relative py-20">
@@ -518,133 +625,57 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </div>
     </section>
 
-    <!-- Portfolio Content -->
     <section class="py-20">
         <div class="container mx-auto px-4">
-            <!-- Filter Buttons -->
             <div id="filter-buttons" class="flex flex-wrap justify-center gap-4 mb-16" data-aos="fade-up">
                 <button data-filter="all" class="filter-btn glass-effect px-6 py-3 rounded-full font-medium transition-all active">همه</button>
                 <button data-filter="store" class="filter-btn glass-effect px-6 py-3 rounded-full font-medium transition-all">وبسایت فروشگاهی</button>
                 <button data-filter="service" class="filter-btn glass-effect px-6 py-3 rounded-full font-medium transition-all">وبسایت خدماتی</button>
                 <button data-filter="landing" class="filter-btn glass-effect px-6 py-3 rounded-full font-medium transition-all">لندینگ پیج</button>
+                <button data-filter="react" class="filter-btn glass-effect px-6 py-3 rounded-full font-medium transition-all">وب اپلیکیشن (React)</button>
             </div>
 
-            <!-- Portfolio Grid -->
+            <div id="loading-indicator" class="text-center mb-8" style="display: none;">
+                <div class="loading-pulse"></div>
+                <span class="mr-2 text-blue-400">در حال دریافت پروژه‌های هوشمند از سرور...</span>
+            </div>
+
             <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Portfolio Item 1: HCH Perfume -->
-                <div class="portfolio-card glass-effect rounded-2xl" data-category="store" data-aos="fade-up">
-                    <a href="https://hchperfume.ir" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
-                        <img src="/src/hchperfume.png" alt="سایت عطر هات چاکلت" class="w-full h-56 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold">عطر هات چاکلت</h3>
-                            <span class="text-xs bg-blue-900/30 text-blue-400 px-3 py-1 rounded-full whitespace-nowrap">فروشگاهی</span>
+                <?php foreach ($portfolioItems as $item): ?>
+                    <?php if ($item['ajax']): ?>
+                        <!-- AJAX Placeholder for <?php echo htmlspecialchars($item['title']); ?> -->
+                        <div id="project-<?php echo htmlspecialchars($item['id']); ?>" 
+                             class="portfolio-card glass-effect rounded-2xl ajax-placeholder" 
+                             data-category="<?php echo htmlspecialchars($item['category']); ?>" 
+                             data-aos="fade-up"
+                             data-project-id="<?php echo htmlspecialchars($item['id']); ?>">
+                            <div class="loading-pulse"></div>
+                            <p class="mt-4 text-gray-500 text-sm">در حال بارگذاری <?php echo htmlspecialchars($item['title']); ?>...</p>
                         </div>
-                        <p class="text-gray-400 mb-4">عرضه انواع عطر های وارداتی بدون واسطه و اولین تست هوشمند شخصیت شناسی عطر</p>
-                        <a href="https://hchperfume.ir" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 flex items-center">
-                            مشاهده وبسایت
-                            <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 2: Radepa Shoes -->
-                <div class="portfolio-card glass-effect rounded-2xl" data-category="store" data-aos="fade-up">
-                    <a href="https://radepamashhad.ir/" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
-                        <img src="/src/radepamashhad.png" alt="سایت کفش ردپا مشهد" class="w-full h-56 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold">کفش ردپا مشهد</h3>
-                            <span class="text-xs bg-blue-900/30 text-blue-400 px-3 py-1 rounded-full whitespace-nowrap">فروشگاهی</span>
+                    <?php else: ?>
+                        <!-- Static Item: <?php echo htmlspecialchars($item['title']); ?> -->
+                        <div class="portfolio-card glass-effect rounded-2xl" data-category="<?php echo htmlspecialchars($item['category']); ?>" data-aos="fade-up">
+                            <a href="<?php echo htmlspecialchars($item['url']); ?>" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
+                                <img src="<?php echo htmlspecialchars($item['img']); ?>" alt="<?php echo htmlspecialchars($item['title']); ?>" class="w-full h-56 object-cover">
+                            </a>
+                            <div class="p-6 flex-grow flex flex-col">
+                                <div class="flex justify-between items-start mb-3">
+                                    <h3 class="text-xl font-bold"><?php echo htmlspecialchars($item['title']); ?></h3>
+                                    <span class="text-xs <?php echo $item['badge_bg']; ?> <?php echo $item['badge_text']; ?> px-3 py-1 rounded-full whitespace-nowrap"><?php echo htmlspecialchars($item['category_fa']); ?></span>
+                                </div>
+                                <p class="text-gray-400 mb-4 flex-grow"><?php echo htmlspecialchars($item['desc']); ?></p>
+                                <a href="<?php echo htmlspecialchars($item['url']); ?>" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 flex items-center mt-auto">
+                                    مشاهده وبسایت
+                                    <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
+                                </a>
+                            </div>
                         </div>
-                        <p class="text-gray-400 mb-4">نمایندگی رسمی کفش ردپا در مشهد و ارائه بهترین و با کیفیت ترین ها </p>
-                        <a href="https://radepamashhad.ir" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 flex items-center">
-                            مشاهده وبسایت
-                            <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 3: Aasbad Bicycles -->
-                <div class="portfolio-card glass-effect rounded-2xl" data-category="store" data-aos="fade-up">
-                    <a href="https://aasbad.ir" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
-                        <img src="/src/aasbad.png" alt="فروشگاه دوچرخه آس باد" class="w-full h-56 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold">دوچرخه آس باد</h3>
-                            <span class="text-xs bg-blue-900/30 text-blue-400 px-3 py-1 rounded-full whitespace-nowrap">فروشگاهی</span>
-                        </div>
-                        <p class="text-gray-400 mb-4">مرکز فروش و تعمیرات تخصصی دوچرخه</p>
-                         <a href="https://aasbad.ir" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 flex items-center">
-                            مشاهده وبسایت
-                            <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 4: Mahnaz Helmi Beauty -->
-                <div class="portfolio-card glass-effect rounded-2xl" data-category="service" data-aos="fade-up">
-                    <a href="https://mahnazhelmi.ir" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
-                        <img src="/src/mahnazbeauty.png" alt="مجموعه زیبایی مهناز حلمی" class="w-full h-56 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold">زیبایی مهناز حلمی</h3>
-                            <span class="text-xs bg-purple-900/30 text-purple-400 px-3 py-1 rounded-full whitespace-nowrap">خدماتی</span>
-                        </div>
-                        <p class="text-gray-400 mb-4">ارائه دهنده خدمات تخصصی زیبایی و آرایشی در فریمان</p>
-                        <a href="https://mahnazhelmi.ir" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 flex items-center">
-                            مشاهده وبسایت
-                            <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Portfolio Item 5: jahanphone -->
-                <div class="portfolio-card glass-effect rounded-2xl" data-category="service" data-aos="fade-up">
-                    <a href="https://JahanPhone.ir" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
-                       <img src="/src/jahanphone.png" alt="جهان فون" class="w-full h-56 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold">عرضه انواع گجت</h3>
-                            <span class="text-xs bg-purple-900/30 text-purple-400 px-3 py-1 rounded-full whitespace-nowrap">خدماتی</span>
-                        </div>
-                        <p class="text-gray-400 mb-4">ارائه بروز ترین گجت ها و چت بات تعمیر آنلاین گوشی با هوش مصنوعی</p>
-                        <a href="https://wpun.ir" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 flex items-center">
-                            مشاهده وبسایت
-                            <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 6: NextPixel Landing -->
-                <div class="portfolio-card glass-effect rounded-2xl" data-category="landing" data-aos="fade-up">
-                     <a href="https://hojat.sbs/" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
-                       <img src="/src/npixel.png" alt="لندینگ پیج نکست پیکسل" class="w-full h-56 object-cover">
-                    </a>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold">لندینگ نکست پیکسل</h3>
-                            <span class="text-xs bg-amber-900/30 text-amber-400 px-3 py-1 rounded-full whitespace-nowrap">لندینگ</span>
-                        </div>
-                        <p class="text-gray-400 mb-4">صفحه فرود و معرفی خدمات مجموعه نکست پیکسل</p>
-                        <a href="https://hojat.sbs" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 flex items-center">
-                            مشاهده وبسایت
-                            <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
-                        </a>
-                    </div>
-                </div>
-
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="py-20">
         <div class="container mx-auto px-4">
             <div class="glass-effect p-8 md:p-12 rounded-2xl text-center" data-aos="fade-up">
@@ -658,7 +689,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-12 bg-slate-900/80">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
@@ -692,7 +722,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize AOS
             AOS.init({
                 duration: 800,
                 easing: 'ease-out-quart',
@@ -700,13 +729,8 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                 mirror: false
             });
 
-            // Initialize Feather Icons
             feather.replace();
 
-            // Mobile Menu Toggle
-            // ...existing code...
-
-            // Header Scroll Detection
             const header = document.getElementById('main-header');
             if (header) {
                 window.addEventListener('scroll', () => {
@@ -722,7 +746,6 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                 }, { passive: true });
             }
 
-            // Active link highlighting
             const currentPage = window.location.pathname.split('/').pop() || 'index.php';
             const navLinks = document.querySelectorAll('.header-nav a, .mobile-menu-links a');
             navLinks.forEach(link => {
@@ -734,18 +757,79 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                 }
             });
 
-            // --- Portfolio Filter Logic ---
-            const filterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
-            const portfolioItems = document.querySelectorAll('#portfolio-grid .portfolio-card');
+            // شروع فرآیند لود پروژه‌های AJAX
+            loadInternalProjects();
+        });
 
+        function loadInternalProjects() {
+            // پیدا کردن تمام پلیس‌هولدرهایی که نیاز به لود دارند
+            const placeholders = document.querySelectorAll('.ajax-placeholder');
+            
+            if (placeholders.length === 0) return;
+
+            const loader = document.getElementById('loading-indicator');
+            if(loader) loader.style.display = 'block';
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'load_internal_projects.php', true);
+            
+            xhr.onload = function() {
+                if(loader) loader.style.display = 'none';
+                
+                if (xhr.status === 200) {
+                    try {
+                        // دریافت پاسخ JSON از سرور
+                        const projectsData = JSON.parse(xhr.responseText);
+                        
+                        // جایگزینی پلیس‌هولدرها با محتوای واقعی
+                        placeholders.forEach(placeholder => {
+                            const projectId = placeholder.getAttribute('data-project-id');
+                            if (projectsData[projectId]) {
+                                placeholder.outerHTML = projectsData[projectId];
+                            } else {
+                                placeholder.innerHTML = '<p class="text-red-400">خطا در بارگذاری</p>';
+                            }
+                        });
+
+                        // راه‌اندازی مجدد آیکون‌ها و انیمیشن‌ها
+                        feather.replace();
+                        initFilters();
+                        setTimeout(() => { AOS.refresh(); }, 500);
+
+                    } catch (e) {
+                        console.error('Error parsing JSON:', e);
+                    }
+                } else {
+                    console.error('Failed to load internal projects');
+                }
+            };
+            
+            xhr.onerror = function() {
+                if(loader) loader.style.display = 'none';
+                console.error('Network error occurred');
+            };
+
+            xhr.send();
+        }
+
+        function initFilters() {
+            const filterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
+            
             filterButtons.forEach(button => {
+                button.replaceWith(button.cloneNode(true));
+            });
+
+            const newFilterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
+
+            newFilterButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    newFilterButtons.forEach(btn => btn.classList.remove('active'));
                     this.classList.add('active');
 
                     const filterValue = this.getAttribute('data-filter');
+                    const allPortfolioItems = document.querySelectorAll('#portfolio-grid .portfolio-card');
 
-                    portfolioItems.forEach(item => {
+                    allPortfolioItems.forEach(item => {
                         const itemCategory = item.getAttribute('data-category');
                         const shouldShow = filterValue === 'all' || filterValue === itemCategory;
                         
@@ -757,7 +841,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                             easing: 'easeOutQuad',
                             begin: () => {
                                 if (shouldShow) {
-                                    item.style.display = 'block';
+                                    item.style.display = 'flex'; // Changed to flex to match CSS
                                 }
                             },
                             complete: () => {
@@ -769,10 +853,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                     });
                 });
             });
-        });
-
-        
-            } else if (href === `/${currentPage}` || href === currentPage) {
-                link.classList.add('active');
-            }
-        });
+        }
+    </script>
+</body>
+</html>
