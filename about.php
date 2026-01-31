@@ -14,17 +14,14 @@ $isN8NAdmin = $isLoggedIn;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>درباره ما | NextPixel</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
-    <link rel="stylesheet" href="/assets/css/nextpixel-global.css">
-    <link rel="stylesheet" href="/assets/css/vendor/aos.min.css">
-    <script src="/assets/js/vendor/tailwindcss.js" defer></script>
-    <script src="/assets/js/vendor/aos.min.js" defer></script>
-    <script src="/assets/js/vendor/feather.min.js" defer></script>
-    <script src="/assets/js/vendor/scrollreveal.min.js" defer></script>
-    <script src="/assets/js/vendor/three.min.js" defer></script>
-    <script src="/assets/js/vendor/vanta.waves.min.js" defer></script>
-    <script src="/assets/js/vendor/anime.min.js" defer></script>
-    <script src="/assets/js/vendor/lottie-player.min.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
         body {
