@@ -538,7 +538,7 @@ require_once 'config/n8n-config.php';
     <nav class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-content">
             <div class="mobile-menu-section">
-                <div class="mobile-menu-section-title">القائمة</div>
+                <div class="mobile-menu-section-title">منوی نکست</div>
                 <div class="mobile-menu-links">
                     <a href="/" class="<?php echo $currentPage === 'index.php' ? 'active' : ''; ?>">صفحه اصلی</a>
                     <a href="/services.php" class="<?php echo $currentPage === 'services.php' ? 'active' : ''; ?>">خدمات</a>

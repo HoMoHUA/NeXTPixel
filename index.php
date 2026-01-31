@@ -603,13 +603,13 @@ if (isset($_POST['logout'])) {
     header.scrolled {
         top: 16px;
         left: 50%;
-        transform: translateX(-2%);
+        transform: translateX(-50%);
         width: 95%;
         max-width: 1280px;
         border-radius: 55px;
         background: rgba(15, 23, 42, 0.5);
         border-bottom-color: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.3);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
     }
@@ -950,7 +950,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <nav class="mobile-menu" id="mobile-menu">
     <div class="mobile-menu-content">
         <div class="mobile-menu-section">
-            <div class="mobile-menu-section-title">القائمة</div>
+            <div class="mobile-menu-section-title">منوی نکست</div>
             <div class="mobile-menu-links">
                 <a href="/" class="<?php echo $currentPage === 'index.php' ? 'active' : ''; ?>">صفحه اصلی</a>
                 <a href="/services.php" class="<?php echo $currentPage === 'services.php' ? 'active' : ''; ?>">خدمات</a>

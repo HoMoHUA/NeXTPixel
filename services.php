@@ -511,9 +511,9 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             transform: translateX(-50%);
             width: 95%;
             max-width: 1280px;
-            border-radius: 12px;
+            border-radius: 55px;
             background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -843,7 +843,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
     <nav class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-content">
             <div class="mobile-menu-section">
-                <div class="mobile-menu-section-title">القائمة</div>
+                <div class="mobile-menu-section-title">منوی نکست</div>
                 <div class="mobile-menu-links">
                     <a href="/" class="<?php echo $currentPage === 'index.php' ? 'active' : ''; ?>">صفحه اصلی</a>
                     <a href="/services.php" class="<?php echo $currentPage === 'services.php' ? 'active' : ''; ?>">خدمات</a>
@@ -2063,12 +2063,20 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Mobile Menu & Tabs ---
-            const menuBtn = document.getElementById('menu-btn');
+            // Mobile menu toggle - support both legacy `menu-btn` and current `menu-toggle`
+            const menuBtn = document.getElementById('menu-btn') || document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
-            const menuIcon = menuBtn.querySelector('i');
-            const toggleMenu = () => { mobileMenu.classList.toggle('translate-x-full'); const isMenuOpen = !mobileMenu.classList.contains('translate-x-full'); menuIcon.setAttribute('data-feather', isMenuOpen ? 'x' : 'menu'); feather.replace({ width: '28px', height: '28px' }); };
-            menuBtn.addEventListener('click', toggleMenu);
-            mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleMenu));
+            let menuIcon = null;
+            if (menuBtn) menuIcon = menuBtn.querySelector && menuBtn.querySelector('i');
+            const toggleMenu = () => {
+                if (!mobileMenu) return;
+                mobileMenu.classList.toggle('translate-x-full');
+                const isMenuOpen = !mobileMenu.classList.contains('translate-x-full');
+                try { if (menuIcon) menuIcon.setAttribute('data-feather', isMenuOpen ? 'x' : 'menu'); } catch(e){}
+                try { if (window.feather) feather.replace({ width: '28px', height: '28px' }); } catch(e){}
+            };
+            if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
+            if (mobileMenu) mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleMenu));
             
             const tabButtons = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');

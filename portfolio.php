@@ -22,6 +22,18 @@ $portfolioItems = [
         'desc' => 'طراحی مدرن و مینیمال با استفاده از تکنولوژی‌های روز دنیا',
         'ajax' => true // لود از طریق سرور (هوشمند)
     ],
+    [
+        'id' => 'etehad_store',
+        'title' => 'فروشگاه اتحاد',
+        'category' => 'store', // دسته‌بندی فروشگاهی
+        'category_fa' => 'فروشگاهی',
+        'badge_bg' => 'bg-blue-900/30',
+        'badge_text' => 'text-blue-400',
+        'img' => '/src/etehad.png', // مسیر تصویر (مطمئن شوید فایل موجود است)
+        'url' => 'https://etehad.vercel.app/', 
+        'desc' => 'فروشگاه تخصصی لپ‌تاپ استوک با طراحی واکنش‌گرا (React)',
+        'ajax' => true // لود از طریق سرور (هوشمند)
+    ],
     // --- سایر پروژه‌های قبلی ---
     [
         'id' => 'hchperfume',
@@ -111,7 +123,6 @@ $portfolioItems = [
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
     <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" defer></script>
-    <script src="/assets/js/site-header.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
         body {
@@ -264,9 +275,9 @@ $portfolioItems = [
             transform: translateX(-50%);
             width: 95%;
             max-width: 1280px;
-            border-radius: 12px;
+            border-radius: 55px;
             background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -796,6 +807,10 @@ $portfolioItems = [
                         // راه‌اندازی مجدد آیکون‌ها و انیمیشن‌ها
                         feather.replace();
                         initFilters();
+                        
+                        // راه‌اندازی لودر iframe برای نمایش زنده و نوار پیشرفت
+                        initIframeLoaders();
+
                         setTimeout(() => { AOS.refresh(); }, 500);
 
                     } catch (e) {
@@ -812,6 +827,47 @@ $portfolioItems = [
             };
 
             xhr.send();
+        }
+
+        // تابع جدید برای مدیریت لود iframe و نوار پیشرفت در کادر کوچک
+        function initIframeLoaders() {
+            const containers = document.querySelectorAll('.iframe-container');
+            
+            containers.forEach(container => {
+                // جلوگیری از اجرای تکراری
+                if (container.dataset.loaded === 'true') return;
+                container.dataset.loaded = 'true';
+
+                const iframe = container.querySelector('iframe');
+                const progressBar = container.querySelector('.progress-bar');
+                
+                if (!iframe || !progressBar) return;
+
+                // شبیه‌سازی نوار پیشرفت تا زمانی که iframe لود شود
+                let width = 0;
+                const interval = setInterval(() => {
+                    // تا ۹۰ درصد به صورت مصنوعی پر می‌شود
+                    if (width < 90) {
+                        width += Math.random() * 10;
+                        if (width > 90) width = 90;
+                        progressBar.style.width = width + '%';
+                    }
+                }, 200);
+
+                // وقتی سایت داخل iframe کامل لود شد
+                iframe.onload = () => {
+                    clearInterval(interval);
+                    progressBar.style.width = '100%';
+                    
+                    // نمایش iframe با افکت فید
+                    iframe.classList.remove('opacity-0');
+                    
+                    // مخفی کردن نوار پیشرفت بعد از اتمام
+                    setTimeout(() => {
+                        progressBar.parentElement.style.opacity = '0';
+                    }, 500);
+                };
+            });
         }
 
         function initFilters() {
