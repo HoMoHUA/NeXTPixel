@@ -603,7 +603,7 @@ if (isset($_POST['logout'])) {
     header.scrolled {
         top: 16px;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-2%);
         width: 95%;
         max-width: 1280px;
         border-radius: 55px;
