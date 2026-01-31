@@ -36,6 +36,8 @@ if (isset($_POST['logout'])) {
     <meta property="twitter:title" content="NextPixel | طراحی وبسایت حرفه‌ای، فروشگاهی و سئو">
     <meta property="twitter:description" content="طراحی تخصصی سایت فروشگاهی و شرکتی. با بهینه‌سازی سئو، فروش خود را چند برابر کنید.">
     <meta property="twitter:image" content="https://nextpixel.ir/static/social-preview.jpg">
+    
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">

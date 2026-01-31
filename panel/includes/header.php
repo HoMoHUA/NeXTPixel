@@ -22,7 +22,7 @@ $userRole = getCurrentUserRole();
     <link rel="stylesheet" href="/panel/assets/vendor/css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="/panel/assets/css/style.css">
     
-    <link rel="icon" type="image/png" sizes="16x16" href="/panel/assets/img/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/css/line.min.css">

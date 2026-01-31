@@ -13,7 +13,7 @@ $userRole = $currentUser ? $currentUser['role'] : null;
     <div class="geex-sidebar__wrapper">
         <div class="geex-sidebar__header">
             <a href="/panel/" class="geex-sidebar__logo">
-                <span class="np-gradient-text" style="font-size: 24px; font-weight: 900;">NextPixel</span>
+                <img src="/assets/img/NeXTPixel.png" alt="NextPixel" style="max-height: 40px; width: auto;">
             </a>
         </div>
         <nav class="geex-sidebar__menu-wrapper">
