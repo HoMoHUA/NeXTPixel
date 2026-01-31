@@ -513,7 +513,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             max-width: 1280px;
             border-radius: 55px;
             background: rgba(15, 23, 42, 0.5);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
