@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -7,9 +7,9 @@ $username = $_SESSION['username'] ?? '';
 $displayName = $_SESSION['display_name'] ?? '';
 $isN8NAdmin = $isLoggedIn;
 
-
+// --- لیست پروژه ها و تنظیمات ---
 $portfolioItems = [
-    
+    // --- پروژه‌های هوشمند و جدید (ابتدا قرار می‌گیرند) ---
     [
         'id' => 'batis_modern',
         'title' => 'باتیس مدرن',
@@ -20,7 +20,7 @@ $portfolioItems = [
         'img' => '/src/batis.png', 
         'url' => 'https://batis-modern.vercel.app', 
         'desc' => 'طراحی مدرن و مینیمال با استفاده از تکنولوژی‌های روز دنیا',
-        'ajax' => true 
+        'ajax' => true // لود از طریق سرور (هوشمند)
     ],
     [
         'id' => 'etehad_store',
@@ -32,22 +32,22 @@ $portfolioItems = [
         'img' => '/src/etehad.png',
         'url' => 'https://etehad.vercel.app/', 
         'desc' => 'فروشگاه تخصصی لپ‌تاپ استوک با طراحی واکنش‌گرا (React)',
-        'ajax' => true 
+        'ajax' => true // لود از طریق سرور (هوشمند)
     ],
-    
+    // --- پروژه جدید (معمولی/غیر ایجکسی) ---
     [
         'id' => 'noormah_bookcity',
         'title' => 'شهر کتاب نورماه',
-        'category' => 'store', 
+        'category' => 'store', // دسته‌بندی فروشگاهی
         'category_fa' => 'فروشگاهی',
-        'badge_bg' => 'bg-indigo-900/30', 
+        'badge_bg' => 'bg-indigo-900/30', // رنگ متفاوت (ایندیگو) برای تمایز
         'badge_text' => 'text-indigo-400',
-        'img' => '/src/noormah.png', 
+        'img' => '/src/noormah.png', // تصویر را با این نام آپلود کنید
         'url' => 'https://noormahbookcity.ir', 
         'desc' => 'پروژه وردپرسی تمام اختصاصی (طراحی شده از صفر) برای شهر کتاب نورماه',
-        'ajax' => false 
+        'ajax' => false // لود معمولی
     ],
-    
+    // --- سایر پروژه‌های قبلی ---
     [
         'id' => 'hchperfume',
         'title' => 'عطر هات چاکلت',
@@ -241,7 +241,7 @@ $portfolioItems = [
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
         }
 
-        
+        /* Placeholder styles for AJAX content */
         .ajax-placeholder {
             min-height: 400px;
             display: flex;
@@ -669,7 +669,7 @@ $portfolioItems = [
             <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <?php foreach ($portfolioItems as $item): ?>
                     <?php if ($item['ajax']): ?>
-                        
+                        <!-- AJAX Placeholder for <?php echo htmlspecialchars($item['title']); ?> -->
                         <div id="project-<?php echo htmlspecialchars($item['id']); ?>" 
                              class="portfolio-card glass-effect rounded-2xl ajax-placeholder" 
                              data-category="<?php echo htmlspecialchars($item['category']); ?>" 
@@ -679,7 +679,7 @@ $portfolioItems = [
                             <p class="mt-4 text-gray-500 text-sm">در حال بارگذاری <?php echo htmlspecialchars($item['title']); ?>...</p>
                         </div>
                     <?php else: ?>
-                        
+                        <!-- Static Item: <?php echo htmlspecialchars($item['title']); ?> -->
                         <div class="portfolio-card glass-effect rounded-2xl" data-category="<?php echo htmlspecialchars($item['category']); ?>" data-aos="fade-up">
                             <a href="<?php echo htmlspecialchars($item['url']); ?>" target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
                                 <img src="<?php echo htmlspecialchars($item['img']); ?>" alt="<?php echo htmlspecialchars($item['title']); ?>" class="w-full h-56 object-cover">
@@ -783,12 +783,12 @@ $portfolioItems = [
                 }
             });
 
-            
+            // شروع فرآیند لود پروژه‌های AJAX
             loadInternalProjects();
         });
 
         function loadInternalProjects() {
-            
+            // پیدا کردن تمام پلیس‌هولدرهایی که نیاز به لود دارند
             const placeholders = document.querySelectorAll('.ajax-placeholder');
             
             if (placeholders.length === 0) return;
@@ -804,10 +804,10 @@ $portfolioItems = [
                 
                 if (xhr.status === 200) {
                     try {
-                        
+                        // دریافت پاسخ JSON از سرور
                         const projectsData = JSON.parse(xhr.responseText);
                         
-                        
+                        // جایگزینی پلیس‌هولدرها با محتوای واقعی
                         placeholders.forEach(placeholder => {
                             const projectId = placeholder.getAttribute('data-project-id');
                             if (projectsData[projectId]) {
@@ -817,11 +817,11 @@ $portfolioItems = [
                             }
                         });
 
-                        
+                        // راه‌اندازی مجدد آیکون‌ها و انیمیشن‌ها
                         feather.replace();
                         initFilters();
                         
-                        
+                        // راه‌اندازی لودر iframe برای نمایش زنده و نوار پیشرفت
                         initIframeLoaders();
 
                         setTimeout(() => { AOS.refresh(); }, 500);
@@ -842,12 +842,12 @@ $portfolioItems = [
             xhr.send();
         }
 
-        
+        // تابع جدید برای مدیریت لود iframe و نوار پیشرفت در کادر کوچک
         function initIframeLoaders() {
             const containers = document.querySelectorAll('.iframe-container');
             
             containers.forEach(container => {
-                
+                // جلوگیری از اجرای تکراری
                 if (container.dataset.loaded === 'true') return;
                 container.dataset.loaded = 'true';
 
@@ -856,10 +856,10 @@ $portfolioItems = [
                 
                 if (!iframe || !progressBar) return;
 
-                
+                // شبیه‌سازی نوار پیشرفت تا زمانی که iframe لود شود
                 let width = 0;
                 const interval = setInterval(() => {
-                    
+                    // تا ۹۰ درصد به صورت مصنوعی پر می‌شود
                     if (width < 90) {
                         width += Math.random() * 10;
                         if (width > 90) width = 90;
@@ -867,15 +867,15 @@ $portfolioItems = [
                     }
                 }, 200);
 
-                
+                // وقتی سایت داخل iframe کامل لود شد
                 iframe.onload = () => {
                     clearInterval(interval);
                     progressBar.style.width = '100%';
                     
-                    
+                    // نمایش iframe با افکت فید
                     iframe.classList.remove('opacity-0');
                     
-                    
+                    // مخفی کردن نوار پیشرفت بعد از اتمام
                     setTimeout(() => {
                         progressBar.parentElement.style.opacity = '0';
                     }, 500);
@@ -912,7 +912,7 @@ $portfolioItems = [
                             easing: 'easeOutQuad',
                             begin: () => {
                                 if (shouldShow) {
-                                    item.style.display = 'flex'; 
+                                    item.style.display = 'flex'; // Changed to flex to match CSS
                                 }
                             },
                             complete: () => {

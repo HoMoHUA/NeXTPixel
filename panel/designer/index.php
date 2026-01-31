@@ -1,5 +1,8 @@
-﻿<?php
-
+<?php
+/**
+ * Designer Dashboard - Tickets
+ * پنل طراح - سیستم تیکت
+ */
 
 $pageTitle = 'تیکت‌ها';
 $currentPage = 'designer-dashboard';
@@ -7,7 +10,7 @@ $currentPage = 'designer-dashboard';
 require_once __DIR__ . '/../includes/auth.php';
 requireLogin();
 
-
+// بررسی نقش
 if (!hasRole('designer')) {
     header('Location: /panel/index.php');
     exit();
@@ -19,11 +22,11 @@ require_once __DIR__ . '/../config/db.php';
 $db = getPanelDB();
 $userId = getCurrentUserId();
 
-
+// فیلتر تیکت‌ها
 $statusFilter = isset($_GET['status']) ? $_GET['status'] : 'all';
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 
-
+// ساخت کوئری
 $query = "SELECT t.*, u.username as client_username, u.display_name as client_name, 
           COUNT(tm.id) as message_count,
           SUM(CASE WHEN tm.is_read = 0 AND tm.user_id != ? THEN 1 ELSE 0 END) as unread_count
@@ -66,7 +69,7 @@ include __DIR__ . '/../includes/header.php';
         </div>
 
         <div class="geex-content__wrapper">
-            
+            <!-- Filters and Search -->
             <div class="geex-content__section mb-40">
                 <div class="geex-content__form__wrapper">
                     <form method="GET" class="geex-content__form">
@@ -100,7 +103,7 @@ include __DIR__ . '/../includes/header.php';
                 </div>
             </div>
 
-            
+            <!-- Tickets List -->
             <div class="geex-content__section">
                 <?php if (!empty($tickets)): ?>
                     <div class="geex-content__form__wrapper">
@@ -196,9 +199,8 @@ include __DIR__ . '/../includes/header.php';
 
 <script>
 function viewTicket(ticketId) {
-    
+    // TODO: Open ticket detail modal or redirect to ticket detail page
     window.location.href = '/panel/designer/ticket.php?id=' + ticketId;
 }
 </script>
-
 

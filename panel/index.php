@@ -1,16 +1,19 @@
-﻿<?php
-
+<?php
+/**
+ * Main Dashboard Page
+ * صفحه اصلی داشبورد
+ */
 
 $pageTitle = 'داشبورد - NextPixel';
 
 require_once __DIR__ . '/includes/auth.php';
 requireLogin();
 
-
-
+// هدایت خودکار کاربران به پنل مناسب بر اساس نقش
+// فقط ادمین‌ها در این صفحه می‌مانند
 $userRole = getCurrentUserRole();
 if ($userRole && $userRole !== 'admin') {
-    redirectByRole(); 
+    redirectByRole(); // هدایت به پنل مناسب
 }
 
 require_once __DIR__ . '/includes/header.php';
@@ -122,5 +125,4 @@ $currentUser = getCurrentUser();
 </main>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
-
 

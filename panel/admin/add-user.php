@@ -1,5 +1,7 @@
-﻿<?php
-
+<?php
+/**
+ * افزودن همکار جدید - پنل مدیریت NextPixel
+ */
 
 $pageTitle = 'افزودن همکار جدید - NextPixel';
 $currentPage = 'add-user';
@@ -150,11 +152,11 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        
+        // پاک کردن پیام‌های قبلی
         messageDiv.style.display = 'none';
         messageDiv.className = 'geex-form__message';
         
-        
+        // دریافت مقادیر فرم
         const username = document.getElementById('username').value.trim();
         const email = document.getElementById('email').value.trim();
         const displayName = document.getElementById('display_name').value.trim();
@@ -164,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const role = document.getElementById('role').value;
         const status = document.getElementById('status').value;
         
-        
+        // اعتبارسنجی
         if (password !== passwordConfirm) {
             showMessage('رمز عبور و تکرار آن یکسان نیستند', 'error');
             return;
@@ -175,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        
+        // نمایش loading
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
         submitBtn.disabled = true;
@@ -198,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
             });
             
-            
+            // بررسی وضعیت پاسخ
             if (!response.ok) {
                 const errorText = await response.text();
                 console.error('Response error:', errorText);
@@ -211,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 showMessage(data.message || 'همکار با موفقیت افزوده شد', 'success');
                 form.reset();
                 
-                
+                // هدایت به صفحه لیست کاربران بعد از 2 ثانیه
                 setTimeout(() => {
                     window.location.href = '/panel/admin/users.php';
                 }, 2000);
@@ -339,5 +341,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </style>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
-
 

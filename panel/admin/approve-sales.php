@@ -1,5 +1,7 @@
-﻿<?php
-
+<?php
+/**
+ * تایید/رد فروش‌ها - پنل مدیریت NextPixel
+ */
 
 $pageTitle = 'تایید فروش‌ها - NextPixel';
 $currentPage = 'approve-sales';
@@ -16,7 +18,7 @@ require_once __DIR__ . '/../includes/functions.php';
 $currentUser = getCurrentUser();
 $db = getPanelDB();
 
-
+// پردازش تایید/رد
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     $saleId = intval($_POST['sale_id'] ?? 0);
     $action = $_POST['action'] ?? '';
@@ -33,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                                           WHERE id = ? AND (status = 'pending' OR status IS NULL)");
                     $stmt->execute([getCurrentUserId(), $saleId]);
                 } catch (PDOException $e) {
-                    
+                    // اگر ستون status وجود ندارد، بدون آن آپدیت کن
                     if (strpos($e->getMessage(), 'status') !== false || strpos($e->getMessage(), 'approved_by') !== false) {
                         $stmt = $db->prepare("UPDATE seller_reports 
                                               SET approved_by = ?, 
@@ -45,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     }
                 }
                 
-                
+                // هدایت مجدد برای جلوگیری از ارسال مجدد فرم
                 header('Location: /panel/admin/approve-sales.php?success=approved');
                 exit;
             } else {
@@ -58,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                                           WHERE id = ? AND (status = 'pending' OR status IS NULL)");
                     $stmt->execute([getCurrentUserId(), $reason, $saleId]);
                 } catch (PDOException $e) {
-                    
+                    // اگر ستون status وجود ندارد، بدون آن آپدیت کن
                     if (strpos($e->getMessage(), 'status') !== false || strpos($e->getMessage(), 'approved_by') !== false) {
                         $stmt = $db->prepare("UPDATE seller_reports 
                                               SET approved_by = ?, 
@@ -71,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     }
                 }
                 
-                
+                // هدایت مجدد برای جلوگیری از ارسال مجدد فرم
                 header('Location: /panel/admin/approve-sales.php?success=rejected');
                 exit;
             }
@@ -83,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     }
 }
 
-
+// نمایش پیام موفقیت/خطا
 $successMessage = '';
 $errorMessage = '';
 if (isset($_GET['success'])) {
@@ -93,9 +95,9 @@ if (isset($_GET['error'])) {
     $errorMessage = 'خطا در بروزرسانی وضعیت فروش';
 }
 
-
+// دریافت فروش‌های در انتظار تایید
 try {
-    
+    // بررسی وجود ستون status
     try {
         $stmt = $db->prepare("
             SELECT sr.*, u.username, u.display_name 
@@ -108,7 +110,7 @@ try {
         $stmt->execute();
         $pendingSales = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        
+        // اگر ستون status وجود ندارد، بدون آن جستجو کن
         if (strpos($e->getMessage(), 'status') !== false) {
             $stmt = $db->prepare("
                 SELECT sr.*, u.username, u.display_name 
@@ -237,7 +239,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
     </div>
 </main>
 
-
+<!-- Modal برای رد فروش -->
 <div id="rejectModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; align-items: center; justify-content: center;">
     <div style="background: rgba(15, 23, 42, 0.95); padding: 30px; border-radius: 12px; max-width: 500px; width: 90%;">
         <h3 style="color: #f8fafc; margin-bottom: 20px;">رد فروش</h3>
@@ -275,7 +277,7 @@ function closeRejectModal() {
     document.getElementById('rejectForm').reset();
 }
 
-
+// بستن modal با کلیک روی پس‌زمینه
 document.getElementById('rejectModal').addEventListener('click', function(e) {
     if (e.target === this) {
         closeRejectModal();
@@ -354,5 +356,4 @@ document.getElementById('rejectModal').addEventListener('click', function(e) {
 </style>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
-
 

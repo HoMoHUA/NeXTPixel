@@ -1,5 +1,8 @@
-﻿<?php
-
+<?php
+/**
+ * API Endpoint: Create New Task
+ * ایجاد تسک جدید
+ */
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -7,14 +10,14 @@ require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/functions.php';
 require_once __DIR__ . '/../config/db.php';
 
-
+// بررسی لاگین بودن
 if (!isLoggedIn()) {
     http_response_code(401);
     echo json_encode(['success' => false, 'message' => 'لطفا ابتدا وارد شوید']);
     exit;
 }
 
-
+// فقط طراحان می‌توانند استفاده کنند
 if (!hasRole('designer')) {
     http_response_code(403);
     echo json_encode(['success' => false, 'message' => 'دسترسی غیرمجاز']);
@@ -46,7 +49,7 @@ try {
     $db = getPanelDB();
     $userId = getCurrentUserId();
     
-    
+    // ایجاد تسک جدید
     $stmt = $db->prepare("INSERT INTO tasks (designer_id, title, description, status, time_logged, created_at, updated_at) 
                           VALUES (?, ?, ?, ?, 0, NOW(), NOW())");
     $stmt->execute([$userId, $title, $description, $status]);
@@ -71,5 +74,4 @@ try {
 }
 
 ?>
-
 

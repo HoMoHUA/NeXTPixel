@@ -1,5 +1,7 @@
-﻿<?php
-
+<?php
+/**
+ * گزارش ماهانه فروشنده - پنل مدیریت NextPixel
+ */
 
 $pageTitle = 'گزارش ماهانه - NextPixel';
 $currentPage = 'seller-monthly';
@@ -19,12 +21,12 @@ $currentUser = getCurrentUser();
 $db = getPanelDB();
 $userId = getCurrentUserId();
 
-
+// دریافت ماه انتخاب شده (پیش‌فرض: ماه جاری)
 $selectedMonth = $_GET['month'] ?? date('Y-m');
 $selectedYear = date('Y', strtotime($selectedMonth . '-01'));
 $selectedMonthNum = date('m', strtotime($selectedMonth . '-01'));
 
-
+// محاسبه آمار ماه انتخاب شده
 try {
     $stmt = $db->prepare("
         SELECT 
@@ -40,7 +42,7 @@ try {
     $stmt->execute([$userId, $selectedMonth]);
     $monthStats = $stmt->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    
+    // اگر ستون status وجود ندارد
     error_log("Status column might not exist: " . $e->getMessage());
     $stmt = $db->prepare("
         SELECT 
@@ -60,7 +62,7 @@ try {
 $totalSales = floatval($monthStats['total_sales'] ?? 0);
 $calculatedSalary = calculateSalary($totalSales);
 
-
+// لیست تمام گزارش‌های ماه
 $stmt = $db->prepare("
     SELECT * 
     FROM seller_reports 
@@ -71,7 +73,7 @@ $stmt = $db->prepare("
 $stmt->execute([$userId, $selectedMonth]);
 $monthReports = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
+// محاسبه فروش و درآمد برای 12 ماه گذشته (برای نمودار)
 $chartMonths = [];
 $chartSales = [];
 $chartIncome = [];
@@ -94,7 +96,7 @@ for ($i = 11; $i >= 0; $i--) {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $monthSales = floatval($result['total_sales'] ?? 0);
     } catch (PDOException $e) {
-        
+        // اگر ستون status وجود ندارد
         $stmt = $db->prepare("
             SELECT SUM(sales_amount) as total_sales 
             FROM seller_reports 
@@ -136,7 +138,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
         </div>
 
         <div class="geex-content__wrapper">
-            
+            <!-- Statistics Cards -->
             <div class="geex-content__section mb-40">
                 <div class="geex-content__feature">
                     <div class="geex-content__feature__card" style="background: var(--np-dark-card-bg); border: 1px solid rgba(59, 130, 246, 0.2);">
@@ -174,7 +176,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
                 </div>
             </div>
 
-            
+            <!-- Monthly Chart -->
             <div class="geex-content__section mb-40">
                 <div class="geex-content__section__header">
                     <h4 class="geex-content__section__header__title">نمودار فروش و درآمد 12 ماه گذشته</h4>
@@ -185,7 +187,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
                 </div>
             </div>
 
-            
+            <!-- Reports List -->
             <div class="geex-content__section mb-40">
                 <div class="geex-content__section__header">
                     <h4 class="geex-content__section__header__title">لیست گزارش‌های ماه</h4>
@@ -419,4 +421,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </style>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
-

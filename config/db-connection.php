@@ -1,5 +1,8 @@
-﻿<?php
-
+<?php
+/**
+ * Database Connection File
+ * این فایل اتصال به دیتابیس را برقرار می‌کند
+ */
 
 require_once __DIR__ . '/db-config.php';
 
@@ -34,20 +37,19 @@ class Database {
         return $this->conn;
     }
     
-    
+    // جلوگیری از کلون کردن
     private function __clone() {}
     
-    
+    // جلوگیری از unserialize
     public function __wakeup() {
         throw new Exception("Cannot unserialize singleton");
     }
 }
 
-
+// تابع helper برای دریافت اتصال
 function getDB() {
     return Database::getInstance()->getConnection();
 }
 
 ?>
-
 

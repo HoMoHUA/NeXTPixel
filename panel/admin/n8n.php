@@ -1,5 +1,7 @@
-﻿<?php
-
+<?php
+/**
+ * مدیریت n8n - پنل مدیریت NextPixel
+ */
 
 $pageTitle = 'مدیریت n8n - NextPixel';
 $currentPage = 'n8n';
@@ -13,7 +15,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
 
 $currentUser = getCurrentUser();
 
-
+// بارگذاری تنظیمات n8n
 require_once __DIR__ . '/../../config/n8n-config.php';
 ?>
 
@@ -30,7 +32,7 @@ require_once __DIR__ . '/../../config/n8n-config.php';
 
         <div class="geex-content__wrapper">
             <div class="geex-content__section-wrapper">
-                
+                <!-- Connection Status -->
                 <div class="geex-content__section mb-30">
                     <div class="geex-content__section__content">
                         <div class="geex-content__feature__card">
@@ -50,7 +52,7 @@ require_once __DIR__ . '/../../config/n8n-config.php';
                     </div>
                 </div>
 
-                
+                <!-- Actions Bar -->
                 <div class="geex-content__section mb-30">
                     <div class="geex-content__section__header">
                         <h4 class="geex-content__section__header__title">عملیات</h4>
@@ -75,7 +77,7 @@ require_once __DIR__ . '/../../config/n8n-config.php';
                     </div>
                 </div>
 
-                
+                <!-- Workflows List -->
                 <div class="geex-content__section">
                     <div class="geex-content__section__header">
                         <h4 class="geex-content__section__header__title">لیست Workflows</h4>
@@ -94,7 +96,7 @@ require_once __DIR__ . '/../../config/n8n-config.php';
     </div>
 </main>
 
-
+<!-- Create/Edit Workflow Modal -->
 <div id="workflow-modal" class="modal-overlay" style="display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px;">
     <div class="modal-content" style="background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px); border-radius: 16px; padding: 30px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; border: 1px solid rgba(59, 130, 246, 0.2);">
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -232,11 +234,11 @@ input:checked + .toggle-slider:before {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    
+    // Load workflows on page load
     checkConnection();
     loadWorkflows();
     
-    
+    // Event listeners
     document.getElementById('refresh-connection').addEventListener('click', checkConnection);
     document.getElementById('refresh-workflows').addEventListener('click', loadWorkflows);
     document.getElementById('create-workflow').addEventListener('click', () => openWorkflowModal());
@@ -245,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('workflow-form').addEventListener('submit', saveWorkflow);
     document.getElementById('search-workflows').addEventListener('input', filterWorkflows);
     
-    
+    // Close modal on overlay click
     document.getElementById('workflow-modal').addEventListener('click', function(e) {
         if (e.target === this) {
             closeWorkflowModal();
@@ -253,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
+// Check n8n connection
 async function checkConnection() {
     const statusEl = document.getElementById('connection-status');
     const textEl = document.getElementById('connection-text');
@@ -281,7 +283,7 @@ async function checkConnection() {
     }
 }
 
-
+// Load workflows from n8n
 async function loadWorkflows() {
     const container = document.getElementById('workflows-container');
     container.innerHTML = '<div class="col-12 text-center py-5"><div class="np-loading" style="display: inline-block; width: 40px; height: 40px; border: 4px solid var(--np-primary); border-top-color: transparent; border-radius: 50%;"></div><p class="mt-3 text-muted">در حال بارگذاری workflows...</p></div>';
@@ -300,7 +302,7 @@ async function loadWorkflows() {
     }
 }
 
-
+// Display workflows
 function displayWorkflows(workflows) {
     const container = document.getElementById('workflows-container');
     
@@ -346,7 +348,7 @@ function displayWorkflows(workflows) {
     `).join('');
 }
 
-
+// Toggle workflow active status
 async function toggleWorkflow(workflowId, isActive) {
     try {
         const response = await fetch('/api/n8n-workflows.php', {
@@ -371,7 +373,7 @@ async function toggleWorkflow(workflowId, isActive) {
     }
 }
 
-
+// Open workflow modal for editing
 async function editWorkflow(workflowId) {
     try {
         const response = await fetch(`/api/n8n-workflows.php?action=get&id=${workflowId}`);
@@ -394,7 +396,7 @@ async function editWorkflow(workflowId) {
     }
 }
 
-
+// Open workflow modal for creating
 function openWorkflowModal() {
     document.getElementById('workflow-form').reset();
     document.getElementById('workflow-id').value = '';
@@ -402,12 +404,12 @@ function openWorkflowModal() {
     document.getElementById('workflow-modal').style.display = 'flex';
 }
 
-
+// Close workflow modal
 function closeWorkflowModal() {
     document.getElementById('workflow-modal').style.display = 'none';
 }
 
-
+// Save workflow (create or update)
 async function saveWorkflow(e) {
     e.preventDefault();
     
@@ -441,7 +443,7 @@ async function saveWorkflow(e) {
     }
 }
 
-
+// Delete workflow
 async function deleteWorkflow(workflowId) {
     if (!confirm('آیا مطمئن هستید که می‌خواهید این workflow را حذف کنید؟')) {
         return;
@@ -470,7 +472,7 @@ async function deleteWorkflow(workflowId) {
     }
 }
 
-
+// Filter workflows
 function filterWorkflows(e) {
     const searchTerm = e.target.value.toLowerCase();
     const cards = document.querySelectorAll('.workflow-card');
@@ -486,5 +488,4 @@ function filterWorkflows(e) {
 </script>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
-
 

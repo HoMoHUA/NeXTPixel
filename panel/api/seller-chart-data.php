@@ -1,5 +1,8 @@
-﻿<?php
-
+<?php
+/**
+ * API Endpoint for Seller Chart Data
+ * داده‌های نمودار فروش و درآمد فروشنده
+ */
 
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../config/db.php';
@@ -17,7 +20,7 @@ if (!hasRole('seller')) {
 $db = getPanelDB();
 $userId = getCurrentUserId();
 
-
+// محاسبه فروش و درآمد برای 6 ماه گذشته
 $months = [];
 $sales = [];
 $income = [];
@@ -26,7 +29,7 @@ for ($i = 5; $i >= 0; $i--) {
     $date = date('Y-m', strtotime("-$i months"));
     $months[] = date('F Y', strtotime("-$i months"));
     
-    
+    // محاسبه فروش تایید شده این ماه
     try {
         $stmt = $db->prepare("SELECT SUM(sales_amount) as total_sales 
                               FROM seller_reports 
@@ -38,7 +41,7 @@ for ($i = 5; $i >= 0; $i--) {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $totalSales = floatval($result['total_sales'] ?? 0);
     } catch (PDOException $e) {
-        
+        // اگر ستون status وجود ندارد
         error_log("Status column might not exist: " . $e->getMessage());
         $stmt = $db->prepare("SELECT SUM(sales_amount) as total_sales 
                               FROM seller_reports 
@@ -50,7 +53,7 @@ for ($i = 5; $i >= 0; $i--) {
         $totalSales = floatval($result['total_sales'] ?? 0);
     }
     
-    
+    // محاسبه حقوق
     $salary = calculateSalary($totalSales);
     
     $sales[] = $totalSales;
@@ -64,5 +67,4 @@ echo json_encode([
     'income' => $income
 ], JSON_UNESCAPED_UNICODE);
 ?>
-
 

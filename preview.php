@@ -1,9 +1,9 @@
-﻿<?php
-
+<?php
+// دریافت آدرس و عنوان از پارامترهای URL
 $url = isset($_GET['url']) ? $_GET['url'] : '#';
 $title = isset($_GET['title']) ? $_GET['title'] : 'پیش‌نمایش وبسایت';
 
-
+// جلوگیری از XSS
 $url = htmlspecialchars($url, ENT_QUOTES, 'UTF-8');
 $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
 ?>
@@ -21,13 +21,15 @@ $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
             font-family: 'Vazirmatn', sans-serif;
             margin: 0;
             padding: 0;
-            overflow: hidden; 
+            overflow: hidden; /* جلوگیری از اسکرول صفحه اصلی */
             background-color: #0f172a;
             height: 100vh;
             display: flex;
             flex-direction: column;
         }
-
+        
+        /* استایل نوار پیشرفت */
+        #progress-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -36,10 +38,11 @@ $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
             background-color: rgba(59, 130, 246, 0.2);
             z-index: 2000;
         }
-
+        
+        #progress-bar {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6); 
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6); /* رنگ اکسنت سایت */
             transition: width 0.2s ease;
             box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
         }
@@ -92,12 +95,12 @@ $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
 </head>
 <body>
 
-    
+    <!-- نوار پیشرفت -->
     <div id="progress-container">
         <div id="progress-bar"></div>
     </div>
 
-    
+    <!-- هدر پیش‌نمایش -->
     <header class="preview-header">
         <div class="flex items-center gap-4">
             <a href="/portfolio.php" class="btn-close">
@@ -112,7 +115,7 @@ $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
         </div>
 
         <div class="flex items-center gap-3">
-            
+            <!-- دکمه‌های ریسپانسیو (موبایل/دسکتاپ) -->
             <div class="hidden md:flex gap-2 mr-4 bg-slate-800 p-1 rounded-lg">
                 <button onclick="setDevice('desktop')" class="p-2 text-white hover:bg-slate-700 rounded transition"><i data-feather="monitor" class="w-4 h-4"></i></button>
                 <button onclick="setDevice('tablet')" class="p-2 text-gray-400 hover:bg-slate-700 hover:text-white rounded transition"><i data-feather="tablet" class="w-4 h-4"></i></button>
@@ -126,7 +129,7 @@ $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
         </div>
     </header>
 
-    
+    <!-- کانتینر iframe -->
     <div id="iframe-wrapper" class="w-full h-full flex justify-center bg-gray-900 transition-all duration-300">
         <iframe id="main-iframe" src="<?php echo $url; ?>" class="preview-iframe w-full h-full transition-all duration-300" title="<?php echo $title; ?>"></iframe>
     </div>
@@ -134,7 +137,7 @@ $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
     <script>
         feather.replace();
 
-        
+        // شبیه‌سازی نوار پیشرفت
         const progressBar = document.getElementById('progress-bar');
         const iframe = document.getElementById('main-iframe');
         const progressContainer = document.getElementById('progress-container');
@@ -149,7 +152,7 @@ $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
             }
         }, 200);
 
-        
+        // وقتی iframe کاملاً لود شد
         iframe.onload = function() {
             clearInterval(interval);
             progressBar.style.width = '100%';
@@ -160,18 +163,18 @@ $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
             }, 500);
         };
 
-        
+        // تغییر سایز دستگاه
         function setDevice(device) {
             const wrapper = document.getElementById('iframe-wrapper');
             const iframe = document.getElementById('main-iframe');
             
-            
+            // ریست کردن آیکون‌ها
             document.querySelectorAll('button[onclick^="setDevice"] i').forEach(icon => {
                 icon.parentElement.classList.remove('text-white');
                 icon.parentElement.classList.add('text-gray-400');
             });
             
-            
+            // فعال کردن آیکون انتخاب شده
             const activeBtn = document.querySelector(`button[onclick="setDevice('${device}')"]`);
             if(activeBtn) {
                 activeBtn.classList.remove('text-gray-400');

@@ -1,21 +1,21 @@
-﻿<?php
-
+<?php
+// بررسی session و احراز هویت
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-
+// بررسی لاگین بودن کاربر
 $isLoggedIn = isset($_SESSION['user_id']);
 $username = $_SESSION['username'] ?? '';
 $displayName = $_SESSION['display_name'] ?? '';
 
-
+// اگر لاگین نیست، به صفحه لاگین هدایت شود
 if (!$isLoggedIn) {
     header('Location: login.php');
     exit;
 }
 
-
+// بارگذاری تنظیمات n8n
 require_once 'config/n8n-config.php';
 ?>
 <!DOCTYPE html>
@@ -179,7 +179,7 @@ require_once 'config/n8n-config.php';
     </style>
 </head>
 <body>
-    
+    <!-- Navigation -->
     <nav class="ios-glass-header flex justify-between items-center py-4 px-4 md:px-8 mx-auto max-w-full md:max-w-6xl rounded-2xl md:rounded-full my-4">
         <a href="index.php" class="text-2xl font-bold gradient-text">NextPixel</a>
         <div class="hidden md:flex items-center space-x-6 space-x-reverse">
@@ -192,9 +192,9 @@ require_once 'config/n8n-config.php';
         </div>
     </nav>
     
-    
+    <!-- Main Content -->
     <main class="container mx-auto px-4 py-8 max-w-7xl">
-        
+        <!-- Header Section -->
         <div class="text-center mb-12" data-aos="fade-up">
             <h1 class="text-4xl md:text-5xl font-bold mb-4">
                 <span class="gradient-text">پنل مدیریت n8n</span>
@@ -202,7 +202,7 @@ require_once 'config/n8n-config.php';
             <p class="text-gray-300 text-lg">مدیریت و کنترل کامل سرویس‌های اتوماسیون n8n</p>
         </div>
         
-        
+        <!-- Connection Status -->
         <div class="glass-effect rounded-2xl p-6 mb-8" data-aos="fade-up" data-aos-delay="100">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4 space-x-reverse">
@@ -219,7 +219,7 @@ require_once 'config/n8n-config.php';
             </div>
         </div>
         
-        
+        <!-- Actions Bar -->
         <div class="glass-effect rounded-2xl p-6 mb-8 flex flex-col md:flex-row justify-between items-center gap-4" data-aos="fade-up" data-aos-delay="200">
             <div class="flex items-center space-x-4 space-x-reverse">
                 <button id="refresh-workflows" class="btn-primary px-6 py-2 rounded-full text-white font-medium">
@@ -237,9 +237,9 @@ require_once 'config/n8n-config.php';
             </div>
         </div>
         
-        
+        <!-- Workflows List -->
         <div id="workflows-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
+            <!-- Workflows will be loaded here -->
             <div class="col-span-full text-center py-12">
                 <div class="loading inline-block w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full"></div>
                 <p class="text-gray-400 mt-4">در حال بارگذاری workflows...</p>
@@ -247,7 +247,7 @@ require_once 'config/n8n-config.php';
         </div>
     </main>
     
-    
+    <!-- Create/Edit Workflow Modal -->
     <div id="workflow-modal" class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4">
         <div class="modal-content glass-effect rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
@@ -298,15 +298,15 @@ require_once 'config/n8n-config.php';
         </div>
     </div>
     
-    
+    <!-- Scripts -->
     <script>
-        
+        // Initialize Feather Icons
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof feather !== 'undefined') {
                 feather.replace();
             }
             
-            
+            // Initialize AOS
             if (typeof AOS !== 'undefined') {
                 AOS.init({
                     duration: 800,
@@ -315,11 +315,11 @@ require_once 'config/n8n-config.php';
                 });
             }
             
-            
+            // Load workflows on page load
             checkConnection();
             loadWorkflows();
             
-            
+            // Event listeners
             document.getElementById('refresh-connection').addEventListener('click', checkConnection);
             document.getElementById('refresh-workflows').addEventListener('click', loadWorkflows);
             document.getElementById('create-workflow').addEventListener('click', () => openWorkflowModal());
@@ -329,7 +329,7 @@ require_once 'config/n8n-config.php';
             document.getElementById('search-workflows').addEventListener('input', filterWorkflows);
         });
         
-        
+        // Check n8n connection
         async function checkConnection() {
             const statusEl = document.getElementById('connection-status');
             const textEl = document.getElementById('connection-text');
@@ -351,7 +351,7 @@ require_once 'config/n8n-config.php';
             }
         }
         
-        
+        // Load workflows from n8n
         async function loadWorkflows() {
             const container = document.getElementById('workflows-container');
             container.innerHTML = '<div class="col-span-full text-center py-12"><div class="loading inline-block w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full"></div><p class="text-gray-400 mt-4">در حال بارگذاری workflows...</p></div>';
@@ -370,7 +370,7 @@ require_once 'config/n8n-config.php';
             }
         }
         
-        
+        // Display workflows
         function displayWorkflows(workflows) {
             const container = document.getElementById('workflows-container');
             
@@ -413,13 +413,13 @@ require_once 'config/n8n-config.php';
                 </div>
             `).join('');
             
-            
+            // Re-initialize Feather Icons
             if (typeof feather !== 'undefined') {
                 feather.replace();
             }
         }
         
-        
+        // Toggle workflow active status
         async function toggleWorkflow(workflowId, isActive) {
             try {
                 const response = await fetch('api/n8n-workflows.php', {
@@ -436,15 +436,15 @@ require_once 'config/n8n-config.php';
                 const data = await response.json();
                 if (!data.success) {
                     alert('خطا در تغییر وضعیت workflow');
-                    loadWorkflows(); 
+                    loadWorkflows(); // Reload to revert
                 }
             } catch (error) {
                 alert('خطا در ارتباط با سرور');
-                loadWorkflows(); 
+                loadWorkflows(); // Reload to revert
             }
         }
         
-        
+        // Open workflow modal for editing
         async function editWorkflow(workflowId) {
             try {
                 const response = await fetch(`api/n8n-workflows.php?action=get&id=${workflowId}`);
@@ -467,7 +467,7 @@ require_once 'config/n8n-config.php';
             }
         }
         
-        
+        // Open workflow modal for creating
         function openWorkflowModal() {
             document.getElementById('workflow-form').reset();
             document.getElementById('workflow-id').value = '';
@@ -475,12 +475,12 @@ require_once 'config/n8n-config.php';
             document.getElementById('workflow-modal').classList.remove('hidden');
         }
         
-        
+        // Close workflow modal
         function closeWorkflowModal() {
             document.getElementById('workflow-modal').classList.add('hidden');
         }
         
-        
+        // Save workflow (create or update)
         async function saveWorkflow(e) {
             e.preventDefault();
             
@@ -514,7 +514,7 @@ require_once 'config/n8n-config.php';
             }
         }
         
-        
+        // Delete workflow
         async function deleteWorkflow(workflowId) {
             if (!confirm('آیا مطمئن هستید که می‌خواهید این workflow را حذف کنید؟')) {
                 return;
@@ -543,7 +543,7 @@ require_once 'config/n8n-config.php';
             }
         }
         
-        
+        // Filter workflows
         function filterWorkflows(e) {
             const searchTerm = e.target.value.toLowerCase();
             const cards = document.querySelectorAll('.workflow-card');
@@ -556,6 +556,5 @@ require_once 'config/n8n-config.php';
     </script>
 </body>
 </html>
-
 
 

@@ -1,5 +1,8 @@
-﻿<?php
-
+<?php
+/**
+ * Designer Tasks Management
+ * مدیریت وظایف طراح - Kanban Board
+ */
 
 $pageTitle = 'مدیریت وظایف';
 $currentPage = 'designer-tasks';
@@ -7,7 +10,7 @@ $currentPage = 'designer-tasks';
 require_once __DIR__ . '/../includes/auth.php';
 requireLogin();
 
-
+// بررسی نقش
 if (!hasRole('designer')) {
     header('Location: /panel/index.php');
     exit();
@@ -19,12 +22,12 @@ require_once __DIR__ . '/../config/db.php';
 $db = getPanelDB();
 $userId = getCurrentUserId();
 
-
+// دریافت تسک‌ها
 $stmt = $db->prepare("SELECT * FROM tasks WHERE designer_id = ? ORDER BY created_at DESC");
 $stmt->execute([$userId]);
 $allTasks = $stmt->fetchAll();
 
-
+// دسته‌بندی تسک‌ها بر اساس وضعیت
 $tasks = [
     'todo' => [],
     'in_progress' => [],
@@ -56,10 +59,10 @@ include __DIR__ . '/../includes/header.php';
         </div>
 
         <div class="geex-content__wrapper">
-            
+            <!-- Kanban Board -->
             <div class="geex-content__section" style="overflow-x: auto;">
                 <div class="kanban-board" style="display: flex; gap: 20px; min-width: 1200px; padding: 20px 0;">
-                    
+                    <!-- Todo Column -->
                     <div class="kanban-column" style="flex: 1; background: var(--np-dark-card-bg); border-radius: 12px; padding: 20px; border: 1px solid rgba(59, 130, 246, 0.2);">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                             <h4 style="color: #f8fafc; margin: 0;">📋 انجام نشده</h4>
@@ -99,7 +102,7 @@ include __DIR__ . '/../includes/header.php';
                         </div>
                     </div>
 
-                    
+                    <!-- In Progress Column -->
                     <div class="kanban-column" style="flex: 1; background: var(--np-dark-card-bg); border-radius: 12px; padding: 20px; border: 1px solid rgba(245, 158, 11, 0.2);">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                             <h4 style="color: #f8fafc; margin: 0;">⚡ در حال انجام</h4>
@@ -139,7 +142,7 @@ include __DIR__ . '/../includes/header.php';
                         </div>
                     </div>
 
-                    
+                    <!-- Done Column -->
                     <div class="kanban-column" style="flex: 1; background: var(--np-dark-card-bg); border-radius: 12px; padding: 20px; border: 1px solid rgba(16, 185, 129, 0.2);">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                             <h4 style="color: #f8fafc; margin: 0;">✅ انجام شده</h4>
@@ -184,7 +187,7 @@ include __DIR__ . '/../includes/header.php';
     </div>
 </main>
 
-
+<!-- New Task Modal -->
 <div id="newTaskModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
                                 background: rgba(0, 0, 0, 0.7); z-index: 9999; align-items: center; justify-content: center;">
     <div style="background: var(--np-dark-card-bg); padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; 
@@ -218,7 +221,7 @@ include __DIR__ . '/../includes/header.php';
 <?php include __DIR__ . '/../includes/footer.php'; ?>
 
 <script>
-
+// Drag and Drop functionality
 let draggedElement = null;
 
 document.querySelectorAll('.kanban-task').forEach(task => {
@@ -251,10 +254,10 @@ document.querySelectorAll('.kanban-tasks').forEach(column => {
             const newStatus = this.dataset.status;
             const taskId = draggedElement.dataset.taskId;
             
-            
+            // Update task status
             updateTaskStatus(taskId, newStatus);
             
-            
+            // Move element
             this.appendChild(draggedElement);
         }
     });
@@ -286,7 +289,7 @@ function updateTaskStatus(taskId, newStatus) {
 }
 
 function viewTask(taskId) {
-    
+    // TODO: Open task detail modal
     alert('جزئیات تسک #' + taskId);
 }
 
@@ -330,5 +333,4 @@ document.getElementById('newTaskForm').addEventListener('submit', function(e) {
     });
 });
 </script>
-
 

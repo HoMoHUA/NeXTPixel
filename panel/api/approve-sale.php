@@ -1,5 +1,7 @@
-﻿<?php
-
+<?php
+/**
+ * API Endpoint for Approving/Rejecting Sales
+ */
 
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../config/db.php';
@@ -77,5 +79,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 echo json_encode($response, JSON_UNESCAPED_UNICODE);
 ?>
-
 

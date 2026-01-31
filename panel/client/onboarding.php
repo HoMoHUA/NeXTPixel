@@ -1,5 +1,8 @@
-﻿<?php
-
+<?php
+/**
+ * Client Onboarding Wizard
+ * ویزارد ثبت‌نام مشتری - 7 مرحله
+ */
 
 $pageTitle = 'ثبت‌نام پروژه';
 $currentPage = 'onboarding';
@@ -7,7 +10,7 @@ $currentPage = 'onboarding';
 require_once __DIR__ . '/../includes/auth.php';
 requireLogin();
 
-
+// بررسی نقش - فقط مشتریان
 if (!hasRole('customer') && !hasRole('client')) {
     header('Location: /panel/index.php');
     exit();
@@ -16,7 +19,7 @@ if (!hasRole('customer') && !hasRole('client')) {
 $currentUser = getCurrentUser();
 require_once __DIR__ . '/../config/db.php';
 
-
+// بررسی وضعیت onboarding
 $db = getPanelDB();
 $userId = getCurrentUserId();
 $stmt = $db->prepare("SELECT * FROM client_onboarding WHERE user_id = ?");
@@ -25,7 +28,7 @@ $onboarding = $stmt->fetch();
 
 $currentStep = $onboarding ? intval($onboarding['step']) : 1;
 
-
+// دریافت لیست مشاوران
 $stmt = $db->prepare("SELECT id, username, display_name FROM users WHERE is_advisor = 1 AND status = 'active' ORDER BY display_name");
 $stmt->execute();
 $advisors = $stmt->fetchAll();
@@ -45,7 +48,7 @@ include __DIR__ . '/../includes/header.php';
         </div>
 
         <div class="geex-content__wrapper">
-            
+            <!-- Progress Bar -->
             <div class="geex-content__section mb-40">
                 <div class="geex-content__form__wrapper">
                     <div class="progress-step-indicator" style="display: flex; justify-content: space-between; margin-bottom: 30px; position: relative;">
@@ -80,10 +83,10 @@ include __DIR__ . '/../includes/header.php';
                 </div>
             </div>
 
-            
+            <!-- Step Content -->
             <div class="geex-content__section">
                 <div class="geex-content__form__wrapper">
-                    
+                    <!-- Step 1: Identity Confirmation -->
                     <div class="wizard-step" id="step-1" style="display: <?php echo $currentStep == 1 ? 'block' : 'none'; ?>;">
                         <div class="geex-content__form__single">
                             <h4 class="geex-content__form__single__label">مرحله 1: تأیید هویت</h4>
@@ -109,7 +112,7 @@ include __DIR__ . '/../includes/header.php';
                         </div>
                     </div>
 
-                    
+                    <!-- Step 2: Contract & Signature -->
                     <div class="wizard-step" id="step-2" style="display: <?php echo $currentStep == 2 ? 'block' : 'none'; ?>;">
                         <div class="geex-content__form__single">
                             <h4 class="geex-content__form__single__label">مرحله 2: قرارداد و امضا</h4>
@@ -135,7 +138,7 @@ include __DIR__ . '/../includes/header.php';
                         </div>
                     </div>
 
-                    
+                    <!-- Step 3: Project Summary -->
                     <div class="wizard-step" id="step-3" style="display: <?php echo $currentStep == 3 ? 'block' : 'none'; ?>;">
                         <div class="geex-content__form__single">
                             <h4 class="geex-content__form__single__label">مرحله 3: خلاصه پروژه</h4>
@@ -161,7 +164,7 @@ include __DIR__ . '/../includes/header.php';
                         </div>
                     </div>
 
-                    
+                    <!-- Step 4: Advisor Selection -->
                     <div class="wizard-step" id="step-4" style="display: <?php echo $currentStep == 4 ? 'block' : 'none'; ?>;">
                         <div class="geex-content__form__single">
                             <h4 class="geex-content__form__single__label">مرحله 4: انتخاب مشاور</h4>
@@ -189,7 +192,7 @@ include __DIR__ . '/../includes/header.php';
                         </div>
                     </div>
 
-                    
+                    <!-- Step 5: Payment Method -->
                     <div class="wizard-step" id="step-5" style="display: <?php echo $currentStep == 5 ? 'block' : 'none'; ?>;">
                         <div class="geex-content__form__single">
                             <h4 class="geex-content__form__single__label">مرحله 5: روش پرداخت</h4>
@@ -236,7 +239,7 @@ include __DIR__ . '/../includes/header.php';
                         </div>
                     </div>
 
-                    
+                    <!-- Step 6: Payment -->
                     <div class="wizard-step" id="step-6" style="display: <?php echo $currentStep == 6 ? 'block' : 'none'; ?>;">
                         <div class="geex-content__form__single">
                             <h4 class="geex-content__form__single__label">مرحله 6: پرداخت</h4>
@@ -265,7 +268,7 @@ include __DIR__ . '/../includes/header.php';
                         </div>
                     </div>
 
-                    
+                    <!-- Step 7: Completion -->
                     <div class="wizard-step" id="step-7" style="display: <?php echo $currentStep == 7 ? 'block' : 'none'; ?>;">
                         <div class="geex-content__form__single">
                             <div class="geex-content__form__single__box">
@@ -303,13 +306,13 @@ include __DIR__ . '/../includes/header.php';
 <?php include __DIR__ . '/../includes/footer.php'; ?>
 
 <script>
-
+// Signature Canvas
 const canvas = document.getElementById('signatureCanvas');
 const ctx = canvas.getContext('2d');
 let isDrawing = false;
 
 if (canvas) {
-    
+    // Set canvas size
     canvas.width = canvas.offsetWidth;
     canvas.height = 200;
     
@@ -322,7 +325,7 @@ if (canvas) {
     canvas.addEventListener('mouseup', stopDrawing);
     canvas.addEventListener('mouseout', stopDrawing);
     
-    
+    // Touch events for mobile
     canvas.addEventListener('touchstart', (e) => {
         e.preventDefault();
         const touch = e.touches[0];
@@ -366,7 +369,7 @@ function clearSignature() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-
+// Show/hide AI gift message
 document.querySelectorAll('input[name="payment_method"]').forEach(radio => {
     radio.addEventListener('change', function() {
         const aiMessage = document.getElementById('ai-gift-message');
@@ -378,12 +381,12 @@ document.querySelectorAll('input[name="payment_method"]').forEach(radio => {
     });
 });
 
-
+// Submit Step Function
 function submitStep(step) {
     let data = { step: step };
     
     if (step === 2) {
-        
+        // Get signature as Base64
         const signature = canvas.toDataURL('image/png');
         if (!signature || signature.length < 100) {
             alert('لطفا قرارداد را امضا کنید');
@@ -406,7 +409,7 @@ function submitStep(step) {
         data.payment_method = paymentMethod.value;
     }
     
-    
+    // Show loading
     const btn = event.target;
     const originalText = btn.innerHTML;
     btn.innerHTML = 'در حال ارسال...';
@@ -440,13 +443,13 @@ function submitStep(step) {
 }
 
 function processPayment() {
-    
+    // Simulate payment processing
     const btn = event.target;
     const originalText = btn.innerHTML;
     btn.innerHTML = 'در حال پردازش پرداخت...';
     btn.disabled = true;
     
-    
+    // Simulate payment delay
     setTimeout(() => {
         submitStep(6);
     }, 2000);
@@ -472,5 +475,4 @@ function processPayment() {
     transition: all 0.3s;
 }
 </style>
-
 

@@ -1,12 +1,12 @@
-﻿<?php
-
+<?php
+// شروع سشن در ابتدای فایل
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 $isLoggedIn = isset($_SESSION['user_id']);
 $username = $_SESSION['username'] ?? '';
 $displayName = $_SESSION['display_name'] ?? '';
-$isN8NAdmin = $isLoggedIn; 
+$isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگین شده
 ?>
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
@@ -22,7 +22,7 @@ $isN8NAdmin = $isLoggedIn;
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
     <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" defer></script>
-    
+    <!-- Add Three.js dependency for Vanta.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js" defer></script>
     <script src="/assets/js/site-header.js" defer></script>
@@ -73,7 +73,7 @@ $isN8NAdmin = $isLoggedIn;
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
-        
+        /* iOS-Style Liquid Glass Header */
         nav.ios-glass-header {
             position: sticky;
             top: 16px;
@@ -102,7 +102,7 @@ $isN8NAdmin = $isLoggedIn;
     </style>
 </head>
 <body class="overflow-x-hidden">
-    
+    <!-- SVG Filter for Liquid Glass Effect -->
     <svg style="position: absolute; width: 0; height: 0;">
       <defs>
         <filter id="liquid-glass-filter" color-interpolation-filters="sRGB">
@@ -118,7 +118,7 @@ $isN8NAdmin = $isLoggedIn;
     ?>
 
     <style>
-        
+        /* Header Styles */
         header {
             position: fixed;
             top: 0;
@@ -425,7 +425,7 @@ $isN8NAdmin = $isLoggedIn;
         }
     </style>
 
-    
+    <!-- Header -->
     <header class="header-main" id="main-header">
         <div class="header-container">
             <a href="/" class="header-logo">
@@ -468,7 +468,7 @@ $isN8NAdmin = $isLoggedIn;
         </div>
     </header>
 
-    
+    <!-- Mobile Menu -->
     <nav class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-content">
             <div class="mobile-menu-section">
@@ -495,7 +495,7 @@ $isN8NAdmin = $isLoggedIn;
     </nav>
     
     <main style="padding-top: 70px;">
-    
+    <!-- Contact Hero -->
     <section class="min-h-[60vh] flex items-center relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-b from-amber-900/20 to-transparent z-10"></div>
         <div class="container mx-auto px-4 z-20 relative py-20">
@@ -506,11 +506,11 @@ $isN8NAdmin = $isLoggedIn;
         </div>
     </section>
 
-    
+    <!-- Contact Content -->
     <section class="py-20">
         <div class="container mx-auto px-4">
             <div class="flex flex-col lg:flex-row gap-12">
-                
+                <!-- Contact Info -->
                 <div class="lg:w-2/5 space-y-8" data-aos="fade-right">
                     <div class="glass-effect p-8 rounded-2xl contact-card transition-all duration-300">
                         <h2 class="text-2xl font-bold mb-6 gradient-text">اطلاعات تماس</h2>
@@ -567,7 +567,7 @@ $isN8NAdmin = $isLoggedIn;
                     </div>
                 </div>
 
-                
+                <!-- Contact Form -->
                 <div class="lg:w-3/5" data-aos="fade-left">
                     <div class="glass-effect p-8 md:p-12 rounded-2xl">
                         <h2 class="text-2xl font-bold mb-8 gradient-text">فرم تماس</h2>
@@ -611,7 +611,7 @@ $isN8NAdmin = $isLoggedIn;
         </div>
     </section>
 
-    
+    <!-- Floating Contact Icons -->
     <div class="fixed bottom-8 left-8 z-50 hidden md:block">
         <div class="space-y-4">
             <a href="#" class="bg-amber-600 hover:bg-amber-700 text-white p-4 rounded-full flex items-center justify-center shadow-lg floating" style="animation-delay: 0.2s;">
@@ -626,7 +626,7 @@ $isN8NAdmin = $isLoggedIn;
         </div>
     </div>
 
-    
+    <!-- Footer -->
     <footer class="py-12 bg-slate-900/80">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
@@ -660,7 +660,7 @@ $isN8NAdmin = $isLoggedIn;
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
+            // Initialize AOS
             AOS.init({
                 duration: 800,
                 easing: 'ease-out-quart',
@@ -668,13 +668,13 @@ $isN8NAdmin = $isLoggedIn;
                 mirror: false
             });
 
-            
+            // Initialize Feather Icons
             feather.replace();
 
-            
-            
+            // Mobile Menu Toggle
+            // ...existing code...
 
-            
+            // Header Scroll Detection
             const header = document.getElementById('main-header');
             if (header) {
                 window.addEventListener('scroll', () => {
@@ -690,7 +690,7 @@ $isN8NAdmin = $isLoggedIn;
                 }, { passive: true });
             }
 
-            
+            // Active link highlighting
             const currentPage = window.location.pathname.split('/').pop() || 'index.php';
             const navLinks = document.querySelectorAll('.header-nav a, .mobile-menu-links a');
             navLinks.forEach(link => {
@@ -703,4 +703,3 @@ $isN8NAdmin = $isLoggedIn;
             });
         });
     </script>
-

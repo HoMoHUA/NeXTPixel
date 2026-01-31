@@ -1,5 +1,8 @@
-﻿<?php
-
+<?php
+/**
+ * API Endpoint: Process Client Onboarding Steps
+ * پردازش مراحل ثبت‌نام مشتری
+ */
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -7,14 +10,14 @@ require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/functions.php';
 require_once __DIR__ . '/../config/db.php';
 
-
+// بررسی لاگین بودن
 if (!isLoggedIn()) {
     http_response_code(401);
     echo json_encode(['success' => false, 'message' => 'لطفا ابتدا وارد شوید']);
     exit;
 }
 
-
+// فقط مشتریان می‌توانند استفاده کنند
 if (!hasRole('customer') && !hasRole('client')) {
     http_response_code(403);
     echo json_encode(['success' => false, 'message' => 'دسترسی غیرمجاز']);
@@ -32,13 +35,13 @@ $userId = getCurrentUserId();
 $input = json_decode(file_get_contents('php://input'), true);
 $step = isset($input['step']) ? intval($input['step']) : 0;
 
-
+// بررسی وجود رکورد onboarding
 $stmt = $db->prepare("SELECT * FROM client_onboarding WHERE user_id = ?");
 $stmt->execute([$userId]);
 $onboarding = $stmt->fetch();
 
 if (!$onboarding) {
-    
+    // ایجاد رکورد جدید
     $stmt = $db->prepare("INSERT INTO client_onboarding (user_id, step) VALUES (?, 1)");
     $stmt->execute([$userId]);
     $onboardingId = $db->lastInsertId();
@@ -51,15 +54,15 @@ $response = ['success' => false, 'message' => ''];
 try {
     switch ($step) {
         case 1:
-            
-            
+            // Step 1: Identity Confirmation
+            // فقط تأیید - هیچ داده‌ای ذخیره نمی‌شود
             $stmt = $db->prepare("UPDATE client_onboarding SET step = 2 WHERE id = ?");
             $stmt->execute([$onboardingId]);
             $response = ['success' => true, 'message' => 'مرحله ۱ با موفقیت تکمیل شد', 'next_step' => 2];
             break;
 
         case 2:
-            
+            // Step 2: Contract & Signature
             $signature = isset($input['signature']) ? $input['signature'] : null;
             if (!$signature) {
                 throw new Exception('لطفا قرارداد را امضا کنید');
@@ -70,20 +73,20 @@ try {
             break;
 
         case 3:
-            
+            // Step 3: Project Summary - فقط تأیید
             $stmt = $db->prepare("UPDATE client_onboarding SET step = 4 WHERE id = ?");
             $stmt->execute([$onboardingId]);
             $response = ['success' => true, 'message' => 'مرحله ۳ با موفقیت تکمیل شد', 'next_step' => 4];
             break;
 
         case 4:
-            
+            // Step 4: Advisor Selection
             $advisorId = isset($input['advisor_id']) ? intval($input['advisor_id']) : 0;
             if ($advisorId <= 0) {
                 throw new Exception('لطفا یک مشاور انتخاب کنید');
             }
             
-            
+            // بررسی وجود مشاور
             $stmt = $db->prepare("SELECT id FROM users WHERE id = ? AND is_advisor = 1 AND status = 'active'");
             $stmt->execute([$advisorId]);
             if (!$stmt->fetch()) {
@@ -96,7 +99,7 @@ try {
             break;
 
         case 5:
-            
+            // Step 5: Payment Method
             $paymentMethod = isset($input['payment_method']) ? sanitizeInput($input['payment_method']) : '';
             if (!in_array($paymentMethod, ['cash_check', 'progressive', 'full_cash'])) {
                 throw new Exception('روش پرداخت معتبر نیست');
@@ -119,8 +122,8 @@ try {
             break;
 
         case 6:
-            
-            
+            // Step 6: Payment Processing
+            // شبیه‌سازی پرداخت - در واقعیت باید با درگاه پرداخت ارتباط برقرار شود
             $supportId = generateSupportID();
             
             $paymentStatus = 'completed';
@@ -152,5 +155,4 @@ try {
 echo json_encode($response, JSON_UNESCAPED_UNICODE);
 
 ?>
-
 

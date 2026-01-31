@@ -1,5 +1,7 @@
-﻿<?php
-
+<?php
+/**
+ * تنظیمات - پنل مدیریت NextPixel
+ */
 
 $pageTitle = 'تنظیمات - NextPixel';
 $currentPage = 'settings';
@@ -69,5 +71,4 @@ $currentUser = getCurrentUser();
 </main>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
-
 

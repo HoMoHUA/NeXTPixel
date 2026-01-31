@@ -1,5 +1,7 @@
-﻿<?php
-
+<?php
+/**
+ * جداول - پنل مدیریت NextPixel
+ */
 
 $pageTitle = 'جداول - NextPixel';
 $currentPage = 'tables';
@@ -84,5 +86,4 @@ $currentUser = getCurrentUser();
 </main>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
-
 

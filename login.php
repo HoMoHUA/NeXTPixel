@@ -1,9 +1,9 @@
-﻿<?php
-
+<?php
+// شروع سشن در ابتدای فایل
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
+// اگر کاربر از قبل وارد شده بود، او را به پنل مناسب هدایت کن
 if (isset($_SESSION['user_id'])) {
     require_once __DIR__ . '/config/db-connection.php';
     
@@ -11,7 +11,7 @@ if (isset($_SESSION['user_id'])) {
         $db = getDB();
         $userId = $_SESSION['user_id'];
         
-        
+        // دریافت نقش کاربر از دیتابیس
         $stmt = $db->prepare("SELECT user_type, role FROM " . TABLE_USERS . " WHERE id = ? LIMIT 1");
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -20,7 +20,7 @@ if (isset($_SESSION['user_id'])) {
             $actualRole = $user['role'] ?? $user['user_type'];
             $_SESSION['role'] = $actualRole;
             
-            
+            // هدایت به پنل مناسب
             switch ($actualRole) {
                 case 'customer':
                 case 'client':
@@ -40,12 +40,12 @@ if (isset($_SESSION['user_id'])) {
                     exit;
             }
         } else {
-            
+            // اگر کاربر پیدا نشد، به صفحه اصلی
             header('Location: index.php');
             exit;
         }
     } catch (Exception $e) {
-        
+        // در صورت خطا، به صفحه اصلی
         header('Location: index.php');
         exit;
     }
@@ -400,7 +400,7 @@ if (isset($_SESSION['user_id'])) {
             margin-left: 8px;
         }
 
-        
+        /* Animation for forms */
         .form-box.staff .animation {
             transform: translateX(0%);
             opacity: 1;
@@ -445,7 +445,7 @@ if (isset($_SESSION['user_id'])) {
             opacity: 1;
         }
 
-        
+        /* Responsive Styles */
         @media (max-width: 768px) {
             .container {
                 width: 95%;
@@ -508,13 +508,13 @@ if (isset($_SESSION['user_id'])) {
         <div class="curved-shape"></div>
         <div class="curved-shape2"></div>
         
-        
+        <!-- دکمه‌های تغییر تب -->
         <div class="tab-buttons">
             <button class="tab-btn active" data-tab="staff">ورود همکاران</button>
             <button class="tab-btn" data-tab="customer">ورود مشتریان</button>
         </div>
         
-        
+        <!-- فرم ورود همکاران -->
         <div class="form-box staff">
             <h2 class="animation">ورود همکاران</h2>
             <p class="subtitle animation">دسترسی به پنل مدیریت و سیستم‌های داخلی</p>
@@ -545,7 +545,7 @@ if (isset($_SESSION['user_id'])) {
             </div>
         </div>
 
-        
+        <!-- فرم ورود مشتریان -->
         <div class="form-box customer">
             <h2 class="animation">ورود مشتریان</h2>
             <p class="subtitle animation">دسترسی به پنل مشتری و پیگیری پروژه‌ها</p>
@@ -576,13 +576,13 @@ if (isset($_SESSION['user_id'])) {
             </div>
         </div>
 
-        
+        <!-- محتوای اطلاعاتی همکاران -->
         <div class="info-content staff">
             <h2 class="animation">همکاران محترم</h2>
             <p class="animation">خوش آمدید! برای دسترسی به پنل مدیریت و سیستم‌های داخلی، لطفا اطلاعات حساب کاربری خود را وارد کنید.</p>
         </div>
 
-        
+        <!-- محتوای اطلاعاتی مشتریان -->
         <div class="info-content customer">
             <h2 class="animation">مشتریان عزیز</h2>
             <p class="animation">خوش آمدید! برای دسترسی به پنل مشتری و پیگیری پروژه‌های خود، لطفا اطلاعات حساب کاربری خود را وارد کنید.</p>
@@ -598,16 +598,16 @@ if (isset($_SESSION['user_id'])) {
         const staffMessage = document.getElementById('staff-message');
         const customerMessage = document.getElementById('customer-message');
 
-        
+        // تغییر تب
         tabButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 const tab = btn.dataset.tab;
                 
-                
+                // فعال کردن دکمه
                 tabButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
-                
+                // تغییر وضعیت container
                 if (tab === 'customer') {
                     container.classList.add('active');
                 } else {
@@ -626,7 +626,7 @@ if (isset($_SESSION['user_id'])) {
             }
         };
 
-        
+        // --- Staff Login Form Submission ---
         staffForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             showMessage(staffMessage, '', false);
@@ -644,11 +644,11 @@ if (isset($_SESSION['user_id'])) {
                 if (data.success) {
                     showMessage(staffMessage, data.message, false);
                     setTimeout(() => {
-                        
+                        // هدایت به پنل مناسب بر اساس نقش کاربر
                         if (data.redirect) {
                             window.location.href = data.redirect;
                         } else {
-                            
+                            // در صورت عدم وجود redirect، به پنل اصلی
                             window.location.href = '/panel/';
                         }
                     }, 1500);
@@ -661,7 +661,7 @@ if (isset($_SESSION['user_id'])) {
             }
         });
 
-        
+        // --- Customer Login Form Submission ---
         customerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             showMessage(customerMessage, '', false);
@@ -679,11 +679,11 @@ if (isset($_SESSION['user_id'])) {
                 if (data.success) {
                     showMessage(customerMessage, data.message, false);
                     setTimeout(() => {
-                        
+                        // هدایت به پنل مناسب بر اساس نقش کاربر
                         if (data.redirect) {
                             window.location.href = data.redirect;
                         } else {
-                            
+                            // در صورت عدم وجود redirect، به پنل مشتری
                             window.location.href = '/panel/client/index.php';
                         }
                     }, 1500);
@@ -701,4 +701,3 @@ if (isset($_SESSION['user_id'])) {
 
 </body>
 </html>
-
