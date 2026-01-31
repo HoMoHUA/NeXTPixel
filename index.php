@@ -151,29 +151,22 @@ if (isset($_POST['logout'])) {
         @media (min-width: 1536px) { .container { max-width: 1536px; } }
 
         /* =========================================================
-           HoMox MODIFIED Header: "Double Reverse" Liquid Effect
-           ========================================================= */
+            HoMox MODIFIED Header: "Double Reverse" Liquid Effect
+            ========================================================= */
         nav.ios-glass-header {
             position: sticky;
             top: 16px;
             z-index: 1000;
             background: rgba(15, 23, 42, 0.6);
-            /* Initial backdrop-filter, will be overridden by JS for liquid effect */
             backdrop-filter: blur(35px) saturate(280%); 
             -webkit-backdrop-filter: blur(35px) saturate(280%);
             border: 2px solid rgba(55, 55, 55, 0.4);
             
-            /* Double Reverse Highlight: Top and Bottom Inset Shadows */
             box-shadow: 
-                /* Outer soft shadow */
                 0 10px 40px -10px rgba(0,0,0,0.5),
-                /* Top Highlight Inner (Reverse Top) */
                 inset 0 1px 0 0 rgba(255,255,255,0.2),
-                /* Bottom Highlight Inner (Reverse Bottom) */
                 inset 0 -1px 0 0 rgba(255,255,255,0.2),
-                /* Deep Glass Glow */
                 inset 0 0 20px rgba(255,255,255,0.05),
-                /* Subtle Rim */
                 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
 
             transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
@@ -182,17 +175,11 @@ if (isset($_POST['logout'])) {
         nav.ios-glass-header.scrolled {
             top: 0;
             background: rgba(15, 23, 42, 0.75);
-            /* Double Reverse Highlight Maintained in Scrolled State */
             box-shadow: 
-                /* Outer soft shadow */
                 0 10px 40px -10px rgba(0,0,0,0.5),
-                /* Top Highlight Inner */
                 inset 0 1px 0 0 rgba(255,255,255,0.2),
-                /* Bottom Highlight Inner */
                 inset 0 -1px 0 0 rgba(255,255,255,0.2),
-                /* Deep Glass Glow */
                 inset 0 0 20px rgba(255,255,255,0.05),
-                /* Subtle Rim */
                 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
         }
         
@@ -603,7 +590,7 @@ if (isset($_POST['logout'])) {
     header.scrolled {
         top: 16px;
         left: 50%;
-        transform: translateX(-2%);
+        transform: translateX(-50%); /* Center horizontally fixed */
         width: 95%;
         max-width: 1280px;
         border-radius: 55px;
@@ -911,6 +898,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <a href="/" class="header-logo">
                 <img src="/assets/img/NeXTPixel.png" alt="NeXTPixel" />
                 <span class="header-logo-text">NeXTPixel</span>
+        </a>
 
         <nav class="header-nav" id="desktop-nav">
             <a href="/" class="<?php echo $currentPage === 'index.php' ? 'active' : ''; ?>">صفحه اصلی</a>
@@ -1113,22 +1101,52 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     <p class="text-base md:text-lg text-gray-400 max-w-2xl mx-auto px-4">برخی از پروژه‌های انجام شده توسط تیم NextPixel</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Project 1: Batis Modern -->
                     <div class="group relative overflow-hidden rounded-2xl" data-aos="fade-up" data-aos-delay="100">
-                        <img src="https://nextpixel.top/src/hchperfume.png" alt="نمونه کار طراحی سایت فروشگاهی عطر" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <img src="/src/batis.png" alt="باتیس مدرن" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                            <h3 class="text-xl font-bold text-white mb-2">وبسایت فروشگاهی</h3>
+                            <h3 class="text-xl font-bold text-white mb-2">باتیس مدرن</h3>
+                            <span class="text-xs text-emerald-400">شرکتی / Landing</span>
                         </div>
                     </div>
+                    <!-- Project 2: Etehad Store -->
                     <div class="group relative overflow-hidden rounded-2xl" data-aos="fade-up" data-aos-delay="200">
-                        <img src="https://nextpixel.top/src/mahnazbeauty.png" alt="نمونه کار طراحی سایت خدماتی زیبایی" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <img src="/src/etehad.png" alt="فروشگاه اتحاد" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                            <h3 class="text-xl font-bold text-white mb-2">سایت خدماتی</h3>
+                            <h3 class="text-xl font-bold text-white mb-2">فروشگاه اتحاد</h3>
+                            <span class="text-xs text-blue-400">فروشگاهی</span>
                         </div>
                     </div>
+                    <!-- Project 3: Noormah Bookcity -->
                     <div class="group relative overflow-hidden rounded-2xl" data-aos="fade-up" data-aos-delay="300">
-                        <img src="https://nextpixel.top/src/jahanphone.png" alt="نمونه کار طراحی مارکت پلیس" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <img src="/src/noormah.png" alt="شهر کتاب نورماه" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                            <h3 class="text-xl font-bold text-white mb-2">مارکت پلیس </h3>
+                            <h3 class="text-xl font-bold text-white mb-2">شهر کتاب نورماه</h3>
+                            <span class="text-xs text-indigo-400">فروشگاهی</span>
+                        </div>
+                    </div>
+                    <!-- Project 4: HCH Perfume -->
+                    <div class="group relative overflow-hidden rounded-2xl" data-aos="fade-up" data-aos-delay="400">
+                        <img src="/src/hchperfume.png" alt="عطر هات چاکلت" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
+                            <h3 class="text-xl font-bold text-white mb-2">عطر هات چاکلت</h3>
+                            <span class="text-xs text-blue-400">فروشگاهی</span>
+                        </div>
+                    </div>
+                    <!-- Project 5: Mahnaz Beauty -->
+                    <div class="group relative overflow-hidden rounded-2xl" data-aos="fade-up" data-aos-delay="500">
+                        <img src="/src/mahnazbeauty.png" alt="زیبایی مهناز حلمی" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
+                            <h3 class="text-xl font-bold text-white mb-2">زیبایی مهناز حلمی</h3>
+                            <span class="text-xs text-purple-400">خدماتی</span>
+                        </div>
+                    </div>
+                    <!-- Project 6: Jahan Phone -->
+                    <div class="group relative overflow-hidden rounded-2xl" data-aos="fade-up" data-aos-delay="600">
+                        <img src="/src/jahanphone.png" alt="جهان فون" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
+                            <h3 class="text-xl font-bold text-white mb-2">جهان فون</h3>
+                            <span class="text-xs text-purple-400">مارکت پلیس</span>
                         </div>
                     </div>
                 </div>
@@ -1691,9 +1709,9 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
                 // Load initial message on first open - LOCAL WELCOME MESSAGE
                 if (!isOpen && messages.length === 1) { // Only system prompt exists
-                     const welcomeMsg = "سلام! من یونیکس هستم، دستیار هوشمند NextPixel. چطور می‌تونم کمکتون کنم؟";
-                     addMessage('assistant', welcomeMsg);
-                     messages.push({ role: 'assistant', content: welcomeMsg });
+                      const welcomeMsg = "سلام! من یونیکس هستم، دستیار هوشمند NextPixel. چطور می‌تونم کمکتون کنم؟";
+                      addMessage('assistant', welcomeMsg);
+                      messages.push({ role: 'assistant', content: welcomeMsg });
                 }
             };
 
