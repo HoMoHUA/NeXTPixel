@@ -1,124 +1,153 @@
 <?php
-// تنظیمات خطا برای دیباگ (در محیط پروداکشن خاموش کنید)
-error_reporting(0);
+// تنظیمات برای جلوگیری از توقف اسکریپت در صورت خطاهای جزئی
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 
-// دریافت URL مقصد
+// دریافت آدرس مقصد
 $url = isset($_GET['url']) ? $_GET['url'] : '';
 
 if (empty($url)) {
-    die('URL required.');
+    die('URL parameter is missing.');
 }
 
-// دیکد کردن URL اگر انکد شده باشد
-$url = urldecode($url);
+// دیکد کردن آدرس
+$decodedUrl = urldecode($url);
 
-// اعتبارسنجی URL
-if (!filter_var($url, FILTER_VALIDATE_URL)) {
+// بررسی اعتبار URL
+if (!filter_var($decodedUrl, FILTER_VALIDATE_URL)) {
     die('Invalid URL.');
 }
 
-// استخراج اجزای URL برای مدیریت لینک‌های نسبی
-$parsedUrl = parse_url($url);
-$scheme = isset($parsedUrl['scheme']) ? $parsedUrl['scheme'] : 'http';
-$host = isset($parsedUrl['host']) ? $parsedUrl['host'] : '';
-$port = isset($parsedUrl['port']) ? ':' . $parsedUrl['port'] : '';
-$path = isset($parsedUrl['path']) ? $parsedUrl['path'] : '';
-$baseUrl = $scheme . '://' . $host . $port . dirname($path) . '/';
-$rootUrl = $scheme . '://' . $host . $port;
+// استخراج ریشه آدرس برای بازنویسی لینک‌ها
+$parsed = parse_url($decodedUrl);
+$baseUrl = $parsed['scheme'] . '://' . $parsed['host'] . (isset($parsed['port']) ? ':' . $parsed['port'] : '');
+$basePath = isset($parsed['path']) ? dirname($parsed['path']) : '';
+if ($basePath === '/' || $basePath === '.') $basePath = '';
 
-// شروع cURL
+// تنظیم هدرهای cURL
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_URL, $decodedUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // دنبال کردن ریدایرکت‌ها
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']); // شبیه‌سازی مرورگر کاربر
-curl_setopt($ch, CURLOPT_HEADER, false);
+curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
+// فوروارد کردن هدرهای ضروری برای جلوگیری از بلاک شدن
+$headers = [];
+if (isset($_SERVER['HTTP_ACCEPT'])) $headers[] = "Accept: " . $_SERVER['HTTP_ACCEPT'];
+if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) $headers[] = "Accept-Language: " . $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-// دریافت محتوا
 $content = curl_exec($ch);
 $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
 curl_close($ch);
 
-// تنظیم هدر کانتنت تایپ برای مرورگر
+// تنظیم هدر خروجی
 header('Content-Type: ' . $contentType);
 
-// اگر فایل متنی است (HTML, CSS, JS) لینک‌ها را بازنویسی کن
+// اگر محتوا HTML است، نیاز به تزریق کدهای اصلاحی داریم
 if (strpos($contentType, 'text/html') !== false) {
-    // بازنویسی لینک‌های href و src در HTML
-    // این الگوی regex لینک‌های نسبی و مطلق را پیدا کرده و آن‌ها را از طریق پروکسی رد می‌کند
     
-    $proxyScript = basename(__FILE__); // نام همین فایل (simple_proxy.php)
+    // نام همین فایل برای ارجاع
+    $proxyScript = basename($_SERVER['PHP_SELF']);
     
-    // تابع بازنویسی لینک
-    $rewriteLink = function($matches) use ($proxyScript, $rootUrl, $baseUrl) {
-        $attr = $matches[1]; // href or src
-        $quote = $matches[2]; // " or '
-        $link = $matches[3]; // the url
+    // 1. بازنویسی لینک‌های ساده در HTML
+    $content = preg_replace_callback('/(href|src|action)\s*=\s*(["\'])(.*?)\2/i', function($matches) use ($proxyScript, $baseUrl) {
+        $attr = $matches[1];
+        $link = $matches[3];
         
-        // اگر لینک دیتایی یا لنگر است دست نزن
+        // نادیده گرفتن لینک‌های دیتا و لنگر
         if (strpos($link, 'data:') === 0 || strpos($link, '#') === 0 || strpos($link, 'javascript:') === 0) {
             return $matches[0];
         }
         
-        // تبدیل لینک نسبی به مطلق
+        // تبدیل لینک نسبی به مطلق و عبور از پروکسی
         if (strpos($link, '//') === 0) {
-            $absoluteLink = 'https:' . $link;
+            $abs = 'https:' . $link;
         } elseif (strpos($link, '/') === 0) {
-            $absoluteLink = $rootUrl . $link;
+            $abs = $baseUrl . $link;
         } elseif (strpos($link, 'http') !== 0) {
-            $absoluteLink = $baseUrl . $link;
+            $abs = $baseUrl . '/' . $link;
         } else {
-            $absoluteLink = $link;
+            $abs = $link;
         }
         
-        return $attr . '=' . $quote . $proxyScript . '?url=' . urlencode($absoluteLink) . $quote;
-    };
-
-    // اعمال بازنویسی روی تگ‌ها
-    $content = preg_replace_callback('/(href|src|action)\s*=\s*(["\'])(.*?)\2/i', $rewriteLink, $content);
-    
-    // بازنویسی srcset برای تصاویر ریسپانسیو
-    $content = preg_replace_callback('/srcset\s*=\s*(["\'])(.*?)\1/i', function($matches) use ($proxyScript, $rootUrl, $baseUrl) {
-        $srcs = explode(',', $matches[2]);
-        $newSrcs = [];
-        foreach($srcs as $src) {
-            $parts = preg_split('/\s+/', trim($src));
-            $link = $parts[0];
-            
-             // تبدیل لینک نسبی به مطلق (کپی منطق بالا)
-            if (strpos($link, '/') === 0) {
-                $absoluteLink = $rootUrl . $link;
-            } elseif (strpos($link, 'http') !== 0) {
-                $absoluteLink = $baseUrl . $link;
-            } else {
-                $absoluteLink = $link;
-            }
-            
-            $parts[0] = $proxyScript . '?url=' . urlencode($absoluteLink);
-            $newSrcs[] = implode(' ', $parts);
-        }
-        return 'srcset="' . implode(', ', $newSrcs) . '"';
+        return $attr . '="' . $proxyScript . '?url=' . urlencode($abs) . '"';
     }, $content);
-    
-    // افزودن تگ Base برای اطمینان بیشتر (اختیاری)
-    // $content = str_replace('<head>', '<head><base href="'.$baseUrl.'">', $content);
 
-} elseif (strpos($contentType, 'css') !== false) {
-    // بازنویسی url() در فایل‌های CSS
-    $proxyScript = basename(__FILE__);
-    $content = preg_replace_callback('/url\(\s*[\'"]?(.*?)[\'"]?\s*\)/i', function($matches) use ($proxyScript, $rootUrl, $baseUrl) {
+    // 2. تزریق اسکریپت‌های حیاتی برای اجرای React/Next.js
+    // این بخش بسیار مهم است: ما History API و Fetch را هوک می‌کنیم تا درخواست‌ها درست هدایت شوند.
+    $scriptInjection = <<<JS
+    <script>
+    (function() {
+        // الف) فریب دادن Router: تغییر آدرس ظاهری به ریشه تا Router سایت گیج نشود
+        try {
+            window.history.replaceState(null, '', '/');
+        } catch(e) {}
+
+        // ب) تنظیمات پروکسی برای درخواست‌های جاوااسکریپتی (Fetch/XHR)
+        const proxyBase = "{$proxyScript}?url=";
+        const targetOrigin = "{$baseUrl}";
+
+        function rewriteUrl(u) {
+            if (!u || typeof u !== 'string') return u;
+            if (u.startsWith('data:') || u.startsWith('blob:') || u.includes('{$proxyScript}')) return u;
+            
+            // اگر آدرس کامل است و مربوط به سایت هدف است
+            if (u.startsWith(targetOrigin)) {
+                return proxyBase + encodeURIComponent(u);
+            }
+            // اگر آدرس نسبی از ریشه است (/api/...)
+            if (u.startsWith('/')) {
+                return proxyBase + encodeURIComponent(targetOrigin + u);
+            }
+            // اگر آدرس نسبی است (assets/...)
+            if (!u.startsWith('http')) {
+                return proxyBase + encodeURIComponent(targetOrigin + '/' + u);
+            }
+            return u;
+        }
+
+        // هوک کردن Fetch
+        const originalFetch = window.fetch;
+        window.fetch = function(input, init) {
+            if (typeof input === 'string') {
+                input = rewriteUrl(input);
+            }
+            return originalFetch(input, init);
+        };
+
+        // هوک کردن XMLHttpRequest
+        const originalOpen = XMLHttpRequest.prototype.open;
+        XMLHttpRequest.prototype.open = function(method, url, ...args) {
+            url = rewriteUrl(url);
+            return originalOpen.apply(this, [method, url, ...args]);
+        };
+        
+        // جلوگیری از خطاهای متداول Cross-Origin در آی‌فریم
+        window.onerror = function() { return true; };
+    })();
+    </script>
+    <base href="{$baseUrl}/">
+JS;
+    
+    // تزریق کدها به ابتدای <head>
+    $content = str_replace('<head>', '<head>' . $scriptInjection, $content);
+}
+
+// اگر CSS است، لینک‌های url() را اصلاح کن
+elseif (strpos($contentType, 'css') !== false) {
+    $proxyScript = basename($_SERVER['PHP_SELF']);
+    $content = preg_replace_callback('/url\(\s*[\'"]?(.*?)[\'"]?\s*\)/i', function($matches) use ($proxyScript, $baseUrl) {
         $link = $matches[1];
         if (strpos($link, 'data:') === 0) return $matches[0];
         
         if (strpos($link, '/') === 0) {
-            $absoluteLink = $rootUrl . $link;
+            $abs = $baseUrl . $link;
         } elseif (strpos($link, 'http') !== 0) {
-            $absoluteLink = $baseUrl . $link;
+            $abs = $baseUrl . '/' . $link;
         } else {
-            $absoluteLink = $link;
+            $abs = $link;
         }
-        return 'url(' . $proxyScript . '?url=' . urlencode($absoluteLink) . ')';
+        return 'url(' . $proxyScript . '?url=' . urlencode($abs) . ')';
     }, $content);
 }
 

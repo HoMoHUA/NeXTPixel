@@ -52,23 +52,31 @@ foreach ($projects as $proj) {
     $project_desc = $proj['desc'];
     $project_category = $proj['category'];
     
+    // بررسی وضعیت سرور اصلی
     $is_online = checkServerStatus($project_url);
 
     $html = '';
     $html .= '<div class="portfolio-card glass-effect rounded-2xl" data-category="' . $project_category . '" data-aos="fade-up">';
 
+    // ساخت آدرس پروکسی شده
     $proxiedUrl = 'simple_proxy.php?url=' . urlencode($project_url);
     
+    // ارسال آدرس پروکسی شده به صفحه پیش‌نمایش
     $previewLink = 'preview.php?url=' . urlencode($proxiedUrl) . '&title=' . urlencode($project_title);
 
+    // کانتینر iframe
     $html .= '<div class="relative w-full h-56 bg-slate-800 overflow-hidden group iframe-container">';
 
+    // نوار پیشرفت
     $html .= '  <div class="absolute top-0 left-0 w-full h-1 bg-white/10 z-20 transition-opacity duration-300">';
     $html .= '      <div class="progress-bar h-full bg-gradient-to-r from-emerald-400 to-teal-500 w-0 transition-all duration-300 shadow-[0_0_10px_rgba(52,211,153,0.7)]"></div>';
     $html .= '  </div>';
 
+    // Iframe با استفاده از آدرس پروکسی
+    // کلاس‌ها برای کوچک‌نمایی (Scale) نمای دسکتاپ
     $html .= '  <iframe src="' . $proxiedUrl . '" class="w-[200%] h-[200%] transform origin-top-left scale-50 border-0 opacity-0 transition-opacity duration-700 pointer-events-none" scrolling="no" loading="lazy"></iframe>';
 
+    // لینک نامرئی روی کل باکس تصویر برای هدایت به صفحه preview.php
     $html .= '  <a href="' . $previewLink . '" class="absolute inset-0 z-30 cursor-pointer hover:bg-black/10 transition duration-300"></a>';
 
     $html .= '</div>'; 
