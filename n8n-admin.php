@@ -180,17 +180,7 @@ require_once 'config/n8n-config.php';
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="ios-glass-header flex justify-between items-center py-4 px-4 md:px-8 mx-auto max-w-full md:max-w-6xl rounded-2xl md:rounded-full my-4">
-        <a href="index.php" class="text-2xl font-bold gradient-text">NextPixel</a>
-        <div class="hidden md:flex items-center space-x-6 space-x-reverse">
-            <a href="index.php" class="hover:text-blue-400 transition">صفحه اصلی</a>
-            <a href="services.php" class="hover:text-blue-400 transition">خدمات</a>
-            <a href="about.php" class="hover:text-blue-400 transition">درباره ما</a>
-            <a href="portfolio.php" class="hover:text-blue-400 transition">نمونه کارها</a>
-            <a href="contact.php" class="hover:text-amber-400 transition">تماس با ما</a>
-            <span class="text-green-400 font-medium"><?php echo htmlspecialchars($displayName); ?></span>
-        </div>
-    </nav>
+    <?php require_once __DIR__ . '/includes/header.php'; ?>
     
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8 max-w-7xl">
@@ -554,6 +544,7 @@ require_once 'config/n8n-config.php';
             });
         }
     </script>
+    <script src="/assets/js/smooth-scroll.js"></script>
 </body>
 </html>
 

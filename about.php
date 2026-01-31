@@ -417,35 +417,7 @@ $isN8NAdmin = $isLoggedIn;
 <body class="overflow-x-hidden">
 
     <nav class="ios-glass-header flex justify-between items-center py-4 px-4 md:px-8 mx-auto max-w-full md:max-w-6xl rounded-2xl md:rounded-full my-4">
-        <div class="text-2xl font-bold text-white flex items-center">
-            <a href="index.php" class="gradient-text font-bold">NextPixel</a>
-        </div>
-        <div class="hidden md:flex items-center space-x-6 space-x-reverse">
-            <a href="index.php" class="hover:text-blue-400 transition">صفحه اصلی</a>
-            <a href="services.php" class="hover:text-blue-400 transition">خدمات</a>
-            <a href="portfolio.php" class="hover:text-blue-400 transition">نمونه کارها</a>
-            <a href="contact.php" class="hover:text-amber-400 transition">تماس با ما</a>
-            <a href="about.php" class="text-blue-400 font-medium">درباره ما</a>
-            
-            <?php if ($isLoggedIn): ?>
-                <?php if ($isN8NAdmin): ?>
-                    <a href="n8n-admin.php" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-full font-medium transition-all text-sm">
-                        <i data-feather="zap" class="w-4 h-4 inline ml-1"></i>
-                        مدیریت n8n
-                    </a>
-                <?php endif; ?>
-                <a href="admin/" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-full font-medium transition-all text-sm">
-                    <?php echo htmlspecialchars($username); ?> (پنل)
-                </a>
-            <?php else: ?>
-                <a href="login.php" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full font-medium transition-all text-sm">
-                    ورود
-                </a>
-            <?php endif; ?>
-        </div>
-        <button id="menu-btn" class="md:hidden z-50">
-            <i data-feather="menu" class="text-white w-7 h-7"></i>
-        </button>
+        <?php require_once __DIR__ . '/includes/header.php'; ?>
     </nav>
 
     <div id="mobile-menu" class="fixed inset-0 bg-slate-900/90 glass-effect z-40 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
@@ -1022,5 +994,6 @@ $isN8NAdmin = $isLoggedIn;
             new LiquidGlassHeader('.ios-glass-header');
         });
     </script>
+    <script src="/assets/js/smooth-scroll.js"></script>
 </body>
 </html>
