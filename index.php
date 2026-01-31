@@ -1258,29 +1258,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Mobile Menu Toggle ---
-            const menuBtn = document.getElementById('menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuIcon = menuBtn.querySelector('i');
-
-            const toggleMenu = () => {
-                const isMenuOpen = !mobileMenu.classList.contains('translate-x-full');
-                mobileMenu.classList.toggle('translate-x-full');
-                
-                if (isMenuOpen) {
-                    menuIcon.setAttribute('data-feather', 'menu');
-                } else {
-                    menuIcon.setAttribute('data-feather', 'x');
-                }
-                feather.replace({ width: '28px', height: '28px' });
-            };
-
-            menuBtn.addEventListener('click', toggleMenu);
-            
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', toggleMenu);
-            });
-
+            // Initialize AOS
             AOS.init({
                 duration: 900,
                 easing: 'ease-out-quart',
@@ -1289,22 +1267,64 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 anchorPlacement: 'top-center'
             });
 
+            // Initialize Feather Icons
             feather.replace();
 
-            // === iOS Glass Header Scroll Effect ===
-            const header = document.querySelector('.ios-glass-header');
-            if (header) {
-                let lastScroll = 0;
-                window.addEventListener('scroll', () => {
-                    const currentScroll = window.pageYOffset;
-                    if (currentScroll > 50) {
-                        header.classList.add('scrolled');
-                    } else {
-                        header.classList.remove('scrolled');
-                    }
-                    lastScroll = currentScroll;
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-menu-links a');
+
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle('active');
                 });
             }
+
+            // Close menu when clicking a link
+            if (mobileLinks.length > 0) {
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                    });
+                });
+            }
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (mobileMenu && !e.target.closest('header') && !e.target.closest('.mobile-menu')) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+
+            // Header Scroll Detection
+            const header = document.getElementById('main-header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 100) {
+                        if (!header.classList.contains('scrolled')) {
+                            header.classList.add('scrolled');
+                        }
+                    } else {
+                        if (header.classList.contains('scrolled')) {
+                            header.classList.remove('scrolled');
+                        }
+                    }
+                }, { passive: true });
+            }
+
+            // Active link highlighting
+            const currentPage = window.location.pathname.split('/').pop() || 'index.php';
+            const navLinks = document.querySelectorAll('.header-nav a, .mobile-menu-links a');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === '/' && (currentPage === '' || currentPage === 'index.php')) {
+                    link.classList.add('active');
+                } else if (href === `/${currentPage}` || href === currentPage) {
+                    link.classList.add('active');
+                }
+            });
 
             // === 3D Hero Parallax Effect ===
             const hero3DContainer = document.getElementById('hero-3d-container');
@@ -1898,61 +1918,7 @@ document.querySelectorAll('.service-card').forEach(card => {
     });
 });
 
-        // Header Scroll Detection with smooth animation
-        let headerScrollTimeout;
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('main-header');
-            if (window.scrollY > 100) {
-                if (!header.classList.contains('scrolled')) {
-                    header.classList.add('scrolled');
-                }
-            } else {
-                if (header.classList.contains('scrolled')) {
-                    header.classList.remove('scrolled');
-                }
-            }
-        }, { passive: true });
-
-        // Mobile Menu Toggle (reuse mobileMenu from earlier declaration)
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileLinks = document.querySelectorAll('.mobile-menu-links a');
-
-        if (menuToggle && typeof mobileMenu !== 'undefined') {
-            menuToggle.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-            });
-        }
-
-        if (mobileLinks.length > 0 && typeof mobileMenu !== 'undefined') {
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                });
-            });
-        }
-
-        // Close menu when clicking outside
-        if (typeof mobileMenu !== 'undefined') {
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('header') && !e.target.closest('.mobile-menu')) {
-                    mobileMenu.classList.remove('active');
-                }
-            });
-        }
-
-        // Active link highlighting
-        const currentPage = window.location.pathname.split('/').pop() || 'index.php';
-        const navLinks = document.querySelectorAll('.header-nav a, .mobile-menu-links a');
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href === '/' && (currentPage === '' || currentPage === 'index.php')) {
-                link.classList.add('active');
-            } else if (href === `/${currentPage}` || href === currentPage) {
-                link.classList.add('active');
-            }
-        });
-
-    </script>
+        </script>
     <script src="/assets/js/smooth-scroll.js"></script>
     </main>
 </body>
