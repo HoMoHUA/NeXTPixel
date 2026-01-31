@@ -7,6 +7,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
 $username = $_SESSION['username'] ?? '';
 $displayName = $_SESSION['display_name'] ?? '';
 $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگین شده
+ $currentPage = basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" class="overflow-x-hidden">
@@ -2492,28 +2493,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         }, { passive: true });
 
         // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-menu-links a');
-
-        if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-            });
-        }
-
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('header') && !e.target.closest('.mobile-menu')) {
-                mobileMenu.classList.remove('active');
-            }
-        });
+        // ...existing code...
 
         // Active link highlighting
         const currentPage = window.location.pathname.split('/').pop() || 'index.php';

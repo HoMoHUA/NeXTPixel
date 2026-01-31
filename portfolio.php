@@ -704,32 +704,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             feather.replace();
 
             // Mobile Menu Toggle
-            const menuToggle = document.getElementById('menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileLinks = document.querySelectorAll('.mobile-menu-links a');
-
-            if (menuToggle && mobileMenu) {
-                menuToggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    mobileMenu.classList.toggle('active');
-                });
-            }
-
-            // Close menu when clicking a link
-            if (mobileLinks.length > 0) {
-                mobileLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenu.classList.remove('active');
-                    });
-                });
-            }
-
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (mobileMenu && !e.target.closest('header') && !e.target.closest('.mobile-menu')) {
-                    mobileMenu.classList.remove('active');
-                }
-            });
+            // ...existing code...
 
             // Header Scroll Detection
             const header = document.getElementById('main-header');
