@@ -802,16 +802,18 @@ if (isset($_POST['logout'])) {
     .mobile-menu {
         display: none;
         position: fixed;
-        inset: 0;
-        top: 70px;
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        z-index: 999;
-        overflow-y: auto;
-    }
-
-    .mobile-menu.active {
+            top: 70px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.98));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 990;
+            overflow-y: auto;
+            overflow-x: hidden;
         display: flex;
         flex-direction: column;
         animation: slideInFromTop 0.3s ease-out forwards;
