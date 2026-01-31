@@ -1,0 +1,55 @@
+<?php
+/**
+ * Database Connection File
+ * این فایل اتصال به دیتابیس را برقرار می‌کند
+ */
+
+require_once __DIR__ . '/db-config.php';
+
+class Database {
+    private static $instance = null;
+    private $conn;
+    
+    private function __construct() {
+        try {
+            $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
+            $options = [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES => false,
+            ];
+            
+            $this->conn = new PDO($dsn, DB_USER, DB_PASS, $options);
+        } catch (PDOException $e) {
+            error_log("Database Connection Error: " . $e->getMessage());
+            die("خطا در اتصال به دیتابیس. لطفا با پشتیبانی تماس بگیرید.");
+        }
+    }
+    
+    public static function getInstance() {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    
+    public function getConnection() {
+        return $this->conn;
+    }
+    
+    // جلوگیری از کلون کردن
+    private function __clone() {}
+    
+    // جلوگیری از unserialize
+    public function __wakeup() {
+        throw new Exception("Cannot unserialize singleton");
+    }
+}
+
+// تابع helper برای دریافت اتصال
+function getDB() {
+    return Database::getInstance()->getConnection();
+}
+
+?>
+

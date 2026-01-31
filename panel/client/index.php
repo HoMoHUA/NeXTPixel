@@ -1,8 +1,5 @@
-<?php
-/**
- * Client Dashboard
- * داشبورد مشتری
- */
+﻿<?php
+
 
 $pageTitle = 'داشبورد مشتری';
 $currentPage = 'client-dashboard';
@@ -10,7 +7,7 @@ $currentPage = 'client-dashboard';
 require_once __DIR__ . '/../includes/auth.php';
 requireLogin();
 
-// بررسی نقش
+
 if (!hasRole('customer') && !hasRole('client')) {
     header('Location: /panel/index.php');
     exit();
@@ -22,12 +19,12 @@ require_once __DIR__ . '/../config/db.php';
 $db = getPanelDB();
 $userId = getCurrentUserId();
 
-// دریافت اطلاعات onboarding
+
 $stmt = $db->prepare("SELECT * FROM client_onboarding WHERE user_id = ?");
 $stmt->execute([$userId]);
 $onboarding = $stmt->fetch();
 
-// محاسبه پیشرفت پروژه
+
 $progress = 0;
 $status = 'در حال بررسی';
 if ($onboarding) {
@@ -50,7 +47,7 @@ if ($onboarding) {
     }
 }
 
-// دریافت تیکت‌ها
+
 $stmt = $db->prepare("SELECT t.*, COUNT(tm.id) as message_count FROM tickets t 
                       LEFT JOIN ticket_messages tm ON t.id = tm.ticket_id 
                       WHERE t.client_id = ? GROUP BY t.id ORDER BY t.created_at DESC LIMIT 5");
@@ -72,7 +69,7 @@ include __DIR__ . '/../includes/header.php';
         </div>
 
         <div class="geex-content__wrapper">
-            <!-- Onboarding Status -->
+            
             <?php if (!$onboarding || $onboarding['step'] < 7): ?>
             <div class="geex-content__section mb-40">
                 <div class="alert" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); 
@@ -83,7 +80,7 @@ include __DIR__ . '/../includes/header.php';
             </div>
             <?php endif; ?>
 
-            <!-- Progress Bar -->
+            
             <?php if ($onboarding): ?>
             <div class="geex-content__section mb-40">
                 <div class="geex-content__feature">
@@ -118,7 +115,7 @@ include __DIR__ . '/../includes/header.php';
             </div>
             <?php endif; ?>
 
-            <!-- Project Stages -->
+            
             <?php if ($onboarding && $onboarding['onboarding_completed']): ?>
             <div class="geex-content__section mb-40">
                 <h3 style="margin-bottom: 20px; color: #f8fafc;">مراحل پروژه</h3>
@@ -132,7 +129,7 @@ include __DIR__ . '/../includes/header.php';
                         ['name' => 'تحویل', 'icon' => '🚀', 'color' => '#f59e0b']
                     ];
                     foreach ($stages as $index => $stage):
-                        $isActive = false; // TODO: Get from database
+                        $isActive = false; 
                     ?>
                     <div class="card" style="background: var(--np-dark-card-bg); padding: 20px; border-radius: 12px; 
                                              border: 1px solid <?php echo $isActive ? $stage['color'] : 'rgba(59, 130, 246, 0.2)'; ?>; 
@@ -152,7 +149,7 @@ include __DIR__ . '/../includes/header.php';
             </div>
             <?php endif; ?>
 
-            <!-- Payment Status -->
+            
             <?php if ($onboarding && $onboarding['payment_method']): ?>
             <div class="geex-content__section mb-40">
                 <h3 style="margin-bottom: 20px; color: #f8fafc;">وضعیت پرداخت</h3>
@@ -187,7 +184,7 @@ include __DIR__ . '/../includes/header.php';
             </div>
             <?php endif; ?>
 
-            <!-- Recent Tickets -->
+            
             <div class="geex-content__section mb-40">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <h3 style="color: #f8fafc; margin: 0;">تیکت‌های اخیر</h3>
@@ -254,17 +251,17 @@ include __DIR__ . '/../includes/header.php';
 <script>
 function payRemainder() {
     if (confirm('آیا می‌خواهید باقیمانده مبلغ را پرداخت کنید؟')) {
-        // TODO: Redirect to payment gateway
+        
         alert('در حال هدایت به درگاه پرداخت...');
     }
 }
 
 function createTicket() {
-    // TODO: Open modal or redirect to ticket creation page
+    
     alert('این قابلیت به زودی اضافه می‌شود');
 }
 
-// Shine animation for progress bar
+
 const style = document.createElement('style');
 style.textContent = `
     @keyframes shine {
@@ -274,4 +271,5 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 </script>
+
 

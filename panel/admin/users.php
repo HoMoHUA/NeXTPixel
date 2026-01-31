@@ -1,7 +1,5 @@
-<?php
-/**
- * لیست کاربران - پنل مدیریت NextPixel
- */
+﻿<?php
+
 
 $pageTitle = 'مدیریت کاربران - NextPixel';
 $currentPage = 'users';
@@ -15,7 +13,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
 
 $currentUser = getCurrentUser();
 
-// دریافت لیست کاربران
+
 require_once __DIR__ . '/../config/db.php';
 $db = getPanelDB();
 
@@ -267,4 +265,5 @@ function confirmDelete(userId) {
 </script>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
+
 

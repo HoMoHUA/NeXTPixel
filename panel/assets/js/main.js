@@ -1,7 +1,7 @@
-(function ($) {
+﻿(function ($) {
   "use strict";
 
-  // LocalStorage JS
+  
   let html = document.documentElement;
   let geexTheme = localStorage.theme;
   let geexThemeLayout = localStorage.layout;
@@ -11,7 +11,7 @@
   let rtlLayout = geexThemeLayout === "rtl";
   let topMenu = geexThemeNavbar === "top";
 
-  // Theme Mode Toggle
+  
   if (geexTheme) {
     html.setAttribute("data-theme", geexTheme);
 
@@ -24,7 +24,7 @@
     }
   }
 
-  // Theme Layout Toggle
+  
   if (geexThemeLayout) {
     html.setAttribute("dir", geexThemeLayout);
 
@@ -37,7 +37,7 @@
     }
   }
 
-  // Theme Navbar Toggle
+  
   if (geexThemeNavbar) {
     html.setAttribute("data-nav", geexThemeNavbar);
 
@@ -50,7 +50,7 @@
     }
   }
 
-  // Dark Theme
+  
   function darkTheme(e) {
     let geexTheme = "dark";
     localStorage.theme = geexTheme;
@@ -59,7 +59,7 @@
     darkMode = true;
   }
 
-  // Light Theme
+  
   function lightTheme(e) {
     let geexTheme = "light";
     localStorage.theme = geexTheme;
@@ -68,7 +68,7 @@
     darkMode = false;
   }
 
-  // RTL Layout
+  
   function rtlTheme(e) {
     let geexThemeLayout = "rtl";
     localStorage.layout = geexThemeLayout;
@@ -77,7 +77,7 @@
     rtlLayout = true;
   }
 
-  // LTR Layout
+  
   function ltrTheme(e) {
     let geexThemeLayout = "ltr";
     localStorage.layout = geexThemeLayout;
@@ -86,7 +86,7 @@
     rtlLayout = false;
   }
 
-  // Top Navbar
+  
   function topTheme(e) {
     let geexThemeNavbar = "top";
     localStorage.navbar = geexThemeNavbar;
@@ -95,7 +95,7 @@
     topMenu = true;
   }
 
-  // Side Navbar
+  
   function sideTheme(e) {
     let geexThemeNavbar = "side";
     localStorage.navbar = geexThemeNavbar;
@@ -104,7 +104,7 @@
     topMenu = false;
   }
 
-  // Light Demo Add
+  
   $(".geex-customizer__btn--light").click(function () {
     $(".geex-customizer__btn--dark").removeClass("active");
     $(".geex-customizer__btn--light").addClass("active");
@@ -112,7 +112,7 @@
     lightTheme();
   });
 
-  // Dark Demo Add
+  
   $(".geex-customizer__btn--dark").click(function () {
     $(".geex-customizer__btn--light").removeClass("active");
     $(".geex-customizer__btn--dark").addClass("active");
@@ -120,21 +120,21 @@
     darkTheme();
   });
 
-  // LTR Layout Add
+  
   $(".geex-customizer__btn--ltr").click(function () {
     $(".geex-customizer__btn--rtl").removeClass("active");
     $(".geex-customizer__btn--ltr").addClass("active");
 
     ltrTheme();
 
-    // if($("body").hasClass("layout-rtl")) {
-    // 	$("body").removeClass("layout-rtl");
-    // }
-    // $('html').attr('dir', 'ltr');
-    // $("body").addClass("layout-ltr");
+    
+    
+    
+    
+    
   });
 
-  // RTL Layout Add
+  
   $(".geex-customizer__btn--rtl").click(function () {
     $(".geex-customizer__btn--ltr").removeClass("active");
     $(".geex-customizer__btn--rtl").addClass("active");
@@ -142,7 +142,7 @@
     rtlTheme();
   });
 
-  // Side Navbar Add
+  
   $(".geex-customizer__btn--side").click(function () {
     $(".geex-customizer__btn--top").removeClass("active");
     $(".geex-customizer__btn--side").addClass("active");
@@ -150,7 +150,7 @@
     sideTheme();
   });
 
-  // Top Navbar Add
+  
   $(".geex-customizer__btn--top").click(function () {
     $(".geex-customizer__btn--side").removeClass("active");
     $(".geex-customizer__btn--top").addClass("active");
@@ -158,12 +158,12 @@
     topTheme();
   });
 
-  // Menu Active Class
+  
   function addActiveClass(pageSlug) {
     let menuLinks = $(".geex-header__menu__link, .geex-sidebar__menu__link");
     menuLinks.removeClass("active");
 
-    // Find the corresponding menu item and add the "active" class
+    
     menuLinks.each(function () {
       let menuItemPath = $(this).attr("href");
       let menuItemName = menuItemPath.split("/").pop().split(".")[0];
@@ -204,7 +204,7 @@
     });
   }
 
-  // Get the path
+  
   let path = window.location.pathname;
   let pathSegments = path.split("/");
   let pageSlug = pathSegments[pathSegments.length - 1].split(".")[0];
@@ -214,11 +214,11 @@
   $(".geex-sidebar__menu__link").click(function () {
     let $clickedItem = $(this);
 
-    // Toggle active class and slideToggle for the clicked item's submenu
+    
     $clickedItem.toggleClass("active");
     $clickedItem.siblings(".geex-sidebar__submenu").slideToggle();
 
-    // Remove active class and slideUp for other menu items
+    
     $(".geex-sidebar__menu__link").not($clickedItem).removeClass("active");
     $(".geex-sidebar__menu__link")
       .not($clickedItem)
@@ -226,19 +226,19 @@
       .slideUp();
   });
 
-  // Customizer Toggle
+  
   $(".geex-btn__customizer").click(function () {
     $(".geex-customizer").toggleClass("active");
     $("body").addClass("overlay_active");
   });
 
-  // Customizer Close
+  
   $(".geex-customizer-overlay, .geex-btn__customizer-close").click(function () {
     $(".geex-customizer").removeClass("active");
     $("body").removeClass("overlay_active");
   });
 
-  // Sidebar Toggle
+  
   $(".geex-btn__toggle-sidebar").click(function (e) {
     e.preventDefault();
     $(".geex-sidebar").toggleClass("active");
@@ -248,7 +248,7 @@
     $("body").addClass("overlay_active");
   });
 
-  // Sidebar Close
+  
   $(".geex-sidebar__close").click(function (e) {
     e.preventDefault();
     $(".geex-sidebar").removeClass("active");
@@ -404,42 +404,42 @@
     });
   });
 
-  // Datepicker Open
+  
   $("#geex-content__filter__label").click(function () {
-    // $("#geex-content__filter__date").datepicker().datepicker("show");
+    
   });
-  // $(document).ready(function () {
-  // });
+  
+  
 
-  // Content Toggle
+  
   $(".geex-content__toggle__btn").click(function (e) {
     e.preventDefault();
     $(this).toggleClass("active");
     $(this).siblings(".geex-content__toggle__content").slideToggle();
   });
 
-  // Task Sidebar Toggle
+  
   $(".geex-btn__toggle-task").click(function (e) {
     e.preventDefault();
     $(this).toggleClass("active");
     $(".geex-content__todo__sidebar").slideToggle();
   });
 
-  // Calendar Sidebar Toggle
+  
   $(".geex-content__calendar__toggle").click(function (e) {
     e.preventDefault();
     $(this).toggleClass("active");
     $(".geex-content__calendar__sidebar").slideToggle();
   });
 
-  // Chat Sidebar Toggle
+  
   $(".geex-content__chat__toggle").click(function (e) {
     e.preventDefault();
     $(this).toggleClass("active");
     $(".geex-content__chat__sidebar").slideToggle();
   });
 
-  // Chat Action Toggle
+  
   $(".geex-content__chat__action__toggle__btn").click(function (e) {
     e.preventDefault();
     $(this).toggleClass("active");
@@ -448,7 +448,7 @@
       .slideToggle();
   });
 
-  // Popup Toggle
+  
   $(".geex-content__header__quickaction__link").click(function (e) {
     e.preventDefault();
     var $popup = $(this).siblings(".geex-content__header__popup");
@@ -457,39 +457,39 @@
     $(".geex-content__header__popup").not($popup).slideUp(0);
   });
 
-  // Add Todo
+  
   $(".geex-btn__add-modal").click(function () {
     $(".geex-content__modal__form").addClass("active");
     $("body").addClass("overlay_active");
   });
 
-  // Close Todo
+  
   $(".geex-content__modal__form__close").click(function () {
     $(".geex-content__modal__form").removeClass("active");
     $("body").removeClass("overlay_active");
   });
 
-  // Chat Mute Toggle
+  
   $(".geex-content__chat__header__filter__mute-btn").click(function (e) {
     e.preventDefault();
     $(this).toggleClass("active");
   });
 
-  // Chat Search Toggle
+  
   $(".geex-content__chat__header__filter__btn").click(function (e) {
     e.preventDefault();
 
     var $clickedItem = $(this);
 
-    // Toggle the 'active' class on the clicked item
+    
     $clickedItem.toggleClass("active");
 
-    // Slide toggle the content of the clicked item
+    
     $clickedItem
       .siblings(".geex-content__chat__header__filter__content")
       .slideToggle();
 
-    // Close the content of other items if they are open
+    
     $(".geex-content__chat__header__filter__btn")
       .not($clickedItem)
       .removeClass("active");
@@ -499,7 +499,7 @@
       .slideUp();
   });
 
-  // Toggle Input Type Password
+  
   $(".toggle-password-type").click(function (e) {
     e.preventDefault();
     const input = $(this).siblings("input");
@@ -515,7 +515,7 @@
     }
   });
 
-  // Invoice Chat Toggle
+  
   $(".geex-content__invoice__chat__toggler").click(function (e) {
     e.preventDefault();
     var $invoiceChatContent = $(this).siblings(
@@ -524,29 +524,29 @@
 
     $invoiceChatContent.stop().animate(
       {
-        width: "toggle", // toggles between 0% and 100%
-        opacity: "toggle", // toggles between 0 and 1
+        width: "toggle", 
+        opacity: "toggle", 
       },
       300
-    ); // Adjust the duration as needed
+    ); 
   });
 
-  // CountDown
+  
   let day = document.querySelector(".geex-countdown__days");
   let hour = document.querySelector(".geex-countdown__hours");
   let minute = document.querySelector(".geex-countdown__minutes");
   let second = document.querySelector(".geex-countdown__seconds");
 
   function setCountdown() {
-    // Set countdown date
+    
     let countdownDate = new Date("Jan 01, 2026 16:40:25").getTime();
 
-    // Update countdown every second
+    
     let updateCount = setInterval(function () {
-      // Get today's date and time
+      
       let todayDate = new Date().getTime();
 
-      // Get distance between now and countdown date
+      
       let distance = countdownDate - todayDate;
 
       let days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -559,7 +559,7 @@
 
       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      // Display values in html elements
+      
       if (day) {
         day.textContent = days;
       }
@@ -573,7 +573,7 @@
         second.textContent = seconds;
       }
 
-      // if countdown expires
+      
       if (distance < 0) {
         clearInterval(updateCount);
         document.getElementById("geex-countdown").innerHTML =
@@ -584,12 +584,12 @@
 
   setCountdown();
 
-  // Swiper Slider
+  
   let swiperContainer = document.querySelector(".swiper-container");
   let swiper =
     swiperContainer &&
     new Swiper(swiperContainer, {
-      loop: true, // Enable loop mode for infinite sliding
+      loop: true, 
       freeMode: true,
       reverseDirection: true,
       slidesPerView: 3,
@@ -600,15 +600,15 @@
         prevEl: ".swiper-btn-prev",
       },
       breakpoints: {
-        // when window width is >= 0px
+        
         0: {
           slidesPerView: 1,
         },
-        // when window width is >= 1440px
+        
         992: {
           slidesPerView: 2,
         },
-        // when window width is >= 1600px
+        
         1600: {
           slidesPerView: 3,
         },
@@ -619,7 +619,7 @@
   let testi =
     testiContainer &&
     new Swiper(testiContainer, {
-      loop: true, // Enable loop mode for infinite sliding
+      loop: true, 
       freeMode: true,
       reverseDirection: true,
       slidesPerView: 1,
@@ -630,14 +630,14 @@
       },
     });
 
-  // Editor
+  
   if ($(".geex-content__chat__editor").length) {
     tinymce.init({
-      selector: ".geex-content__chat__editor", // change this value according to your HTML
+      selector: ".geex-content__chat__editor", 
     });
   }
 
-  // Calendar
+  
   if ($("#geex-calendar").length) {
     $("#geex-calendar").fullCalendar({
       themeSystem: "jquery-ui",
@@ -743,7 +743,7 @@
     });
   }
 
-  // Line Chart
+  
   let lineOptions = {
     series: [
       {
@@ -888,7 +888,7 @@
     lineChartContainer && new ApexCharts(lineChartContainer, lineOptions);
   lineChart && lineChart.render();
 
-  // Line Chart
+  
   let bitcoinOptions = {
     series: [
       {
@@ -1027,28 +1027,28 @@
     ],
   };
 
-  // Bitcoin
+  
   let bitcoinChartContainer = document.querySelector("#bitcoin-chart");
   let bitcoinChart =
     bitcoinChartContainer &&
     new ApexCharts(bitcoinChartContainer, bitcoinOptions);
   bitcoinChart && bitcoinChart.render();
 
-  // Ethererum
+  
   let ethererumChartContainer = document.querySelector("#ethererum-chart");
   let ethererumChart =
     ethererumChartContainer &&
     new ApexCharts(ethererumChartContainer, bitcoinOptions);
   ethererumChart && ethererumChart.render();
 
-  // Litecoin
+  
   let litecoinChartContainer = document.querySelector("#litecoin-chart");
   let litecoinChart =
     litecoinChartContainer &&
     new ApexCharts(litecoinChartContainer, bitcoinOptions);
   litecoinChart && litecoinChart.render();
 
-  // Market Activity Chart
+  
   let activityOptions = {
     series: [
       {
@@ -1148,7 +1148,7 @@
     tooltip: {
       enabled: true,
       custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-        // Calculate the percentage based on the max value
+        
         let value = w.globals.series[seriesIndex][dataPointIndex];
         var maxValue = Math.max(...series[0]);
         var percentage = ((value / maxValue) * 10).toFixed(0);
@@ -1192,7 +1192,7 @@
     new ApexCharts(activityChartContainer, activityOptions);
   activityChart && activityChart.render();
 
-  // Bar Chart
+  
   let barOptions = {
     series: [
       {
@@ -1262,7 +1262,7 @@
       enabled: true,
 
       custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-        // Calculate the percentage based on the max value
+        
         let value = w.globals.series[seriesIndex][dataPointIndex];
         var maxValue = Math.max(...series[0]);
         var percentage = ((value / maxValue) * 10).toFixed(0);
@@ -1286,7 +1286,7 @@
     barChartContainer && new ApexCharts(barChartContainer, barOptions);
   barChart && barChart.render();
 
-  // Pie Chart
+  
   let pieOptions = {
     series: [44, 55, 41],
     labels: ["سرورهای ثابت", "سرورهای پایین", "درحال اجرا"],
@@ -1298,11 +1298,11 @@
         dataLabels: {
           enabled: false,
         },
-        customScale: 1, // Adjust this value to control the series border radius
+        customScale: 1, 
       },
       stroke: {
-        width: 25, // Width of the stroke
-        colors: ["transparent"], // Color of the stroke (use 'transparent' to make it invisible)
+        width: 25, 
+        colors: ["transparent"], 
       },
     },
     chart: {
@@ -1327,7 +1327,7 @@
       formatter: function (seriesName, opts) {
         let data = opts.w.globals.seriesTotals[opts.seriesIndex];
         return seriesName + ":  " + data;
-        // return `<div class="custom-legend-item">${seriesName} <span> ${data} </span></div>`;
+        
       },
     },
     responsive: [
@@ -1350,7 +1350,7 @@
     pieChartContainer && new ApexCharts(pieChartContainer, pieOptions);
   pieChart && pieChart.render();
 
-  // Summary Chart
+  
   let summaryOptions = {
     series: [30, 34, 6, 30],
     labels: ["Ethereum", "Litecoin", "Ripple", "Bitcoin"],
@@ -1362,11 +1362,11 @@
         dataLabels: {
           enabled: false,
         },
-        customScale: 1, // Adjust this value to control the series border radius
+        customScale: 1, 
       },
       stroke: {
-        width: 25, // Width of the stroke
-        colors: ["transparent"], // Color of the stroke (use 'transparent' to make it invisible)
+        width: 25, 
+        colors: ["transparent"], 
       },
     },
     chart: {
@@ -1391,7 +1391,7 @@
       formatter: function (seriesName, opts) {
         let data = opts.w.globals.seriesTotals[opts.seriesIndex];
         return seriesName + ":  " + data;
-        // return `<div class="custom-legend-item">${seriesName} <span> ${data} </span></div>`;
+        
       },
     },
     responsive: [
@@ -1415,7 +1415,7 @@
     new ApexCharts(summaryChartContainer, summaryOptions);
   summaryChart && summaryChart.render();
 
-  // Stack Chart
+  
   let stackOptions = {
     chart: {
       type: "bar",
@@ -1505,7 +1505,7 @@
     stackChartContainer && new ApexCharts(stackChartContainer, stackOptions);
   stackChart && stackChart.render();
 
-  // Income Chart
+  
   let incomeOptions = {
     series: [
       {
@@ -1576,7 +1576,7 @@
         show: true,
         offsetX: 0,
       },
-      min: 0, // Set the min and max as actual category values.
+      min: 0, 
       max: 70,
       tickAmount: 3,
     },
@@ -1589,18 +1589,18 @@
     tooltip: {
       enabled: true,
       custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-        // Calculate the percentage based on the max value
+        
         let value = w.globals.series[seriesIndex][dataPointIndex];
         var maxValue = Math.max(...series[0]);
         var percentage = ((value / maxValue) * 10).toFixed(0);
 
-        // Get the mouse position from the global variable or state
+        
         var mouseX = window.mouseX || 0;
         var mouseY = window.mouseY || 0;
 
-        // Calculate the position of the tooltip above the bar
+        
         var tooltipX = mouseX - 50;
-        var tooltipY = mouseY - 30; // Adjust the offset as needed
+        var tooltipY = mouseY - 30; 
 
         return (
           '<div class="custom-tooltip" style="left:' +
@@ -1625,7 +1625,7 @@
     incomeChartContainer && new ApexCharts(incomeChartContainer, incomeOptions);
   incomeChart && incomeChart.render();
 
-  // Expense Chart
+  
   let expenseOptions = {
     series: [
       {
@@ -1696,7 +1696,7 @@
         show: true,
         offsetX: 0,
       },
-      min: 0, // Set the min and max as actual category values.
+      min: 0, 
       max: 70,
       tickAmount: 3,
     },
@@ -1709,18 +1709,18 @@
     tooltip: {
       enabled: true,
       custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-        // Calculate the percentage based on the max value
+        
         let value = w.globals.series[seriesIndex][dataPointIndex];
         var maxValue = Math.max(...series[0]);
         var percentage = ((value / maxValue) * 10).toFixed(0);
 
-        // Get the mouse position from the global variable or state
+        
         var mouseX = window.mouseX || 0;
         var mouseY = window.mouseY || 0;
 
-        // Calculate the position of the tooltip above the bar
+        
         var tooltipX = mouseX - 50;
-        var tooltipY = mouseY - 30; // Adjust the offset as needed
+        var tooltipY = mouseY - 30; 
 
         return (
           '<div class="custom-tooltip" style="left:' +
@@ -1763,8 +1763,8 @@
         },
       },
       stroke: {
-        width: 1, // Width of the stroke
-        colors: ["transparent"], // Color of the stroke (use 'transparent' to make it invisible)
+        width: 1, 
+        colors: ["transparent"], 
       },
       fill: {
         type: "gradient",
@@ -1802,8 +1802,8 @@
         },
       },
       stroke: {
-        width: 1, // Width of the stroke
-        colors: ["transparent"], // Color of the stroke (use 'transparent' to make it invisible)
+        width: 1, 
+        colors: ["transparent"], 
       },
       fill: {
         type: "gradient",
@@ -1841,8 +1841,8 @@
         },
       },
       stroke: {
-        width: 1, // Width of the stroke
-        colors: ["transparent"], // Color of the stroke (use 'transparent' to make it invisible)
+        width: 1, 
+        colors: ["transparent"], 
       },
       fill: {
         type: "gradient",
@@ -1884,8 +1884,8 @@
         },
       },
       stroke: {
-        width: 1, // Width of the stroke
-        colors: ["transparent"], // Color of the stroke (use 'transparent' to make it invisible)
+        width: 1, 
+        colors: ["transparent"], 
       },
       fill: {
         type: "gradient",
@@ -1907,7 +1907,7 @@
     chart.render();
   }
 
-  // Kanban Board JS
+  
   $(document).ready(function () {
     var drake = dragula([
       document.querySelector("#one"),
@@ -1927,3 +1927,4 @@
     });
   });
 })(jQuery);
+

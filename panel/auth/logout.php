@@ -1,8 +1,5 @@
-<?php
-/**
- * Logout Handler
- * مدیریت خروج از سیستم
- */
+﻿<?php
+
 
 session_start();
 session_unset();
@@ -12,4 +9,5 @@ header('Location: /panel/auth/login.php');
 exit;
 
 ?>
+
 

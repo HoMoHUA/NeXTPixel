@@ -1,7 +1,5 @@
-<?php
-/**
- * تقویم - پنل مدیریت NextPixel
- */
+﻿<?php
+
 
 $pageTitle = 'تقویم - NextPixel';
 $currentPage = 'calendar';
@@ -67,11 +65,12 @@ $currentUser = getCurrentUser();
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize calendar here
-    // You can use FullCalendar or any other calendar library
+    
+    
     console.log('Calendar initialized');
 });
 </script>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
+
 

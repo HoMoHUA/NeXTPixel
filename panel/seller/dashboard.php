@@ -1,8 +1,5 @@
-<?php
-/**
- * Seller Dashboard - Complete Version
- * داشبورد فروشنده - نسخه کامل
- */
+﻿<?php
+
 
 $pageTitle = 'داشبورد فروش - NextPixel';
 $currentPage = 'seller-dashboard';
@@ -10,7 +7,7 @@ $currentPage = 'seller-dashboard';
 require_once __DIR__ . '/../includes/auth.php';
 requireLogin();
 
-// بررسی نقش
+
 if (!hasRole('seller')) {
     header('Location: /panel/index.php');
     exit();
@@ -23,7 +20,7 @@ require_once __DIR__ . '/../includes/functions.php';
 $db = getPanelDB();
 $userId = getCurrentUserId();
 
-// محاسبه فروش ماه جاری (فقط تایید شده)
+
 $currentMonth = date('Y-m');
 try {
     $stmt = $db->prepare("SELECT SUM(sales_amount) as total_sales 
@@ -36,7 +33,7 @@ try {
     $monthSales = $stmt->fetch(PDO::FETCH_ASSOC);
     $totalSales = floatval($monthSales['total_sales'] ?? 0);
 } catch (PDOException $e) {
-    // اگر ستون status وجود ندارد، بدون آن جستجو کن
+    
     error_log("Status column might not exist: " . $e->getMessage());
     $stmt = $db->prepare("SELECT SUM(sales_amount) as total_sales 
                           FROM seller_reports 
@@ -48,22 +45,22 @@ try {
     $totalSales = floatval($monthSales['total_sales'] ?? 0);
 }
 
-// محاسبه حقوق بر اساس فروش‌های تایید شده
+
 $salary = calculateSalary($totalSales);
 
-// گزارش‌های امروز
+
 $today = date('Y-m-d');
 $stmt = $db->prepare("SELECT * FROM seller_reports WHERE user_id = ? AND report_date = ? ORDER BY created_at DESC LIMIT 1");
 $stmt->execute([$userId, $today]);
 $todayReport = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// تعداد گزارش‌های این ماه
+
 $stmt = $db->prepare("SELECT COUNT(*) as count FROM seller_reports 
                       WHERE user_id = ? AND DATE_FORMAT(report_date, '%Y-%m') = ?");
 $stmt->execute([$userId, $currentMonth]);
 $reportCount = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// تعداد فروش‌های تایید شده این ماه
+
 try {
     $stmt = $db->prepare("SELECT COUNT(*) as count FROM seller_reports 
                           WHERE user_id = ? 
@@ -73,7 +70,7 @@ try {
     $stmt->execute([$userId, $currentMonth]);
     $approvedSalesCount = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // فروش‌های تایید شده این ماه (برای نمایش در جدول)
+    
     $stmt = $db->prepare("SELECT * FROM seller_reports 
                           WHERE user_id = ? 
                           AND DATE_FORMAT(report_date, '%Y-%m') = ? 
@@ -84,7 +81,7 @@ try {
     $stmt->execute([$userId, $currentMonth]);
     $approvedSales = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    // اگر ستون status وجود ندارد
+    
     error_log("Status column might not exist: " . $e->getMessage());
     $stmt = $db->prepare("SELECT COUNT(*) as count FROM seller_reports 
                           WHERE user_id = ? 
@@ -119,7 +116,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
         </div>
 
         <div class="geex-content__wrapper">
-            <!-- Statistics Cards -->
+            
             <div class="geex-content__section mb-40">
                 <div class="geex-content__feature">
                     <div class="geex-content__feature__card" style="background: var(--np-dark-card-bg); border: 1px solid rgba(59, 130, 246, 0.2);">
@@ -157,7 +154,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
                 </div>
             </div>
 
-            <!-- Sales and Income Chart -->
+            
             <div class="geex-content__section mb-40">
                 <div class="geex-content__section__header">
                     <h4 class="geex-content__section__header__title">نمودار فروش و درآمد ماهانه</h4>
@@ -168,7 +165,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
                 </div>
             </div>
 
-            <!-- Today's Report Status -->
+            
             <div class="geex-content__section mb-40">
                 <div class="geex-content__form__wrapper">
                     <div class="card" style="background: var(--np-dark-card-bg); padding: 30px; border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.2);">
@@ -223,7 +220,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
                 </div>
             </div>
 
-            <!-- Approved Sales List -->
+            
             <div class="geex-content__section mb-40">
                 <div class="geex-content__section__header">
                     <h4 class="geex-content__section__header__title">فروش‌های تایید شده این ماه</h4>
@@ -274,7 +271,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
                 </div>
             </div>
 
-            <!-- Salary Calculator -->
+            
             <div class="geex-content__section mb-40">
                 <div class="geex-content__form__wrapper">
                     <div class="card" style="background: var(--np-dark-card-bg); padding: 30px; border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.2);">
@@ -293,7 +290,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
                 </div>
             </div>
 
-            <!-- Quick Actions -->
+            
             <div class="geex-content__section mb-40">
                 <h3 style="margin-bottom: 20px; color: #f8fafc;">عملیات سریع</h3>
                 <div class="geex-content__form__wrapper" style="display: flex; gap: 20px;">
@@ -353,7 +350,7 @@ function calculateSalary() {
     }
 }
 
-// Load chart data
+
 document.addEventListener('DOMContentLoaded', function() {
     loadSalesIncomeChart();
 });
@@ -480,4 +477,5 @@ function loadSalesIncomeChart() {
     color: #10b981;
 }
 </style>
+
 

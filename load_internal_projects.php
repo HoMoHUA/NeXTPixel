@@ -1,5 +1,6 @@
-<?php
+﻿<?php
 header('Content-Type: application/json; charset=utf-8');
+
 
 function checkServerStatus($url) {
     $ch = curl_init();
@@ -18,6 +19,7 @@ function checkServerStatus($url) {
 }
 
 $output = [];
+
 
 $projects = [
     [
@@ -52,44 +54,61 @@ foreach ($projects as $proj) {
     $project_desc = $proj['desc'];
     $project_category = $proj['category'];
     
-    // بررسی وضعیت سرور اصلی
+    
     $is_online = checkServerStatus($project_url);
 
+    
     $html = '';
     $html .= '<div class="portfolio-card glass-effect rounded-2xl" data-category="' . $project_category . '" data-aos="fade-up">';
 
-    // ساخت آدرس پروکسی شده
-    $proxiedUrl = 'simple_proxy.php?url=' . urlencode($project_url);
     
-    // ارسال آدرس پروکسی شده به صفحه پیش‌نمایش
-    $previewLink = 'preview.php?url=' . urlencode($proxiedUrl) . '&title=' . urlencode($project_title);
+    $previewLink = 'preview.php?url=' . urlencode($project_url) . '&title=' . urlencode($project_title);
 
-    // کانتینر iframe
+    
     $html .= '<div class="relative w-full h-56 bg-slate-800 overflow-hidden group iframe-container">';
 
-    // نوار پیشرفت
+    
     $html .= '  <div class="absolute top-0 left-0 w-full h-1 bg-white/10 z-20 transition-opacity duration-300">';
     $html .= '      <div class="progress-bar h-full bg-gradient-to-r from-emerald-400 to-teal-500 w-0 transition-all duration-300 shadow-[0_0_10px_rgba(52,211,153,0.7)]"></div>';
     $html .= '  </div>';
 
-    // Iframe با استفاده از آدرس پروکسی
-    // کلاس‌ها برای کوچک‌نمایی (Scale) نمای دسکتاپ
-    $html .= '  <iframe src="' . $proxiedUrl . '" class="w-[200%] h-[200%] transform origin-top-left scale-50 border-0 opacity-0 transition-opacity duration-700 pointer-events-none" scrolling="no" loading="lazy"></iframe>';
+    
+    
+    $html .= '  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-slate-900/90 backdrop-blur border border-white/10 text-amber-400 text-[10px] py-2 px-3 rounded-full pointer-events-none flex items-center gap-2 shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">';
+    $html .= '      <i data-feather="alert-triangle" class="w-3 h-3"></i>';
+    $html .= '      <span>در صورت عدم مشاهده، VPN را روشن کنید</span>';
+    $html .= '  </div>';
+    
+    
+     $html .= '  <div class="absolute bottom-2 right-2 z-10 bg-black/60 backdrop-blur text-white/70 text-[10px] py-1 px-2 rounded flex items-center gap-1 pointer-events-none group-hover:opacity-0 transition-opacity duration-300">';
+    $html .= '      <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>';
+    $html .= '      <span>نیاز به VPN</span>';
+    $html .= '  </div>';
 
-    // لینک نامرئی روی کل باکس تصویر برای هدایت به صفحه preview.php
+
+    
+    
+    $html .= '  <iframe src="' . $project_url . '" class="w-[200%] h-[200%] transform origin-top-left scale-50 border-0 opacity-0 transition-opacity duration-700 pointer-events-none" scrolling="no" loading="lazy"></iframe>';
+
+    
     $html .= '  <a href="' . $previewLink . '" class="absolute inset-0 z-30 cursor-pointer hover:bg-black/10 transition duration-300"></a>';
 
     $html .= '</div>'; 
 
+    
     $html .= '<div class="p-6 flex-grow flex flex-col">';
 
+    
     $html .= '<div class="flex justify-between items-start mb-3">';
     $html .= '<h3 class="text-xl font-bold">' . $project_title . '</h3>';
+    
     $html .= '<span class="text-xs ' . $proj['badge_bg'] . ' ' . $proj['badge_text_color'] . ' px-3 py-1 rounded-full whitespace-nowrap">' . $proj['badge_label'] . '</span>';
     $html .= '</div>';
 
+    
     $html .= '<p class="text-gray-400 mb-4 flex-grow">' . $project_desc . '</p>';
 
+    
     if ($is_online) {
         $html .= '<div class="mb-3 text-xs text-green-400 flex items-center" title="Server Check: 200 OK">';
         $html .= '<span class="w-2 h-2 rounded-full bg-green-500 mr-2 inline-block"></span> سرور در دسترس است';
@@ -100,6 +119,7 @@ foreach ($projects as $proj) {
         $html .= '</div>';
     }
 
+    
     $html .= '<a href="' . $previewLink . '" class="text-blue-400 hover:text-blue-300 flex items-center mt-auto">';
     $html .= 'مشاهده پیش‌نمایش آنلاین';
     $html .= '<i data-feather="eye" class="w-4 h-4 mr-2"></i>'; 
@@ -108,8 +128,10 @@ foreach ($projects as $proj) {
     $html .= '</div>'; 
     $html .= '</div>'; 
 
+    
     $output[$project_id] = $html;
 }
+
 
 echo json_encode($output);
 ?>

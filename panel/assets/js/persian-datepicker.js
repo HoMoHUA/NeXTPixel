@@ -1,9 +1,4 @@
-/*
-** persian-datepicker - v1.2.0
-** Reza Babakhani <babakhani.reza@gmail.com>
-** http://babakhani.github.io/PersianWebToolkit/docs/datepicker
-** Under MIT license 
-*/ 
+﻿ 
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -15,84 +10,84 @@
 	else
 		root["persianDatepicker"] = factory();
 })(this, function() {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+return  (function(modules) { 
+ 	
+ 	var installedModules = {};
+
+ 	
+ 	function __webpack_require__(moduleId) {
+
+ 		
+ 		if(installedModules[moduleId]) {
+ 			return installedModules[moduleId].exports;
+ 		}
+ 		
+ 		var module = installedModules[moduleId] = {
+ 			i: moduleId,
+ 			l: false,
+ 			exports: {}
+ 		};
+
+ 		
+ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+ 		
+ 		module.l = true;
+
+ 		
+ 		return module.exports;
+ 	}
+
+
+ 	
+ 	__webpack_require__.m = modules;
+
+ 	
+ 	__webpack_require__.c = installedModules;
+
+ 	
+ 	__webpack_require__.i = function(value) { return value; };
+
+ 	
+ 	__webpack_require__.d = function(exports, name, getter) {
+ 		if(!__webpack_require__.o(exports, name)) {
+ 			Object.defineProperty(exports, name, {
+ 				configurable: false,
+ 				enumerable: true,
+ 				get: getter
+ 			});
+ 		}
+ 	};
+
+ 	
+ 	__webpack_require__.n = function(module) {
+ 		var getter = module && module.__esModule ?
+ 			function getDefault() { return module['default']; } :
+ 			function getModuleExports() { return module; };
+ 		__webpack_require__.d(getter, 'a', getter);
+ 		return getter;
+ 	};
+
+ 	
+ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+
+ 	
+ 	__webpack_require__.p = "";
+
+ 	
+ 	return __webpack_require__(__webpack_require__.s = 5);
+ })
+
+ ([
+
+ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var Helper = {
 
-    // leading edge, instead of the trailing.
+    
     debounce: function debounce(func, wait, immediate) {
         var timeout;
         return function () {
@@ -110,19 +105,15 @@ var Helper = {
     },
 
 
-    /**
-     * @desc normal log
-     * @param input
-     * @example log('whoooooha')
-     */
+    
     log: function log(input) {
-        /*eslint-disable no-console */
+        
         console.log(input);
-        /*eslint-enable no-console */
+        
     },
 
 
-    /* eslint-disable no-useless-escape */
+    
     isMobile: function () {
         var check = false;
         (function (a) {
@@ -130,17 +121,11 @@ var Helper = {
         })(navigator.userAgent || navigator.vendor || window.opera);
         return check;
     }(),
-    /* eslint-enable no-useless-escape */
+    
 
-    /**
-     * @desc show debug messages if window.persianDatepickerDebug set as true
-     * @param elem
-     * @param input
-     * @example window.persianDatepickerDebug = true;
-     * debug('element','message');
-     */
+    
     debug: function debug(elem, input) {
-        /*eslint-disable no-console */
+        
         if (window.persianDatepickerDebug) {
             if (elem.constructor.name) {
                 console.log('Debug: ' + elem.constructor.name + ' : ' + input);
@@ -148,7 +133,7 @@ var Helper = {
                 console.log('Debug: ' + input);
             }
         }
-        /*eslint-enable no-console */
+        
     },
     delay: function delay(callback, ms) {
         clearTimeout(window.datepickerTimer);
@@ -158,23 +143,21 @@ var Helper = {
 
 module.exports = Helper;
 
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
+
+ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-/**
- * @type {string}
- */
+
 var Template = "\n<div id=\"plotId\" class=\"datepicker-plot-area {{cssClass}}\">\n    {{#navigator.enabled}}\n        <div data-navigator class=\"datepicker-navigator\">\n            <div class=\"pwt-btn pwt-btn-next\">{{navigator.text.btnNextText}}</div>\n            <div class=\"pwt-btn pwt-btn-switch\">{{navigator.switch.text}}</div>\n            <div class=\"pwt-btn pwt-btn-prev\">{{navigator.text.btnPrevText}}</div>\n        </div>\n    {{/navigator.enabled}}\n    <div class=\"datepicker-grid-view\" >\n    {{#days.enabled}}\n        {{#days.viewMode}}\n        <div class=\"datepicker-day-view\" >    \n            <div class=\"month-grid-box\">\n                <div class=\"header\">\n                    <div class=\"title\"></div>\n                    <div class=\"header-row\">\n                        {{#weekdays.list}}\n                            <div class=\"header-row-cell\">{{.}}</div>\n                        {{/weekdays.list}}\n                    </div>\n                </div>    \n                <table cellspacing=\"0\" class=\"table-days\">\n                    <tbody>\n                        {{#days.list}}\n                           \n                            <tr>\n                                {{#.}}\n                                    {{#enabled}}\n                                        <td data-date=\"{{dataDate}}\" data-unix=\"{{dataUnix}}\" >\n                                            <span  class=\"{{#otherMonth}}other-month{{/otherMonth}}\">{{title}}</span>\n                                            {{#altCalendarShowHint}}\n                                            <i  class=\"alter-calendar-day\">{{alterCalTitle}}</i>\n                                            {{/altCalendarShowHint}}\n                                        </td>\n                                    {{/enabled}}\n                                    {{^enabled}}\n                                        <td data-date=\"{{dataDate}}\" data-unix=\"{{dataUnix}}\" class=\"disabled\">\n                                            <span class=\"{{#otherMonth}}other-month{{/otherMonth}}\">{{title}}</span>\n                                            {{#altCalendarShowHint}}\n                                            <i  class=\"alter-calendar-day\">{{alterCalTitle}}</i>\n                                            {{/altCalendarShowHint}}\n                                        </td>\n                                    {{/enabled}}\n                                    \n                                {{/.}}\n                            </tr>\n                        {{/days.list}}\n                    </tbody>\n                </table>\n            </div>\n        </div>\n        {{/days.viewMode}}\n    {{/days.enabled}}\n    \n    {{#month.enabled}}\n        {{#month.viewMode}}\n            <div class=\"datepicker-month-view\">\n                {{#month.list}}\n                    {{#enabled}}               \n                        <div data-year=\"{{year}}\" data-month=\"{{dataMonth}}\" class=\"month-item {{#selected}}selected{{/selected}}\">{{title}}</small></div>\n                    {{/enabled}}\n                    {{^enabled}}               \n                        <div data-year=\"{{year}}\"data-month=\"{{dataMonth}}\" class=\"month-item month-item-disable {{#selected}}selected{{/selected}}\">{{title}}</small></div>\n                    {{/enabled}}\n                {{/month.list}}\n            </div>\n        {{/month.viewMode}}\n    {{/month.enabled}}\n    \n    {{#year.enabled }}\n        {{#year.viewMode }}\n            <div class=\"datepicker-year-view\" >\n                {{#year.list}}\n                    {{#enabled}}\n                        <div data-year=\"{{dataYear}}\" class=\"year-item {{#selected}}selected{{/selected}}\">{{title}}</div>\n                    {{/enabled}}\n                    {{^enabled}}\n                        <div data-year=\"{{dataYear}}\" class=\"year-item year-item-disable {{#selected}}selected{{/selected}}\">{{title}}</div>\n                    {{/enabled}}                    \n                {{/year.list}}\n            </div>\n        {{/year.viewMode }}\n    {{/year.enabled }}\n    \n    </div>\n    {{#time}}\n    {{#enabled}}\n    <div class=\"datepicker-time-view\">\n        {{#hour.enabled}}\n            <div class=\"hour time-segment\" data-time-key=\"hour\">\n                <div class=\"up-btn\" data-time-key=\"hour\">\u25B2</div>\n                <input disabled value=\"{{hour.title}}\" type=\"text\" placeholder=\"hour\" class=\"hour-input\">\n                <div class=\"down-btn\" data-time-key=\"hour\">\u25BC</div>                    \n            </div>       \n            <div class=\"divider\">\n                <span>:</span>\n            </div>\n        {{/hour.enabled}}\n        {{#minute.enabled}}\n            <div class=\"minute time-segment\" data-time-key=\"minute\" >\n                <div class=\"up-btn\" data-time-key=\"minute\">\u25B2</div>\n                <input disabled value=\"{{minute.title}}\" type=\"text\" placeholder=\"minute\" class=\"minute-input\">\n                <div class=\"down-btn\" data-time-key=\"minute\">\u25BC</div>\n            </div>        \n            <div class=\"divider second-divider\">\n                <span>:</span>\n            </div>\n        {{/minute.enabled}}\n        {{#second.enabled}}\n            <div class=\"second time-segment\" data-time-key=\"second\"  >\n                <div class=\"up-btn\" data-time-key=\"second\" >\u25B2</div>\n                <input disabled value=\"{{second.title}}\"  type=\"text\" placeholder=\"second\" class=\"second-input\">\n                <div class=\"down-btn\" data-time-key=\"second\" >\u25BC</div>\n            </div>\n            <div class=\"divider meridian-divider\"></div>\n            <div class=\"divider meridian-divider\"></div>\n        {{/second.enabled}}\n        {{#meridian.enabled}}\n            <div class=\"meridian time-segment\" data-time-key=\"meridian\" >\n                <div class=\"up-btn\" data-time-key=\"meridian\">\u25B2</div>\n                <input disabled value=\"{{meridian.title}}\" type=\"text\" class=\"meridian-input\">\n                <div class=\"down-btn\" data-time-key=\"meridian\">\u25BC</div>\n            </div>\n        {{/meridian.enabled}}\n    </div>\n    {{/enabled}}\n    {{/time}}\n    \n    {{#toolbox}}\n    {{#enabled}}\n    <div class=\"toolbox\">\n        {{#toolbox.submitButton.enabled}}\n            <div class=\"pwt-btn-submit\">{{submitButtonText}}</div>\n        {{/toolbox.submitButton.enabled}}        \n        {{#toolbox.todayButton.enabled}}\n            <div class=\"pwt-btn-today\">{{todayButtonText}}</div>\n        {{/toolbox.todayButton.enabled}}        \n        {{#toolbox.calendarSwitch.enabled}}\n            <div class=\"pwt-btn-calendar\">{{calendarSwitchText}}</div>\n        {{/toolbox.calendarSwitch.enabled}}\n    </div>\n    {{/enabled}}\n    {{^enabled}}\n        {{#onlyTimePicker}}\n        <div class=\"toolbox\">\n            <div class=\"pwt-btn-submit\">{{submitButtonText}}</div>\n        </div>\n        {{/onlyTimePicker}}\n    {{/enabled}}\n    {{/toolbox}}\n</div>\n";
 
 module.exports = Template;
 
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
+
+ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -192,17 +175,11 @@ var Navigator = __webpack_require__(7);
 var Options = __webpack_require__(8);
 var PersianDateWrapper = __webpack_require__(10);
 
-/**
- * Main datepicker object, manage every things
- */
+
 
 var Model = function () {
 
-  /**
-   * @param inputElement
-   * @param options
-   * @private
-   */
+  
   function Model(inputElement, options) {
     _classCallCheck(this, Model);
 
@@ -212,60 +189,33 @@ var Model = function () {
   _createClass(Model, [{
     key: 'components',
     value: function components(inputElement, options) {
-      /**
-       * @desc [initialUnix=null]
-       * @type {unix}
-       */
+      
       this.initialUnix = null;
 
-      /**
-       * @desc inputElement=inputElement
-       * @type {Object}
-       */
+      
       this.inputElement = inputElement;
 
-      /**
-       * @desc handle works about config
-       * @type {Options}
-       */
+      
       this.options = new Options(options, this);
 
-      /**
-       *
-       * @type {PersianDateWrapper}
-       */
+      
       this.PersianDate = new PersianDateWrapper(this);
 
-      /**
-       * @desc set and get selected and view and other state
-       * @type {State}
-       */
+      
       this.state = new State(this);
 
       this.api = new API(this);
 
-      /**
-       * @desc handle works about input and alt field input element
-       * @type {Input}
-       */
+      
       this.input = new Input(this, inputElement);
 
-      /**
-       * @desc render datepicker view base on State
-       * @type {View}
-       */
+      
       this.view = new View(this);
 
-      /**
-       * @desc handle works about toolbox
-       * @type {Toolbox}
-       */
+      
       this.toolbox = new Toolbox(this);
 
-      /**
-       *
-       * @param unix
-       */
+      
       this.updateInput = function (unix) {
         this.input.update(unix);
       };
@@ -274,10 +224,7 @@ var Model = function () {
       this.state.setSelectedDateTime('unix', this.input.getOnInitState());
       this.view.render();
 
-      /**
-       * @desc handle navigation and dateoicker element events
-       * @type {Navigator}
-       */
+      
       this.navigator = new Navigator(this);
 
       return this.api;
@@ -289,9 +236,9 @@ var Model = function () {
 
 module.exports = Model;
 
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
+
+ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -300,9 +247,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/**
- * This is the API documentation for persian-datepicker
- */
+
 var API = function () {
     function API(model) {
         _classCallCheck(this, API);
@@ -310,37 +255,21 @@ var API = function () {
         this.model = model;
     }
 
-    /**
-     * @description get current option object
-     * @example var pd = $('.selector').persianDatepicker();
-     * console.log(pd.options);
-     */
+    
 
 
     _createClass(API, [{
         key: 'show',
 
 
-        /**
-         * @description make datepicker visible
-         * @example var pd = $('.selector').persianDatepicker();
-         * pd.show();
-         */
+        
         value: function show() {
             this.model.view.show();
             this.model.options.onShow(this.model);
             return this.model;
         }
 
-        /**
-         * @description return datepicker current state
-         * @since 1.0.0
-         * @example var pd = $('.selector').persianDatepicker();
-         * var state = pd.getState();
-         *
-         * console.log(state.selected);
-         * console.log(state.view);
-         * */
+        
 
     }, {
         key: 'getState',
@@ -348,11 +277,7 @@ var API = function () {
             return this.model.state;
         }
 
-        /**
-         * @description make datepicker invisible
-         * @example var pd = $('.selector').persianDatepicker();
-         * pd.show();
-         */
+        
 
     }, {
         key: 'hide',
@@ -362,11 +287,7 @@ var API = function () {
             return this.model;
         }
 
-        /**
-         * @description toggle datepicker visibility state
-         * @example var pd = $('.selector').persianDatepicker();
-         * pd.toggle();
-         */
+        
 
     }, {
         key: 'toggle',
@@ -376,11 +297,7 @@ var API = function () {
             return this.model;
         }
 
-        /**
-         * @description destroy every thing clean dom and
-         * @example var pd = $('.selector').persianDatepicker();
-         * pd.destroy();
-         */
+        
 
     }, {
         key: 'destroy',
@@ -392,12 +309,7 @@ var API = function () {
             }
         }
 
-        /**
-         * @description set selected date of datepicker accept unix timestamp
-         * @param unix
-         * @example var pd = $('.selector').persianDatepicker();
-         * pd.setDate(1382276091100)
-         */
+        
 
     }, {
         key: 'setDate',
@@ -415,14 +327,7 @@ var API = function () {
             return this.model.options;
         }
 
-        /**
-         * @description set options live
-         * @example var pd = $('.selector').persianDatepicker();
-         * pd.options;
-         * //return current options
-         * pd.options = {};
-         * // set options and render datepicker with new options
-         */
+        
         ,
         set: function set(inputOptions) {
             var opt = $.extend(true, this.model.options, inputOptions);
@@ -436,217 +341,83 @@ var API = function () {
 
 module.exports = API;
 
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
+
+ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var Helper = __webpack_require__(0);
 
-/**
- * @description persian-datepicker configuration document
- */
+
 var Config = {
 
-  /**
-   * @description set default calendar mode of datepicker, available options: 'persian', 'gregorian'
-   * @default 'persian'
-   * @type string
-   * @since 1.0.0
-   */
+  
   'calendarType': 'persian',
 
-  /**
-   * @description calendar type and localization configuration
-   * @type object
-   * @since 1.0.0
-   * @example
-   * {
-   *     'persian': {
-   *         'locale': 'fa',
-   *         'showHint': false,
-   *         'leapYearMode': 'algorithmic' // "astronomical"
-   *     },
-   *
-   *     'gregorian': {
-   *         'locale': 'en',
-   *         'showHint': false
-   *     }
-   * }
-   *
-   *
-   *
-   */
+  
   'calendar': {
 
-    /**
-     * @description Persian calendar configuration
-     * @type object
-     * @since 1.0.0
-     */
+    
     'persian': {
 
-      /**
-       * @description set locale of Persian calendar available options: 'fa', 'en'
-       * @default 'fa'
-       * @type string
-       * @since 1.0.0
-       */
+      
       'locale': 'fa',
 
-      /**
-       * @description if set true, small date hint of this calendar will be shown on another calendar
-       * @type boolean
-       * @default false
-       * @since 1.0.0
-       */
+      
       'showHint': false,
 
-      /**
-       * @description Persian calendar leap year calculation mode, available options: 'algorithmic', 'astronomical'
-       * @type string
-       * @link http://babakhani.github.io/PersianWebToolkit/doc/persian-date/leapyear
-       * @default 'algorithmic'
-       * @since 1.0.0
-       */
-      'leapYearMode': 'algorithmic' // "astronomical"
+      
+      'leapYearMode': 'algorithmic' 
     },
 
-    /**
-     * @description Gregorian calendar configuration
-     * @type object
-     * @since 1.0.0
-     */
+    
     'gregorian': {
 
-      /**
-       * @description set locale of Gregorian calendar available options: 'fa', 'en'
-       * @default 'en'
-       * @type string
-       * @since 1.0.0
-       */
+      
       'locale': 'en',
 
-      /**
-       * @description if set true, small date hint of this calendar will be shown on another calendar
-       * @type boolean
-       * @default false
-       * @since 1.0.0
-       */
+      
       'showHint': false
     }
   },
 
-  /**
-   * @description if set true make enable responsive view on mobile devices
-   * @type boolean
-   * @since 1.0.0
-   * @default true
-   */
+  
   'responsive': true,
 
-  /**
-   * @description if true datepicker render inline
-   * @type boolean
-   * @default false
-   */
+  
   'inline': false,
 
-  /**
-   * @description If set true datepicker init with input value date, use data-date property when you want set inline datepicker initial value
-   * @type boolean
-   * @default true
-   */
+  
   'initialValue': true,
 
-  /**
-   * @description Initial value calendar type, accept: 'persian', 'gregorian'
-   * @type boolean
-   * @default true
-   */
+  
   'initialValueType': 'gregorian',
 
-  /**
-   * @description from v1.0.0 this options is deprecated, use calendar.persian.locale instead
-   * @deprecated
-   * @type boolean
-   * @default true
-   */
+  
   'persianDigit': true,
 
-  /**
-   * @description default view mode, Acceptable value : day,month,year
-   * @type {string}
-   * @default 'day'
-   */
+  
   'viewMode': 'day',
 
-  /**
-   * @description the date format, combination of d, dd, m, mm, yy, yyy.
-   * @link http://babakhani.github.io/PersianWebToolkit/doc/persian-date/#format
-   * @type {boolean}
-   * @default 'LLLL'
-   */
+  
   'format': 'LLLL',
 
-  /**
-   * @description format value of input
-   * @param unixDate
-   * @default function
-   * @example function (unixDate) {
-   *      var self = this;
-   *      var pdate = new persianDate(unixDate);
-   *      pdate.formatPersian = this.persianDigit;
-   *      return pdate.format(self.format);
-   *  }
-   */
+  
   'formatter': function formatter(unixDate) {
     var self = this,
         pdate = this.model.PersianDate.date(unixDate);
     return pdate.format(self.format);
   },
 
-  /**
-   * @description An input element that is to be updated with the selected date from the datepicker. Use the altFormat option to change the format of the date within this field. Leave as blank for no alternate field. acceptable value: : '#elementId','.element-class'
-   * @type {boolean}
-   * @default false
-   * @example
-   * altField: '#inputAltFirld'
-   *
-   * altField: '.input-alt-field'
-   */
+  
   'altField': false,
 
-  /**
-   * @description the date format, combination of d, dd, m, mm, yy, yyy.
-   * @link http://babakhani.github.io/PersianWebToolkit/doc/persian-date/#format
-   * @type {string}
-   * @default 'unix'
-   */
+  
   'altFormat': 'unix',
 
-  /**
-   * @description format value of 'altField' input
-   * @param unixDate
-   * @default function
-   * @example function (unixDate) {
-   *      var self = this;
-   *      var thisAltFormat = self.altFormat.toLowerCase();
-   *      if (thisAltFormat === 'gregorian' || thisAltFormat === 'g') {
-   *          return new Date(unixDate);
-   *      }
-   *      if (thisAltFormat === 'unix' || thisAltFormat === 'u') {
-   *          return unixDate;
-   *      }
-   *      else {
-   *          var pd = new persianDate(unixDate);
-   *          pd.formatPersian = this.persianDigit;
-   *          return pd.format(self.altFormat);
-   *      }
-   *  }
-   */
+  
   'altFieldFormatter': function altFieldFormatter(unixDate) {
     var self = this,
         thisAltFormat = self.altFormat.toLowerCase(),
@@ -662,514 +433,249 @@ var Config = {
     }
   },
 
-  /**
-   * @description Set min date on datepicker, prevent user select date before given unix time
-   * @property minDate
-   * @type Date
-   * @default null
-   */
+  
   'minDate': null,
 
-  /**
-   * @description Set max date on datepicker, prevent user select date after given unix time
-   * @property maxDate
-   * @type Date
-   * @default null
-   */
+  
   'maxDate': null,
 
-  /**
-   * @description navigator config object
-   * @type {object}
-   * @default true
-   */
+  
   'navigator': {
-    /**
-     * @description make navigator enable or disable
-     * @type boolean
-     * @default true
-     */
+    
     'enabled': true,
 
-    /**
-     * @description navigate by scroll configuration
-     * @type object
-     * @description scroll navigation options
-     */
+    
     'scroll': {
 
-      /**
-       * @description if you want make disable scroll navigation set this option false
-       * @type boolean
-       * @default true
-       */
+      
       'enabled': true
     },
 
-    /**
-     * @description navigator text config object
-     */
+    
     'text': {
-      /**
-       * @description text of next button
-       * @default '<'
-       */
+      
       'btnNextText': '<',
 
-      /**
-       * @description text of prev button
-       * @default: '>'
-       */
+      
       'btnPrevText': '>'
     },
 
-    /**
-     * @description Called when navigator goes to next state
-     * @event
-     * @example function (navigator) {
-     *      //log('navigator next ');
-     *  }
-     */
+    
     'onNext': function onNext(datepickerObject) {
       Helper.debug(datepickerObject, 'Event: onNext');
     },
 
-    /**
-     * @description Called when navigator goes to previews state
-     * @event
-     * @example function (navigator) {
-     *      //log('navigator prev ');
-     *  }
-     */
+    
     'onPrev': function onPrev(datepickerObject) {
       Helper.debug(datepickerObject, 'Event: onPrev');
     },
 
-    /**
-     * @description Called when navigator switch
-     * @event
-     * @example function (datepickerObject) {
-            // console.log('navigator switch ');
-     *  }
-     */
+    
     'onSwitch': function onSwitch(datepickerObject) {
       Helper.debug(datepickerObject, 'dayPicker Event: onSwitch');
     }
   },
 
-  /**
-   * @description toolbox config object
-   * @type {object}
-   * @default true
-   */
+  
   'toolbox': {
 
-    /**
-     * @description boolean option that make toolbar enable or disable
-     * @type boolean
-     * @default true
-     */
+    
     'enabled': true,
 
-    /**
-     * @description toolbox button text configuration
-     * @type object
-     * @deprecated from 1.0.0
-     */
+    
     'text': {
 
-      /**
-       * @description text of today button, deprecated from 1.0.0
-       * @type string
-       * @default 'امروز'
-       * @deprecated from 1.0.0
-       */
+      
       btnToday: 'امروز'
 
     },
 
-    /**
-     * @description submit button configuration (only shown on mobile)
-     * @since 1.0.0
-     */
+    
     submitButton: {
 
-      /**
-       * @description make submit button enable or disable
-       * @type boolean
-       * @default false
-       * @since 1.0.0
-       */
+      
       enabled: Helper.isMobile,
 
-      /**
-       * @description submit button text
-       * @since 1.0.0
-       * @type object
-       */
+      
       text: {
 
-        /**
-         * @description show when current calendar is Persian
-         * @since 1.0.0
-         * @type object
-         * @default تایید
-         */
+        
         fa: 'تایید',
 
-        /**
-         * @description show when current calendar is Gregorian
-         * @since 1.0.0
-         * @type object
-         * @default submit
-         */
+        
         en: 'submit'
       },
 
-      /**
-       * @description Called when submit button clicked
-       * @since 1.0.0
-       * @type function
-       * @event
-       */
+      
       onSubmit: function onSubmit(datepickerObject) {
         Helper.debug(datepickerObject, 'dayPicker Event: onSubmit');
       }
     },
 
-    /**
-     * @description toolbox today button configuration
-     * @since 1.0.0
-     */
+    
     todayButton: {
 
-      /**
-       * @description make toolbox today button enable or disable
-       * @type boolean
-       * @since 1.0.0
-       */
+      
       enabled: true,
 
-      /**
-       * @description today button text
-       * @since 1.0.0
-       * @type object
-       */
+      
       text: {
 
-        /**
-         * @description show when current calendar is Persian
-         * @since 1.0.0
-         * @type object
-         * @default امروز
-         */
+        
         fa: 'امروز',
 
-        /**
-         * @description show when current calendar is Gregorian
-         * @since 1.0.0
-         * @type object
-         * @default today
-         */
+        
         en: 'today'
       },
 
-      /**
-       * @description Called when today button clicked
-       * @since 1.0.0
-       * @type function
-       * @event
-       */
+      
       onToday: function onToday(datepickerObject) {
         Helper.debug(datepickerObject, 'dayPicker Event: onToday');
       }
     },
 
-    /**
-     * @description toolbox calendar switch configuration
-     * @type object
-     * @since 1.0.0
-     */
+    
     calendarSwitch: {
 
-      /**
-       * @description make calendar switch enable or disable
-       * @type boolean
-       * @since 1.0.0
-       * @default true
-       */
+      
       enabled: true,
 
-      /**
-       * @description calendar switch text format string
-       * @link http://babakhani.github.io/PersianWebToolkit/doc/persian-date/#format
-       * @type string
-       * @since 1.0.0
-       * @default MMMM
-       */
+      
       format: 'MMMM',
 
-      /**
-       * @description Called when calendar switch clicked
-       * @since 1.0.0
-       * @type function
-       * @event
-       */
+      
       onSwitch: function onSwitch(datepickerObject) {
         Helper.debug(datepickerObject, 'dayPicker Event: onSwitch');
       }
     },
 
-    /**
-     * @event
-     * @param toolbox
-     * @example function (toolbox) {
-     *      //log('toolbox today btn');
-     *  }
-     *  @deprecated 1.0.0
-     */
+    
     onToday: function onToday(datepickerObject) {
       Helper.debug(datepickerObject, 'dayPicker Event: onToday');
     }
   },
 
-  /**
-   * @description if true all pickers hide and just show timepicker
-   * @default false
-   * @type boolean
-   */
+  
   'onlyTimePicker': false,
 
-  /**
-   * @description  if true date select just by click on day in month grid, and when user select month or year selected date doesnt change
-   * @property justSelectOnDate
-   * @type boolean
-   * @default: true
-   */
+  
   'onlySelectOnDate': true,
 
-  /**
-   * @description Validate date access before render
-   * @type function
-   */
+  
   'checkDate': function checkDate() {
     return true;
   },
 
-  /**
-   * @description Validate month access before render
-   * @type {function}
-   */
+  
   'checkMonth': function checkMonth() {
     return true;
   },
 
-  /**
-   * @description Validate year access before render
-   * @type {function}
-   */
+  
   'checkYear': function checkYear() {
     return true;
   },
 
-  /**
-   * @description timePicker configuration
-   * @type {object}
-   */
+  
   'timePicker': {
 
-    /**
-     * @description make timePicker enable or disable
-     * @type boolean
-     */
+    
     'enabled': false,
 
-    /**
-     * @description The amount that increases or decreases by pressing the button
-     * @type number
-     */
+    
     'step': 1,
 
-    /**
-     * @description hour selector configuration
-     * @type object
-     */
+    
     'hour': {
 
-      /**
-       * @description make hour selector enable or disable
-       * @type boolean
-       */
+      
       'enabled': true,
 
-      /**
-       * @description The amount that increases or decreases hour, by pressing the button. overwrite by timepicker.step
-       * @type boolean
-       */
+      
       'step': null
     },
 
-    /**
-     * @description minute selector configuration
-     * @type object
-     */
+    
     'minute': {
 
-      /**
-       * @description make minute selector enable or disable
-       * @type boolean
-       */
+      
       'enabled': true,
 
-      /**
-       * @description The amount that increases or decreases minute, by pressing the button. overwrite by timepicker.step
-       * @description overwrite by parent step
-       * @type boolean
-       */
+      
       'step': null
     },
 
-    /**
-     * @description second selector configuration
-     * @type object
-     */
+    
     'second': {
 
-      /**
-       * @description make second selector enable or disable
-       * @type boolean
-       */
+      
       'enabled': true,
 
-      /**
-       * @description The amount that increases or decreases second, by pressing the button. overwrite by timepicker.step
-       * @type boolean
-       */
+      
       'step': null
     },
 
-    /**
-     * @description meridian selector configuration
-     * @type object
-     */
+    
     'meridian': {
 
-      /**
-       * @description if you set this as false, datepicker timepicker system moved to 24-hour system
-       * @type boolean
-       */
+      
       'enabled': false
     }
   },
 
-  /**
-   * @description dayPicker configuration
-   * @type {object}
-   */
+  
   'dayPicker': {
 
-    /**
-     * @description make daypicker enable or disable
-     * @type boolean
-     * @default true
-     */
+    
     'enabled': true,
 
-    /**
-     * @description daypicker title format string
-     * @type string
-     * @default 'YYYY MMMM'
-     * @link http://babakhani.github.io/PersianWebToolkit/doc/persian-date/#format
-     */
+    
     'titleFormat': 'YYYY MMMM',
 
-    /**
-     * @description daypicker title formatter function
-     * @param year
-     * @param month
-     * @return {*}
-     */
+    
     'titleFormatter': function titleFormatter(year, month) {
       var titleDate = this.model.PersianDate.date([year, month]);
       return titleDate.format(this.model.options.dayPicker.titleFormat);
     },
 
-    /**
-     * @description fired when user select date
-     * @event
-     * @param selectedDayUnix
-     */
+    
     'onSelect': function onSelect(selectedDayUnix) {
       Helper.debug(this, 'dayPicker Event: onSelect : ' + selectedDayUnix);
     }
 
   },
 
-  /**
-   * @description monthPicker configuration
-   * @type {object}
-   */
+  
   'monthPicker': {
 
-    /**
-     * @description make monthPicker enable or disable
-     * @type boolean
-     * @default true
-     */
+    
     'enabled': true,
 
-    /**
-     * @description monthPicker title format string
-     * @type string
-     * @default 'YYYY'
-     */
+    
     'titleFormat': 'YYYY',
 
-    /**
-     * @description monthPicker title formatter function
-     * @param unix
-     * @return {*}
-     */
+    
     'titleFormatter': function titleFormatter(unix) {
       var titleDate = this.model.PersianDate.date(unix);
       return titleDate.format(this.model.options.monthPicker.titleFormat);
     },
 
-    /**
-     * @description fired when user select month
-     * @event
-     * @param monthIndex
-     */
+    
     'onSelect': function onSelect(monthIndex) {
       Helper.debug(this, 'monthPicker Event: onSelect : ' + monthIndex);
     }
   },
 
-  /**
-   * @description yearPicker configuration
-   * @type {object}
-   */
+  
   'yearPicker': {
 
-    /**
-     * @description make yearPicker enable or disable
-     * @type boolean
-     * @default true
-     */
+    
     'enabled': true,
 
-    /**
-     * @description yearPicker title format string
-     * @type string
-     * @default 'YYYY'
-     */
+    
     'titleFormat': 'YYYY',
 
-    /**
-     * @description yearPicker title formatter function
-     * @param year
-     * @return {string}
-     */
+    
     'titleFormatter': function titleFormatter(year) {
       var remaining = parseInt(year / 12, 10) * 12;
       var startYear = this.model.PersianDate.date([remaining]);
@@ -1177,254 +683,81 @@ var Config = {
       return startYear.format(this.model.options.yearPicker.titleFormat) + '-' + endYear.format(this.model.options.yearPicker.titleFormat);
     },
 
-    /**
-     * @description fired when user select year
-     * @event
-     * @param year
-     */
+    
     'onSelect': function onSelect(year) {
       Helper.debug(this, 'yearPicker Event: onSelect : ' + year);
     }
   },
 
-  /**
-   * @description Called when date Select by user.
-   * @event
-   * @param unixDate
-   */
+  
   'onSelect': function onSelect(unixDate) {
     Helper.debug(this, 'datepicker Event: onSelect : ' + unixDate);
   },
 
-  /**
-   * @description Called when date Select by api.
-   * @event
-   * @param unixDate
-   */
+  
   'onSet': function onSet(unixDate) {
     Helper.debug(this, 'datepicker Event: onSet : ' + unixDate);
   },
 
-  /**
-   * @description position of datepicker relative to input element
-   * @type string | array
-   * @default 'auto'
-   * @example
-   *  'position': 'auto'
-   *'position': [10,10]
-   */
+  
   'position': 'auto',
 
-  /**
-   * @description A function that takes current datepicker instance. It is called just before the datepicker is displayed.
-   * @event
-   */
+  
   'onShow': function onShow(datepickerObject) {
     Helper.debug(datepickerObject, 'Event: onShow ');
   },
 
-  /**
-   * @description A function that takes current datepicker instance. It is called just before the datepicker Hide.
-   * @event
-   */
+  
   'onHide': function onHide(datepickerObject) {
     Helper.debug(datepickerObject, 'Event: onHide ');
   },
 
-  /**
-   * @description on toggle datepicker event
-   * @event
-   */
+  
   'onToggle': function onToggle(datepickerObject) {
     Helper.debug(datepickerObject, 'Event: onToggle ');
   },
 
-  /**
-   * @description on destroy datepicker event
-   * @event
-   */
+  
   'onDestroy': function onDestroy(datepickerObject) {
     Helper.debug(datepickerObject, 'Event: onDestroy ');
   },
 
-  /**
-   * @description If true datepicker close When select a date
-   * @type {boolean}
-   * @default false
-   */
+  
   'autoClose': false,
 
-  /**
-   * @description by default datepicker have a template string, and you can overwrite it simply by replace string in config.
-   * @type string
-   * @example
-   * <div id="plotId" class="datepicker-plot-area datepicker-plot-area-inline-view">
-   {{#navigator.enabled}}
-   <div class="navigator">
-   <div class="datepicker-header">
-   <div class="btn btn-next">{{navigator.text.btnNextText}}</div>
-   <div class="btn btn-switch">{{ navigator.switch.text }}</div>
-   <div class="btn btn-prev">{{navigator.text.btnPrevText}}</div>
-   </div>
-   </div>
-   {{/navigator.enabled}}
-   <div class="datepicker-grid-view" >
-   {{#days.enabled}}
-   {{#days.viewMode}}
-   <div class="datepicker-day-view" >
-   <div class="month-grid-box">
-   <div class="header">
-   <div class="title"></div>
-   <div class="header-row">
-   <div class="header-row-cell">ش</div>
-   <div class="header-row-cell">ی</div>
-   <div class="header-row-cell">د</div>
-   <div class="header-row-cell">س</div>
-   <div class="header-row-cell">چ</div>
-   <div class="header-row-cell">پ</div>
-   <div class="header-row-cell">ج</div>
-   </div>
-   </div>
-   <table cellspacing="0" class="table-days">
-   <tbody>
-   {{#days.list}}
-    <tr>
-   {{#.}}
-    {{#enabled}}
-   <td data-unix="{{dataUnix}}" ><span  class="{{#otherMonth}}other-month{{/otherMonth}} {{#selected}}selected{{/selected}}">{{title}}</span></td>
-   {{/enabled}}
-   {{^enabled}}
-   <td data-unix="{{dataUnix}}" class="disabled"><span class="{{#otherMonth}}other-month{{/otherMonth}}">{{title}}</span></td>
-   {{/enabled}}
-    {{/.}}
-   </tr>
-   {{/days.list}}
-   </tbody>
-   </table>
-   </div>
-   </div>
-   {{/days.viewMode}}
-   {{/days.enabled}}
-    {{#month.enabled}}
-   {{#month.viewMode}}
-   <div class="datepicker-month-view">
-   {{#month.list}}
-   {{#enabled}}
-   <div data-month="{{dataMonth}}" class="month-item {{#selected}}selected{{/selected}}">{{title}}</small></div>
-   {{/enabled}}
-   {{^enabled}}
-   <div data-month="{{dataMonth}}" class="month-item month-item-disable {{#selected}}selected{{/selected}}">{{title}}</small></div>
-   {{/enabled}}
-   {{/month.list}}
-   </div>
-   {{/month.viewMode}}
-   {{/month.enabled}}
-    {{#year.enabled }}
-   {{#year.viewMode }}
-   <div class="datepicker-year-view" >
-   {{#year.list}}
-   {{#enabled}}
-   <div data-year="{{dataYear}}" class="year-item {{#selected}}selected{{/selected}}">{{title}}</div>
-   {{/enabled}}
-   {{^enabled}}
-   <div data-year="{{dataYear}}" class="year-item year-item-disable {{#selected}}selected{{/selected}}">{{title}}</div>
-   {{/enabled}}
-   {{/year.list}}
-   </div>
-   {{/year.viewMode }}
-   {{/year.enabled }}
-    </div>
-   {{#time}}
-   {{#enabled}}
-   <div class="datepicker-time-view">
-   {{#hour.enabled}}
-   <div class="hour time-segment" data-time-key="hour">
-   <div class="up-btn" data-time-key="hour">▲</div>
-   <input value="{{hour.title}}" type="text" placeholder="hour" class="hour-input">
-   <div class="down-btn" data-time-key="hour">▼</div>
-   </div>
-   <div class="divider">:</div>
-   {{/hour.enabled}}
-   {{#minute.enabled}}
-   <div class="minute time-segment" data-time-key="minute" >
-   <div class="up-btn" data-time-key="minute">▲</div>
-   <input value="{{minute.title}}" type="text" placeholder="minute" class="minute-input">
-   <div class="down-btn" data-time-key="minute">▼</div>
-   </div>
-   <div class="divider second-divider">:</div>
-   {{/minute.enabled}}
-   {{#second.enabled}}
-   <div class="second time-segment" data-time-key="second"  >
-   <div class="up-btn" data-time-key="second" >▲</div>
-   <input value="{{second.title}}"  type="text" placeholder="second" class="second-input">
-   <div class="down-btn" data-time-key="second" >▼</div>
-   </div>
-   <div class="divider meridian-divider"></div>
-   <div class="divider meridian-divider"></div>
-   {{/second.enabled}}
-   {{#meridian.enabled}}
-   <div class="meridian time-segment" data-time-key="meridian" >
-   <div class="up-btn" data-time-key="meridian">▲</div>
-   <input value="{{meridian.title}}" type="text" class="meridian-input">
-   <div class="down-btn" data-time-key="meridian">▼</div>
-   </div>
-   {{/meridian.enabled}}
-   </div>
-   {{/enabled}}
-   {{/time}}
-    {{#toolbox}}
-   {{#enabled}}
-   <div class="toolbox ">
-   <div class="btn-today">{{text.btnToday}}</div>
-   </div>
-   {{/enabled}}
-   {{/toolbox}}
-   </div>
-   */
+  
   'template': null,
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////// Under Implement ///////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+  
+  
 
-  /**
-   * @description if true datepicker update self by user inputted date string, accept 'yyyy/mm/dd'
-   * @example '1396/10/2', ''
-   * @type {boolean}
-   * @default false
-   */
+  
   'observer': false,
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////// Un  implemented ///////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+  
+  
 
 
-  /**
-   * @description waite time for last user key-down event, accept millisecond
-   * @type {number}
-   * @default 800
-   */
+  
   'inputDelay': 800
 };
 
 module.exports = Config;
 
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
+
+ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var Model = __webpack_require__(2);
 
-/**
- * @author babakhani.reza@gmail.com
- * @description jquery plugin initializer
- */
+
 (function ($) {
-    /*eslint-disable no-unused-vars */
+    
     $.fn.persianDatepicker = $.fn.pDatepicker = function (options) {
         var args = Array.prototype.slice.call(arguments),
             output = null,
@@ -1433,7 +766,7 @@ var Model = __webpack_require__(2);
             $.error('Invalid selector');
         }
         $(this).each(function () {
-            // encapsulation Args
+            
             var emptyArr = [],
                 tempArg = args.concat(emptyArr),
                 dp = $(this).data('datepicker'),
@@ -1448,12 +781,12 @@ var Model = __webpack_require__(2);
         $(this).data('datepicker', self.pDatePicker);
         return self.pDatePicker;
     };
-    /*eslint-enable no-unused-vars */
+    
 })(jQuery);
 
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
+
+ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -1464,34 +797,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var Helper = __webpack_require__(0);
 var PersianDateParser = __webpack_require__(9);
-/**
- * Do every thing about input element like get default value, set new value, set alt field input and etc.
- */
+
 
 var Input = function () {
 
-    /**
-     * @param {Model} model
-     * @param {Element}
-     * @return {Input}
-     */
+    
     function Input(model, inputElement) {
         _classCallCheck(this, Input);
 
-        /**
-         * @type {Object}
-         */
+        
         this.model = model;
 
-        /**
-         * @type {boolean}
-         * @private
-         */
+        
         this._firstUpdate = true;
 
-        /**
-         * @type {Element}
-         */
+        
         this.elem = inputElement;
 
         if (this.model.options.observer) {
@@ -1500,9 +820,7 @@ var Input = function () {
 
         this.addInitialClass();
 
-        /**
-         * @type {Number}
-         */
+        
         this.initialUnix = null;
 
         if (this.model.options.inline == false) {
@@ -1533,7 +851,7 @@ var Input = function () {
         key: 'observe',
         value: function observe() {
             var that = this;
-            /////////////////   Manipulate by Copy And paste
+            
             $(that.elem).bind('paste', function (e) {
                 Helper.delay(function () {
                     that.parseInput(e.target.value);
@@ -1572,23 +890,20 @@ var Input = function () {
                 that.parseInput($self.val());
             }
 
-            /////////////////   Manipulate by alt changes
-            // TODO
-            // self.model.options.altField.bind("change", function () {
-            //     //if (!self._flagSelfManipulate) {
-            //         let newDate = new Date($(this).val());
-            //         if (newDate !== "Invalid Date") {
-            //             let newPersainDate = this.model.PersianDate.date(newDate);
-            //             self.selectDate(newPersainDate.valueOf());
-            //         }
-            //   //  }
-            // });
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
         }
 
-        /**
-         * @private
-         * @desc attach events to input field
-         */
+        
 
     }, {
         key: '_attachInputElementEvents',
@@ -1621,11 +936,7 @@ var Input = function () {
             }, 200));
         }
 
-        /**
-         * @desc get <input/> element position
-         * @return {{top: Number, left: Number}}
-         * @todo remove jquery
-         */
+        
 
     }, {
         key: 'getInputPosition',
@@ -1633,11 +944,7 @@ var Input = function () {
             return $(this.elem).offset();
         }
 
-        /**
-         * @desc get <input/> element size
-         * @return {{width: Number, height: Number}}
-         * @todo remove jquery
-         */
+        
 
     }, {
         key: 'getInputSize',
@@ -1648,12 +955,7 @@ var Input = function () {
             };
         }
 
-        /**
-         * @desc update <input/> element value
-         * @param {Number} unix
-         * @todo remove jquery
-         * @private
-         */
+        
 
     }, {
         key: '_updateAltField',
@@ -1662,12 +964,7 @@ var Input = function () {
             $(this.model.options.altField).val(value);
         }
 
-        /**
-         * @desc update <input/> element value
-         * @param {Number} unix
-         * @todo remove jquery
-         * @private
-         */
+        
 
     }, {
         key: '_updateInputField',
@@ -1678,9 +975,7 @@ var Input = function () {
             }
         }
 
-        /**
-         * @param unix
-         */
+        
 
     }, {
         key: 'update',
@@ -1693,10 +988,7 @@ var Input = function () {
             }
         }
 
-        /**
-         * @desc return initial value
-         * @return {Number} - unix
-         */
+        
 
     }, {
         key: 'getOnInitState',
@@ -1706,7 +998,7 @@ var Input = function () {
                 $inputElem = $(this.elem),
                 inputValue = void 0;
 
-            // Define input value by check inline mode and input mode
+            
 
             if ($inputElem[0].nodeName === 'INPUT') {
                 inputValue = $inputElem[0].getAttribute('value');
@@ -1714,7 +1006,7 @@ var Input = function () {
                 inputValue = $inputElem.data('date');
             }
 
-            // Check time string by regex
+            
             if (inputValue && inputValue.match(persianDatePickerTimeRegex)) {
                 var timeArray = inputValue.split(':'),
                     tempDate = new Date();
@@ -1751,9 +1043,9 @@ var Input = function () {
 
 module.exports = Input;
 
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
+
+ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -1764,40 +1056,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var Hamster = __webpack_require__(14);
 
-/**
- * This navigator class do every thing about navigate and select date
- * @public
- */
+
 
 var Navigator = function () {
 
-    /**
-     * @param {object} datepicker
-     * @return {Navigator}
-     */
+    
     function Navigator(model) {
         _classCallCheck(this, Navigator);
 
-        /**
-         * @type {Datepicker}
-         */
+        
         this.model = model;
         this.liveAttach();
         this._attachEvents();
         return this;
     }
 
-    /**
-     * @desc attach events that needed attach after every render
-     * @public
-     * @todo attach as a live way
-     */
+    
 
 
     _createClass(Navigator, [{
         key: 'liveAttach',
         value: function liveAttach() {
-            // Check options
+            
             if (this.model.options.navigator.scroll.enabled) {
                 var that = this;
                 var gridPlot = $('#' + that.model.view.id + ' .datepicker-grid-view')[0];
@@ -1831,11 +1111,7 @@ var Navigator = function () {
             }
         }
 
-        /**
-         * @desc set time up depend to timekey
-         * @param {String} timekey - accept hour, minute,second
-         * @public
-         */
+        
 
     }, {
         key: 'timeUp',
@@ -1867,11 +1143,7 @@ var Navigator = function () {
             }, 300);
         }
 
-        /**
-         * @desc set time down depend to timekey
-         * @param {String} timekey - accept hour, minute,second
-         * @public
-         */
+        
 
     }, {
         key: 'timeDown',
@@ -1903,11 +1175,7 @@ var Navigator = function () {
             }, 300);
         }
 
-        /**
-         * @desc attach dom events
-         * @todo remove jquery
-         * @private
-         */
+        
 
     }, {
         key: '_attachEvents',
@@ -1915,9 +1183,7 @@ var Navigator = function () {
             var that = this;
 
             if (this.model.options.navigator.enabled) {
-                /**
-                 * @description navigator click event
-                 */
+                
                 $(document).on('click', '#' + that.model.view.id + ' .pwt-btn', function () {
                     if ($(this).is('.pwt-btn-next')) {
                         that.model.state.navigate('next');
@@ -1935,23 +1201,17 @@ var Navigator = function () {
                 });
             }
 
-            /**
-             * @description check if timePicker enabled attach Events
-             */
+            
             if (this.model.options.timePicker.enabled) {
 
-                /**
-                 * @description time up btn click event
-                 */
+                
                 $(document).on('click', '#' + that.model.view.id + ' .up-btn', function () {
                     var timekey = $(this).data('time-key');
                     that.timeUp(timekey);
                     that.model.options.onSelect(that.model.state.selected.unixDate);
                 });
 
-                /**
-                 * @description time down btn click event
-                 */
+                
                 $(document).on('click', '#' + that.model.view.id + ' .down-btn', function () {
                     var timekey = $(this).data('time-key');
                     that.timeDown(timekey);
@@ -1959,14 +1219,10 @@ var Navigator = function () {
                 });
             }
 
-            /**
-             * @description check if dayPicker enabled attach Events
-             */
+            
             if (this.model.options.dayPicker.enabled) {
 
-                /**
-                 * @description days click event
-                 */
+                
                 $(document).on('click', '#' + that.model.view.id + ' .datepicker-day-view td:not(.disabled)', function () {
                     var thisUnix = $(this).data('unix'),
                         mustRender = void 0;
@@ -1991,14 +1247,10 @@ var Navigator = function () {
                 });
             }
 
-            /**
-             * @description check if monthPicker enabled attach Events
-             */
+            
             if (this.model.options.monthPicker.enabled) {
 
-                /**
-                 * @description month click event
-                 */
+                
                 $(document).on('click', '#' + that.model.view.id + ' .datepicker-month-view .month-item:not(.month-item-disable)', function () {
                     var month = $(this).data('month');
                     var year = $(this).data('year');
@@ -2018,14 +1270,10 @@ var Navigator = function () {
                 });
             }
 
-            /**
-             * @description check if yearPicker enabled attach Events
-             */
+            
             if (this.model.options.yearPicker.enabled) {
 
-                /**
-                 * @description year click event
-                 */
+                
                 $(document).on('click', '#' + that.model.view.id + ' .datepicker-year-view .year-item:not(.year-item-disable)', function () {
                     var year = $(this).data('year');
                     that.model.state.switchViewModeTo('month');
@@ -2050,9 +1298,9 @@ var Navigator = function () {
 
 module.exports = Navigator;
 
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
+
+ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -2063,18 +1311,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var Config = __webpack_require__(4);
 var Template = __webpack_require__(1);
-/**
- * Extend default config from user interred and do compatibility works
- * @public
- */
+
 
 var Options = function () {
 
-    /**
-     * @param {object} options config passed when initialize
-     * @return {object}
-     * @todo remove jquery
-     */
+    
     function Options(options, model) {
         _classCallCheck(this, Options);
 
@@ -2082,10 +1323,7 @@ var Options = function () {
         return this._compatibility($.extend(true, this, Config, options));
     }
 
-    /**
-     * @private
-     * @param options
-     */
+    
 
 
     _createClass(Options, [{
@@ -2142,9 +1380,9 @@ var Options = function () {
 
 module.exports = Options;
 
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
+
+ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -2180,15 +1418,15 @@ var PersianDateParser = function () {
 
             inputString = inputString.toEnglishDigits();
             if (jalaliPat.test(inputString)) {
-                /* eslint-disable no-useless-escape */
+                
                 persianDateArray = inputString.split(/\/|-|\,|\./).map(Number);
-                /* eslint-enable no-useless-escape */
+                
                 return persianDateArray;
             } else if (isoPat.test(inputString)) {
-                /* eslint-disable no-useless-escape */
+                
                 persianDateArray = inputString.split(/\/|-|\,|\:|\T|\Z/g).map(Number);
                 return persianDateArray;
-                /* eslint-enable no-useless-escape */
+                
             } else {
                 return undefined;
             }
@@ -2200,9 +1438,9 @@ var PersianDateParser = function () {
 
 module.exports = PersianDateParser;
 
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
+
+ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -2246,9 +1484,9 @@ var PersianDateWrapper = function () {
 
 module.exports = PersianDateWrapper;
 
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
+
+ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -2257,54 +1495,30 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/**
- * All state set in his object and get from this
- * also this object notify other object to update self or update view or etc.
- */
+
 var State = function () {
 
-    /**
-     * @param {model} model
-     * @return {State}
-     */
+    
     function State(model) {
         _classCallCheck(this, State);
 
-        /**
-         * @type {object}
-         */
+        
         this.model = model;
 
-        /**
-         * @type {Boolean}
-         */
+        
         this.filetredDate = this.model.options.minDate || this.model.options.maxDate;
 
-        /**
-         * @desc get generated view mode list from options object
-         * @type {Array}
-         */
+        
         this.viewModeList = this.model.options._viewModeList;
 
-        /**
-         * @desc view mode string day, month, year
-         * @type {String}
-         * @default day
-         * @todo add time to view modes
-         */
+        
         this.viewMode = this.viewModeList.indexOf(model.options.viewMode) > 0 ? model.options.viewMode : this.viewModeList[0];
 
-        /**
-         * @desc view mode string index in view mode list
-         * @type {number}
-         */
-        this.viewModeIndex = this.viewModeList.indexOf(model.options.viewMode) > 0 ? this.viewModeList.indexOf(model.options.viewMode) : 0; // defaul 'day'
+        
+        this.viewModeIndex = this.viewModeList.indexOf(model.options.viewMode) > 0 ? this.viewModeList.indexOf(model.options.viewMode) : 0; 
 
 
-        /**
-         * @desc contain filtered date objects
-         * @type {{start: {year: number, month: number, date: number, hour: number, minute: number, second: number, unixDate: number}, end: {year: number, month: number, date: number, hour: number, minute: number, second: number, unixDate: number}}}
-         */
+        
         this.filterDate = {
             start: {
                 year: 0,
@@ -2326,10 +1540,7 @@ var State = function () {
             }
         };
 
-        /**
-         * @desc contain view date object
-         * @type {{year: number, month: number, date: number, hour: number, minute: number, second: number, unixDate: number, dateObject: null, meridian: string}}
-         */
+        
         this.view = {
             year: 0,
             month: 0,
@@ -2342,10 +1553,7 @@ var State = function () {
             meridian: 'AM'
         };
 
-        /**
-         * @desc contain selected date object
-         * @type {{year: number, month: number, date: number, hour: number, minute: number, second: number, unixDate: number, dateObject: null}}
-         */
+        
         this.selected = {
             year: 0,
             month: 0,
@@ -2367,11 +1575,7 @@ var State = function () {
         return this;
     }
 
-    /**
-     * @private
-     * @param minDate
-     * @param maxDate
-     */
+    
 
 
     _createClass(State, [{
@@ -2403,10 +1607,7 @@ var State = function () {
             self.filterDate.end.year = pdEnd.year();
         }
 
-        /**
-         * @desc change view state
-         * @param {String} nav - accept next, prev
-         */
+        
 
     }, {
         key: 'navigate',
@@ -2460,11 +1661,7 @@ var State = function () {
             }
         }
 
-        /**
-         * @public
-         * @desc every time called view state changed to next in queue
-         * @return {State}
-         */
+        
 
     }, {
         key: 'switchViewMode',
@@ -2475,10 +1672,7 @@ var State = function () {
             return this;
         }
 
-        /**
-         * @desc switch to specified view mode
-         * @param {String} viewMode - accept date, month, year
-         */
+        
 
     }, {
         key: 'switchViewModeTo',
@@ -2489,13 +1683,7 @@ var State = function () {
             }
         }
 
-        /**
-         * @desc called on date select
-         * @param {String} key - accept date, month, year, hour, minute, second
-         * @param {Number} value
-         * @public
-         * @return {State}
-         */
+        
 
     }, {
         key: 'setSelectedDateTime',
@@ -2536,10 +1724,7 @@ var State = function () {
             return this;
         }
 
-        /**
-         * @return {State}
-         * @private
-         */
+        
 
     }, {
         key: '_updateSelectedUnix',
@@ -2550,11 +1735,7 @@ var State = function () {
             return this;
         }
 
-        /**
-         *
-         * @return {State}
-         * @private
-         */
+        
 
     }, {
         key: '_setViewDateTimeUnix',
@@ -2575,12 +1756,7 @@ var State = function () {
             return this;
         }
 
-        /**
-         *
-         * @param {String} key -  accept date, month, year, hour, minute, second
-         * @param {Number} value
-         * @return {State}
-         */
+        
 
     }, {
         key: 'setViewDateTime',
@@ -2619,9 +1795,7 @@ var State = function () {
             return this;
         }
 
-        /**
-         * desc change meridian state
-         */
+        
 
     }, {
         key: 'meridianToggle',
@@ -2640,9 +1814,9 @@ var State = function () {
 
 module.exports = State;
 
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
+
+ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -2651,21 +1825,14 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/**
- * Do every things about toolbox, like attach events to toolbox elements
- */
+
 var Toolbox = function () {
 
-    /**
-     * @param {Datepicker} datepicker
-     * @return {Toolbox}
-     */
+    
     function Toolbox(model) {
         _classCallCheck(this, Toolbox);
 
-        /**
-         * @type {Datepicker}
-         */
+        
         this.model = model;
         this._attachEvents();
         return this;
@@ -2684,9 +1851,7 @@ var Toolbox = function () {
             }
         }
 
-        /**
-         * attach all events about toolbox
-         */
+        
 
     }, {
         key: '_attachEvents',
@@ -2696,10 +1861,7 @@ var Toolbox = function () {
                 that.model.state.setSelectedDateTime('unix', new Date().valueOf());
                 that.model.state.setViewDateTime('unix', new Date().valueOf());
                 that.model.view.reRender();
-                /**
-                 * @deprecated
-                 * @todo remove this
-                 */
+                
                 that.model.options.toolbox.onToday(that.model);
                 that.model.options.toolbox.todayButton.onToday(that.model);
             });
@@ -2725,9 +1887,9 @@ var Toolbox = function () {
 
 module.exports = Toolbox;
 
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
+
+ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -2744,47 +1906,27 @@ var Template = __webpack_require__(1);
 var Helper = __webpack_require__(0);
 var Mustache = __webpack_require__(15);
 
-/**
- * As its name suggests, all rendering works do in this object
- */
+
 
 var View = function () {
 
-    /**
-     *
-     * @param {Datepicker} model
-     * @return {View}
-     */
+    
     function View(model) {
         _classCallCheck(this, View);
 
-        /**
-         * @type {number}
-         */
+        
         this.yearsViewCount = 12;
 
-        /**
-         *
-         * @type {Datepicker}
-         */
+        
         this.model = model;
 
-        /**
-         *
-         * @type {null}
-         */
+        
         this.rendered = null;
 
-        /**
-         *
-         * @type {null}
-         */
+        
         this.$container = null;
 
-        /**
-         *
-         * @type {string}
-         */
+        
         this.id = 'persianDateInstance-' + parseInt(Math.random(100) * 1000);
         var that = this;
 
@@ -2799,9 +1941,7 @@ var View = function () {
         return this;
     }
 
-    /**
-     * @desc add css class to handle compatibility ui things
-     */
+    
 
 
     _createClass(View, [{
@@ -2812,9 +1952,7 @@ var View = function () {
             }
         }
 
-        /**
-         * @desc remove datepicker container element from dom
-         */
+        
 
     }, {
         key: 'destroy',
@@ -2822,9 +1960,7 @@ var View = function () {
             this.$container.remove();
         }
 
-        /**
-         * @desc set datepicker container element based on <input/> element position
-         */
+        
 
     }, {
         key: 'setPickerBoxPosition',
@@ -2849,9 +1985,7 @@ var View = function () {
             }
         }
 
-        /**
-         * @desc show datepicker container element
-         */
+        
 
     }, {
         key: 'show',
@@ -2860,9 +1994,7 @@ var View = function () {
             this.setPickerBoxPosition();
         }
 
-        /**
-         * @desc hide datepicker container element
-         */
+        
 
     }, {
         key: 'hide',
@@ -2870,9 +2002,7 @@ var View = function () {
             this.$container.addClass('pwt-hide');
         }
 
-        /**
-         * @desc toggle datepicker container element
-         */
+        
 
     }, {
         key: 'toggle',
@@ -2880,12 +2010,7 @@ var View = function () {
             this.$container.toggleClass('pwt-hide');
         }
 
-        /**
-         * @desc return navigator switch text
-         * @param {String} data -  accept day, month, year
-         * @private
-         * @return {String}
-         */
+        
 
     }, {
         key: '_getNavSwitchText',
@@ -2901,11 +2026,7 @@ var View = function () {
             return output;
         }
 
-        /**
-         * @desc check year is accessible
-         * @param {Number} year - year number
-         * @return {Boolean}
-         */
+        
 
     }, {
         key: 'checkYearAccess',
@@ -2925,11 +2046,7 @@ var View = function () {
             }
         }
 
-        /**
-         * @private
-         * @param viewState
-         * @return {{enabled: boolean, viewMode: boolean, list: Array}}
-         */
+        
 
     }, {
         key: '_getYearViewModel',
@@ -2937,22 +2054,17 @@ var View = function () {
             var _this = this;
 
             var isEnabled = this.model.options.yearPicker.enabled;
-            // Make performance better
+            
             if (!isEnabled) {
                 return {
                     enabled: false
                 };
             }
-            /**
-             * @description Generate years list based on viewState year
-             * @return ['1380',n+12,'1392']
-             */
+            
             var list = [].concat(_toConsumableArray(Array(this.yearsViewCount).keys())).map(function (value) {
                 return value + parseInt(viewState.year / _this.yearsViewCount) * _this.yearsViewCount;
             });
-            /*
-             * @description Generate years object based on list
-             */
+            
             var yearsModel = [],
                 yearStr = this.model.PersianDate.date();
             var _iteratorNormalCompletion = true;
@@ -2993,11 +2105,7 @@ var View = function () {
             };
         }
 
-        /**
-         * @desc check month is accessible
-         * @param {Number} month - month number
-         * @return {Boolean}
-         */
+        
 
     }, {
         key: 'checkMonthAccess',
@@ -3023,16 +2131,13 @@ var View = function () {
             }
         }
 
-        /**
-         * @private
-         * @return {{enabled: boolean, viewMode: boolean, list: Array}}
-         */
+        
 
     }, {
         key: '_getMonthViewModel',
         value: function _getMonthViewModel() {
             var isEnaled = this.model.options.monthPicker.enabled;
-            // Make performance better
+            
             if (!isEnaled) {
                 return {
                     enabled: false
@@ -3081,11 +2186,7 @@ var View = function () {
             };
         }
 
-        /**
-         * @desc check day is accessible
-         * @param {Number} thisUnix - month number
-         * @return {Boolean}
-         */
+        
 
     }, {
         key: 'checkDayAccess',
@@ -3119,10 +2220,7 @@ var View = function () {
             }
         }
 
-        /**
-         * @private
-         * @return {object}
-         */
+        
 
     }, {
         key: '_getDayViewModel',
@@ -3132,14 +2230,14 @@ var View = function () {
             }
 
             var isEnabled = this.model.options.dayPicker.enabled;
-            // Make performance better
+            
             if (!isEnabled) {
                 return {
                     enabled: false
                 };
             }
 
-            //log('if you see this many time your code has performance issue');
+            
             var viewMonth = this.model.state.view.month,
                 viewYear = this.model.state.view.year;
             var pdateInstance = this.model.PersianDate.date(),
@@ -3173,7 +2271,7 @@ var View = function () {
 
                             var calcedDate = void 0,
                                 otherMonth = void 0;
-                            // Set hour 12 prevent issues with DST times
+                            
                             if (rowIndex === 0 && dayIndex < firstWeekDayOfMonth) {
                                 calcedDate = this.model.state.view.dateObject.startOf('month').hour(12).subtract('days', firstWeekDayOfMonth - dayIndex);
                                 otherMonth = true;
@@ -3192,7 +2290,7 @@ var View = function () {
                                 dataDate: [calcedDate.year(), calcedDate.month(), calcedDate.date()].join(','),
                                 dataUnix: calcedDate.hour(12).valueOf(),
                                 otherMonth: otherMonth,
-                                // TODO: make configurable
+                                
                                 enabled: this.checkDayAccess(calcedDate.valueOf())
                             });
                         }
@@ -3257,17 +2355,14 @@ var View = function () {
             });
         }
 
-        /**
-         * @private
-         * @return {{enabled: boolean, hour: {title, enabled: boolean}, minute: {title, enabled: boolean}, second: {title, enabled: boolean}, meridian: {title: (meridian|{title, enabled}|ClassDatepicker.ClassConfig.timePicker.meridian|{enabled}|string|string), enabled: boolean}}}
-         */
+        
 
     }, {
         key: '_getTimeViewModel',
         value: function _getTimeViewModel() {
 
             var isEnabled = this.model.options.timePicker.enabled;
-            // Make performance better
+            
             if (!isEnabled) {
                 return {
                     enabled: false
@@ -3302,11 +2397,7 @@ var View = function () {
             };
         }
 
-        /**
-         *
-         * @return {{enabled: boolean, list: (*|Array)}}
-         * @private
-         */
+        
 
     }, {
         key: '_getWeekViewModel',
@@ -3317,10 +2408,7 @@ var View = function () {
             };
         }
 
-        /**
-         *
-         * @return {string}
-         */
+        
 
     }, {
         key: 'getCssClass',
@@ -3328,10 +2416,7 @@ var View = function () {
             return [this.model.state.ui.isInline ? 'datepicker-plot-area-inline-view' : '', !this.model.options.timePicker.meridian.enabled ? 'datepicker-state-no-meridian' : '', this.model.options.onlyTimePicker ? 'datepicker-state-only-time' : '', !this.model.options.timePicker.second.enabled ? 'datepicker-state-no-second' : '', this.model.options.calendar_ == 'gregorian' ? 'datepicker-gregorian' : 'datepicker-persian'].join(' ');
         }
 
-        /**
-         * @param data
-         * @return {*}
-         */
+        
 
     }, {
         key: 'getViewModel',
@@ -3391,9 +2476,7 @@ var View = function () {
             return [cal, loc];
         }
 
-        /**
-         * @desc render times area, prevent performance issue with scroll and time section
-         */
+        
 
     }, {
         key: 'renderTimePartial',
@@ -3405,10 +2488,7 @@ var View = function () {
             this.$container.find('[data-time-key="meridian"] input').val(timeViewModel.meridian.title);
         }
 
-        /**
-         * @render datepicker view element
-         * @param data
-         */
+        
 
     }, {
         key: 'render',
@@ -3431,9 +2511,7 @@ var View = function () {
             this.render(data);
         }
 
-        /**
-         * @desc do after render work like attache events
-         */
+        
 
     }, {
         key: 'afterRender',
@@ -3449,76 +2527,56 @@ var View = function () {
 
 module.exports = View;
 
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
 
-/*
- * Hamster.js v1.1.2
- * (c) 2013 Monospaced http://monospaced.com
- * License: MIT
- */
+ (function(module, exports, __webpack_require__) {
+
+
 
 (function(window, document){
 'use strict';
 
-/**
- * Hamster
- * use this to create instances
- * @returns {Hamster.Instance}
- * @constructor
- */
+
 var Hamster = function(element) {
   return new Hamster.Instance(element);
 };
 
-// default event name
+
 Hamster.SUPPORT = 'wheel';
 
-// default DOM methods
+
 Hamster.ADD_EVENT = 'addEventListener';
 Hamster.REMOVE_EVENT = 'removeEventListener';
 Hamster.PREFIX = '';
 
-// until browser inconsistencies have been fixed...
+
 Hamster.READY = false;
 
 Hamster.Instance = function(element){
   if (!Hamster.READY) {
-    // fix browser inconsistencies
+    
     Hamster.normalise.browser();
 
-    // Hamster is ready...!
+    
     Hamster.READY = true;
   }
 
   this.element = element;
 
-  // store attached event handlers
+  
   this.handlers = [];
 
-  // return instance
+  
   return this;
 };
 
-/**
- * create new hamster instance
- * all methods should return the instance itself, so it is chainable.
- * @param   {HTMLElement}       element
- * @returns {Hamster.Instance}
- * @constructor
- */
+
 Hamster.Instance.prototype = {
-  /**
-   * bind events to the instance
-   * @param   {Function}    handler
-   * @param   {Boolean}     useCapture
-   * @returns {Hamster.Instance}
-   */
+  
   wheel: function onEvent(handler, useCapture){
     Hamster.event.add(this, Hamster.SUPPORT, handler, useCapture);
 
-    // handle MozMousePixelScroll in older Firefox
+    
     if (Hamster.SUPPORT === 'DOMMouseScroll') {
       Hamster.event.add(this, 'MozMousePixelScroll', handler, useCapture);
     }
@@ -3526,22 +2584,17 @@ Hamster.Instance.prototype = {
     return this;
   },
 
-  /**
-   * unbind events to the instance
-   * @param   {Function}    handler
-   * @param   {Boolean}     useCapture
-   * @returns {Hamster.Instance}
-   */
+  
   unwheel: function offEvent(handler, useCapture){
-    // if no handler argument,
-    // unbind the last bound handler (if exists)
+    
+    
     if (handler === undefined && (handler = this.handlers.slice(-1)[0])) {
       handler = handler.original;
     }
 
     Hamster.event.remove(this, Hamster.SUPPORT, handler, useCapture);
 
-    // handle MozMousePixelScroll in older Firefox
+    
     if (Hamster.SUPPORT === 'DOMMouseScroll') {
       Hamster.event.remove(this, 'MozMousePixelScroll', handler, useCapture);
     }
@@ -3551,53 +2604,41 @@ Hamster.Instance.prototype = {
 };
 
 Hamster.event = {
-  /**
-   * cross-browser 'addWheelListener'
-   * @param   {Instance}    hamster
-   * @param   {String}      eventName
-   * @param   {Function}    handler
-   * @param   {Boolean}     useCapture
-   */
+  
   add: function add(hamster, eventName, handler, useCapture){
-    // store the original handler
+    
     var originalHandler = handler;
 
-    // redefine the handler
+    
     handler = function(originalEvent){
 
       if (!originalEvent) {
         originalEvent = window.event;
       }
 
-      // create a normalised event object,
-      // and normalise "deltas" of the mouse wheel
+      
+      
       var event = Hamster.normalise.event(originalEvent),
           delta = Hamster.normalise.delta(originalEvent);
 
-      // fire the original handler with normalised arguments
+      
       return originalHandler(event, delta[0], delta[1], delta[2]);
 
     };
 
-    // cross-browser addEventListener
+    
     hamster.element[Hamster.ADD_EVENT](Hamster.PREFIX + eventName, handler, useCapture || false);
 
-    // store original and normalised handlers on the instance
+    
     hamster.handlers.push({
       original: originalHandler,
       normalised: handler
     });
   },
 
-  /**
-   * removeWheelListener
-   * @param   {Instance}    hamster
-   * @param   {String}      eventName
-   * @param   {Function}    handler
-   * @param   {Boolean}     useCapture
-   */
+  
   remove: function remove(hamster, eventName, handler, useCapture){
-    // find the normalised handler on the instance
+    
     var originalHandler = handler,
         lookup = {},
         handlers;
@@ -3607,10 +2648,10 @@ Hamster.event = {
     handlers = lookup[originalHandler];
     handler = handlers.normalised;
 
-    // cross-browser removeEventListener
+    
     hamster.element[Hamster.REMOVE_EVENT](Hamster.PREFIX + eventName, handler, useCapture || false);
 
-    // remove original and normalised handlers from the instance
+    
     for (var h in hamster.handlers) {
       if (hamster.handlers[h] == handlers) {
         hamster.handlers.splice(h, 1);
@@ -3620,29 +2661,23 @@ Hamster.event = {
   }
 };
 
-/**
- * these hold the lowest deltas,
- * used to normalise the delta values
- * @type {Number}
- */
+
 var lowestDelta,
     lowestDeltaXY;
 
 Hamster.normalise = {
-  /**
-   * fix browser inconsistencies
-   */
+  
   browser: function normaliseBrowser(){
-    // detect deprecated wheel events
+    
     if (!('onwheel' in document || document.documentMode >= 9)) {
       Hamster.SUPPORT = document.onmousewheel !== undefined ?
-                        'mousewheel' : // webkit and IE < 9 support at least "mousewheel"
-                        'DOMMouseScroll'; // assume remaining browsers are older Firefox
+                        'mousewheel' : 
+                        'DOMMouseScroll'; 
     }
 
-    // detect deprecated event model
+    
     if (!window.addEventListener) {
-      // assume IE < 9
+      
       Hamster.ADD_EVENT = 'attachEvent';
       Hamster.REMOVE_EVENT = 'detachEvent';
       Hamster.PREFIX = 'on';
@@ -3650,14 +2685,10 @@ Hamster.normalise = {
 
   },
 
-  /**
-   * create a normalised event object
-   * @param   {Function}    originalEvent
-   * @returns {Object}      event
-   */
+  
    event: function normaliseEvent(originalEvent){
     var event = {
-          // keep a reference to the original event object
+          
           originalEvent: originalEvent,
           target: originalEvent.target || originalEvent.srcElement,
           type: 'wheel',
@@ -3680,18 +2711,18 @@ Hamster.normalise = {
           }
         };
 
-    // calculate deltaY (and deltaX) according to the event
+    
 
-    // 'mousewheel'
+    
     if (originalEvent.wheelDelta) {
       event.deltaY = - 1/40 * originalEvent.wheelDelta;
     }
-    // webkit
+    
     if (originalEvent.wheelDeltaX) {
       event.deltaX = - 1/40 * originalEvent.wheelDeltaX;
     }
 
-    // 'DomMouseScroll'
+    
     if (originalEvent.detail) {
       event.deltaY = originalEvent.detail;
     }
@@ -3699,11 +2730,7 @@ Hamster.normalise = {
     return event;
   },
 
-  /**
-   * normalise 'deltas' of the mouse wheel
-   * @param   {Function}    originalEvent
-   * @returns {Array}       deltas
-   */
+  
   delta: function normaliseDelta(originalEvent){
     var delta = 0,
       deltaX = 0,
@@ -3712,9 +2739,9 @@ Hamster.normalise = {
       absDeltaXY = 0,
       fn;
 
-    // normalise deltas according to the event
+    
 
-    // 'wheel' event
+    
     if (originalEvent.deltaY) {
       deltaY = originalEvent.deltaY * -1;
       delta  = deltaY;
@@ -3724,11 +2751,11 @@ Hamster.normalise = {
       delta  = deltaX * -1;
     }
 
-    // 'mousewheel' event
+    
     if (originalEvent.wheelDelta) {
       delta = originalEvent.wheelDelta;
     }
-    // webkit
+    
     if (originalEvent.wheelDeltaY) {
       deltaY = originalEvent.wheelDeltaY;
     }
@@ -3736,17 +2763,17 @@ Hamster.normalise = {
       deltaX = originalEvent.wheelDeltaX * -1;
     }
 
-    // 'DomMouseScroll' event
+    
     if (originalEvent.detail) {
       delta = originalEvent.detail * -1;
     }
 
-    // Don't return NaN
+    
     if (delta === 0) {
       return [0, 0, 0];
     }
 
-    // look for lowest delta to normalize the delta values
+    
     absDelta = Math.abs(delta);
     if (!lowestDelta || absDelta < lowestDelta) {
       lowestDelta = absDelta;
@@ -3756,7 +2783,7 @@ Hamster.normalise = {
       lowestDeltaXY = absDeltaXY;
     }
 
-    // convert deltas to whole numbers
+    
     fn = delta > 0 ? 'floor' : 'ceil';
     delta  = Math[fn](delta / lowestDelta);
     deltaX = Math[fn](deltaX / lowestDeltaXY);
@@ -3767,43 +2794,40 @@ Hamster.normalise = {
 };
 
 if (typeof window.define === 'function' && window.define.amd) {
-  // AMD
+  
   window.define('hamster', [], function(){
     return Hamster;
   });
 } else if (true) {
-  // CommonJS
+  
   module.exports = Hamster;
 } else {
-  // Browser global
+  
   window.Hamster = Hamster;
 }
 
 })(window, window.document);
 
 
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
+ }),
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * mustache.js - Logic-less {{mustache}} templates with JavaScript
- * http://github.com/janl/mustache.js
- */
+ (function(module, exports, __webpack_require__) {
 
-/*global define: false Mustache: true*/
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+
 
 (function defineMustache (global, factory) {
   if (typeof exports === 'object' && exports && typeof exports.nodeName !== 'string') {
-    factory(exports); // CommonJS
+    factory(exports); 
   } else if (true) {
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)); // AMD
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)); 
   } else {
     global.Mustache = {};
-    factory(global.Mustache); // script, wsh, asp
+    factory(global.Mustache); 
   }
 }(this, function mustacheFactory (mustache) {
 
@@ -3816,10 +2840,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return typeof object === 'function';
   }
 
-  /**
-   * More correct typeof string handling array
-   * which normally returns typeof 'object'
-   */
+  
   function typeStr (obj) {
     return isArray(obj) ? 'array' : typeof obj;
   }
@@ -3828,18 +2849,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return string.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&');
   }
 
-  /**
-   * Null safe way of checking whether or not an object,
-   * including its prototype, has a given property
-   */
+  
   function hasProperty (obj, propName) {
     return obj != null && typeof obj === 'object' && (propName in obj);
   }
 
-  /**
-   * Safe way of detecting whether or not the given thing is a primitive and
-   * whether it has the given property
-   */
+  
   function primitiveHasOwnProperty (primitive, propName) {  
     return (
       primitive != null
@@ -3849,8 +2864,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     );
   }
 
-  // Workaround for https://issues.apache.org/jira/browse/COUCHDB-577
-  // See https://github.com/janl/mustache.js/issues/189
+  
+  
   var regExpTest = RegExp.prototype.test;
   function testRegExp (re, string) {
     return regExpTest.call(re, string);
@@ -3884,40 +2899,19 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   var curlyRe = /\s*\}/;
   var tagRe = /#|\^|\/|>|\{|&|=|!/;
 
-  /**
-   * Breaks up the given `template` string into a tree of tokens. If the `tags`
-   * argument is given here it must be an array with two string values: the
-   * opening and closing tags used in the template (e.g. [ "<%", "%>" ]). Of
-   * course, the default is to use mustaches (i.e. mustache.tags).
-   *
-   * A token is an array with at least 4 elements. The first element is the
-   * mustache symbol that was used inside the tag, e.g. "#" or "&". If the tag
-   * did not contain a symbol (i.e. {{myValue}}) this element is "name". For
-   * all text that appears outside a symbol this element is "text".
-   *
-   * The second element of a token is its "value". For mustache tags this is
-   * whatever else was inside the tag besides the opening symbol. For text tokens
-   * this is the text itself.
-   *
-   * The third and fourth elements of the token are the start and end indices,
-   * respectively, of the token in the original template.
-   *
-   * Tokens that are the root node of a subtree contain two more elements: 1) an
-   * array of tokens in the subtree and 2) the index in the original template at
-   * which the closing tag for that section begins.
-   */
+  
   function parseTemplate (template, tags) {
     if (!template)
       return [];
 
-    var sections = [];     // Stack to hold section tokens
-    var tokens = [];       // Buffer to hold the tokens
-    var spaces = [];       // Indices of whitespace tokens on the current line
-    var hasTag = false;    // Is there a {{tag}} on the current line?
-    var nonSpace = false;  // Is there a non-space char on the current line?
+    var sections = [];     
+    var tokens = [];       
+    var spaces = [];       
+    var hasTag = false;    
+    var nonSpace = false;  
 
-    // Strips all whitespace tokens array for the current line
-    // if there was a {{#tag}} on it and otherwise only space.
+    
+    
     function stripSpace () {
       if (hasTag && !nonSpace) {
         while (spaces.length)
@@ -3951,7 +2945,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     while (!scanner.eos()) {
       start = scanner.pos;
 
-      // Match any text between tags.
+      
       value = scanner.scanUntil(openingTagRe);
 
       if (value) {
@@ -3967,23 +2961,23 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
           tokens.push([ 'text', chr, start, start + 1 ]);
           start += 1;
 
-          // Check for whitespace on the current line.
+          
           if (chr === '\n')
             stripSpace();
         }
       }
 
-      // Match the opening tag.
+      
       if (!scanner.scan(openingTagRe))
         break;
 
       hasTag = true;
 
-      // Get the tag type.
+      
       type = scanner.scan(tagRe) || 'name';
       scanner.scan(whiteRe);
 
-      // Get the tag value.
+      
       if (type === '=') {
         value = scanner.scanUntil(equalsRe);
         scanner.scan(equalsRe);
@@ -3997,7 +2991,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         value = scanner.scanUntil(closingTagRe);
       }
 
-      // Match the closing tag.
+      
       if (!scanner.scan(closingTagRe))
         throw new Error('Unclosed tag at ' + scanner.pos);
 
@@ -4007,7 +3001,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       if (type === '#' || type === '^') {
         sections.push(token);
       } else if (type === '/') {
-        // Check section nesting.
+        
         openSection = sections.pop();
 
         if (!openSection)
@@ -4018,12 +3012,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       } else if (type === 'name' || type === '{' || type === '&') {
         nonSpace = true;
       } else if (type === '=') {
-        // Set the tags for the next time around.
+        
         compileTags(value);
       }
     }
 
-    // Make sure there are no open sections when we're done.
+    
     openSection = sections.pop();
 
     if (openSection)
@@ -4032,10 +3026,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return nestTokens(squashTokens(tokens));
   }
 
-  /**
-   * Combines the values of consecutive text tokens in the given `tokens` array
-   * to a single token.
-   */
+  
   function squashTokens (tokens) {
     var squashedTokens = [];
 
@@ -4057,12 +3048,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return squashedTokens;
   }
 
-  /**
-   * Forms the given array of `tokens` into a nested tree structure where
-   * tokens that represent a section have two additional items: 1) an array of
-   * all tokens that appear in that section and 2) the index in the original
-   * template that represents the end of that section.
-   */
+  
   function nestTokens (tokens) {
     var nestedTokens = [];
     var collector = nestedTokens;
@@ -4092,27 +3078,19 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return nestedTokens;
   }
 
-  /**
-   * A simple string scanner that is used by the template parser to find
-   * tokens in template strings.
-   */
+  
   function Scanner (string) {
     this.string = string;
     this.tail = string;
     this.pos = 0;
   }
 
-  /**
-   * Returns `true` if the tail is empty (end of string).
-   */
+  
   Scanner.prototype.eos = function eos () {
     return this.tail === '';
   };
 
-  /**
-   * Tries to match the given regular expression at the current position.
-   * Returns the matched text if it can match, the empty string otherwise.
-   */
+  
   Scanner.prototype.scan = function scan (re) {
     var match = this.tail.match(re);
 
@@ -4127,10 +3105,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return string;
   };
 
-  /**
-   * Skips all text until the given regular expression can be matched. Returns
-   * the skipped string, which is the entire tail if no match can be made.
-   */
+  
   Scanner.prototype.scanUntil = function scanUntil (re) {
     var index = this.tail.search(re), match;
 
@@ -4152,28 +3127,19 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return match;
   };
 
-  /**
-   * Represents a rendering context by wrapping a view object and
-   * maintaining a reference to the parent context.
-   */
+  
   function Context (view, parentContext) {
     this.view = view;
     this.cache = { '.': this.view };
     this.parent = parentContext;
   }
 
-  /**
-   * Creates a new context using the given view with this context
-   * as the parent.
-   */
+  
   Context.prototype.push = function push (view) {
     return new Context(view, this);
   };
 
-  /**
-   * Returns the value of the given name in this context, traversing
-   * up the context hierarchy if the value is absent in this context's view.
-   */
+  
   Context.prototype.lookup = function lookup (name) {
     var cache = this.cache;
 
@@ -4189,23 +3155,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
           names = name.split('.');
           index = 0;
 
-          /**
-           * Using the dot notion path in `name`, we descend through the
-           * nested objects.
-           *
-           * To be certain that the lookup has been successful, we have to
-           * check if the last object in the path actually has the property
-           * we are looking for. We store the result in `lookupHit`.
-           *
-           * This is specially necessary for when the value has been set to
-           * `undefined` and we want to avoid looking up parent contexts.
-           *
-           * In the case where dot notation is used, we consider the lookup
-           * to be successful even if the last "object" in the path is
-           * not actually an object but a primitive (e.g., a string, or an
-           * integer), because it is sometimes useful to access a property
-           * of an autoboxed primitive, such as the length of a string.
-           **/
+          
           while (intermediateValue != null && index < names.length) {
             if (index === names.length - 1)
               lookupHit = (
@@ -4218,25 +3168,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         } else {
           intermediateValue = context.view[name];
 
-          /**
-           * Only checking against `hasProperty`, which always returns `false` if
-           * `context.view` is not an object. Deliberately omitting the check
-           * against `primitiveHasOwnProperty` if dot notation is not used.
-           *
-           * Consider this example:
-           * ```
-           * Mustache.render("The length of a football field is {{#length}}{{length}}{{/length}}.", {length: "100 yards"})
-           * ```
-           *
-           * If we were to check also against `primitiveHasOwnProperty`, as we do
-           * in the dot notation case, then render call would return:
-           *
-           * "The length of a football field is 9."
-           *
-           * rather than the expected:
-           *
-           * "The length of a football field is 100 yards."
-           **/
+          
           lookupHit = hasProperty(context.view, name);
         }
 
@@ -4257,27 +3189,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return value;
   };
 
-  /**
-   * A Writer knows how to take a stream of tokens and render them to a
-   * string, given a context. It also maintains a cache of templates to
-   * avoid the need to parse the same template twice.
-   */
+  
   function Writer () {
     this.cache = {};
   }
 
-  /**
-   * Clears all cached templates in this writer.
-   */
+  
   Writer.prototype.clearCache = function clearCache () {
     this.cache = {};
   };
 
-  /**
-   * Parses and caches the given `template` according to the given `tags` or
-   * `mustache.tags` if `tags` is omitted,  and returns the array of tokens
-   * that is generated from the parse.
-   */
+  
   Writer.prototype.parse = function parse (template, tags) {
     var cache = this.cache;
     var cacheKey = template + ':' + (tags || mustache.tags).join(':');
@@ -4289,34 +3211,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return tokens;
   };
 
-  /**
-   * High-level method that is used to render the given `template` with
-   * the given `view`.
-   *
-   * The optional `partials` argument may be an object that contains the
-   * names and templates of partials that are used in the template. It may
-   * also be a function that is used to load partial templates on the fly
-   * that takes a single argument: the name of the partial.
-   *
-   * If the optional `tags` argument is given here it must be an array with two
-   * string values: the opening and closing tags used in the template (e.g.
-   * [ "<%", "%>" ]). The default is to mustache.tags.
-   */
+  
   Writer.prototype.render = function render (template, view, partials, tags) {
     var tokens = this.parse(template, tags);
     var context = (view instanceof Context) ? view : new Context(view);
     return this.renderTokens(tokens, context, partials, template, tags);
   };
 
-  /**
-   * Low-level method that renders the given array of `tokens` using
-   * the given `context` and `partials`.
-   *
-   * Note: The `originalTemplate` is only ever used to extract the portion
-   * of the original template that was contained in a higher-order section.
-   * If the template doesn't use higher-order sections, this argument may
-   * be omitted.
-   */
+  
   Writer.prototype.renderTokens = function renderTokens (tokens, context, partials, originalTemplate, tags) {
     var buffer = '';
 
@@ -4345,8 +3247,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     var buffer = '';
     var value = context.lookup(token[1]);
 
-    // This function is used to render an arbitrary template
-    // in the current context by higher-order sections.
+    
+    
     function subRender (template) {
       return self.render(template, context, partials);
     }
@@ -4363,7 +3265,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       if (typeof originalTemplate !== 'string')
         throw new Error('Cannot use higher-order sections without the original template');
 
-      // Extract the portion of the original template that the section contains.
+      
       value = value.call(context.view, originalTemplate.slice(token[3], token[5]), subRender);
 
       if (value != null)
@@ -4377,8 +3279,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   Writer.prototype.renderInverted = function renderInverted (token, context, partials, originalTemplate) {
     var value = context.lookup(token[1]);
 
-    // Use JavaScript's definition of falsy. Include empty arrays.
-    // See https://github.com/janl/mustache.js/issues/186
+    
+    
     if (!value || (isArray(value) && value.length === 0))
       return this.renderTokens(token[4], context, partials, originalTemplate);
   };
@@ -4411,31 +3313,20 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   mustache.version = '3.0.1';
   mustache.tags = [ '{{', '}}' ];
 
-  // All high-level mustache.* functions use this writer.
+  
   var defaultWriter = new Writer();
 
-  /**
-   * Clears all cached templates in the default writer.
-   */
+  
   mustache.clearCache = function clearCache () {
     return defaultWriter.clearCache();
   };
 
-  /**
-   * Parses and caches the given template in the default writer and returns the
-   * array of tokens it contains. Doing this ahead of time avoids the need to
-   * parse templates on the fly as they are rendered.
-   */
+  
   mustache.parse = function parse (template, tags) {
     return defaultWriter.parse(template, tags);
   };
 
-  /**
-   * Renders the `template` with the given `view` and `partials` using the
-   * default writer. If the optional `tags` argument is given here it must be an
-   * array with two string values: the opening and closing tags used in the
-   * template (e.g. [ "<%", "%>" ]). The default is to mustache.tags.
-   */
+  
   mustache.render = function render (template, view, partials, tags) {
     if (typeof template !== 'string') {
       throw new TypeError('Invalid template! Template should be a "string" ' +
@@ -4446,10 +3337,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return defaultWriter.render(template, view, partials, tags);
   };
 
-  // This is here for backwards compatibility with 0.4.x.,
-  /*eslint-disable */ // eslint wants camel cased function name
+  
+   
   mustache.to_html = function to_html (template, view, partials, send) {
-    /*eslint-enable*/
+    
 
     var result = mustache.render(template, view, partials);
 
@@ -4460,11 +3351,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }
   };
 
-  // Export the escaping function so that the user may override it.
-  // See https://github.com/janl/mustache.js/issues/244
+  
+  
   mustache.escape = escapeHtml;
 
-  // Export these mainly for testing, but also for advanced usage.
+  
   mustache.Scanner = Scanner;
   mustache.Context = Context;
   mustache.Writer = Writer;
@@ -4473,6 +3364,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 }));
 
 
-/***/ })
-/******/ ]);
+ })
+ ]);
 });

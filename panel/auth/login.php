@@ -1,16 +1,13 @@
-<?php
-/**
- * Redirect to Main Login Page
- * هدایت به صفحه لاگین اصلی
- */
+﻿<?php
 
-// اگر کاربر قبلا لاگین کرده، به پنل مناسب هدایت شود
+
+
 session_start();
 if (isset($_SESSION['user_id'])) {
-    // دریافت نقش کاربر
+    
     $role = $_SESSION['role'] ?? $_SESSION['user_type'] ?? null;
     
-    // هدایت به پنل مناسب
+    
     switch ($role) {
         case 'customer':
         case 'client':
@@ -32,8 +29,9 @@ if (isset($_SESSION['user_id'])) {
     exit;
 }
 
-// هدایت به صفحه لاگین اصلی
+
 header('Location: /login.php');
 exit;
 
 ?>
+

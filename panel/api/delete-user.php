@@ -1,7 +1,5 @@
-<?php
-/**
- * API Endpoint for deleting users
- */
+﻿<?php
+
 
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../config/db.php';
@@ -23,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // جلوگیری از حذف خود کاربر
+    
     if ($userId == getCurrentUserId()) {
         $response['message'] = 'شما نمی‌توانید حساب کاربری خود را حذف کنید.';
         echo json_encode($response, JSON_UNESCAPED_UNICODE);
@@ -50,4 +48,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 echo json_encode($response, JSON_UNESCAPED_UNICODE);
 ?>
+
 

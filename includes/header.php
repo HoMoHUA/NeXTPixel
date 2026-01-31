@@ -1,8 +1,5 @@
-<?php
-/**
- * Global Header Include - Refined Version
- * Sticky header with liquid glass effect, logo, mobile menu
- */
+﻿<?php
+
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -12,13 +9,11 @@ $username = $_SESSION['username'] ?? '';
 $displayName = $_SESSION['display_name'] ?? '';
 $isN8NAdmin = $isLoggedIn;
 
-// Determine current page for active link highlighting
+
 $currentPage = basename($_SERVER['PHP_SELF']);
 ?>
 <style>
-    /* =========================================================
-       Global Header Styles
-       ========================================================= */
+    
     header {
         position: fixed;
         top: 0;
@@ -90,7 +85,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         }
     }
 
-    /* Desktop Navigation */
+    
     .header-nav {
         display: none;
     }
@@ -136,7 +131,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         }
     }
 
-    /* Header Buttons */
+    
     .header-actions {
         display: flex;
         align-items: center;
@@ -202,7 +197,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         transform: translateY(-2px);
     }
 
-    /* Mobile Menu Button */
+    
     .menu-toggle {
         display: flex;
         align-items: center;
@@ -227,7 +222,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         }
     }
 
-    /* Mobile Menu */
+    
     .mobile-menu {
         display: none;
         position: fixed;
@@ -308,14 +303,14 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         padding: 0.75rem 1rem;
     }
 
-    /* Responsive */
+    
     @media (min-width: 768px) {
         .mobile-menu {
             display: none !important;
         }
     }
 
-    /* Liquid Glass Header Effect */
+    
     .liquid-header-bg {
         position: absolute;
         inset: 0;
@@ -327,13 +322,13 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 <header class="header-main" id="main-header">
     <div class="header-container">
-        <!-- Logo -->
+        
         <a href="/" class="header-logo">
             <img src="/assets/img/NeXTPixel.png" alt="NextPixel" />
             <span class="header-logo-text">NextPixel</span>
         </a>
 
-        <!-- Desktop Navigation -->
+        
         <nav class="header-nav" id="desktop-nav">
             <a href="/" class="<?php echo $currentPage === 'index.php' ? 'active' : ''; ?>">صفحه اصلی</a>
             <a href="/services.php" class="<?php echo $currentPage === 'services.php' ? 'active' : ''; ?>">خدمات</a>
@@ -342,7 +337,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <a href="/about.php" class="<?php echo $currentPage === 'about.php' ? 'active' : ''; ?>">درباره ما</a>
         </nav>
 
-        <!-- Actions & Mobile Menu Button -->
+        
         <div class="header-actions">
             <?php if ($isLoggedIn): ?>
                 <?php if ($isN8NAdmin): ?>
@@ -370,10 +365,10 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     </div>
 </header>
 
-<!-- Mobile Menu -->
+
 <nav class="mobile-menu" id="mobile-menu">
     <div class="mobile-menu-content">
-        <!-- Navigation Links -->
+        
         <div class="mobile-menu-section">
             <div class="mobile-menu-section-title">منوی نکست</div>
             <div class="mobile-menu-links">
@@ -385,7 +380,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             </div>
         </div>
 
-        <!-- Auth Section -->
+        
         <?php if (!$isLoggedIn): ?>
         <div class="mobile-menu-section">
             <div class="mobile-menu-buttons">
@@ -399,7 +394,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 </nav>
 
 <script>
-    // Header sticky behavior
+    
     const header = document.getElementById('main-header');
     let lastScrollY = 0;
 
@@ -415,7 +410,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         lastScrollY = scrollY;
     }, { passive: true });
 
-    // Mobile menu toggle
+    
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -425,7 +420,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
         });
 
-        // Close menu when clicking on a link
+        
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
@@ -433,7 +428,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             });
         });
 
-        // Close menu when clicking outside
+        
         document.addEventListener('click', (e) => {
             if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
                 mobileMenu.classList.remove('active');
@@ -442,7 +437,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         });
     }
 
-    // Active link highlighting
+    
     function updateActiveLink() {
         const currentFile = window.location.pathname.split('/').pop() || 'index.php';
         document.querySelectorAll('#desktop-nav a, #mobile-menu a').forEach(link => {
@@ -459,7 +454,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 </script>
 
 <script>
-    // Scroll-based header styling
+    
     const header = document.querySelector('.ios-glass-header');
     if (header) {
         window.addEventListener('scroll', () => {
@@ -471,7 +466,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         });
     }
 
-    // Liquid Glass Header Effect
+    
     class LiquidGlassHeader {
         constructor(targetSelector) {
             this.target = document.querySelector(targetSelector);
@@ -594,6 +589,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         }
     }
 
-    // Initialize Liquid Glass Header
+    
     new LiquidGlassHeader('.ios-glass-header');
 </script>
+

@@ -1,7 +1,5 @@
-<?php
-/**
- * داشبورد مالی - پنل مدیریت NextPixel
- */
+﻿<?php
+
 
 $pageTitle = 'داشبورد مالی - NextPixel';
 $currentPage = 'financial';
@@ -129,7 +127,7 @@ $currentUser = getCurrentUser();
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize income chart
+    
     if (typeof ApexCharts !== 'undefined' && document.getElementById('income-chart')) {
         var incomeOptions = {
             series: [{
@@ -149,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
         new ApexCharts(document.querySelector("#income-chart"), incomeOptions).render();
     }
 
-    // Initialize expense chart
+    
     if (typeof ApexCharts !== 'undefined' && document.getElementById('expense-chart')) {
         var expenseOptions = {
             series: [{
@@ -172,4 +170,5 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
+
 

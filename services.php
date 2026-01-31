@@ -1,12 +1,12 @@
-<?php
-// شروع سشن در ابتدای فایل
+﻿<?php
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 $isLoggedIn = isset($_SESSION['user_id']);
 $username = $_SESSION['username'] ?? '';
 $displayName = $_SESSION['display_name'] ?? '';
-$isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگین شده
+$isN8NAdmin = $isLoggedIn; 
  $currentPage = basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
@@ -21,11 +21,11 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" defer></script>
-    <!-- Added Three.js for Vanta dependency -->
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
     <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
     <script src="/assets/js/site-header.js" defer></script>
-    <!-- Vanta.js (globe) is not used on this page, so I removed it to speed up loading -->
+    
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
@@ -36,9 +36,9 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             line-height: 1.8;
             min-height: 100vh;
         }
-        /* Liquid Glass Effect */
+        
         .glass-effect {
-            background: rgba(15, 23, 42, 0.85); /* Increased opacity */
+            background: rgba(15, 23, 42, 0.85); 
             -webkit-backdrop-filter: url(#liquid-glass-filter);
             backdrop-filter: url(#liquid-glass-filter);
             border: 1px solid rgba(255, 255, 255, 0.125);
@@ -106,7 +106,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
-        /* Tab Styles */
+        
         .tab-btn {
             background-color: rgba(30, 41, 59, 0.5);
             transition: all 0.3s ease;
@@ -140,7 +140,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         .custom-checkbox:checked { background: linear-gradient(45deg, #3b82f6, #8b5cf6); }
         .custom-checkbox:checked::after { content: '\2713'; font-size: 14px; color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
         
-        /* Chat Bubble */
+        
         .chat-bubble {
             max-width: 80%;
             padding: 0.75rem 1rem;
@@ -154,12 +154,12 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             margin-right: auto;
         }
         .chat-bubble-assistant {
-            background-color: #1e293b; /* slate-800 */
-            color: #cbd5e1; /* slate-300 */
+            background-color: #1e293b; 
+            color: #cbd5e1; 
             border-bottom-left-radius: 0.25rem;
             margin-left: auto;
         }
-        /* Loader animation */
+        
         .loader-dots span {
             animation: blink 1.4s infinite both;
             display: inline-block;
@@ -171,7 +171,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             20% { opacity: 1; }
             100% { opacity: 0.2; }
         }
-        /* Hot Animation Effects */
+        
         @keyframes pulse-glow {
             0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.3); }
             50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(139, 92, 246, 0.5); }
@@ -204,7 +204,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         .icon-glow {
             animation: glow-pulse 2s ease-in-out infinite;
         }
-        /* iOS-Style Liquid Glass Header */
+        
         nav.ios-glass-header {
             position: sticky;
             top: 16px;
@@ -220,21 +220,21 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: visible;
         }
-        /* Shiny outer border only */
+        
  
         nav.ios-glass-header > * {
             position: relative;
             z-index: 2;
         }
-        /* Hero Section Styles - Matching Image Design */
+        
         .hero-gradient {
             background: linear-gradient(180deg, 
-                #0a0e27 0%, 
-                #0f172a 20%, 
-                #1a1f3a 40%, 
-                #1e293b 60%, 
-                #0f172a 80%, 
-                #000000 100%);
+
+
+
+
+
+
             position: relative;
             overflow: hidden;
             min-height: 90vh;
@@ -284,12 +284,12 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         .hero-title .gradient-text {
             background: linear-gradient(
                 135deg,
-                #3b82f6 0%,
-                #6366f1 20%,
-                #8b5cf6 40%,
-                #ec4899 60%,
-                #8b5cf6 80%,
-                #3b82f6 100%
+
+
+
+
+
+
             );
             background-size: 300% 300%;
             -webkit-background-clip: text;
@@ -341,7 +341,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             border-color: rgba(139, 92, 246, 0.4);
             transform: translateY(-2px);
         }
-        /* Service Intro Layouts */
+        
         .service-intro-grid {
             display: grid;
             gap: 2rem;
@@ -389,7 +389,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             background-clip: text;
             color: transparent;
         }
-        /* Special Service Section Styles */
+        
         .service-hero-section {
             position: relative;
             overflow: hidden;
@@ -473,7 +473,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
     </style>
 </head>
 <body class="overflow-x-hidden">
-    <!-- SVG Filter for Liquid Glass Effect -->
+    
     <svg style="position: absolute; width: 0; height: 0;">
       <defs>
         <filter id="liquid-glass-filter" color-interpolation-filters="sRGB">
@@ -489,7 +489,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
     ?>
 
     <style>
-        /* Header Styles */
+        
         header {
             position: fixed;
             top: 0;
@@ -796,7 +796,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         }
     </style>
 
-    <!-- Header -->
+    
     <header class="header-main" id="main-header">
         <div class="header-container">
             <a href="/" class="header-logo">
@@ -839,7 +839,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </div>
     </header>
 
-    <!-- Mobile Menu -->
+    
     <nav class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-content">
             <div class="mobile-menu-section">
@@ -866,7 +866,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
     </nav>
 
     <main style="padding-top: 70px;">
-    <!-- Hero Section -->
+    
     <section class="hero-gradient flex items-center justify-center relative overflow-hidden py-20 px-4">
         <div class="container mx-auto z-20 relative">
             <div class="text-center max-w-5xl mx-auto pt-20 pb-20" data-aos="fade-up">
@@ -889,7 +889,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </div>
     </section>
     
-    <!-- Tabs -->
+    
     <section class="py-10">
         <div class="container mx-auto px-4">
             <div class="glass-effect p-2 rounded-full flex justify-center items-center gap-2 max-w-4xl mx-auto flex-wrap" data-aos="fade-up">
@@ -902,9 +902,9 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </div>
     </section>
 
-    <!-- WordPress Content -->
+    
     <div id="wordpress-content" class="tab-content active">
-        <!-- WordPress Service Introduction -->
+        
         <section class="service-hero-section py-24 bg-gradient-to-b from-slate-900/40 via-blue-900/10 to-slate-900/40">
             <div class="container mx-auto px-4 relative z-10">
                 <div class="text-center mb-16" data-aos="fade-up">
@@ -979,7 +979,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             </div>
         </section>
 
-        <!-- Section 1: Pre-built Plans -->
+        
         <section class="pt-10 pb-20">
             <div class="container mx-auto px-4">
                  <div class="text-center mb-16" data-aos="fade-up">
@@ -987,7 +987,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                     <p class="text-gray-400 max-w-2xl mx-auto">راهکارهای بهینه و سریع برای حضور آنلاین شما با قدرتمندترین سیستم مدیریت محتوا.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Plan 1: Normal -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col magnetic-hover float-animation" data-aos="fade-up" data-aos-delay="100">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">Pixel One (نرمال)</h3>
@@ -1009,7 +1009,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto bg-gray-700 text-white py-3 rounded-lg font-medium hover:bg-gray-600 transition">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 2: Pro -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col magnetic-hover float-animation float-animation-delay-1" data-aos="fade-up" data-aos-delay="200">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">Pixel Grow (پرو)</h3>
@@ -1032,7 +1032,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 3: Pro Max (Popular) -->
+                    
                     <div class="plan-card popular-plan p-6 rounded-2xl flex flex-col magnetic-hover float-animation float-animation-delay-2" data-aos="fade-up" data-aos-delay="300">
                          <div class="relative text-center mb-6">
                             <div class="absolute -top-10 right-1/2 transform translate-x-1/2">
@@ -1060,7 +1060,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto cta-button text-white py-3 rounded-lg font-medium">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 4: Ultra Max -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="400">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">Infinity Pixel (الترا مکس)</h3>
@@ -1086,7 +1086,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             </div>
         </section>
         
-        <!-- WordPress Custom Plan Calculator -->
+        
         <section class="py-20 bg-gradient-to-b from-slate-900/50 to-slate-900/20" id="custom-plan-wordpress">
              <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
@@ -1097,7 +1097,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-8">
                         <div class="space-y-8" id="wordpress-calculator-inputs">
                             <h3 class="text-2xl font-bold gradient-text">تنظیمات پلن</h3>
-                            <!-- JS will inject WP calculator inputs here -->
+                            
                         </div>
                         <div class="flex flex-col justify-center">
                             <div class="text-center mb-8 glass-effect p-8 rounded-2xl sticky top-28">
@@ -1118,9 +1118,9 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </section>
     </div>
 
-    <!-- Custom Coding Content -->
+    
     <div id="custom-content" class="tab-content">
-        <!-- Custom Coding Service Introduction -->
+        
         <section class="service-hero-section py-24 relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-slate-900/50 to-blue-900/30"></div>
             <div class="container mx-auto px-4 relative z-10">
@@ -1195,7 +1195,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                     <p class="text-gray-400 max-w-2xl mx-auto">راهکارهای قدرتمند و مقیاس‌پذیر با کدنویسی سفارشی برای نیازهای منحصر به فرد شما.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Plan 1: Backend Basic -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="100">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">پایه بک‌اند</h3>
@@ -1214,7 +1214,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto bg-gray-700 text-white py-3 rounded-lg font-medium hover:bg-gray-600 transition">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 2: Backend Advanced -->
+                    
                     <div class="plan-card popular-plan p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="200">
                         <div class="relative text-center mb-6">
                             <div class="absolute -top-10 right-1/2 transform translate-x-1/2">
@@ -1238,7 +1238,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto cta-button text-white py-3 rounded-lg font-medium">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 3: Full-Stack Comprehensive -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="300">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">جامع فول‌استک</h3>
@@ -1256,7 +1256,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 4: Enterprise Custom -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="400">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">راهکار سازمانی</h3>
@@ -1307,9 +1307,9 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </section>
     </div>
 
-    <!-- n8n Automation Content -->
+    
     <div id="n8n-content" class="tab-content">
-        <!-- n8n Service Introduction -->
+        
         <section class="service-hero-section py-24 bg-gradient-to-b from-green-900/20 via-slate-900/50 to-blue-900/20">
             <div class="container mx-auto px-4 relative z-10">
                 <div class="max-w-5xl mx-auto">
@@ -1403,7 +1403,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                     <p class="text-gray-400 max-w-2xl mx-auto">اتوماسیون هوشمند فرآیندهای کسب و کار شما با قدرتمندترین پلتفرم workflow</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Plan 1: Basic Automation -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="100">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">اتوماسیون پایه</h3>
@@ -1421,7 +1421,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto bg-gray-700 text-white py-3 rounded-lg font-medium hover:bg-gray-600 transition">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 2: Advanced Automation -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="200">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">اتوماسیون پیشرفته</h3>
@@ -1440,7 +1440,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 3: Pro Automation (Popular) -->
+                    
                     <div class="plan-card popular-plan p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="300">
                         <div class="relative text-center mb-6">
                             <div class="absolute -top-10 right-1/2 transform translate-x-1/2">
@@ -1465,7 +1465,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto cta-button text-white py-3 rounded-lg font-medium">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 4: Enterprise Custom -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="400">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">اتوماسیون سازمانی</h3>
@@ -1487,7 +1487,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             </div>
         </section>
 
-        <!-- n8n Use Cases Section -->
+        
         <section class="py-20 bg-gradient-to-b from-slate-900/50 to-slate-900/20">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
@@ -1521,9 +1521,9 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </section>
     </div>
 
-    <!-- SEO Content -->
+    
     <div id="seo-content" class="tab-content">
-        <!-- SEO Service Introduction -->
+        
         <section class="service-hero-section py-24 relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-br from-orange-900/20 via-yellow-900/10 to-slate-900/50"></div>
             <div class="container mx-auto px-4 relative z-10">
@@ -1605,7 +1605,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                     <p class="text-gray-400 max-w-2xl mx-auto">بهینه‌سازی سایت شما برای موتورهای جستجو و افزایش ترافیک ارگانیک با استراتژی‌های سئوی حرفه‌ای</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Plan 1: Basic SEO -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="100">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">سئوی پایه</h3>
@@ -1625,7 +1625,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto bg-gray-700 text-white py-3 rounded-lg font-medium hover:bg-gray-600 transition">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 2: Advanced SEO -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="200">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">سئوی پیشرفته</h3>
@@ -1645,7 +1645,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 3: Pro SEO (Popular) -->
+                    
                     <div class="plan-card popular-plan p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="300">
                         <div class="relative text-center mb-6">
                             <div class="absolute -top-10 right-1/2 transform translate-x-1/2">
@@ -1670,7 +1670,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto cta-button text-white py-3 rounded-lg font-medium">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 4: Enterprise SEO -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="400">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">سئوی سازمانی</h3>
@@ -1692,7 +1692,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             </div>
         </section>
 
-        <!-- SEO Benefits Section -->
+        
         <section class="py-20 bg-gradient-to-b from-slate-900/50 to-slate-900/20">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
@@ -1726,9 +1726,9 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </section>
     </div>
 
-    <!-- Chatbot AI Content -->
+    
     <div id="chatbot-content" class="tab-content">
-        <!-- Chatbot Service Introduction -->
+        
         <section class="service-hero-section py-24 bg-gradient-to-b from-indigo-900/20 via-purple-900/20 to-slate-900/40">
             <div class="container mx-auto px-4 relative z-10">
                 <div class="text-center mb-20" data-aos="fade-up">
@@ -1853,7 +1853,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                     <p class="text-gray-400 max-w-2xl mx-auto">ارائه خدمات 24/7 به مشتریان خود با هوش مصنوعی پیشرفته و پاسخگویی خودکار</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Plan 1: Basic Chatbot -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="100">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">چت بات پایه</h3>
@@ -1873,7 +1873,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto bg-gray-700 text-white py-3 rounded-lg font-medium hover:bg-gray-600 transition">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 2: Advanced Chatbot -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="200">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">چت بات پیشرفته</h3>
@@ -1894,7 +1894,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 3: Pro Chatbot (Popular) -->
+                    
                     <div class="plan-card popular-plan p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="300">
                         <div class="relative text-center mb-6">
                             <div class="absolute -top-10 right-1/2 transform translate-x-1/2">
@@ -1920,7 +1920,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                         <button class="w-full mt-auto cta-button text-white py-3 rounded-lg font-medium">انتخاب پلن</button>
                     </div>
 
-                    <!-- Plan 4: Enterprise Chatbot -->
+                    
                     <div class="plan-card p-6 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="400">
                         <div class="text-center mb-6">
                             <h3 class="text-xl font-bold mb-2">چت بات سازمانی</h3>
@@ -1942,7 +1942,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             </div>
         </section>
 
-        <!-- Chatbot Benefits Section -->
+        
         <section class="py-20 bg-gradient-to-b from-slate-900/50 to-slate-900/20">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
@@ -2007,24 +2007,24 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         </div>
     </footer>
 
-    <!-- Chatbot Container -->
+    
     <div id="chatbot-container">
-        <!-- Floating Button -->
+        
         <div class="fixed bottom-6 left-6 z-[999]">
             <button id="chat-toggle-btn"
                 class="cta-button text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-transform animate-pulse"
                 aria-label="Toggle Chatbot">
-                <!-- ChatIcon SVG -->
+                
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
                     <path fill-rule="evenodd" d="M4.848 2.771A49.144 49.144 0 0 1 12 2.25c2.43 0 4.817.178 7.152.52 1.978.292 3.348 2.024 3.348 3.97v6.02c0 1.946-1.37 3.678-3.348 3.97a48.901 48.901 0 0 1-3.476.383.39.39 0 0 0-.297.15l-2.755 4.133a.75.75 0 0 1-1.248 0l-2.755-4.133a.39.39 0 0 0-.297-.15 48.9 48.9 0 0 1-3.476-.384c-1.978-.29-3.348-2.024-3.348-3.97V6.74c0-1.946 1.37-3.68 3.348-3.97Z" clip-rule="evenodd" />
                 </svg>
             </button>
         </div>
         
-        <!-- Chat Window -->
+        
         <div id="chat-window" class="fixed bottom-24 left-4 right-4 md:left-6 md:right-auto z-[1000] w-auto max-w-sm h-[70vh] max-h-[500px] transition-all duration-300 ease-in-out opacity-0 translate-y-4 pointer-events-none">
             <div class="glass-effect w-full h-full rounded-2xl flex flex-col shadow-2xl">
-                <!-- Header -->
+                
                 <header class="p-4 border-b border-slate-700 flex justify-between items-center">
                     <h3 class="text-lg font-bold text-center gradient-text">دستیار هوشمند NextPixel</h3>
                     <button id="chat-close-btn" class="text-slate-400 hover:text-white">
@@ -2032,12 +2032,12 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                     </button>
                 </header>
 
-                <!-- Chat Body -->
+                
                 <div id="chat-box" class="flex-1 p-4 space-y-4 overflow-y-auto">
-                    <!-- Messages will be injected here by JS -->
+                    
                 </div>
 
-                <!-- Footer / Input -->
+                
                 <footer class="p-4 border-t border-slate-700">
                     <form id="chat-form" class="flex items-center gap-2">
                         <input 
@@ -2047,7 +2047,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                             class="flex-1 bg-slate-800/80 border border-slate-700 rounded-full px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                         <button type="submit" id="chat-submit-btn" class="cta-button text-white w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 disabled:opacity-50">
-                            <!-- SendIcon SVG -->
+                            
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
                                 <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
                             </svg>
@@ -2057,13 +2057,13 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             </div>
         </div>
     </div>
-    <!-- End Chatbot Container -->
+    
 
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Mobile Menu & Tabs ---
-            // Mobile menu toggle - support both legacy `menu-btn` and current `menu-toggle`
+            
+            
             const menuBtn = document.getElementById('menu-btn') || document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             let menuIcon = null;
@@ -2091,7 +2091,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             });
             AOS.init({ duration: 800, easing: 'ease-out-quart', once: true });
             
-            // === iOS Glass Header Scroll Effect ===
+            
             const header = document.querySelector('.ios-glass-header');
             if (header) {
                 let lastScroll = 0;
@@ -2106,7 +2106,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                 });
             }
             
-            // --- Calculator Factory ---
+            
             const createCalculator = (containerId, config, priceElementId) => {
                 const container = document.getElementById(containerId);
                 const priceElement = document.getElementById(priceElementId);
@@ -2207,9 +2207,9 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                 return () => { update(); return state; };
             };
             
-            // --- WordPress Calculator ---
+            
             const wpConfig = {
-                basePrice: 8700000, // Updated base price for Normal plan
+                basePrice: 8700000, 
                 options: [
                     { id: 'wp_site_type', key: 'siteType', label: '۱. نوع وبسایت', type: 'buttons', choices: [{value: 'service', text: 'خدماتی'}, {value: 'store', text: 'فروشگاهی'}, {value: 'landing', text: 'لندینگ'}] },
                     { id: 'wp_design_level', key: 'design', label: '۲. سطح طراحی', type: 'buttons', choices: [{value: 'template', text: 'قالب آماده'}, {value: 're-design', text: 'بازطراحی قالب'}, {value: 'scratch', text: 'طراحی اختصاصی'}] },
@@ -2233,7 +2233,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             };
             const getWpChoices = createCalculator('wordpress-calculator-inputs', wpConfig, 'wp-final-price');
 
-            // --- Custom Coding Calculator ---
+            
             const codingConfig = {
                 basePrice: 15000000,
                 options: [
@@ -2247,7 +2247,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             const getCustomChoices = createCalculator('coding-calculator-inputs', codingConfig, 'coding-final-price');
 
 
-            // --- Smart Proposal Generator (Gemini API) ---
+            
             const modal = document.getElementById('proposal-modal');
             const closeModalBtn = document.getElementById('close-modal-btn');
             const loader = document.getElementById('loader');
@@ -2315,7 +2315,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             generateProposal('generate-custom-proposal-btn', getCustomChoices, customSystemPrompt);
             
             
-            // --- Chatbot Logic ---
+            
             const chatToggleBtn = document.getElementById('chat-toggle-btn');
             const chatCloseBtn = document.getElementById('chat-close-btn');
             const chatWindow = document.getElementById('chat-window');
@@ -2329,7 +2329,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
 
             const OPENAI_API_KEY = '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';
 
-            // ############### SYSTEM PROMPT (NEW) ###############
+            
             const SYSTEM_PROMPT = `شما "Unix"، دستیار هوشمند و راهنمای ارشد NextPixelIran هستید.
 
 1.  **شخصیت و لحن:**
@@ -2367,7 +2367,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
 * پایان خلاصه: [END_LEAD_SUMMARY]
 * **دقیقاً** از این فرمت استفاده کن. این یک دستورالعمل سیستمی برای ذخیره‌سازی اطلاعات است و کاربر نباید متوجه این بخش شود. این خلاصه را *بعد* از آخرین پیام خداحافظی خود به کاربر، ارسال کن.
 `;
-            // ############### END SYSTEM PROMPT ###############
+            
 
 
             messages.push({ role: 'system', content: SYSTEM_PROMPT });
@@ -2486,7 +2486,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             });
         });
 
-        // Header Scroll Detection with smooth animation
+        
         let headerScrollTimeout;
         window.addEventListener('scroll', () => {
             const header = document.getElementById('main-header');
@@ -2501,10 +2501,10 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             }
         }, { passive: true });
 
-        // Mobile Menu Toggle
-        // ...existing code...
+        
+        
 
-        // Active link highlighting
+        
         const currentPage = window.location.pathname.split('/').pop() || 'index.php';
         const navLinks = document.querySelectorAll('.header-nav a, .mobile-menu-links a');
         navLinks.forEach(link => {
@@ -2515,3 +2515,4 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
                 link.classList.add('active');
             }
         });
+

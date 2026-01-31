@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -68,7 +68,7 @@ if (isset($_POST['logout'])) {
     </script>
 
     <style>
-        /* Vazirmatn Font Face (CDN - Secure HTTPS) */
+        
         @font-face {
             font-family: 'Vazirmatn';
             src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Regular.woff2') format('woff2');
@@ -150,30 +150,28 @@ if (isset($_POST['logout'])) {
         @media (min-width: 1280px) { .container { max-width: 1280px; } }
         @media (min-width: 1536px) { .container { max-width: 1536px; } }
 
-        /* =========================================================
-           HoMox MODIFIED Header: "Double Reverse" Liquid Effect
-           ========================================================= */
+        
         nav.ios-glass-header {
             position: sticky;
             top: 16px;
             z-index: 1000;
             background: rgba(15, 23, 42, 0.6);
-            /* Initial backdrop-filter, will be overridden by JS for liquid effect */
+            
             backdrop-filter: blur(35px) saturate(280%); 
             -webkit-backdrop-filter: blur(35px) saturate(280%);
             border: 2px solid rgba(55, 55, 55, 0.4);
             
-            /* Double Reverse Highlight: Top and Bottom Inset Shadows */
+            
             box-shadow: 
-                /* Outer soft shadow */
+                
                 0 10px 40px -10px rgba(0,0,0,0.5),
-                /* Top Highlight Inner (Reverse Top) */
+                
                 inset 0 1px 0 0 rgba(255,255,255,0.2),
-                /* Bottom Highlight Inner (Reverse Bottom) */
+                
                 inset 0 -1px 0 0 rgba(255,255,255,0.2),
-                /* Deep Glass Glow */
+                
                 inset 0 0 20px rgba(255,255,255,0.05),
-                /* Subtle Rim */
+                
                 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
 
             transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
@@ -182,17 +180,17 @@ if (isset($_POST['logout'])) {
         nav.ios-glass-header.scrolled {
             top: 0;
             background: rgba(15, 23, 42, 0.75);
-            /* Double Reverse Highlight Maintained in Scrolled State */
+            
             box-shadow: 
-                /* Outer soft shadow */
+                
                 0 10px 40px -10px rgba(0,0,0,0.5),
-                /* Top Highlight Inner */
+                
                 inset 0 1px 0 0 rgba(255,255,255,0.2),
-                /* Bottom Highlight Inner */
+                
                 inset 0 -1px 0 0 rgba(255,255,255,0.2),
-                /* Deep Glass Glow */
+                
                 inset 0 0 20px rgba(255,255,255,0.05),
-                /* Subtle Rim */
+                
                 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
         }
         
@@ -245,7 +243,7 @@ if (isset($_POST['logout'])) {
             20% { opacity: 1; }
             100% { opacity: 0.2; }
         }
-#video-preloader {
+
     position: fixed;
     inset: 0;
     z-index: 99999;
@@ -270,7 +268,6 @@ if (isset($_POST['logout'])) {
     transition: opacity 0.3s ease;
 }
 
-#progress-bar-fill {
     width: 0%; 
     height: 100%;
     background: linear-gradient(90deg, #3b82f6, #8b5cf6); 
@@ -278,8 +275,7 @@ if (isset($_POST['logout'])) {
     transition: width 0.3s ease-out;
 }
 
-#preloader-video-mobile,
-#preloader-video-desktop {
+
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -421,7 +417,6 @@ if (isset($_POST['logout'])) {
     }
 }
 
-#hero-3d-container {
     perspective: 1000px;
     transform-style: preserve-3d;
 }
@@ -577,15 +572,13 @@ if (isset($_POST['logout'])) {
 }
 
 @media (min-width: 768px) {
-    #hero-3d-container {
+
         cursor: none;
     }
 }
         
         
-    /* =========================================================
-       Header Styles
-       ========================================================= */
+    
     header {
         position: fixed;
         top: 0;
@@ -808,15 +801,15 @@ if (isset($_POST['logout'])) {
             bottom: 0;
             width: 100%;
             height: calc(100vh - 70px);
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.98));
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(30, 41, 59, 0.78));
+            backdrop-filter: blur(13px);
+            -webkit-backdrop-filter: blur(13px);
             z-index: 990;
             overflow-y: auto;
             overflow-x: hidden;
     }
 
-    /* Open state controlled via JS by adding .open */
+    
     .mobile-menu.open {
         display: flex;
         flex-direction: column;
@@ -1027,7 +1020,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
-                    <!-- Service 1: WordPress -->
+                    
                     <article class="glass-effect p-6 lg:p-8 rounded-2xl service-card-3d magnetic-hover group relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
                         <div class="absolute top-0 right-0 w-20 h-20 bg-blue-500/10 rounded-full blur-2xl transform group-hover:scale-150 transition-transform duration-500"></div>
                         <div class="relative z-10">
@@ -1039,7 +1032,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                         </div>
                     </article>
                     
-                    <!-- Service 2: Custom Development -->
+                    
                     <article class="glass-effect p-6 lg:p-8 rounded-2xl service-card-3d magnetic-hover group relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
                         <div class="absolute top-0 right-0 w-20 h-20 bg-purple-500/10 rounded-full blur-2xl transform group-hover:scale-150 transition-transform duration-500"></div>
                         <div class="relative z-10">
@@ -1051,7 +1044,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                         </div>
                     </article>
                     
-                    <!-- Service 3: n8n Automation -->
+                    
                     <article class="glass-effect p-6 lg:p-8 rounded-2xl service-card-3d magnetic-hover group relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
                         <div class="absolute top-0 right-0 w-20 h-20 bg-green-500/10 rounded-full blur-2xl transform group-hover:scale-150 transition-transform duration-500"></div>
                         <div class="relative z-10">
@@ -1063,7 +1056,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                         </div>
                     </article>
                     
-                    <!-- Service 4: SEO & UI/UX -->
+                    
                     <article class="glass-effect p-6 lg:p-8 rounded-2xl service-card-3d magnetic-hover group relative overflow-hidden" data-aos="fade-up" data-aos-delay="400">
                         <div class="absolute top-0 right-0 w-20 h-20 bg-pink-500/10 rounded-full blur-2xl transform group-hover:scale-150 transition-transform duration-500"></div>
                         <div class="relative z-10">
@@ -1075,7 +1068,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                         </div>
                     </article>
 
-                    <!-- Service 5: AI Chatbot -->
+                    
                     <article class="glass-effect p-6 lg:p-8 rounded-2xl service-card-3d magnetic-hover group relative overflow-hidden" data-aos="fade-up" data-aos-delay="500">
                         <div class="absolute top-0 right-0 w-20 h-20 bg-indigo-500/10 rounded-full blur-2xl transform group-hover:scale-150 transition-transform duration-500"></div>
                         <div class="relative z-10">
@@ -1217,7 +1210,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         </div>
     </footer>
 
-    <!-- Chatbot Container -->
+    
     <div id="chatbot-container">
         <div class="fixed bottom-6 left-6 z-[999]">
             <button id="chat-toggle-btn"
@@ -1257,12 +1250,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             </div>
         </div>
     </div>
-    <!-- End Chatbot Container -->
+    
 
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize AOS
+            
             AOS.init({
                 duration: 900,
                 easing: 'ease-out-quart',
@@ -1271,10 +1264,10 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 anchorPlacement: 'top-center'
             });
 
-            // Initialize Feather Icons
+            
             feather.replace();
 
-            // Mobile Menu Toggle
+            
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             if (menuToggle && mobileMenu) {
@@ -1296,23 +1289,23 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     toggleMobileMenu();
                 });
 
-                // Close when clicking a link inside mobile menu
+                
                 mobileMenu.querySelectorAll('a').forEach(a => {
                     a.addEventListener('click', () => toggleMobileMenu(false));
                 });
 
-                // Close with Escape key
+                
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape') toggleMobileMenu(false);
                 });
 
-                // Close when clicking backdrop (outside content)
+                
                 mobileMenu.addEventListener('click', (e) => {
                     if (e.target === mobileMenu) toggleMobileMenu(false);
                 });
             }
 
-            // Header Scroll Detection
+            
             const header = document.getElementById('main-header');
             if (header) {
                 window.addEventListener('scroll', () => {
@@ -1328,7 +1321,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 }, { passive: true });
             }
 
-            // Active link highlighting
+            
             const currentPage = window.location.pathname.split('/').pop() || 'index.php';
             const navLinks = document.querySelectorAll('.header-nav a, .mobile-menu-links a');
             navLinks.forEach(link => {
@@ -1340,7 +1333,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 }
             });
 
-            // === 3D Hero Parallax Effect ===
+            
             const hero3DContainer = document.getElementById('hero-3d-container');
             if (hero3DContainer && window.innerWidth > 768) {
                 hero3DContainer.addEventListener('mousemove', (e) => {
@@ -1380,9 +1373,9 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 });
             }
 
-            // ==========================================
-            // REFACTORED LIQUID GLASS HEADER EFFECT
-            // ==========================================
+            
+            
+            
             class LiquidGlassHeader {
                 constructor(targetSelector) {
                     this.target = document.querySelector(targetSelector);
@@ -1402,7 +1395,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     this.setupSVG();
                     this.setupCanvas();
                     
-                    // Apply Liquid Filter via Backdrop Filter
+                    
                     this.target.style.backdropFilter = `url(#${this.id}_filter) blur(3px) saturate(180%)`;
                     this.target.style.webkitBackdropFilter = `url(#${this.id}_filter) blur(20px) saturate(180%)`;
 
@@ -1432,7 +1425,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     this.feDisplacementMap = document.createElementNS('http://www.w3.org/2000/svg', 'feDisplacementMap');
                     this.feDisplacementMap.setAttribute('in', 'SourceGraphic');
                     this.feDisplacementMap.setAttribute('in2', 'map');
-                    this.feDisplacementMap.setAttribute('scale', '40'); // Intensity
+                    this.feDisplacementMap.setAttribute('scale', '40'); 
                     this.feDisplacementMap.setAttribute('xChannelSelector', 'R');
                     this.feDisplacementMap.setAttribute('yChannelSelector', 'G');
 
@@ -1512,7 +1505,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 }
             }
 
-            // Init Liquid Header
+            
             new LiquidGlassHeader('.ios-glass-header');
 
             const chatToggleBtn = document.getElementById('chat-toggle-btn');
@@ -1566,7 +1559,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 * پایان خلاصه: [END_LEAD_SUMMARY]
 * **دقیقاً** از این فرمت استفاده کن. این یک دستورالعمل سیستمی برای ذخیره‌سازی اطلاعات است و کاربر نباید متوجه این بخش شود. این خلاصه را *بعد* از آخرین پیام خداحافظی خود به کاربر، ارسال کن.
 `;
-            // ############### END SYSTEM PROMPT ###############
+            
 
 
             messages.push({ role: 'system', content: SYSTEM_PROMPT });
@@ -1613,12 +1606,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 chatSubmitBtn.disabled = true;
                 addMessage('assistant', '...'); 
 
-                // Google Gemini API Endpoint
+                
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
                 
-                // Convert History to Gemini Format (contents)
+                
                 const geminiContents = history
-                    .filter(msg => msg.role !== 'system') // Filter out system prompt, sent separately
+                    .filter(msg => msg.role !== 'system') 
                     .map(msg => ({
                         role: msg.role === 'assistant' ? 'model' : 'user',
                         parts: [{ text: msg.content }]
@@ -1645,18 +1638,18 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
                     const data = await response.json();
                     
-                    // Parse Gemini Response
+                    
                     const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
                     
-                    chatBox.removeChild(chatBox.lastChild); // Remove loader
+                    chatBox.removeChild(chatBox.lastChild); 
 
-                    // Check if the response contains the lead summary
+                    
                     if (aiResponse.includes('[START_LEAD_SUMMARY]')) {
                         const summaryStartIndex = aiResponse.indexOf('[START_LEAD_SUMMARY]');
                         const summary = aiResponse.substring(summaryStartIndex);
                         await saveLeadToFile(summary);
                         
-                        // Don't show the summary part to the user
+                        
                         const userMessage = aiResponse.substring(0, summaryStartIndex).trim();
                         if (userMessage) {
                             addMessage('assistant', userMessage);
@@ -1689,8 +1682,8 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 chatWindow.classList.toggle('translate-y-4', isOpen);
                 chatWindow.classList.toggle('pointer-events-none', isOpen);
 
-                // Load initial message on first open - LOCAL WELCOME MESSAGE
-                if (!isOpen && messages.length === 1) { // Only system prompt exists
+                
+                if (!isOpen && messages.length === 1) { 
                      const welcomeMsg = "سلام! من یونیکس هستم، دستیار هوشمند NextPixel. چطور می‌تونم کمکتون کنم؟";
                      addMessage('assistant', welcomeMsg);
                      messages.push({ role: 'assistant', content: welcomeMsg });
@@ -1715,7 +1708,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         
         
         
-// --- Video Preloader Logic ---
+
 const preloader = document.getElementById('video-preloader');
 const progressBarFill = document.getElementById('progress-bar-fill');
 const progressBarContainer = document.querySelector('.progress-bar-container');
@@ -1754,11 +1747,11 @@ const hidePreloader = () => {
     }
 };
 
-// ۳. شروع دانلود ویدیو با XHR برای ردیابی پیشرفت
+
 videoRequest.open('GET', videoSrc, true);
 videoRequest.responseType = 'blob';
 
-// ۴. ردیابی پیشرفت دانلود
+
 videoRequest.addEventListener('progress', (e) => {
     if (e.lengthComputable) {
         const percentComplete = (e.loaded / e.total) * 100;
@@ -1768,11 +1761,11 @@ videoRequest.addEventListener('progress', (e) => {
     }
 });
 
-// ۵. زمانی که ویدیو کامل دانلود شد
+
 videoRequest.addEventListener('load', () => {
-    if (preloaderSkipped) return; // اگر تایم‌اوت قبلا اجرا شده، کاری نکن
+    if (preloaderSkipped) return; 
     
-    clearTimeout(safetyTimeout); // تایم‌اوت را لغو کن
+    clearTimeout(safetyTimeout); 
     
     if ((videoRequest.status === 200 || videoRequest.status === 206) && videoToPlay) {
         const blob = videoRequest.response;
@@ -1780,51 +1773,51 @@ videoRequest.addEventListener('load', () => {
         
         videoToPlay.src = videoURL;
         
-        // مخفی کردن نوار پیشرفت
+        
         if (progressBarContainer) {
             progressBarContainer.style.opacity = '0';
         }
         
-        // نمایش ویدیو
+        
         videoToPlay.style.display = 'block';
         
-        // **اصلاح کلیدی: مدیریت خطای پخش**
+        
         const playPromise = videoToPlay.play();
 
         if (playPromise !== undefined) {
             playPromise.then(() => {
-                // پخش با موفقیت شروع شد
-                // ۶. مخفی کردن پری‌لودر پس از اتمام پخش ویدیو
+                
+                
                 videoToPlay.addEventListener('ended', hidePreloader);
                 videoToPlay.addEventListener('error', (e) => {
                     console.error('Error during video playback:', e);
-                    hidePreloader(); // اگر پخش خطا داد
+                    hidePreloader(); 
                 });
             }).catch(error => {
-                // پخش خودکار توسط مرورگر مسدود شد
+                
                 console.warn("Video autoplay was blocked, skipping video.", error);
                 hidePreloader();
             });
         }
     } else {
-        // اگر فایل ویدیو پیدا نشد (404)
+        
         hidePreloader();
     }
 });
 
-// ۷. اگر دانلود ویدیو به هر دلیلی خطا داد
+
 videoRequest.addEventListener('error', () => {
     console.error('XHR error loading video.');
     clearTimeout(safetyTimeout);
     hidePreloader();
 });
 
-// ۸. شروع عملیات دانلود
+
 videoRequest.send();
 
-// === Enhanced Interactive Animations ===
 
-// Parallax Scroll Effect
+
+
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const parallaxElements = document.querySelectorAll('.parallax-element');
@@ -1834,7 +1827,7 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Magnetic Hover Effect for Buttons
+
 document.querySelectorAll('.magnetic-hover').forEach(element => {
     element.addEventListener('mousemove', (e) => {
         const rect = element.getBoundingClientRect();
@@ -1847,7 +1840,7 @@ document.querySelectorAll('.magnetic-hover').forEach(element => {
     });
 });
 
-// Text Reveal on Scroll
+
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
@@ -1865,7 +1858,7 @@ document.querySelectorAll('.text-reveal').forEach(el => {
     textRevealObserver.observe(el);
 });
 
-// Particle System Background
+
 function createParticles() {
     const particlesContainer = document.createElement('div');
     particlesContainer.className = 'particles';
@@ -1884,12 +1877,12 @@ function createParticles() {
     }
 }
 
-// Initialize particles on desktop
+
 if (window.innerWidth > 768) {
     createParticles();
 }
 
-// Enhanced CTA Button Pulse
+
 document.querySelectorAll('.cta-button').forEach(btn => {
     btn.addEventListener('mouseenter', () => {
         btn.style.animation = 'pulse-glow 1s ease-in-out infinite';
@@ -1899,7 +1892,7 @@ document.querySelectorAll('.cta-button').forEach(btn => {
     });
 });
 
-// Smooth Scroll Enhancement
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -1915,7 +1908,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     
 });
 
-// Card Tilt Effect
+
 document.querySelectorAll('.service-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();

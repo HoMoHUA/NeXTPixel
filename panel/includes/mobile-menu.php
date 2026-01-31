@@ -1,14 +1,11 @@
-<?php
-/**
- * Mobile Menu Include File
- * منوی موبایل با آیکون همبرگر
- */
+﻿<?php
+
 require_once __DIR__ . '/auth.php';
 $currentUser = getCurrentUser();
 $userRole = $currentUser ? $currentUser['role'] : null;
 ?>
 
-<!-- Mobile Header -->
+
 <header class="np-mobile-header">
     <div class="np-mobile-header__wrapper">
         <div class="np-mobile-header__logo">
@@ -24,10 +21,10 @@ $userRole = $currentUser ? $currentUser['role'] : null;
     </div>
 </header>
 
-<!-- Mobile Menu Overlay -->
+
 <div class="np-mobile-menu-overlay" id="mobile-menu-overlay"></div>
 
-<!-- Mobile Menu -->
+
 <nav class="np-mobile-menu" id="mobile-menu">
     <div class="np-mobile-menu__header">
         <div class="np-mobile-menu__logo">
@@ -206,4 +203,5 @@ $userRole = $currentUser ? $currentUser['role'] : null;
         </ul>
     </div>
 </nav>
+
 

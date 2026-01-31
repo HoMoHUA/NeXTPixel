@@ -1,16 +1,6 @@
-/*---------------------------------
-CSS INDEX
-===================================
-#. Header CSS
-#. Sidebar Variables
-#. Customizer CSS 
-#. Content CSS
-#. DarkMode CSS
----------------------------------------*/
-/*---------------------------------------
-#. Header
----------------------------------------*/
-/* BEM Element and Modifier */
+﻿
+
+
 @import url("../fonts/Peyda/stylesheet.css");
 @-webkit-keyframes spin {
   0% {
@@ -220,10 +210,8 @@ html[data-nav="top"] .geex-sidebar {
   z-index: 20;
 }
 
-/*---------------------------------  
-Sidebar
----------------------------------------*/
-/* BEM Element and Modifier */
+
+
 @-webkit-keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
@@ -259,7 +247,7 @@ Sidebar
   border: 1px solid var(--white-color);
   background-image: -webkit-gradient(linear, left top, left bottom, from(var(--sectionThree-color)), to(var(--sectionTwo-color)));
   background-image: linear-gradient(var(--sectionThree-color), var(--sectionTwo-color));
-  /* Scrollbar Width */
+  
 }
 
 .geex-sidebar::-webkit-scrollbar {
@@ -499,7 +487,7 @@ Sidebar
   scrollbar-width: none;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  /* Scrollbar Width */
+  
 }
 
 .geex-customizer::-webkit-scrollbar {
@@ -768,7 +756,7 @@ Sidebar
   transition: all 0.3s ease;
 }
 
-/* BEM Element and Modifier */
+
 @-webkit-keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
@@ -789,9 +777,7 @@ Sidebar
   }
 }
 
-/*---------------------------------------
-#. Variables
----------------------------------------*/
+
 :root {
   --primary-color: #AB54DB;
   --secondary-color: #B7DBF9;
@@ -823,10 +809,8 @@ Sidebar
   --poppins: 'Poppins', sans-serif;
 }
 
-/*---------------------------------------
-#. General
----------------------------------------*/
-/* BEM Element and Modifier */
+
+
 @-webkit-keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
@@ -2575,7 +2559,7 @@ blockquote span:before {
   max-height: 200px;
   overflow-y: auto;
   scrollbar-width: none;
-  /* Scrollbar Width */
+  
 }
 
 .geex-content__header__popup__content::-webkit-scrollbar {
@@ -4919,7 +4903,7 @@ blockquote span:before {
   height: 575px;
   overflow-y: auto;
   scrollbar-width: none;
-  /* Scrollbar Width */
+  
 }
 
 .geex-content__chat__list::-webkit-scrollbar {
@@ -6082,7 +6066,7 @@ blockquote span:before {
 }
 
 .geex-content__calendar .ui-widget-content .fc-scroller {
-  /* Scrollbar Width */
+  
 }
 
 .geex-content__calendar .ui-widget-content .fc-scroller::-webkit-scrollbar {
@@ -8960,7 +8944,7 @@ blockquote span:before {
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: none;
-  /* Scrollbar Width */
+  
 }
 
 .geex-content__authentication__content__wrapper::-webkit-scrollbar {
@@ -9935,7 +9919,7 @@ blockquote span:before {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   scrollbar-width: none;
-  /* Scrollbar Width */
+  
 }
 
 .geex-content__invoice .geex-content__todo__list__single::-webkit-scrollbar {
@@ -10680,7 +10664,6 @@ html[dir="rtl"] .geex-content__core__action__select svg {
   border: none;
 }
 
-#calendar {
   max-width: 900px;
   margin: 40px auto;
 }
@@ -10818,19 +10801,17 @@ html[dir="rtl"] .geex-content__core__action__select svg {
   display: none;
 }
 
-#income-chart .apexcharts-tooltip,
-#expense-chart .apexcharts-tooltip,
-#column-chart .apexcharts-tooltip,
-#market-activity-chart .apexcharts-tooltip {
+
+
+
   background: transparent;
   -webkit-box-shadow: unset;
           box-shadow: unset;
 }
 
-#income-chart .custom-tooltip,
-#expense-chart .custom-tooltip,
-#column-chart .custom-tooltip,
-#market-activity-chart .custom-tooltip {
+
+
+
   background: var(--dark-color);
   -webkit-box-shadow: unset;
           box-shadow: unset;
@@ -10838,17 +10819,15 @@ html[dir="rtl"] .geex-content__core__action__select svg {
   text-align: center;
 }
 
-#income-chart .custom-tooltip:before,
-#expense-chart .custom-tooltip:before,
-#column-chart .custom-tooltip:before,
-#market-activity-chart .custom-tooltip:before {
+
+
+
   border-top-color: var(--dark-color);
 }
 
-#income-chart .custom-tooltip__subtitle,
-#expense-chart .custom-tooltip__subtitle,
-#column-chart .custom-tooltip__subtitle,
-#market-activity-chart .custom-tooltip__subtitle {
+
+
+
   font-size: 10px;
   line-height: 15px;
   font-weight: 400;
@@ -10856,10 +10835,9 @@ html[dir="rtl"] .geex-content__core__action__select svg {
   color: var(--secondary-color);
 }
 
-#income-chart .custom-tooltip__title,
-#expense-chart .custom-tooltip__title,
-#column-chart .custom-tooltip__title,
-#market-activity-chart .custom-tooltip__title {
+
+
+
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -10867,7 +10845,6 @@ html[dir="rtl"] .geex-content__core__action__select svg {
   color: var(--white-color);
 }
 
-#column-chart {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10876,42 +10853,35 @@ html[dir="rtl"] .geex-content__core__action__select svg {
           align-items: flex-end;
 }
 
-#column-chart .apexcharts-canvas {
   margin: 0 0 -10px;
 }
 
 @media only screen and (max-width: 575px) {
-  #column-chart .apexcharts-canvas {
+
     margin: 0;
   }
 }
 
-#column-chart .apexcharts-bar-area:hover {
   fill: var(--primary-color);
 }
 
-#income-chart .apexcharts-canvas,
-#expense-chart .apexcharts-canvas {
+
   padding-top: 25px;
 }
 
-#stack-chart .apexcharts-canvas {
   -webkit-margin-start: 0;
           margin-inline-start: 0;
 }
 
-#pie-chart {
   min-height: 300px !important;
 }
 
-#pie-chart .apexcharts-svg,
-#pie-chart .apexcharts-canvas,
-#pie-chart .apexcharts-svg foreignObject {
+
+
   width: 100% !important;
   min-height: 300px !important;
 }
 
-#pie-chart .apexcharts-legend-text {
   color: var(--body-color) !important;
 }
 
@@ -11071,9 +11041,7 @@ html[data-nav="top"] .swiper-container {
   }
 }
 
-/*---------------------------------------
-#. DarkMode
----------------------------------------*/
+
 html[data-theme="dark"] body,
 html[data-theme="dark"] .geex-content__authentication,
 html[data-theme="dark"] .geex-content__section .geex-transaction-tab .filter-popup,
@@ -12096,7 +12064,7 @@ html[dir="rtl"] .geex-content__todo__header__filter__sortby i {
 }
 
 .kanban-drag-and-drop-area-wrapper {
-  /*dragula*/
+  
 }
 
 .kanban-drag-and-drop-area-wrapper body, .kanban-drag-and-drop-area-wrapper ul, .kanban-drag-and-drop-area-wrapper li, .kanban-drag-and-drop-area-wrapper tr, .kanban-drag-and-drop-area-wrapper td {
@@ -12149,7 +12117,7 @@ html[dir="rtl"] .geex-content__todo__header__filter__sortby i {
   -webkit-box-direction: normal;
   -webkit-box-flex: 0;
   -ms-flex: 0 0 284px;
-  /* flex: 0 0 284px; */
+  
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12502,3 +12470,4 @@ html[dir="rtl"] .geex-content__todo__header__filter__sortby i {
   margin: 0;
   border: 0;
 }
+

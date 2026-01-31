@@ -1,7 +1,5 @@
-<?php
-/**
- * گزارش‌ها و آمار - پنل مدیریت NextPixel
- */
+﻿<?php
+
 
 $pageTitle = 'گزارش‌ها و آمار - NextPixel';
 $currentPage = 'reports';
@@ -61,4 +59,5 @@ $currentUser = getCurrentUser();
 </main>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
+
 

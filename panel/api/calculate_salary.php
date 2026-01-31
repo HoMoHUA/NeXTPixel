@@ -1,22 +1,19 @@
-<?php
-/**
- * API Endpoint: Calculate Seller Salary
- * محاسبه حقوق فروشنده
- */
+﻿<?php
+
 
 header('Content-Type: application/json; charset=utf-8');
 
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/functions.php';
 
-// بررسی لاگین بودن
+
 if (!isLoggedIn()) {
     http_response_code(401);
     echo json_encode(['success' => false, 'message' => 'لطفا ابتدا وارد شوید']);
     exit;
 }
 
-// فقط فروشندگان می‌توانند استفاده کنند
+
 if (!hasRole('seller')) {
     http_response_code(403);
     echo json_encode(['success' => false, 'message' => 'دسترسی غیرمجاز']);
@@ -29,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// دریافت مبلغ فروش
+
 $input = json_decode(file_get_contents('php://input'), true);
 $salesAmount = isset($input['totalSales']) ? floatval($input['totalSales']) : (isset($input['sales_amount']) ? floatval($input['sales_amount']) : 0);
 
@@ -41,7 +38,7 @@ if ($salesAmount < 0) {
     exit;
 }
 
-// محاسبه حقوق
+
 $salary = calculateSalary($salesAmount);
 
 echo json_encode([
@@ -53,4 +50,5 @@ echo json_encode([
 ]);
 
 ?>
+
 

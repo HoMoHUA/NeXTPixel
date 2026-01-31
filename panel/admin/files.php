@@ -1,7 +1,5 @@
-<?php
-/**
- * مدیریت فایل - پنل مدیریت NextPixel
- */
+﻿<?php
+
 
 $pageTitle = 'مدیریت فایل - NextPixel';
 $currentPage = 'files';
@@ -113,7 +111,7 @@ $currentUser = getCurrentUser();
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof ApexCharts !== 'undefined') {
-        // Chart 5
+        
         if (document.getElementById('chart-5')) {
             var chart5Options = {
                 series: [48],
@@ -126,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
             new ApexCharts(document.querySelector("#chart-5"), chart5Options).render();
         }
 
-        // Chart 6
+        
         if (document.getElementById('chart-6')) {
             var chart6Options = {
                 series: [65],
@@ -143,4 +141,5 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
+
 

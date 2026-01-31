@@ -1,35 +1,33 @@
-<?php
-/**
- * API Endpoint برای افزودن همکار جدید
- */
+﻿<?php
+
 
 header('Content-Type: application/json; charset=utf-8');
 
-// بارگذاری auth.php که session را مدیریت می‌کند
+
 require_once __DIR__ . '/../includes/auth.php';
 
-// بررسی لاگین بودن
+
 if (!isLoggedIn()) {
     http_response_code(401);
     echo json_encode(['success' => false, 'message' => 'لطفا ابتدا وارد شوید'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-// بررسی نقش admin
+
 if (!hasRole('admin')) {
     http_response_code(403);
     echo json_encode(['success' => false, 'message' => 'شما دسترسی به این بخش را ندارید'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-// فقط متد POST مجاز است
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['success' => false, 'message' => 'متد مجاز نیست']);
     exit;
 }
 
-// دریافت داده‌های JSON
+
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
@@ -39,7 +37,7 @@ if (!$data) {
     exit;
 }
 
-// بارگذاری فایل‌های مورد نیاز
+
 require_once __DIR__ . '/../../config/db-config.php';
 require_once __DIR__ . '/../../config/db-connection.php';
 require_once __DIR__ . '/../includes/functions.php';
@@ -47,7 +45,7 @@ require_once __DIR__ . '/../includes/functions.php';
 try {
     $db = getDB();
     
-    // دریافت و اعتبارسنجی داده‌ها
+    
     $username = trim($data['username'] ?? '');
     $email = trim($data['email'] ?? '');
     $displayName = trim($data['display_name'] ?? '');
@@ -56,7 +54,7 @@ try {
     $role = !empty($data['role']) ? trim($data['role']) : null;
     $status = $data['status'] ?? 'active';
     
-    // اعتبارسنجی
+    
     if (empty($username)) {
         echo json_encode(['success' => false, 'message' => 'نام کاربری الزامی است'], JSON_UNESCAPED_UNICODE);
         exit;
@@ -81,7 +79,7 @@ try {
         $status = 'active';
     }
     
-    // بررسی تکراری نبودن نام کاربری
+    
     $stmt = $db->prepare("SELECT id FROM " . TABLE_USERS . " WHERE username = :username LIMIT 1");
     $stmt->execute([':username' => $username]);
     if ($stmt->fetch()) {
@@ -89,7 +87,7 @@ try {
         exit;
     }
     
-    // بررسی تکراری نبودن ایمیل
+    
     $stmt = $db->prepare("SELECT id FROM " . TABLE_USERS . " WHERE email = :email LIMIT 1");
     $stmt->execute([':email' => $email]);
     if ($stmt->fetch()) {
@@ -97,20 +95,20 @@ try {
         exit;
     }
     
-    // هش کردن رمز عبور
+    
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
-    // اگر display_name خالی است، از username استفاده کن
+    
     if (empty($displayName)) {
         $displayName = $username;
     }
     
-    // اگر role خالی است و user_type = staff است، role را staff قرار بده
+    
     if (empty($role) && $userType === 'staff') {
         $role = 'staff';
     }
     
-    // درج کاربر جدید
+    
     $stmt = $db->prepare("
         INSERT INTO " . TABLE_USERS . " 
         (username, email, password, display_name, user_type, role, status, created_at, updated_at) 
@@ -131,7 +129,7 @@ try {
     if ($result) {
         $userId = $db->lastInsertId();
         
-        // لاگ عملیات
+        
         error_log("New user created by admin: {$username} (ID: {$userId}, Type: {$userType}, Role: {$role})");
         
         echo json_encode([
@@ -158,4 +156,5 @@ try {
 }
 
 ?>
+
 

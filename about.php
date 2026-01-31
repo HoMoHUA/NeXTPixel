@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -284,9 +284,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
         
-        /* =========================================================
-           HoMox MODIFIED Header: "Double Reverse" Liquid Effect
-           ========================================================= */
+        
         nav.ios-glass-header {
             position: sticky;
             top: 26px;
@@ -296,20 +294,17 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             -webkit-backdrop-filter: blur(35px) saturate(280%);
             border: 2px solid rgba(155, 155, 155, 0.4);
             
-            /* HoMox Modification: 
-               Added specific 'inset 0 -1px 0 0 rgba(255,255,255,0.2)' 
-               to create the highlight at the BOTTOM edge.
-            */
+            
             box-shadow: 
-                /* Outer soft shadow */
+                
                 0 10px 40px -10px rgba(0,0,0,0.5),
-                /* Top Highlight Inner (Reverse Top) */
+                
                 inset 0 1px 0 0 rgba(155,155,155,0.3),
-                /* Bottom Highlight Inner (Reverse Bottom - NEW) */
+                
                 inset 0 -1px 0 0 rgba(155,155,155,0.3),
-                /* Deep Glass Glow */
+                
                 inset 0 0 20px rgba(255,255,255,0.25),
-                /* Subtle Rim */
+                
                 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
 
             transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
@@ -318,19 +313,17 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         nav.ios-glass-header.scrolled {
             top: 20px;
             background: rgba(15, 23, 42, 0.75);
-            /* HoMox Modification for Scrolled State: 
-               Maintained the double reverse highlight.
-            */
+            
             box-shadow: 
-                /* Outer soft shadow */
+                
                 0 10px 40px -10px rgba(0,0,0,0.5),
-                /* Top Highlight Inner */
+                
                 inset 0 1px 0 0 rgba(255,255,255,0.2),
-                /* Bottom Highlight Inner (NEW) */
+                
                 inset 0 -1px 0 0 rgba(255,255,255,0.2),
-                /* Deep Glass Glow */
+                
                 inset 0 0 20px rgba(255,255,255,0.05),
-                /* Subtle Rim */
+                
                 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
         }
         
@@ -423,7 +416,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     ?>
 
     <style>
-        /* Header Styles */
+        
         header {
             position: fixed;
             top: 0;
@@ -730,7 +723,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         }
     </style>
 
-    <!-- Header -->
+    
     <header class="header-main" id="main-header">
         <div class="header-container">
             <a href="/" class="header-logo">
@@ -773,7 +766,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         </div>
     </header>
 
-    <!-- Mobile Menu -->
+    
     <nav class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-content">
             <div class="mobile-menu-section">
@@ -1081,7 +1074,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize AOS
+            
             AOS.init({
                 duration: 800,
                 easing: 'ease-out-quart',
@@ -1089,12 +1082,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 mirror: false
             });
 
-            // Initialize Feather Icons
+            
             feather.replace();
 
-            // ...existing code...
+            
 
-            // Header Scroll Detection
+            
             const header = document.getElementById('main-header');
             if (header) {
                 window.addEventListener('scroll', () => {
@@ -1110,7 +1103,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 }, { passive: true });
             }
 
-            // Active link highlighting
+            
             const currentPage = window.location.pathname.split('/').pop() || 'index.php';
             const navLinks = document.querySelectorAll('.header-nav a, .mobile-menu-links a');
             navLinks.forEach(link => {
@@ -1122,7 +1115,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 }
             });
 
-            // === 3D Tilt Effect Logic for Team Cards ===
+            
             const teamCards = document.querySelectorAll('[data-tilt]');
             
             if (window.matchMedia("(hover: hover)").matches) {
@@ -1147,7 +1140,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 });
             }
 
-            // === 3D About Hero Parallax Effect ===
+            
             const aboutHero3D = document.querySelector('.about-hero-3d');
             if (aboutHero3D && window.innerWidth > 768) {
                 aboutHero3D.addEventListener('mousemove', (e) => {
@@ -1187,9 +1180,9 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 });
             }
 
-            // ==========================================
-            // REFACTORED LIQUID GLASS HEADER EFFECT
-            // ==========================================
+            
+            
+            
             class LiquidGlassHeader {
                 constructor(targetSelector) {
                     this.target = document.querySelector(targetSelector);
@@ -1204,24 +1197,24 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 }
 
                 init() {
-                    // Measure
+                    
                     const rect = this.target.getBoundingClientRect();
                     this.width = rect.width;
                     this.height = rect.height;
 
-                    // Setup
+                    
                     this.setupSVG();
                     this.setupCanvas();
 
-                    // Apply to Header
-                    // Using backdrop-filter with the SVG map + blur + saturate for the frosted liquid look
+                    
+                    
                     this.target.style.backdropFilter = `url(#${this.id}_filter) blur(4px) saturate(180%)`;
                     this.target.style.webkitBackdropFilter = `url(#${this.id}_filter) blur(10px) saturate(180%)`;
 
-                    // Listeners
+                    
                     this.setupEvents();
                     
-                    // Loop
+                    
                     this.update();
                 }
 
@@ -1232,7 +1225,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
                     const filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
                     filter.setAttribute('id', `${this.id}_filter`);
-                    filter.setAttribute('filterUnits', 'userSpaceOnUse'); // Important for responsive mapping
+                    filter.setAttribute('filterUnits', 'userSpaceOnUse'); 
                     filter.setAttribute('colorInterpolationFilters', 'sRGB');
                     filter.setAttribute('x', '0');
                     filter.setAttribute('y', '0');
@@ -1241,7 +1234,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
                     this.feImage = document.createElementNS('http://www.w3.org/2000/svg', 'feImage');
                     this.feImage.setAttribute('result', 'map');
-                    // Initial empty image to prevent errors
+                    
                     this.feImage.setAttribute('width', this.width);
                     this.feImage.setAttribute('height', this.height);
 
@@ -1249,7 +1242,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     this.feDisplacementMap = document.createElementNS('http://www.w3.org/2000/svg', 'feDisplacementMap');
                     this.feDisplacementMap.setAttribute('in', 'SourceGraphic');
                     this.feDisplacementMap.setAttribute('in2', 'map');
-                    this.feDisplacementMap.setAttribute('scale', '40'); // Increased Displacement strength for more "liquid" feel
+                    this.feDisplacementMap.setAttribute('scale', '40'); 
                     this.feDisplacementMap.setAttribute('xChannelSelector', 'R');
                     this.feDisplacementMap.setAttribute('yChannelSelector', 'G');
 
@@ -1270,8 +1263,8 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 setupEvents() {
                     window.addEventListener('scroll', (e) => {
                         const rect = this.target.getBoundingClientRect();
-                        // Normalize mouse to header coordinates (0 to 1)
-                        // Allow slight overflow for effect to start before entering
+                        
+                        
                         this.mouse.x = (e.clientX - rect.left) / rect.width;
                         this.mouse.y = (e.clientY - rect.top) / rect.height;
                         this.mouseUsed = true;
@@ -1282,7 +1275,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                         this.width = rect.width;
                         this.height = rect.height;
                         
-                        // Update SVG
+                        
                         const filter = document.getElementById(`${this.id}_filter`);
                         if(filter) {
                             filter.setAttribute('width', this.width);
@@ -1291,56 +1284,56 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                         this.feImage.setAttribute('width', this.width);
                         this.feImage.setAttribute('height', this.height);
 
-                        // Update Canvas
+                        
                         this.canvas.width = this.width;
                         this.canvas.height = this.height;
                         
-                        this.mouseUsed = true; // Force redraw
+                        this.mouseUsed = true; 
                     });
                 }
 
                 update() {
                     requestAnimationFrame(() => this.update());
 
-                    // Performance: only redraw if needed (simplified)
-                    // In a real liquid sim, you'd update every frame for ripples. 
-                    // Here we do a simple reactive draw.
+                    
+                    
+                    
                     
                     const w = this.width;
                     const h = this.height;
                     
-                    // Clear with neutral displacement (127,127,0) = 0 displacement
+                    
                     this.ctx.fillStyle = 'rgba(57, 57, 0, 1)';
                     this.ctx.fillRect(0, 0, w, h);
 
-                    // Draw Liquid Interaction
-                    // We create a gradient radial glow around the mouse
                     
-                    // Transform normalized mouse to pixels
+                    
+                    
+                    
                     const mx = this.mouse.x * w;
                     const my = this.mouse.y * h;
 
-                    const radius = 200; // Larger interaction radius
+                    const radius = 200; 
                     if (mx > -radius && mx < w + radius && my > -radius && my < h + radius) {
                         const grd = this.ctx.createRadialGradient(mx, my, 0, mx, my, radius);
-                        // Red channel = X displacement, Green = Y displacement
-                        // 255 = move right/down, 0 = move left/up
-                        grd.addColorStop(0, 'rgba(255, 255, 0, 1)'); // Strong displacement center
-                        grd.addColorStop(1, 'rgba(127, 127, 0, 1)'); // Neutral edge
+                        
+                        
+                        grd.addColorStop(0, 'rgba(255, 255, 0, 1)'); 
+                        grd.addColorStop(1, 'rgba(127, 127, 0, 1)'); 
                         
                         this.ctx.fillStyle = grd;
                         this.ctx.fillRect(0, 0, w, h);
                     }
 
-                    // Update SVG feImage
+                    
                     this.feImage.setAttributeNS('http://www.w3.org/1999/xlink', 'href', this.canvas.toDataURL());
                 }
             }
 
-            // Initialize Liquid Header
+            
             new LiquidGlassHeader('.ios-glass-header');
 
-            // Header Scroll Detection with smooth animation
+            
             let headerScrollTimeout;
             window.addEventListener('scroll', () => {
                 const header = document.getElementById('main-header');
@@ -1355,14 +1348,14 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 }
             }, { passive: true });
 
-            // Mobile Menu Toggle
-            // ...existing code...
+            
+            
                 if (!e.target.closest('header') && !e.target.closest('.mobile-menu')) {
                     mobileMenu.classList.remove('active');
                 }
             });
 
-            // Active link highlighting
+            
             const currentPage = window.location.pathname.split('/').pop() || 'index.php';
             const navLinks = document.querySelectorAll('.header-nav a, .mobile-menu-links a');
             navLinks.forEach(link => {

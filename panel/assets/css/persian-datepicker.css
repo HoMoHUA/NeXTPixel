@@ -1,9 +1,4 @@
-/*
-** persian-datepicker - v1.2.0
-** Reza Babakhani <babakhani.reza@gmail.com>
-** http://babakhani.github.io/PersianWebToolkit/docs/datepicker
-** Under MIT license 
-*/ 
+﻿ 
 
 .datepicker-plot-area {
   -moz-user-select: none;
@@ -438,3 +433,4 @@
   .datepicker-container.pwt-mobile-view .datepicker-time-view .up-btn {
     height: 40px;
     line-height: 40px; }
+
