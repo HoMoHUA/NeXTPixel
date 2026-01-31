@@ -1,16 +1,11 @@
 <?php
-/**
- * API Endpoint برای بررسی اتصال به n8n
- */
 
 header('Content-Type: application/json');
 
-// بررسی session
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// بررسی دسترسی - فقط باید لاگین باشد
 $isLoggedIn = isset($_SESSION['user_id']);
 
 if (!$isLoggedIn) {
@@ -19,13 +14,11 @@ if (!$isLoggedIn) {
     exit;
 }
 
-// بارگذاری تنظیمات
 require_once __DIR__ . '/../config/n8n-config.php';
 
 $baseUrl = N8N_BASE_URL;
 $apiKey = N8N_API_KEY;
 
-// بررسی اتصال به n8n
 try {
     $url = rtrim($baseUrl, '/') . '/api/v1/workflows';
     
@@ -35,27 +28,22 @@ try {
     curl_setopt($ch, CURLOPT_TIMEOUT, N8N_TIMEOUT);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    
-    // آماده‌سازی headers
+
     $headers = [];
-    
-    // اگر API Key وجود دارد، اضافه کن
+
     if (!empty($apiKey)) {
         $headers[] = 'X-N8N-API-KEY: ' . $apiKey;
     }
-    
-    // اگر username و password وجود دارد، از Basic Auth استفاده کن
+
     if (!empty(N8N_USERNAME) && !empty(N8N_PASSWORD)) {
         curl_setopt($ch, CURLOPT_USERPWD, N8N_USERNAME . ':' . N8N_PASSWORD);
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
     }
-    
-    // اضافه کردن headers
+
     if (!empty($headers)) {
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     }
-    
-    // اگر Cookie وجود دارد (از session)، استفاده کن
+
     if (isset($_COOKIE) && !empty($_COOKIE)) {
         $cookieString = '';
         foreach ($_COOKIE as $key => $value) {
@@ -94,7 +82,7 @@ try {
             'http_code' => $httpCode
         ]);
     } else {
-        // بررسی نوع خطا
+        
         $errorMessage = 'خطا در اتصال. کد HTTP: ' . $httpCode;
         
         if ($httpCode == 401) {
@@ -104,8 +92,7 @@ try {
         } elseif ($httpCode == 404) {
             $errorMessage = 'مسیر یافت نشد (404). لطفا آدرس n8n را بررسی کنید.';
         }
-        
-        // تلاش برای خواندن پیام خطا از response
+
         $errorData = json_decode($responseBody, true);
         if ($errorData && isset($errorData['message'])) {
             $errorMessage .= ' - ' . $errorData['message'];
@@ -132,5 +119,4 @@ try {
     ]);
 }
 ?>
-
 

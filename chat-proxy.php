@@ -1,15 +1,13 @@
 <?php
-// chat-proxy.php
+
 header('Content-Type: application/json');
 
-// بررسی متد درخواست
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['error' => 'Method Not Allowed']);
     exit;
 }
 
-// دریافت داده‌های ورودی JSON
 $input = json_decode(file_get_contents('php://input'), true);
 
 if (!isset($input['contents']) || !isset($input['systemInstruction'])) {
@@ -18,11 +16,9 @@ if (!isset($input['contents']) || !isset($input['systemInstruction'])) {
     exit;
 }
 
-// کلید API جمینای (بهتر است در متغیر محیطی ذخیره شود اما اینجا برای سادگی قرار دادیم)
-$apiKey = 'YOUR_API_KEY_HERE'; // کلید خود را اینجا جایگزین کنید
+$apiKey = 'YOUR_API_KEY_HERE'; 
 $apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$apiKey}";
 
-// تنظیم درخواست cURL
 $ch = curl_init($apiUrl);
 
 $payload = json_encode([
@@ -37,7 +33,6 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json'
 ]);
 
-// اجرای درخواست
 $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 

@@ -1,7 +1,4 @@
 <?php
-/**
- * تنظیمات - پنل مدیریت NextPixel
- */
 
 $pageTitle = 'تنظیمات - NextPixel';
 $currentPage = 'settings';

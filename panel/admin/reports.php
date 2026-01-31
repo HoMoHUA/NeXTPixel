@@ -1,7 +1,4 @@
 <?php
-/**
- * گزارش‌ها و آمار - پنل مدیریت NextPixel
- */
 
 $pageTitle = 'گزارش‌ها و آمار - NextPixel';
 $currentPage = 'reports';

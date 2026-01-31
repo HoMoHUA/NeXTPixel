@@ -1,8 +1,4 @@
 <?php
-/**
- * Seller Daily Report
- * گزارش روزانه فروشنده
- */
 
 $pageTitle = 'گزارش روزانه';
 $currentPage = 'seller-report';
@@ -10,7 +6,6 @@ $currentPage = 'seller-report';
 require_once __DIR__ . '/../includes/auth.php';
 requireLogin();
 
-// بررسی نقش
 if (!hasRole('seller')) {
     header('Location: /panel/index.php');
     exit();
@@ -23,7 +18,6 @@ require_once __DIR__ . '/../includes/functions.php';
 $db = getPanelDB();
 $userId = getCurrentUserId();
 
-// بررسی گزارش امروز
 $today = date('Y-m-d');
 $stmt = $db->prepare("SELECT * FROM seller_reports WHERE user_id = ? AND report_date = ?");
 $stmt->execute([$userId, $today]);
@@ -32,14 +26,12 @@ $todayReport = $stmt->fetch();
 $message = '';
 $messageType = '';
 
-// پردازش فرم
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $reportDate = isset($_POST['report_date']) ? $_POST['report_date'] : $today;
     $salesAmount = isset($_POST['sales_amount']) ? floatval($_POST['sales_amount']) : 0;
     $reportText = isset($_POST['report_text']) ? sanitizeInput($_POST['report_text']) : '';
     $noSaleReason = isset($_POST['no_sale_reason']) ? sanitizeInput($_POST['no_sale_reason']) : '';
-    
-    // آپلود فایل‌ها
+
     $audioFile = null;
     $imageFile = null;
     
@@ -54,20 +46,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imageFile = uploadFile($_FILES['image_file'], 'uploads/reports/images/', ['image/jpeg', 'image/jpg', 'image/png']);
         }
     }
-    
-    // تعیین وضعیت: اگر فروش ثبت شده باشد، pending، در غیر این صورت approved (بدون فروش)
+
     $status = ($salesAmount > 0) ? 'pending' : 'approved';
-    
-    // ذخیره در دیتابیس
+
     try {
         if ($todayReport) {
-            // آپدیت گزارش موجود - بررسی وجود ستون status
+            
             try {
                 $stmt = $db->prepare("UPDATE seller_reports SET sales_amount = ?, report_text = ?, audio_file = ?, image_file = ?, no_sale_reason = ?, status = ?, created_at = NOW() 
                                       WHERE user_id = ? AND report_date = ?");
                 $stmt->execute([$salesAmount, $reportText, $audioFile, $imageFile, $noSaleReason, $status, $userId, $reportDate]);
             } catch (PDOException $e) {
-                // اگر ستون status وجود ندارد
+                
                 error_log("Status column might not exist: " . $e->getMessage());
                 $stmt = $db->prepare("UPDATE seller_reports SET sales_amount = ?, report_text = ?, audio_file = ?, image_file = ?, no_sale_reason = ?, created_at = NOW() 
                                       WHERE user_id = ? AND report_date = ?");
@@ -76,13 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $message = 'گزارش با موفقیت به‌روزرسانی شد' . ($salesAmount > 0 ? ' و در انتظار تایید مدیر است' : '');
             $messageType = 'success';
         } else {
-            // ایجاد گزارش جدید
+            
             try {
                 $stmt = $db->prepare("INSERT INTO seller_reports (user_id, report_date, sales_amount, report_text, audio_file, image_file, no_sale_reason, status) 
                                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                 $stmt->execute([$userId, $reportDate, $salesAmount, $reportText, $audioFile, $imageFile, $noSaleReason, $status]);
             } catch (PDOException $e) {
-                // اگر ستون status وجود ندارد
+                
                 error_log("Status column might not exist: " . $e->getMessage());
                 $stmt = $db->prepare("INSERT INTO seller_reports (user_id, report_date, sales_amount, report_text, audio_file, image_file, no_sale_reason) 
                                       VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -96,8 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = 'خطا در ثبت گزارش. لطفاً دوباره تلاش کنید.';
         $messageType = 'error';
     }
-    
-    // بارگذاری مجدد گزارش
+
     $stmt = $db->prepare("SELECT * FROM seller_reports WHERE user_id = ? AND report_date = ?");
     $stmt->execute([$userId, $today]);
     $todayReport = $stmt->fetch();
@@ -151,7 +140,6 @@ require_once __DIR__ . '/../includes/sidebar.php';
                             </div>
                         </div>
 
-                        <!-- No Sale Section -->
                         <div class="geex-content__form__single" id="noSaleSection" style="display: none;">
                             <h4 class="geex-content__form__single__label">توضیحات عدم فروش</h4>
                             <div class="geex-content__form__single__box">
@@ -224,7 +212,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
 
 <script>
-// Show/hide no sale section based on sales amount
+
 document.getElementById('sales_amount').addEventListener('input', function() {
     const salesAmount = parseFloat(this.value) || 0;
     const noSaleSection = document.getElementById('noSaleSection');
@@ -238,7 +226,6 @@ document.getElementById('sales_amount').addEventListener('input', function() {
     }
 });
 
-// Initialize on page load
 window.addEventListener('load', function() {
     const salesInput = document.getElementById('sales_amount');
     if (salesInput.value === '' || parseFloat(salesInput.value) === 0) {

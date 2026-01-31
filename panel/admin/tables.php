@@ -1,7 +1,4 @@
 <?php
-/**
- * جداول - پنل مدیریت NextPixel
- */
 
 $pageTitle = 'جداول - NextPixel';
 $currentPage = 'tables';

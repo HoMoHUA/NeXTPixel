@@ -37,15 +37,16 @@ if (isset($_POST['logout'])) {
     <meta property="twitter:description" content="طراحی تخصصی سایت فروشگاهی و شرکتی. با بهینه‌سازی سئو، فروش خود را چند برابر کنید.">
     <meta property="twitter:image" content="https://nextpixel.ir/static/social-preview.jpg">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
-    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/assets/css/nextpixel-global.css">
+    <link rel="stylesheet" href="/assets/css/vendor/aos.min.css">
+    <script src="/assets/js/vendor/tailwindcss.js" defer></script>
+    <script src="/assets/js/vendor/aos.min.js" defer></script>
+    <script src="/assets/js/vendor/feather.min.js" defer></script>
+    <script src="/assets/js/vendor/scrollreveal.min.js" defer></script>
+    <script src="/assets/js/vendor/lottie-player.min.js" defer></script>
+    <script src="/assets/js/vendor/three.min.js" defer></script>
+    <script src="/assets/js/vendor/vanta.globe.min.js" defer></script>
 
     <script type="application/ld+json">
     {
@@ -64,524 +65,6 @@ if (isset($_POST['logout'])) {
       ]
     }
     </script>
-
-    <style>
-        /* Vazirmatn Font Face (CDN - Secure HTTPS) */
-        @font-face {
-            font-family: 'Vazirmatn';
-            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Regular.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Vazirmatn';
-            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Bold.woff2') format('woff2');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Vazirmatn';
-            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-ExtraBold.woff2') format('woff2');
-            font-weight: 800;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Vazirmatn';
-            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Black.woff2') format('woff2');
-            font-weight: 900;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            line-height: 1.8;
-            overflow-x: hidden; 
-        }
-        .glass-effect {
-            background: rgba(15, 23, 42, 0.85);
-            -webkit-backdrop-filter: blur(12px);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.125);
-            will-change: transform, backdrop-filter;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #60a5fa, #818cf8, #a78bfa);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            background-size: 200% auto;
-            transition: all 0.3s ease;
-        }
-        .gradient-text:hover { background-position: right center; }
-        .service-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.3);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        @keyframes morph {
-            0% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
-            50% { border-radius: 30% 60% 70% 40%/50% 60% 30% 60%; }
-            100% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
-        }
-        .liquid-morph {
-            animation: morph 8s ease-in-out infinite;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .container {
-            width: 100%;
-            margin-right: auto;
-            margin-left: auto;
-            padding-left: 1rem; 
-            padding-right: 1rem;
-        }
-        @media (min-width: 640px) { .container { max-width: 640px; } }
-        @media (min-width: 768px) { .container { max-width: 768px; } }
-        @media (min-width: 1024px) { .container { max-width: 1024px; } }
-        @media (min-width: 1280px) { .container { max-width: 1280px; } }
-        @media (min-width: 1536px) { .container { max-width: 1536px; } }
-
-        /* =========================================================
-           HoMox MODIFIED Header: "Double Reverse" Liquid Effect
-           ========================================================= */
-        nav.ios-glass-header {
-            position: sticky;
-            top: 16px;
-            z-index: 1000;
-            background: rgba(15, 23, 42, 0.6);
-            /* Initial backdrop-filter, will be overridden by JS for liquid effect */
-            backdrop-filter: blur(35px) saturate(280%); 
-            -webkit-backdrop-filter: blur(35px) saturate(280%);
-            border: 2px solid rgba(55, 55, 55, 0.4);
-            
-            /* Double Reverse Highlight: Top and Bottom Inset Shadows */
-            box-shadow: 
-                /* Outer soft shadow */
-                0 10px 40px -10px rgba(0,0,0,0.5),
-                /* Top Highlight Inner (Reverse Top) */
-                inset 0 1px 0 0 rgba(255,255,255,0.2),
-                /* Bottom Highlight Inner (Reverse Bottom) */
-                inset 0 -1px 0 0 rgba(255,255,255,0.2),
-                /* Deep Glass Glow */
-                inset 0 0 20px rgba(255,255,255,0.05),
-                /* Subtle Rim */
-                0 0 0 1px rgba(255, 255, 255, 0.03) inset;
-
-            transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        nav.ios-glass-header.scrolled {
-            top: 0;
-            background: rgba(15, 23, 42, 0.75);
-            /* Double Reverse Highlight Maintained in Scrolled State */
-            box-shadow: 
-                /* Outer soft shadow */
-                0 10px 40px -10px rgba(0,0,0,0.5),
-                /* Top Highlight Inner */
-                inset 0 1px 0 0 rgba(255,255,255,0.2),
-                /* Bottom Highlight Inner */
-                inset 0 -1px 0 0 rgba(255,255,255,0.2),
-                /* Deep Glass Glow */
-                inset 0 0 20px rgba(255,255,255,0.05),
-                /* Subtle Rim */
-                0 0 0 1px rgba(255, 255, 255, 0.03) inset;
-        }
-        
-        nav.glass-effect {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-        @media (min-width: 768px) {
-            nav.glass-effect {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
-        
-        .cta-button {
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-        }
-        .chat-bubble {
-            max-width: 80%;
-            padding: 0.75rem 1rem;
-            border-radius: 1.25rem;
-            word-wrap: break-word;
-        }
-        .chat-bubble-user {
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-            color: white;
-            border-bottom-right-radius: 0.25rem;
-            margin-right: auto;
-        }
-        .chat-bubble-assistant {
-            background-color: #1e293b;
-            color: #cbd5e1;
-            border-bottom-left-radius: 0.25rem;
-            margin-left: auto;
-        }
-        .loader-dots span {
-            animation: blink 1.4s infinite both;
-            display: inline-block;
-        }
-        .loader-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .loader-dots span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes blink {
-            0% { opacity: 0.2; }
-            20% { opacity: 1; }
-            100% { opacity: 0.2; }
-        }
-#video-preloader {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    width: 100vw;
-    height: 100vh;
-    background-color: #0f172a; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
-}
-
-.progress-bar-container {
-    width: 80%;
-    max-width: 300px;
-    height: 6px;
-    background-color: rgba(45, 55, 75, 0.5); 
-    border-radius: 3px;
-    overflow: hidden;
-    position: absolute; 
-    transition: opacity 0.3s ease;
-}
-
-#progress-bar-fill {
-    width: 0%; 
-    height: 100%;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6); 
-    border-radius: 3px;
-    transition: width 0.3s ease-out;
-}
-
-#preloader-video-mobile,
-#preloader-video-desktop {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none; 
-}
-
-@keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.3); }
-    50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(139, 92, 246, 0.5); }
-}
-@keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-20px) rotate(2deg); }
-    66% { transform: translateY(-10px) rotate(-2deg); }
-}
-@keyframes glow-pulse {
-    0%, 100% { filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5)); }
-    50% { filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.8)); }
-}
-@keyframes shimmer {
-    0% { background-position: -1000px 0; }
-    100% { background-position: 1000px 0; }
-}
-@keyframes rotate-gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-@keyframes bounce-slow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-.service-card {
-    position: relative;
-    overflow: hidden;
-}
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-    transform: rotate(45deg);
-    transition: all 0.6s;
-    opacity: 0;
-}
-.service-card:hover::before {
-    animation: shimmer 1s ease-in-out;
-    opacity: 1;
-}
-.service-card:hover {
-    animation: pulse-glow 2s ease-in-out infinite;
-}
-
-.float-animation {
-    animation: float 6s ease-in-out infinite;
-}
-.float-animation-delay-1 { animation-delay: 0.5s; }
-.float-animation-delay-2 { animation-delay: 1s; }
-.float-animation-delay-3 { animation-delay: 1.5s; }
-
-.icon-glow {
-    animation: glow-pulse 2s ease-in-out infinite;
-}
-
-.animated-gradient {
-    background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b);
-    background-size: 400% 400%;
-    animation: rotate-gradient 8s ease infinite;
-}
-
-.bounce-slow {
-    animation: bounce-slow 3s ease-in-out infinite;
-}
-
-.magnetic-hover {
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-.magnetic-hover:hover {
-    transform: translateY(-5px) scale(1.05);
-    filter: drop-shadow(0 10px 30px rgba(59, 130, 246, 0.4));
-}
-
-.text-reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.text-reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.parallax-element {
-    transition: transform 0.3s ease-out;
-}
-
-.rotating-border {
-    position: relative;
-    background: linear-gradient(#0f172a, #0f172a) padding-box,
-                linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899) border-box;
-    border: 2px solid transparent;
-    border-radius: 12px;
-    animation: rotate-gradient 3s linear infinite;
-}
-
-.particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    pointer-events: none;
-}
-.particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(59, 130, 246, 0.5);
-    border-radius: 50%;
-    animation: particle-float 20s infinite;
-}
-@keyframes particle-float {
-    0% {
-        transform: translateY(100vh) translateX(0) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100vh) translateX(100px) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-#hero-3d-container {
-    perspective: 1000px;
-    transform-style: preserve-3d;
-}
-
-.hero-3d-bg {
-    background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 20% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%);
-    animation: hero-bg-rotate 20s ease-in-out infinite;
-}
-
-@keyframes hero-bg-rotate {
-    0%, 100% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(5deg) scale(1.1); }
-}
-
-.hero-3d-element {
-    animation: hero-3d-float 8s ease-in-out infinite;
-    transform-style: preserve-3d;
-}
-
-@keyframes hero-3d-float {
-    0%, 100% {
-        transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
-        opacity: 0.3;
-    }
-    25% {
-        transform: translate3d(20px, -30px, 50px) rotateX(10deg) rotateY(5deg);
-        opacity: 0.5;
-    }
-    50% {
-        transform: translate3d(-10px, -50px, 100px) rotateX(-10deg) rotateY(-5deg);
-        opacity: 0.4;
-    }
-    75% {
-        transform: translate3d(30px, -20px, 50px) rotateX(5deg) rotateY(10deg);
-        opacity: 0.5;
-    }
-}
-
-.hero-3d-content {
-    transform-style: preserve-3d;
-    animation: hero-content-enter 1.5s ease-out;
-}
-
-@keyframes hero-content-enter {
-    from {
-        opacity: 0;
-        transform: translateZ(-200px) rotateX(20deg);
-    }
-    to {
-        opacity: 1;
-        transform: translateZ(0) rotateX(0deg);
-    }
-}
-
-.hero-3d-title {
-    transform-style: preserve-3d;
-    display: inline-block;
-}
-
-.hero-3d-word {
-    display: inline-block;
-    transform-style: preserve-3d;
-    opacity: 0;
-    animation: hero-word-3d 0.8s ease-out forwards;
-    transform-origin: center center;
-}
-
-@keyframes hero-word-3d {
-    from {
-        opacity: 0;
-        transform: translate3d(0, 50px, -100px) rotateX(90deg);
-    }
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) rotateX(0deg);
-    }
-}
-
-.hero-3d-text {
-    transform-style: preserve-3d;
-    animation: hero-text-3d 1s ease-out 1.5s both;
-}
-
-@keyframes hero-text-3d {
-    from {
-        opacity: 0;
-        transform: translateZ(-150px) rotateY(10deg);
-    }
-    to {
-        opacity: 1;
-        transform: translateZ(0) rotateY(0deg);
-    }
-}
-
-.hero-3d-buttons {
-    transform-style: preserve-3d;
-    animation: hero-buttons-3d 1s ease-out 2s both;
-}
-
-@keyframes hero-buttons-3d {
-    from {
-        opacity: 0;
-        transform: translateZ(-100px) scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: translateZ(0) scale(1);
-    }
-}
-
-.hero-3d-btn {
-    transform-style: preserve-3d;
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.hero-3d-btn:hover {
-    transform: translateZ(20px) scale(1.05);
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4),
-                0 0 20px rgba(139, 92, 246, 0.3);
-}
-
-.service-card-3d {
-    transform-style: preserve-3d;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    position: relative;
-}
-
-.service-card-3d::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 1rem;
-    padding: 2px;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.service-card-3d:hover::before {
-    opacity: 1;
-}
-
-.service-card-3d:hover {
-    transform: translateY(-10px) translateZ(20px) rotateX(2deg) rotateY(-2deg);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
-                0 0 20px rgba(59, 130, 246, 0.2);
-}
-
-@media (min-width: 768px) {
-    #hero-3d-container {
-        cursor: none;
-    }
-}
-        
-        
-    </style>
 </head>
 <body class="overflow-x-hidden">
 <div id="video-preloader">
@@ -594,8 +77,9 @@ if (isset($_POST['logout'])) {
 </div>
 
     <header>
-        <nav class="ios-glass-header flex justify-between items-center py-3 md:py-4 px-4 md:px-8 mx-auto max-w-full md:max-w-6xl rounded-2xl md:rounded-full my-4">
+        <nav class="ios-glass-header sticky top-0 z-50 flex justify-between items-center py-3 md:py-4 px-4 md:px-8 mx-auto max-w-full md:max-w-6xl rounded-2xl md:rounded-full my-4">
             <a href="/" class="text-2xl font-bold text-white flex items-center space-x-reverse space-x-2">
+                <img src="/assets/img/NeXTPixel.png" alt="NeXTPixel" class="h-8 w-8 md:h-10 md:w-10 object-contain">
                 <span class="text-white font-bold" style="font-weight: 900;">NextPixel</span>
             </a>
             <div class="hidden md:flex items-center space-x-6 space-x-reverse">
@@ -753,7 +237,7 @@ if (isset($_POST['logout'])) {
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
-                    <!-- Service 1: WordPress -->
+                    
                     <article class="glass-effect p-6 lg:p-8 rounded-2xl service-card-3d magnetic-hover group relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
                         <div class="absolute top-0 right-0 w-20 h-20 bg-blue-500/10 rounded-full blur-2xl transform group-hover:scale-150 transition-transform duration-500"></div>
                         <div class="relative z-10">
@@ -764,8 +248,7 @@ if (isset($_POST['logout'])) {
                             <p class="text-sm lg:text-base text-gray-400 leading-relaxed">طراحی سایت اختصاصی و حرفه‌ای با سیستم مدیریت محتوای وردپرس، کاملا ریسپانسیو و بهینه‌شده.</p>
                         </div>
                     </article>
-                    
-                    <!-- Service 2: Custom Development -->
+
                     <article class="glass-effect p-6 lg:p-8 rounded-2xl service-card-3d magnetic-hover group relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
                         <div class="absolute top-0 right-0 w-20 h-20 bg-purple-500/10 rounded-full blur-2xl transform group-hover:scale-150 transition-transform duration-500"></div>
                         <div class="relative z-10">
@@ -776,8 +259,7 @@ if (isset($_POST['logout'])) {
                             <p class="text-sm lg:text-base text-gray-400 leading-relaxed">توسعه نرم‌افزارهای وب و موبایل با آخرین تکنولوژی‌ها و معماری‌های مقیاس‌پذیر.</p>
                         </div>
                     </article>
-                    
-                    <!-- Service 3: n8n Automation -->
+
                     <article class="glass-effect p-6 lg:p-8 rounded-2xl service-card-3d magnetic-hover group relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
                         <div class="absolute top-0 right-0 w-20 h-20 bg-green-500/10 rounded-full blur-2xl transform group-hover:scale-150 transition-transform duration-500"></div>
                         <div class="relative z-10">
@@ -788,8 +270,7 @@ if (isset($_POST['logout'])) {
                             <p class="text-sm lg:text-base text-gray-400 leading-relaxed">اتوماسیون هوشمند فرآیندهای کسب و کار شما با قدرتمندترین پلتفرم workflow. یکپارچه‌سازی سیستم‌ها بدون نیاز به کدنویسی.</p>
                         </div>
                     </article>
-                    
-                    <!-- Service 4: SEO & UI/UX -->
+
                     <article class="glass-effect p-6 lg:p-8 rounded-2xl service-card-3d magnetic-hover group relative overflow-hidden" data-aos="fade-up" data-aos-delay="400">
                         <div class="absolute top-0 right-0 w-20 h-20 bg-pink-500/10 rounded-full blur-2xl transform group-hover:scale-150 transition-transform duration-500"></div>
                         <div class="relative z-10">
@@ -801,7 +282,6 @@ if (isset($_POST['logout'])) {
                         </div>
                     </article>
 
-                    <!-- Service 5: AI Chatbot -->
                     <article class="glass-effect p-6 lg:p-8 rounded-2xl service-card-3d magnetic-hover group relative overflow-hidden" data-aos="fade-up" data-aos-delay="500">
                         <div class="absolute top-0 right-0 w-20 h-20 bg-indigo-500/10 rounded-full blur-2xl transform group-hover:scale-150 transition-transform duration-500"></div>
                         <div class="relative z-10">
@@ -838,25 +318,8 @@ if (isset($_POST['logout'])) {
                     <h2 class="text-3xl md:text-4xl font-bold mb-4">نمونه کارهای ما</h2>
                     <p class="text-base md:text-lg text-gray-400 max-w-2xl mx-auto px-4">برخی از پروژه‌های انجام شده توسط تیم NextPixel</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="group relative overflow-hidden rounded-2xl" data-aos="fade-up" data-aos-delay="100">
-                        <img src="https://nextpixel.top/src/hchperfume.png" alt="نمونه کار طراحی سایت فروشگاهی عطر" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                            <h3 class="text-xl font-bold text-white mb-2">وبسایت فروشگاهی</h3>
-                        </div>
-                    </div>
-                    <div class="group relative overflow-hidden rounded-2xl" data-aos="fade-up" data-aos-delay="200">
-                        <img src="https://nextpixel.top/src/mahnazbeauty.png" alt="نمونه کار طراحی سایت خدماتی زیبایی" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                            <h3 class="text-xl font-bold text-white mb-2">سایت خدماتی</h3>
-                        </div>
-                    </div>
-                    <div class="group relative overflow-hidden rounded-2xl" data-aos="fade-up" data-aos-delay="300">
-                        <img src="https://nextpixel.top/src/jahanphone.png" alt="نمونه کار طراحی مارکت پلیس" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                            <h3 class="text-xl font-bold text-white mb-2">مارکت پلیس </h3>
-                        </div>
-                    </div>
+                <div id="portfolioContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="col-span-full text-center text-gray-400 py-8">درحال بارگیری...</div>
                 </div>
                 <div class="text-center mt-12" data-aos="fade-up">
                     <a href="portfolio.php" class="inline-flex items-center text-blue-400 hover:text-blue-300">
@@ -865,6 +328,32 @@ if (isset($_POST['logout'])) {
                     </a>
                 </div>
             </div>
+        </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                fetch('/api/get-portfolios.php?action=featured&limit=6')
+                    .then(r => r.json())
+                    .then(portfolios => {
+                        const container = document.getElementById('portfolioContainer');
+                        if (portfolios.error || portfolios.length === 0) {
+                            container.innerHTML = '<div class="col-span-full text-center text-gray-400 py-8">هیچ نمونه کاری پیدا نشد</div>';
+                            return;
+                        }
+                        container.innerHTML = portfolios.slice(0, 6).map((p, i) => `
+                            <div class="group relative overflow-hidden rounded-2xl" data-aos="fade-up" data-aos-delay="${(i % 3) * 100}">
+                                <img src="${p.thumbnail}" alt="${p.image_alt_text || p.title}" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110" onerror="this.src='/assets/img/placeholder.png'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <h3 class="text-xl font-bold text-white mb-2">${p.title}</h3>
+                                    <p class="text-sm text-gray-200">${p.description || ''}</p>
+                                </div>
+                            </div>
+                        `).join('');
+                        if (window.AOS) AOS.refresh();
+                    })
+                    .catch(e => console.log('Portfolio load error:', e));
+            });
+        </script>
         </section>
 
         <section id="contact" class="py-20">
@@ -943,7 +432,6 @@ if (isset($_POST['logout'])) {
         </div>
     </footer>
 
-    <!-- Chatbot Container -->
     <div id="chatbot-container">
         <div class="fixed bottom-6 left-6 z-[999]">
             <button id="chat-toggle-btn"
@@ -983,12 +471,52 @@ if (isset($_POST['logout'])) {
             </div>
         </div>
     </div>
-    <!-- End Chatbot Container -->
-
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Mobile Menu Toggle ---
+            
+            // ============ VIDEO PRELOADER ============
+            const videoPreloader = document.getElementById('video-preloader');
+            const progressBarFill = document.getElementById('progress-bar-fill');
+            const preloaderVideoMobile = document.getElementById('preloader-video-mobile');
+            const preloaderVideoDesktop = document.getElementById('preloader-video-desktop');
+            
+            if (videoPreloader && progressBarFill) {
+                // Set video sources based on viewport
+                if (window.innerWidth <= 768) {
+                    preloaderVideoMobile.src = 'https://nextpixel.top/assets/videos/preloader-mobile.mp4';
+                    preloaderVideoMobile.classList.add('show');
+                } else {
+                    preloaderVideoDesktop.src = 'https://nextpixel.top/assets/videos/preloader-desktop.mp4';
+                    preloaderVideoDesktop.classList.add('show');
+                }
+                
+                // Simulate progress
+                let progress = 0;
+                const progressInterval = setInterval(() => {
+                    progress += Math.random() * 30;
+                    progress = Math.min(progress, 90);
+                    progressBarFill.style.width = progress + '%';
+                }, 300);
+                
+                // Hide preloader on page load
+                window.addEventListener('load', () => {
+                    clearInterval(progressInterval);
+                    progressBarFill.style.width = '100%';
+                    setTimeout(() => {
+                        videoPreloader.classList.add('hidden');
+                    }, 500);
+                });
+                
+                // Fallback: hide after 5 seconds
+                setTimeout(() => {
+                    if (!videoPreloader.classList.contains('hidden')) {
+                        videoPreloader.classList.add('hidden');
+                    }
+                }, 5000);
+            }
+            
+            // ============ MENU TOGGLE ============
             const menuBtn = document.getElementById('menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuIcon = menuBtn.querySelector('i');
@@ -1021,22 +549,37 @@ if (isset($_POST['logout'])) {
 
             feather.replace();
 
-            // === iOS Glass Header Scroll Effect ===
             const header = document.querySelector('.ios-glass-header');
             if (header) {
                 let lastScroll = 0;
-                window.addEventListener('scroll', () => {
-                    const currentScroll = window.pageYOffset;
+                const updateHeaderState = () => {
+                    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
                     if (currentScroll > 50) {
-                        header.classList.add('scrolled');
+                        if (!header.classList.contains('scrolled')) {
+                            header.classList.add('scrolled');
+                            const h = header.getBoundingClientRect().height;
+                            document.body.style.paddingTop = `${h}px`;
+                        }
                     } else {
-                        header.classList.remove('scrolled');
+                        if (header.classList.contains('scrolled')) {
+                            header.classList.remove('scrolled');
+                            document.body.style.paddingTop = '0px';
+                        }
                     }
                     lastScroll = currentScroll;
+                };
+
+                window.addEventListener('scroll', updateHeaderState, { passive: true });
+                window.addEventListener('resize', () => {
+                    if (header.classList.contains('scrolled')) {
+                        const h = header.getBoundingClientRect().height;
+                        document.body.style.paddingTop = `${h}px`;
+                    }
                 });
+
+                updateHeaderState();
             }
 
-            // === 3D Hero Parallax Effect ===
             const hero3DContainer = document.getElementById('hero-3d-container');
             if (hero3DContainer && window.innerWidth > 768) {
                 hero3DContainer.addEventListener('mousemove', (e) => {
@@ -1076,9 +619,6 @@ if (isset($_POST['logout'])) {
                 });
             }
 
-            // ==========================================
-            // REFACTORED LIQUID GLASS HEADER EFFECT
-            // ==========================================
             class LiquidGlassHeader {
                 constructor(targetSelector) {
                     this.target = document.querySelector(targetSelector);
@@ -1097,8 +637,7 @@ if (isset($_POST['logout'])) {
                     this.height = rect.height;
                     this.setupSVG();
                     this.setupCanvas();
-                    
-                    // Apply Liquid Filter via Backdrop Filter
+
                     this.target.style.backdropFilter = `url(#${this.id}_filter) blur(3px) saturate(180%)`;
                     this.target.style.webkitBackdropFilter = `url(#${this.id}_filter) blur(20px) saturate(180%)`;
 
@@ -1128,7 +667,7 @@ if (isset($_POST['logout'])) {
                     this.feDisplacementMap = document.createElementNS('http://www.w3.org/2000/svg', 'feDisplacementMap');
                     this.feDisplacementMap.setAttribute('in', 'SourceGraphic');
                     this.feDisplacementMap.setAttribute('in2', 'map');
-                    this.feDisplacementMap.setAttribute('scale', '40'); // Intensity
+                    this.feDisplacementMap.setAttribute('scale', '40'); 
                     this.feDisplacementMap.setAttribute('xChannelSelector', 'R');
                     this.feDisplacementMap.setAttribute('yChannelSelector', 'G');
 
@@ -1208,7 +747,6 @@ if (isset($_POST['logout'])) {
                 }
             }
 
-            // Init Liquid Header
             new LiquidGlassHeader('.ios-glass-header');
 
             const chatToggleBtn = document.getElementById('chat-toggle-btn');
@@ -1224,7 +762,6 @@ if (isset($_POST['logout'])) {
 
             const GEMINI_API_KEY = '';
 
-        
             const SYSTEM_PROMPT = `شما "Unix"، دستیار هوشمند و راهنمای ارشد NextPixelIran هستید.
 
 1.  **شخصیت و لحن:**
@@ -1262,8 +799,6 @@ if (isset($_POST['logout'])) {
 * پایان خلاصه: [END_LEAD_SUMMARY]
 * **دقیقاً** از این فرمت استفاده کن. این یک دستورالعمل سیستمی برای ذخیره‌سازی اطلاعات است و کاربر نباید متوجه این بخش شود. این خلاصه را *بعد* از آخرین پیام خداحافظی خود به کاربر، ارسال کن.
 `;
-            // ############### END SYSTEM PROMPT ###############
-
 
             messages.push({ role: 'system', content: SYSTEM_PROMPT });
 
@@ -1309,12 +844,10 @@ if (isset($_POST['logout'])) {
                 chatSubmitBtn.disabled = true;
                 addMessage('assistant', '...'); 
 
-                // Google Gemini API Endpoint
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-                
-                // Convert History to Gemini Format (contents)
+                const apiUrl = `https:
+
                 const geminiContents = history
-                    .filter(msg => msg.role !== 'system') // Filter out system prompt, sent separately
+                    .filter(msg => msg.role !== 'system') 
                     .map(msg => ({
                         role: msg.role === 'assistant' ? 'model' : 'user',
                         parts: [{ text: msg.content }]
@@ -1340,19 +873,16 @@ if (isset($_POST['logout'])) {
                     }
 
                     const data = await response.json();
-                    
-                    // Parse Gemini Response
+
                     const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
                     
-                    chatBox.removeChild(chatBox.lastChild); // Remove loader
+                    chatBox.removeChild(chatBox.lastChild); 
 
-                    // Check if the response contains the lead summary
                     if (aiResponse.includes('[START_LEAD_SUMMARY]')) {
                         const summaryStartIndex = aiResponse.indexOf('[START_LEAD_SUMMARY]');
                         const summary = aiResponse.substring(summaryStartIndex);
                         await saveLeadToFile(summary);
-                        
-                        // Don't show the summary part to the user
+
                         const userMessage = aiResponse.substring(0, summaryStartIndex).trim();
                         if (userMessage) {
                             addMessage('assistant', userMessage);
@@ -1385,8 +915,7 @@ if (isset($_POST['logout'])) {
                 chatWindow.classList.toggle('translate-y-4', isOpen);
                 chatWindow.classList.toggle('pointer-events-none', isOpen);
 
-                // Load initial message on first open - LOCAL WELCOME MESSAGE
-                if (!isOpen && messages.length === 1) { // Only system prompt exists
+                if (!isOpen && messages.length === 1) { 
                      const welcomeMsg = "سلام! من یونیکس هستم، دستیار هوشمند NextPixel. چطور می‌تونم کمکتون کنم؟";
                      addMessage('assistant', welcomeMsg);
                      messages.push({ role: 'assistant', content: welcomeMsg });
@@ -1408,10 +937,7 @@ if (isset($_POST['logout'])) {
                 await getChatbotResponse(messages);
             });
         });
-        
-        
-        
-// --- Video Preloader Logic ---
+
 const preloader = document.getElementById('video-preloader');
 const progressBarFill = document.getElementById('progress-bar-fill');
 const progressBarContainer = document.querySelector('.progress-bar-container');
@@ -1419,7 +945,6 @@ const videoMobile = document.getElementById('preloader-video-mobile');
 const videoDesktop = document.getElementById('preloader-video-desktop');
 const videoSrcMobile = "src/preloadm.mp4";
 const videoSrcDesktop = "src/preload.mp4";
-
 
 let videoToPlay = null;
 let videoSrc = "";
@@ -1450,11 +975,9 @@ const hidePreloader = () => {
     }
 };
 
-// ۳. شروع دانلود ویدیو با XHR برای ردیابی پیشرفت
 videoRequest.open('GET', videoSrc, true);
 videoRequest.responseType = 'blob';
 
-// ۴. ردیابی پیشرفت دانلود
 videoRequest.addEventListener('progress', (e) => {
     if (e.lengthComputable) {
         const percentComplete = (e.loaded / e.total) * 100;
@@ -1464,63 +987,53 @@ videoRequest.addEventListener('progress', (e) => {
     }
 });
 
-// ۵. زمانی که ویدیو کامل دانلود شد
 videoRequest.addEventListener('load', () => {
-    if (preloaderSkipped) return; // اگر تایم‌اوت قبلا اجرا شده، کاری نکن
+    if (preloaderSkipped) return; 
     
-    clearTimeout(safetyTimeout); // تایم‌اوت را لغو کن
+    clearTimeout(safetyTimeout); 
     
     if ((videoRequest.status === 200 || videoRequest.status === 206) && videoToPlay) {
         const blob = videoRequest.response;
         const videoURL = URL.createObjectURL(blob);
         
         videoToPlay.src = videoURL;
-        
-        // مخفی کردن نوار پیشرفت
+
         if (progressBarContainer) {
             progressBarContainer.style.opacity = '0';
         }
-        
-        // نمایش ویدیو
+
         videoToPlay.style.display = 'block';
-        
-        // **اصلاح کلیدی: مدیریت خطای پخش**
+
         const playPromise = videoToPlay.play();
 
         if (playPromise !== undefined) {
             playPromise.then(() => {
-                // پخش با موفقیت شروع شد
-                // ۶. مخفی کردن پری‌لودر پس از اتمام پخش ویدیو
+
                 videoToPlay.addEventListener('ended', hidePreloader);
                 videoToPlay.addEventListener('error', (e) => {
                     console.error('Error during video playback:', e);
-                    hidePreloader(); // اگر پخش خطا داد
+                    hidePreloader(); 
                 });
             }).catch(error => {
-                // پخش خودکار توسط مرورگر مسدود شد
+                
                 console.warn("Video autoplay was blocked, skipping video.", error);
                 hidePreloader();
             });
         }
     } else {
-        // اگر فایل ویدیو پیدا نشد (404)
+        
         hidePreloader();
     }
 });
 
-// ۷. اگر دانلود ویدیو به هر دلیلی خطا داد
 videoRequest.addEventListener('error', () => {
     console.error('XHR error loading video.');
     clearTimeout(safetyTimeout);
     hidePreloader();
 });
 
-// ۸. شروع عملیات دانلود
 videoRequest.send();
 
-// === Enhanced Interactive Animations ===
-
-// Parallax Scroll Effect
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const parallaxElements = document.querySelectorAll('.parallax-element');
@@ -1530,7 +1043,6 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Magnetic Hover Effect for Buttons
 document.querySelectorAll('.magnetic-hover').forEach(element => {
     element.addEventListener('mousemove', (e) => {
         const rect = element.getBoundingClientRect();
@@ -1543,7 +1055,6 @@ document.querySelectorAll('.magnetic-hover').forEach(element => {
     });
 });
 
-// Text Reveal on Scroll
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
@@ -1561,7 +1072,6 @@ document.querySelectorAll('.text-reveal').forEach(el => {
     textRevealObserver.observe(el);
 });
 
-// Particle System Background
 function createParticles() {
     const particlesContainer = document.createElement('div');
     particlesContainer.className = 'particles';
@@ -1580,12 +1090,10 @@ function createParticles() {
     }
 }
 
-// Initialize particles on desktop
 if (window.innerWidth > 768) {
     createParticles();
 }
 
-// Enhanced CTA Button Pulse
 document.querySelectorAll('.cta-button').forEach(btn => {
     btn.addEventListener('mouseenter', () => {
         btn.style.animation = 'pulse-glow 1s ease-in-out infinite';
@@ -1595,7 +1103,6 @@ document.querySelectorAll('.cta-button').forEach(btn => {
     });
 });
 
-// Smooth Scroll Enhancement
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -1607,11 +1114,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
-    
-    
+
 });
 
-// Card Tilt Effect
 document.querySelectorAll('.service-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -1627,7 +1132,6 @@ document.querySelectorAll('.service-card').forEach(card => {
         card.style.transform = '';
     });
 });
-
 
     </script>
 </body>
