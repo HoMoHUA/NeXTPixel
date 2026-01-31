@@ -135,20 +135,29 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
+            width: 100%;
             z-index: 1000;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            background: rgba(15, 23, 42, 0.5);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.85);
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 0;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         header.scrolled {
-            background: rgba(15, 23, 42, 0.8);
-            border-bottom-color: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 1280px;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .header-container {
@@ -764,13 +773,18 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
             });
         });
 
-        // Header Scroll Detection
+        // Header Scroll Detection with smooth animation
+        let headerScrollTimeout;
         window.addEventListener('scroll', () => {
             const header = document.getElementById('main-header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
+            if (window.scrollY > 100) {
+                if (!header.classList.contains('scrolled')) {
+                    header.classList.add('scrolled');
+                }
             } else {
-                header.classList.remove('scrolled');
+                if (header.classList.contains('scrolled')) {
+                    header.classList.remove('scrolled');
+                }
             }
         }, { passive: true });
 
@@ -803,7 +817,7 @@ $isN8NAdmin = $isLoggedIn; // دسترسی برای همه کاربران لاگ
         const navLinks = document.querySelectorAll('.header-nav a, .mobile-menu-links a');
         navLinks.forEach(link => {
             const href = link.getAttribute('href');
-            if (href === '/' && currentPage === '' || currentPage === 'index.php') {
+            if (href === '/' && (currentPage === '' || currentPage === 'index.php')) {
                 link.classList.add('active');
             } else if (href === `/${currentPage}` || href === currentPage) {
                 link.classList.add('active');
