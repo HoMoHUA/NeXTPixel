@@ -475,6 +475,48 @@ if (isset($_POST['logout'])) {
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
+            // ============ VIDEO PRELOADER ============
+            const videoPreloader = document.getElementById('video-preloader');
+            const progressBarFill = document.getElementById('progress-bar-fill');
+            const preloaderVideoMobile = document.getElementById('preloader-video-mobile');
+            const preloaderVideoDesktop = document.getElementById('preloader-video-desktop');
+            
+            if (videoPreloader && progressBarFill) {
+                // Set video sources based on viewport
+                if (window.innerWidth <= 768) {
+                    preloaderVideoMobile.src = 'https://nextpixel.top/assets/videos/preloader-mobile.mp4';
+                    preloaderVideoMobile.classList.add('show');
+                } else {
+                    preloaderVideoDesktop.src = 'https://nextpixel.top/assets/videos/preloader-desktop.mp4';
+                    preloaderVideoDesktop.classList.add('show');
+                }
+                
+                // Simulate progress
+                let progress = 0;
+                const progressInterval = setInterval(() => {
+                    progress += Math.random() * 30;
+                    progress = Math.min(progress, 90);
+                    progressBarFill.style.width = progress + '%';
+                }, 300);
+                
+                // Hide preloader on page load
+                window.addEventListener('load', () => {
+                    clearInterval(progressInterval);
+                    progressBarFill.style.width = '100%';
+                    setTimeout(() => {
+                        videoPreloader.classList.add('hidden');
+                    }, 500);
+                });
+                
+                // Fallback: hide after 5 seconds
+                setTimeout(() => {
+                    if (!videoPreloader.classList.contains('hidden')) {
+                        videoPreloader.classList.add('hidden');
+                    }
+                }, 5000);
+            }
+            
+            // ============ MENU TOGGLE ============
             const menuBtn = document.getElementById('menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuIcon = menuBtn.querySelector('i');

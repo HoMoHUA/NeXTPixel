@@ -1,60 +1,16 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 /**
  * NextPixel Global Stylesheet
  * ============================================
  * Consolidated styles for all NextPixel pages
- * - Base typography and layout
- * - Component styles
- * - Animation keyframes
- * - Responsive utilities
- * - Dark theme colors
  */
 
-/* ============================================
-   1. FONT FACES & TYPOGRAPHY
-   ============================================ */
-
-@font-face {
-    font-family: 'Vazirmatn';
-    src: url('/assets/fonts/Vazirmatn-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Vazirmatn';
-    src: url('/assets/fonts/Vazirmatn-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Vazirmatn';
-    src: url('/assets/fonts/Vazirmatn-ExtraBold.woff2') format('woff2');
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Vazirmatn';
-    src: url('/assets/fonts/Vazirmatn-Black.woff2') format('woff2');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 /* ============================================
-   2. BASE STYLES
+   1. CSS VARIABLES & COLORS
    ============================================ */
 
 :root {
-    /* NextPixel Color Scheme */
     --np-dark-bg: #0f172a;
     --np-dark-bg-alt: #1e293b;
     --np-dark-bg-lighter: #334155;
@@ -63,46 +19,18 @@
     --np-text-muted: #94a3b8;
     --np-border-light: rgba(255, 255, 255, 0.125);
     --np-border-lighter: rgba(255, 255, 255, 0.1);
-    
-    /* Gradient Colors */
     --np-gradient-blue: #3b82f6;
     --np-gradient-purple: #8b5cf6;
     --np-gradient-pink: #ec4899;
     --np-gradient-amber: #f59e0b;
     --np-gradient-green: #10b981;
-    
-    /* Glass Effect */
     --np-glass-bg: rgba(15, 23, 42, 0.85);
     --np-glass-blur: 12px;
-    --np-glass-saturate: 180%;
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-/* NextPixel Global Styles */
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-:root {
-    --np-bg-dark: #0f172a;
-    --np-bg-darker: #0a0f1c;
-    --np-text-light: #f8fafc;
-    --np-text-muted: #94a3b8;
-    --np-border-light: rgba(255, 255, 255, 0.1);
-    --np-glass-blur: 35px;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 }
+
+/* ============================================
+   2. RESET & BASE
+   ============================================ */
 
 * {
     margin: 0;
@@ -110,431 +38,57 @@
     box-sizing: border-box;
 }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
 body {
-    font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Vazirmatn', sans-serif;
     background-color: var(--np-dark-bg);
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    background-attachment: fixed;
     color: var(--np-text-primary);
-    line-height: 1.8;
+    line-height: 1.6;
     overflow-x: hidden;
 }
 
 /* ============================================
-   3. KEYFRAME ANIMATIONS
+   3. TYPOGRAPHY
    ============================================ */
 
-@keyframes np-morph {
-    0% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
-    50% { border-radius: 30% 60% 70% 40%/50% 60% 30% 60%; }
-    100% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
-@keyframes np-pulse-glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.3); }
-    50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(139, 92, 246, 0.5); }
-}
+h1 { font-size: clamp(1.5rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.25rem, 4vw, 2.5rem); }
+h3 { font-size: clamp(1.1rem, 3vw, 1.75rem); }
 
-@keyframes np-float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-20px) rotate(2deg); }
-    66% { transform: translateY(-10px) rotate(-2deg); }
-}
-
-@keyframes np-glow-pulse {
-    0%, 100% { filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5)); }
-    50% { filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.8)); }
-}
-
-@keyframes np-shimmer {
-    0% { background-position: -1000px 0; }
-    100% { background-position: 1000px 0; }
-}
-
-@keyframes np-rotate-gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes np-bounce-slow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-@keyframes np-blink {
-    0% { opacity: 0.2; }
-    20% { opacity: 1; }
-    100% { opacity: 0.2; }
-}
-
-@keyframes np-particle-float {
-    0% {
-        transform: translateY(100vh) translateX(0) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100vh) translateX(100px) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-@keyframes np-hero-bg-rotate {
-    0%, 100% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(5deg) scale(1.1); }
-}
-
-@keyframes np-hero-3d-float {
-    0%, 100% {
-        transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
-        opacity: 0.3;
-    }
-    25% {
-        transform: translate3d(20px, -30px, 50px) rotateX(10deg) rotateY(5deg);
-        opacity: 0.5;
-    }
-    50% {
-        transform: translate3d(-10px, -50px, 100px) rotateX(-10deg) rotateY(-5deg);
-        opacity: 0.4;
-    }
-    75% {
-        transform: translate3d(30px, -20px, 50px) rotateX(5deg) rotateY(10deg);
-        opacity: 0.5;
-    }
-}
-
-@keyframes np-hero-content-enter {
-    from {
-        opacity: 0;
-        transform: translateZ(-200px) rotateX(20deg);
-    }
-    to {
-        opacity: 1;
-        transform: translateZ(0) rotateX(0deg);
-    }
-}
-
-@keyframes np-hero-word-3d {
-    from {
-        opacity: 0;
-        transform: translate3d(0, 50px, -100px) rotateX(90deg);
-    }
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) rotateX(0deg);
-    }
-}
-
-@keyframes np-hero-text-3d {
-    from {
-        opacity: 0;
-        transform: translateZ(-150px) rotateY(10deg);
-    }
-    to {
-        opacity: 1;
-        transform: translateZ(0) rotateY(0deg);
-    }
-}
-
-@keyframes np-hero-buttons-3d {
-    from {
-        opacity: 0;
-        transform: translateZ(-100px) scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: translateZ(0) scale(1);
-    }
-}
-
-/* ============================================
-   4. HEADER & NAVIGATION
-   ============================================ */
-
-nav.np-ios-glass-header {
-    position: sticky;
-    top: 16px;
-    z-index: 1000;
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(35px) saturate(280%);
-    -webkit-backdrop-filter: blur(35px) saturate(280%);
-    border: 2px solid rgba(55, 55, 55, 0.4);
-    box-shadow:
-        0 10px 40px -10px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
-        inset 0 -1px 0 0 rgba(255, 255, 255, 0.2),
-        inset 0 0 20px rgba(255, 255, 255, 0.05),
-        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
-    transition: top 0.28s cubic-bezier(0.4, 0, 0.2, 1),
-                background 0.28s ease,
-                box-shadow 0.28s ease,
-                border-radius 0.28s ease,
-                margin 0.28s ease,
-                transform 0.28s ease;
-}
-
-nav.np-ios-glass-header.scrolled {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 100%;
-    border-radius: 0;
-    background: rgba(15, 23, 42, 0.85);
-    box-shadow:
-        0 10px 40px -10px rgba(0, 0, 0, 0.55),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
-        inset 0 -1px 0 0 rgba(255, 255, 255, 0.08),
-        inset 0 0 18px rgba(255, 255, 255, 0.03);
-    z-index: 2000;
-}
-
-nav.np-glass-effect {
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
-@media (min-width: 768px) {
-    nav.np-glass-effect {
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-}
-
-/* ============================================
-   5. GLASS EFFECT COMPONENTS
-   ============================================ */
-
-.np-glass-effect {
-    background: var(--np-glass-bg);
-    -webkit-backdrop-filter: blur(var(--np-glass-blur));
-    backdrop-filter: blur(var(--np-glass-blur));
-    border: 1px solid var(--np-border-light);
-    will-change: transform, backdrop-filter;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.np-liquid-glass {
-    background: rgba(15, 23, 42, 0.7);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.np-liquid-morph {
-    animation: np-morph 8s ease-in-out infinite;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* ============================================
-   6. GRADIENT & TEXT STYLES
-   ============================================ */
-
-.np-gradient-text {
-    background: linear-gradient(90deg, #60a5fa, #818cf8, #a78bfa);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    background-size: 200% auto;
-    transition: all 0.3s ease;
-}
-
-.np-gradient-text:hover {
-    background-position: right center;
-}
-
-.np-animated-gradient {
-    background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b);
-    background-size: 400% 400%;
-    animation: np-rotate-gradient 8s ease infinite;
-}
-
-.np-text-reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.np-text-reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ============================================
-   7. BUTTONS & INTERACTIONS
-   ============================================ */
-
-.np-cta-button {
-    background: linear-gradient(45deg, var(--np-gradient-blue), var(--np-gradient-purple));
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-    cursor: pointer;
-    border: none;
-    font-family: 'Vazirmatn', sans-serif;
-}
-
-.np-cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-}
-
-.np-magnetic-hover {
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.np-magnetic-hover:hover {
-    transform: translateY(-5px) scale(1.05);
-    filter: drop-shadow(0 10px 30px rgba(59, 130, 246, 0.4));
-}
-
-/* ============================================
-   8. SERVICE CARDS
-   ============================================ */
-
-.np-service-card {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.np-service-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-    transform: rotate(45deg);
-    transition: all 0.6s;
-    opacity: 0;
-}
-
-.np-service-card:hover::before {
-    animation: np-shimmer 1s ease-in-out;
-    opacity: 1;
-}
-
-.np-service-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.3);
-    animation: np-pulse-glow 2s ease-in-out infinite;
-}
-
-.np-service-card-3d {
-    transform-style: preserve-3d;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    position: relative;
-}
-
-.np-service-card-3d::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 1rem;
-    padding: 2px;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.np-service-card-3d:hover::before {
-    opacity: 1;
-}
-
-.np-service-card-3d:hover {
-    transform: translateY(-10px) translateZ(20px) rotateX(2deg) rotateY(-2deg);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(59, 130, 246, 0.2);
-}
-
-/* ============================================
-   9. PORTFOLIO & FILTER CARDS
-   ============================================ */
-
-.np-portfolio-card {
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    overflow: hidden;
-}
-
-.np-portfolio-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.3);
-}
-
-.np-portfolio-card img {
-    transition: transform 0.5s ease;
-}
-
-.np-portfolio-card:hover img {
-    transform: scale(1.1);
-}
-
-.np-filter-btn.active {
-    background: linear-gradient(90deg, var(--np-gradient-blue), var(--np-gradient-purple));
-    color: white;
-}
-
-.np-filter-btn:hover {
-    transform: translateY(-2px);
-}
-
-/* ============================================
-   10. CHAT BUBBLES
-   ============================================ */
-
-.np-chat-bubble {
-    max-width: 80%;
-    padding: 0.75rem 1rem;
-    border-radius: 1.25rem;
-    word-wrap: break-word;
-}
-
-.np-chat-bubble-user {
-    background: linear-gradient(45deg, var(--np-gradient-blue), var(--np-gradient-purple));
-    color: white;
-    border-bottom-right-radius: 0.25rem;
-    margin-right: auto;
-}
-
-.np-chat-bubble-assistant {
-    background-color: var(--np-dark-bg-alt);
+p {
     color: var(--np-text-secondary);
-    border-bottom-left-radius: 0.25rem;
-    margin-left: auto;
+    margin-bottom: 1rem;
 }
 
-.np-loader-dots span {
-    animation: np-blink 1.4s infinite both;
-    display: inline-block;
+a {
+    color: var(--np-gradient-blue);
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-.np-loader-dots span:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.np-loader-dots span:nth-child(3) {
-    animation-delay: 0.4s;
+a:hover {
+    color: var(--np-gradient-purple);
 }
 
 /* ============================================
-   11. PRELOADER
+   4. PRELOADER
    ============================================ */
 
-#np-video-preloader {
+#video-preloader {
     position: fixed;
     inset: 0;
     z-index: 99999;
@@ -548,7 +102,12 @@ nav.np-glass-effect {
     transition: opacity 0.5s ease-out;
 }
 
-.np-progress-bar-container {
+#video-preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.progress-bar-container {
     width: 80%;
     max-width: 300px;
     height: 6px;
@@ -559,7 +118,7 @@ nav.np-glass-effect {
     transition: opacity 0.3s ease;
 }
 
-#np-progress-bar-fill {
+#progress-bar-fill {
     width: 0%;
     height: 100%;
     background: linear-gradient(90deg, var(--np-gradient-blue), var(--np-gradient-purple));
@@ -567,555 +126,215 @@ nav.np-glass-effect {
     transition: width 0.3s ease-out;
 }
 
-#np-preloader-video-mobile,
-#np-preloader-video-desktop {
+.video-player {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: none;
 }
 
-/* ============================================
-   12. FLOATING & ANIMATION UTILITIES
-   ============================================ */
-
-.np-float-animation {
-    animation: np-float 6s ease-in-out infinite;
-}
-
-.np-float-animation-delay-1 {
-    animation-delay: 0.5s;
-}
-
-.np-float-animation-delay-2 {
-    animation-delay: 1s;
-}
-
-.np-float-animation-delay-3 {
-    animation-delay: 1.5s;
-}
-
-.np-icon-glow {
-    animation: np-glow-pulse 2s ease-in-out infinite;
-}
-
-.np-bounce-slow {
-    animation: np-bounce-slow 3s ease-in-out infinite;
+.video-player.show {
+    display: block;
 }
 
 /* ============================================
-   13. 3D HERO SECTION
+   5. GLASS & GRADIENT EFFECTS
    ============================================ */
 
-#np-hero-3d-container {
-    perspective: 1000px;
-    transform-style: preserve-3d;
-}
-
-.np-hero-3d-bg {
-    background:
-        radial-gradient(ellipse at center, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 20% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%);
-    animation: np-hero-bg-rotate 20s ease-in-out infinite;
-}
-
-.np-hero-3d-element {
-    animation: np-hero-3d-float 8s ease-in-out infinite;
-    transform-style: preserve-3d;
-}
-
-.np-hero-3d-content {
-    transform-style: preserve-3d;
-    animation: np-hero-content-enter 1.5s ease-out;
-}
-
-.np-hero-3d-title {
-    transform-style: preserve-3d;
-    display: inline-block;
-}
-
-.np-hero-3d-word {
-    display: inline-block;
-    transform-style: preserve-3d;
-    opacity: 0;
-    animation: np-hero-word-3d 0.8s ease-out forwards;
-    transform-origin: center center;
-}
-
-.np-hero-3d-text {
-    transform-style: preserve-3d;
-    animation: np-hero-text-3d 1s ease-out 1.5s both;
-}
-
-.np-hero-3d-buttons {
-    transform-style: preserve-3d;
-    animation: np-hero-buttons-3d 1s ease-out 2s both;
-}
-
-.np-hero-3d-btn {
-    transform-style: preserve-3d;
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.np-hero-3d-btn:hover {
-    transform: translateZ(20px) scale(1.05);
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4), 0 0 20px rgba(139, 92, 246, 0.3);
-}
-
-/* ============================================
-   14. ROTATING BORDERS
-   ============================================ */
-
-.np-rotating-border {
-    position: relative;
-    background:
-        linear-gradient(var(--np-dark-bg), var(--np-dark-bg)) padding-box,
-        linear-gradient(45deg, var(--np-gradient-blue), var(--np-gradient-purple), var(--np-gradient-pink)) border-box;
-    border: 2px solid transparent;
-    border-radius: 12px;
-    animation: np-rotate-gradient 3s linear infinite;
-}
-
-/* ============================================
-   15. PARTICLE SYSTEM
-   ============================================ */
-
-.np-particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.np-particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(59, 130, 246, 0.5);
-    border-radius: 50%;
-    animation: np-particle-float 20s infinite;
-}
-
-/* ============================================
-   16. UTILITY CLASSES
-   ============================================ */
-
-.np-container {
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-    .np-container {
-        max-width: 640px;
-    }
-}
-
-@media (min-width: 768px) {
-    .np-container {
-        max-width: 768px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .np-container {
-        max-width: 1024px;
-    }
-}
-
-@media (min-width: 1280px) {
-    .np-container {
-        max-width: 1280px;
-    }
-}
-
-@media (min-width: 1536px) {
-    .np-container {
-        max-width: 1536px;
-    }
-}
-
-.np-parallax-element {
-    transition: transform 0.3s ease-out;
-}
-
-/* ============================================
-   17. RESPONSIVE ADJUSTMENTS
-   ============================================ */
-
-@media (min-width: 768px) {
-    #np-hero-3d-container {
-        cursor: none;
-    }
-}
-
-/* ============================================
-   18. BACKWARD COMPATIBILITY ALIASES
-   ============================================ */
-
-/* Map old class names to new NextPixel-namespaced classes for legacy support */
 .glass-effect {
     background: var(--np-glass-bg);
     -webkit-backdrop-filter: blur(var(--np-glass-blur));
     backdrop-filter: blur(var(--np-glass-blur));
     border: 1px solid var(--np-border-light);
     will-change: transform, backdrop-filter;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .gradient-text {
-    background: linear-gradient(90deg, #60a5fa, #818cf8, #a78bfa);
+    background: linear-gradient(135deg, var(--np-gradient-blue), var(--np-gradient-purple), var(--np-gradient-pink));
     -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     background-clip: text;
-    color: transparent;
-    background-size: 200% auto;
-    transition: all 0.3s ease;
-}
-
-.gradient-text:hover {
-    background-position: right center;
 }
 
 .ios-glass-header {
-    position: sticky;
-    top: 16px;
-    z-index: 1000;
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(35px) saturate(280%);
-    -webkit-backdrop-filter: blur(35px) saturate(280%);
-    border: 2px solid rgba(55, 55, 55, 0.4);
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 0 rgba(255, 255, 255, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
-    transition: top 0.28s cubic-bezier(0.4, 0, 0.2, 1), background 0.28s ease, box-shadow 0.28s ease, border-radius 0.28s ease, margin 0.28s ease, transform 0.28s ease;
-}
-
-.ios-glass-header.scrolled {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 100%;
-    border-radius: 0;
-    background: rgba(15, 23, 42, 0.85);
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.55), inset 0 1px 0 0 rgba(255, 255, 255, 0.12), inset 0 -1px 0 0 rgba(255, 255, 255, 0.08), inset 0 0 18px rgba(255, 255, 255, 0.03);
-    z-index: 2000;
-}
-
-.cta-button {
-    background: linear-gradient(45deg, var(--np-gradient-blue), var(--np-gradient-purple));
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-    cursor: pointer;
-    border: none;
-    font-family: 'Vazirmatn', sans-serif;
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-}
-
-body {
-    font-family: 'Vazirmatn', sans-serif;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-    background-attachment: fixed;
-    color: var(--np-text-light);
-    line-height: 1.8;
-    min-height: 100vh;
-}
-
-/* ====== Tailwind Integration ====== */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* ====== Global Utilities ====== */
-.container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-.gradient-text {
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-}
-
-/* ====== Glass Effect & Backdrop Filter ====== */
-.glass-effect {
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(var(--np-glass-blur)) saturate(280%);
-    -webkit-backdrop-filter: blur(var(--np-glass-blur)) saturate(280%);
-    border: 1px solid var(--np-border-light);
-    will-change: transform, backdrop-filter;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-effect:hover {
-    background: rgba(15, 23, 42, 0.95);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* ====== iOS Glass Header (Sticky) ====== */
-nav.ios-glass-header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    backdrop-filter: blur(35px) saturate(280%);
-    -webkit-backdrop-filter: blur(35px) saturate(280%);
     background: rgba(15, 23, 42, 0.7);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    will-change: transform, backdrop-filter;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
     transition: all 0.3s ease;
 }
 
-nav.ios-glass-header.scrolled {
-    background: rgba(15, 23, 42, 0.95);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+/* ============================================
+   6. HEADER & NAVIGATION
+   ============================================ */
+
+header {
+    position: relative;
+    z-index: 40;
 }
 
-/* ====== Typography ====== */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-    line-height: 1.3;
-}
-
-h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-}
-
-h2 {
-    font-size: 2rem;
-    font-weight: 700;
-}
-
-h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-p {
-    line-height: 1.8;
-    color: #cbd5e1;
-}
-
-a {
-    color: #3b82f6;
-    text-decoration: none;
+nav a {
+    position: relative;
     transition: all 0.3s ease;
 }
 
-a:hover {
-    color: #60a5fa;
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--np-gradient-blue);
+    transition: width 0.3s ease;
 }
 
-/* ====== Buttons ====== */
-.btn-primary {
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    border: none;
-    font-weight: 600;
+nav a:hover::after {
+    width: 100%;
+}
+
+/* ============================================
+   7. BUTTONS
+   ============================================ */
+
+.cta-button,
+button {
     cursor: pointer;
+    border: none;
+    background: none;
     transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
 }
 
 .cta-button {
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    background: linear-gradient(135deg, var(--np-gradient-blue), var(--np-gradient-purple));
     color: white;
     padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    border: none;
+    border-radius: 2rem;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
     display: inline-block;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 }
 
 .cta-button:hover {
     transform: translateY(-2px);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
 }
 
-.service-card {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+/* ============================================
+   8. HERO SECTION
+   ============================================ */
+
+#hero-3d-container {
+    background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
 }
 
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-    transform: rotate(45deg);
-    transition: all 0.6s;
+.hero-3d-bg {
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="g1"><stop offset="0%" style="stop-color:%233b82f6;stop-opacity:0.05"/><stop offset="100%" style="stop-color:%238b5cf6;stop-opacity:0.05"/></linearGradient></defs><rect fill="url(%23g1)" width="1200" height="800"/></svg>');
+}
+
+.hero-3d-element {
+    animation: float 6s ease-in-out infinite;
+}
+
+.hero-3d-content {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-3d-word {
+    display: inline-block;
+    animation: slideInUp 0.6s ease-out forwards;
     opacity: 0;
 }
 
-.service-card:hover::before {
-    animation: np-shimmer 1s ease-in-out;
-    opacity: 1;
+.hero-3d-text {
+    animation: fadeIn 0.8s ease-out 0.3s forwards;
+    opacity: 0;
 }
 
-.service-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.3);
-    animation: np-pulse-glow 2s ease-in-out infinite;
+.hero-3d-buttons {
+    animation: fadeIn 0.8s ease-out 0.5s forwards;
+    opacity: 0;
 }
+
+.hero-3d-btn {
+    transition: all 0.3s ease;
+}
+
+.hero-3d-btn:hover {
+    transform: scale(1.05);
+}
+
+/* ============================================
+   9. SERVICE CARDS
+   ============================================ */
 
 .service-card-3d {
-    transform-style: preserve-3d;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
-}
-
-.service-card-3d::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 1rem;
-    padding: 2px;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.service-card-3d:hover::before {
-    opacity: 1;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    border: 1px solid var(--np-border-lighter);
 }
 
 .service-card-3d:hover {
-    transform: translateY(-10px) translateZ(20px) rotateX(2deg) rotateY(-2deg);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(59, 130, 246, 0.2);
+    transform: translateY(-8px);
+    border-color: var(--np-gradient-blue);
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+}
+
+.icon-glow {
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.magnetic-hover {
+    transition: all 0.3s ease;
+}
+
+/* ============================================
+   10. SECTIONS
+   ============================================ */
+
+section {
+    position: relative;
+    overflow: hidden;
 }
 
 .container {
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-@media (min-width: 640px) {
-    .container {
-        max-width: 640px;
+/* ============================================
+   11. ANIMATIONS
+   ============================================ */
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
     }
 }
 
-@media (min-width: 768px) {
-    .container {
-        max-width: 768px;
+@keyframes glow-pulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.8));
     }
 }
 
-@media (min-width: 1024px) {
-    .container {
-        max-width: 1024px;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 
-@media (min-width: 1280px) {
-    .container {
-        max-width: 1280px;
-    }
-}
-
-@media (min-width: 1536px) {
-    .container {
-        max-width: 1536px;
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
-}
-
-/* ====== Sections ====== */
-section {
-    padding: 3rem 0;
-}
-
-.min-h-screen {
-    min-height: 100vh;
-}
-
-.py-20 {
-    padding: 5rem 0;
-}
-
-/* ====== Grid & Flexbox ====== */
-.grid {
-    display: grid;
-}
-
-.flex {
-    display: flex;
-}
-
-.gap-4 {
-    gap: 1rem;
-}
-
-.gap-6 {
-    gap: 1.5rem;
-}
-
-.gap-8 {
-    gap: 2rem;
-}
-
-/* ====== Animations ====== */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -1127,274 +346,85 @@ section {
     }
 }
 
-@keyframes slideInLeft {
+@keyframes slideInUp {
     from {
         opacity: 0;
-        transform: translateX(-50px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
     }
 }
 
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
-}
+/* ============================================
+   12. RESPONSIVE
+   ============================================ */
 
-/* ====== Portfolio Card ====== */
-.portfolio-card {
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    overflow: hidden;
-    border-radius: 1rem;
-}
-
-.portfolio-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
-}
-
-.portfolio-card img {
-    width: 100%;
-    height: auto;
-    transition: transform 0.4s ease;
-}
-
-.portfolio-card:hover img {
-    transform: scale(1.05);
-}
-
-/* ====== Filter Buttons ====== */
-.filter-btn {
-    background: rgba(255, 255, 255, 0.05);
-    color: #cbd5e1;
-    padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-}
-
-.filter-btn:hover {
-    background: rgba(59, 130, 246, 0.2);
-    color: #60a5fa;
-    border-color: rgba(59, 130, 246, 0.3);
-}
-
-.filter-btn.active {
-    background: #3b82f6;
-    color: white;
-    border-color: #3b82f6;
-}
-
-/* ====== Status Badges ====== */
-.status-badge {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-}
-
-.status-active {
-    background: rgba(34, 197, 94, 0.1);
-    color: #22c55e;
-}
-
-.status-inactive {
-    background: rgba(239, 68, 68, 0.1);
-    color: #ef4444;
-}
-
-.status-draft {
-    background: rgba(168, 85, 247, 0.1);
-    color: #a855f7;
-}
-
-/* ====== Forms ====== */
-input, select, textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0.5rem;
-    background: rgba(0, 0, 0, 0.3);
-    color: white;
-    font-family: inherit;
-    transition: all 0.2s ease;
-}
-
-input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: #3b82f6;
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-/* ====== Responsive ====== */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    section {
-        padding: 2rem 0;
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+    
+    .hidden-mobile {
+        display: none !important;
     }
 }
 
-@media (max-width: 640px) {
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    h2 {
-        font-size: 1.25rem;
-    }
-
-    section {
-        padding: 1.5rem 0;
-    }
-
-    .container {
-        padding: 0 0.75rem;
+@media (min-width: 769px) {
+    .hidden-desktop {
+        display: none !important;
     }
 }
 
-/* ====== Scrollbar Styling ====== */
+/* ============================================
+   13. SCROLLBAR
+   ============================================ */
+
 ::-webkit-scrollbar {
     width: 10px;
-    height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(15, 23, 42, 0.5);
+    background: var(--np-dark-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(59, 130, 246, 0.5);
-    border-radius: 10px;
+    background: var(--np-gradient-blue);
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(59, 130, 246, 0.8);
+    background: var(--np-gradient-purple);
 }
 
-/* ====== Selection Styling ====== */
+/* ============================================
+   14. UTILITIES
+   ============================================ */
+
+.text-center { text-align: center; }
+.text-white { color: white; }
+.hidden { display: none !important; }
+.flex { display: flex; }
+.block { display: block; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.rounded-full { border-radius: 9999px; }
+.rounded-2xl { border-radius: 1rem; }
+.overflow-hidden { overflow: hidden; }
+.overflow-x-hidden { overflow-x: hidden; }
+.transition { transition: all 0.3s ease; }
+.z-10 { z-index: 10; }
+.z-20 { z-index: 20; }
+.z-40 { z-index: 40; }
+.z-50 { z-index: 50; }
+
 ::selection {
-    background: rgba(59, 130, 246, 0.3);
-    color: #f8fafc;
-}
-
-::-moz-selection {
-    background: rgba(59, 130, 246, 0.3);
-    color: #f8fafc;
-}
-
-/* ====== Utility Classes ====== */
-.text-center {
-    text-align: center;
-}
-
-.text-right {
-    text-align: right;
-}
-
-.text-white {
+    background-color: var(--np-gradient-blue);
     color: white;
 }
 
-.text-gray-300 {
-    color: #d1d5db;
-}
-
-.text-gray-400 {
-    color: #9ca3af;
-}
-
-.text-blue-400 {
-    color: #60a5fa;
-}
-
-.bg-slate-900 {
-    background-color: #0f172a;
-}
-
-.bg-slate-900\/50 {
-    background-color: rgba(15, 23, 42, 0.5);
-}
-
-.rounded-2xl {
-    border-radius: 1rem;
-}
-
-.mx-auto {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.mb-4 {
-    margin-bottom: 1rem;
-}
-
-.mb-6 {
-    margin-bottom: 1.5rem;
-}
-
-.mb-8 {
-    margin-bottom: 2rem;
-}
-
-.mt-4 {
-    margin-top: 1rem;
-}
-
-.mt-6 {
-    margin-top: 1.5rem;
-}
-
-.mt-8 {
-    margin-top: 2rem;
-}
-
-.pt-8 {
-    padding-top: 2rem;
-}
-
-.overflow-hidden {
-    overflow: hidden;
-}
-
-.transition {
-    transition: all 0.3s ease;
-}
-
-/* ====== Print Styles ====== */
-@media print {
-    body {
-        background: white;
-        color: black;
-    }
-
-    nav, footer {
-        display: none;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-    }
+::-moz-selection {
+    background-color: var(--np-gradient-blue);
+    color: white;
 }
