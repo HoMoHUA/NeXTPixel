@@ -12,7 +12,7 @@ $portfolioItems = [
     // --- پروژه‌های هوشمند و جدید (ابتدا قرار می‌گیرند) ---
     [
         'id' => 'batis_modern',
-        'title' => 'باتیس مدرن',
+        'title' => 'تولیدی چوب و فلز',
         'category' => 'landing',
         'category_fa' => 'شرکتی',
         'badge_bg' => 'bg-emerald-900/30',
