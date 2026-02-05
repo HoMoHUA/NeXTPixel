@@ -20,19 +20,35 @@ function checkServerStatus($url) {
 
 $output = [];
 
-// تعریف لیست پروژه‌های هوشمند
+// تعریف لیست پروژه‌های هوشمند (AJAX)
 $projects = [
+    // --- پروژه ۱: فروشگاه مبلمان (بدون نیاز به VPN) ---
+    [
+        'id' => 'furniture_store',
+        'url' => 'http://furniture1.armanmc.ir/',
+        'img' => '/src/furniture.png',
+        'title' => 'فروشگاه مبلمان',
+        'desc' => 'فروشگاه آنلاین مبلمان با طراحی مدرن و رابط کاربری جذاب (React)',
+        'category' => 'store',
+        'badge_bg' => 'bg-orange-900/30',
+        'badge_text_color' => 'text-orange-400',
+        'badge_label' => 'فروشگاهی',
+        'vpn_required' => false // سرور ایران/بدون فیلتر
+    ],
+    // --- پروژه ۲: باتیس مدرن (نیاز به VPN) ---
     [
         'id' => 'batis_modern',
         'url' => 'https://batis-modern.vercel.app',
         'img' => '/src/batis.png',
-        'title' => 'صنایع چوب و فلزی',
+        'title' => 'باتیس مدرن',
         'desc' => 'طراحی مدرن و مینیمال با استفاده از تکنولوژی‌های روز دنیا (Next.js)',
         'category' => 'landing',
         'badge_bg' => 'bg-emerald-900/30',
         'badge_text_color' => 'text-emerald-400',
-        'badge_label' => 'شرکتی'
+        'badge_label' => 'شرکتی',
+        'vpn_required' => true // پروژه Vercel
     ],
+    // --- پروژه ۳: فروشگاه اتحاد (نیاز به VPN) ---
     [
         'id' => 'etehad_store',
         'url' => 'https://etehad.vercel.app/',
@@ -42,7 +58,8 @@ $projects = [
         'category' => 'store',
         'badge_bg' => 'bg-blue-900/30',
         'badge_text_color' => 'text-blue-400',
-        'badge_label' => 'فروشگاهی'
+        'badge_label' => 'فروشگاهی',
+        'vpn_required' => true // پروژه Vercel
     ]
 ];
 
@@ -67,26 +84,27 @@ foreach ($projects as $proj) {
     // --- بخش iframe زنده و نوار پیشرفت ---
     $html .= '<div class="relative w-full h-56 bg-slate-800 overflow-hidden group iframe-container">';
 
-    // نوار پیشرفت در بالای تصویر (رنگ گرادینت سبز/آبی)
+    // نوار پیشرفت در بالای تصویر
     $html .= '  <div class="absolute top-0 left-0 w-full h-1 bg-white/10 z-20 transition-opacity duration-300">';
     $html .= '      <div class="progress-bar h-full bg-gradient-to-r from-emerald-400 to-teal-500 w-0 transition-all duration-300 shadow-[0_0_10px_rgba(52,211,153,0.7)]"></div>';
     $html .= '  </div>';
 
-    // --- Toast / اعلان هشدار VPN ---
-    // این پیام روی آی‌فریم نمایش داده می‌شود تا کاربر بداند چرا ممکن است تصویر لود نشود
-    $html .= '  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-slate-900/90 backdrop-blur border border-white/10 text-amber-400 text-[10px] py-2 px-3 rounded-full pointer-events-none flex items-center gap-2 shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">';
-    $html .= '      <i data-feather="alert-triangle" class="w-3 h-3"></i>';
-    $html .= '      <span>در صورت عدم مشاهده، VPN را روشن کنید</span>';
-    $html .= '  </div>';
-    // نسخه همیشه نمایان (اختیاری: اگر می‌خواهید همیشه دیده شود کلاس opacity-0 و group-hover را حذف کنید)
-    // در اینجا من یک نسخه محوتر را همیشه نشان می‌دهم که با هاور پررنگ می‌شود:
-     $html .= '  <div class="absolute bottom-2 right-2 z-10 bg-black/60 backdrop-blur text-white/70 text-[10px] py-1 px-2 rounded flex items-center gap-1 pointer-events-none group-hover:opacity-0 transition-opacity duration-300">';
-    $html .= '      <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>';
-    $html .= '      <span>نیاز به VPN</span>';
-    $html .= '  </div>';
+    // --- شرطی کردن نمایش هشدار VPN ---
+    if (isset($proj['vpn_required']) && $proj['vpn_required'] === true) {
+        // پیام وسط تصویر هنگام هاور (بزرگتر)
+        $html .= '  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-slate-900/90 backdrop-blur border border-white/10 text-amber-400 text-[10px] py-2 px-3 rounded-full pointer-events-none flex items-center gap-2 shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">';
+        $html .= '      <i data-feather="alert-triangle" class="w-3 h-3"></i>';
+        $html .= '      <span>در صورت عدم مشاهده، VPN را روشن کنید</span>';
+        $html .= '  </div>';
+        
+        // پیام کوچک گوشه تصویر (همیشه نمایان - محو)
+        $html .= '  <div class="absolute bottom-2 right-2 z-10 bg-black/60 backdrop-blur text-white/70 text-[10px] py-1 px-2 rounded flex items-center gap-1 pointer-events-none group-hover:opacity-0 transition-opacity duration-300">';
+        $html .= '      <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>';
+        $html .= '      <span>نیاز به VPN</span>';
+        $html .= '  </div>';
+    }
 
-
-    // Iframe با آدرس مستقیم (بدون پروکسی)
+    // Iframe با آدرس مستقیم
     // کلاس‌ها برای کوچک‌نمایی (Scale) نمای دسکتاپ
     $html .= '  <iframe src="' . $project_url . '" class="w-[200%] h-[200%] transform origin-top-left scale-50 border-0 opacity-0 transition-opacity duration-700 pointer-events-none" scrolling="no" loading="lazy"></iframe>';
 
