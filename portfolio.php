@@ -9,10 +9,23 @@ $isN8NAdmin = $isLoggedIn;
 
 // --- لیست پروژه ها و تنظیمات ---
 $portfolioItems = [
-    // --- پروژه‌های هوشمند و جدید (ابتدا قرار می‌گیرند) ---
+    // --- پروژه جدید (مبلمان - ریکت) ---
+    [
+        'id' => 'furniture_store',
+        'title' => 'فروشگاه مبلمان',
+        'category' => 'store',
+        'category_fa' => 'فروشگاهی',
+        'badge_bg' => 'bg-orange-900/30',
+        'badge_text' => 'text-orange-400',
+        'img' => '/src/furniture.png', // تصویر را با این نام آپلود کنید
+        'url' => 'http://furniture1.armanmc.ir/', 
+        'desc' => 'فروشگاه آنلاین مبلمان با طراحی مدرن و رابط کاربری جذاب (React)',
+        'ajax' => true // لود از طریق سرور (هوشمند)
+    ],
+    // --- پروژه‌های هوشمند قبلی ---
     [
         'id' => 'batis_modern',
-        'title' => 'تولیدی چوب و فلز',
+        'title' => 'باتیس مدرن',
         'category' => 'landing',
         'category_fa' => 'شرکتی',
         'badge_bg' => 'bg-emerald-900/30',
@@ -20,7 +33,7 @@ $portfolioItems = [
         'img' => '/src/batis.png', 
         'url' => 'https://batis-modern.vercel.app', 
         'desc' => 'طراحی مدرن و مینیمال با استفاده از تکنولوژی‌های روز دنیا',
-        'ajax' => true // لود از طریق سرور (هوشمند)
+        'ajax' => true 
     ],
     [
         'id' => 'etehad_store',
@@ -32,17 +45,17 @@ $portfolioItems = [
         'img' => '/src/etehad.png',
         'url' => 'https://etehad.vercel.app/', 
         'desc' => 'فروشگاه تخصصی لپ‌تاپ استوک با طراحی واکنش‌گرا (React)',
-        'ajax' => true // لود از طریق سرور (هوشمند)
+        'ajax' => true 
     ],
-    // --- پروژه جدید (معمولی/غیر ایجکسی) ---
+    // --- پروژه وردپرسی معمولی ---
     [
         'id' => 'noormah_bookcity',
         'title' => 'شهر کتاب نورماه',
-        'category' => 'store', // دسته‌بندی فروشگاهی
+        'category' => 'store', 
         'category_fa' => 'فروشگاهی',
-        'badge_bg' => 'bg-indigo-900/30', // رنگ متفاوت (ایندیگو) برای تمایز
+        'badge_bg' => 'bg-indigo-900/30', 
         'badge_text' => 'text-indigo-400',
-        'img' => '/src/noormah.png', // تصویر را با این نام آپلود کنید
+        'img' => '/src/noormah.png', 
         'url' => 'https://noormahbookcity.ir', 
         'desc' => 'پروژه وردپرسی تمام اختصاصی (طراحی شده از صفر) برای شهر کتاب نورماه',
         'ajax' => false // لود معمولی
