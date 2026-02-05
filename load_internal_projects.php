@@ -21,21 +21,8 @@ function checkServerStatus($url) {
 $output = [];
 
 // تعریف لیست پروژه‌های هوشمند (AJAX)
+// نکته: پروژه مبلمان ۱ از اینجا حذف شد چون به صورت استاتیک در portfolio.php قرار گرفت.
 $projects = [
-    // --- پروژه ۱: فروشگاه مبلمان (بدون نیاز به VPN) ---
-    [
-        'id' => 'furniture_store',
-        'url' => 'http://furniture1.armanmc.ir/',
-        'img' => '/src/furniture.png',
-        'title' => 'فروشگاه مبلمان',
-        'desc' => 'فروشگاه آنلاین مبلمان با طراحی مدرن و رابط کاربری جذاب (React)',
-        'category' => 'store',
-        'badge_bg' => 'bg-orange-900/30',
-        'badge_text_color' => 'text-orange-400',
-        'badge_label' => 'فروشگاهی',
-        'vpn_required' => false // سرور ایران/بدون فیلتر
-    ],
-    // --- پروژه ۲: باتیس مدرن (نیاز به VPN) ---
     [
         'id' => 'batis_modern',
         'url' => 'https://batis-modern.vercel.app',
@@ -48,7 +35,6 @@ $projects = [
         'badge_label' => 'شرکتی',
         'vpn_required' => true // پروژه Vercel
     ],
-    // --- پروژه ۳: فروشگاه اتحاد (نیاز به VPN) ---
     [
         'id' => 'etehad_store',
         'url' => 'https://etehad.vercel.app/',
