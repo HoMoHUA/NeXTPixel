@@ -25,7 +25,7 @@ $output = [];
 $projects = [
     [
         'id' => 'batis_modern',
-        'url' => 'https://batis-modern.vercel.app',
+        'url' => 'httpshttp://batis.armanmc.ir/',
         'img' => '/src/batis.png',
         'title' => 'باتیس مدرن',
         'desc' => 'طراحی مدرن و مینیمال با استفاده از تکنولوژی‌های روز دنیا (Next.js)',
@@ -37,7 +37,7 @@ $projects = [
     ],
     [
         'id' => 'etehad_store',
-        'url' => 'https://etehad.vercel.app/',
+        'url' => 'http://etehad.armanmc.ir/',
         'img' => '/src/etehad.png',
         'title' => 'فروشگاه اتحاد',
         'desc' => 'فروشگاه تخصصی لپ‌تاپ استوک با طراحی واکنش‌گرا (React)',
