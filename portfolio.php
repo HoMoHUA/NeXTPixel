@@ -31,7 +31,7 @@ $portfolioItems = [
         'badge_bg' => 'bg-emerald-900/30',
         'badge_text' => 'text-emerald-400',
         'img' => '/src/batis.png', 
-        'url' => 'https://batis-modern.vercel.app', 
+        'url' => http://batis.armanmc.ir/', 
         'desc' => 'طراحی مدرن و مینیمال با استفاده از تکنولوژی‌های روز دنیا',
         'ajax' => true // لود از طریق سرور (هوشمند)
     ],
@@ -43,7 +43,7 @@ $portfolioItems = [
         'badge_bg' => 'bg-blue-900/30',
         'badge_text' => 'text-blue-400',
         'img' => '/src/etehad.png',
-        'url' => 'https://etehad.vercel.app/', 
+        'url' => 'http://etehad.armanmc.ir/', 
         'desc' => 'فروشگاه تخصصی لپ‌تاپ استوک با طراحی واکنش‌گرا (React)',
         'ajax' => true // لود از طریق سرور (هوشمند)
     ],
